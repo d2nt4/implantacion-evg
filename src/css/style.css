@@ -1,0 +1,257 @@
+header{
+	background: #006293;
+	color: white;
+	text-align: center;
+	height: 100px;
+	padding-top: 25px;
+}
+
+#contenedor{
+	background: #c3cbce;
+}
+
+#contenedor>div{
+	background: white;
+	padding-bottom: 7em;
+}
+
+aside{
+	background: #c3cbce;
+	padding-left: 0!important;
+	padding-right: 0!important;
+}
+
+aside a{
+	line-height: 30px;
+	font-weight: bold;
+	color:#006293;
+	text-decoration: none!important;
+	display: inline-block;
+	width: 100%;
+	transition-duration: 0.4s;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 10%;
+
+}
+
+aside a:hover, aside a:focus{
+	background: #DEE9EE;
+	outline: none;
+}
+
+aside a{
+	cursor: pointer;
+}
+
+aside #cerrarSesionAside{
+	color: red;
+}
+
+aside #cerrarSesionAside:hover, aside #cerrarSesionAside:focus{
+	background-color: #b63636;
+	color: white;
+}
+
+button, input[type="submit"]{
+	border-radius: 4px;
+	margin-left: 2%;
+	margin-right: 2%;
+	margin-top: 7px;
+	background: #006293;
+	color: white;
+	border: 2px solid #003293;
+	transition-duration: 0.4s;
+	padding: 5px 1%;
+}
+
+button:hover, input[type="submit"]:not(:disabled):hover, button:focus, input[type="submit"]:not(:disabled):focus{
+	margin-left: 1%;
+	margin-right: 3%;
+	box-shadow: gray 5px 3px 3px;
+	outline: none;
+}
+
+input[type="submit"]:disabled {/* cuando se bloquee un botón de enviar (al inicio en las páginas de añadir y con ajax normalmente) */
+	background-color: #791515!important;
+	border-color: black;
+}
+
+.divInfo{/* el div que empieza vacío, solo vale para mostrar el mensaje de ajax (en todas las páginas debe tener este nombre para que ajax funcione correctamente) */
+	float: right;
+	margin: 0 5%;
+	padding: .5em 1%;
+	max-width: 55%;
+	background-color: #fffd98;
+	border: 1px solid #ff6363 !important;
+	opacity: 0;
+	border-radius: 10px;
+	transition-duration: .5s;
+	overflow: hidden;
+}
+
+.sugerenciaAjax{
+	background-color: lightgray;
+	padding: 0;
+	overflow: hidden;
+	border-radius: 10px;
+}
+
+.sugerenciaAjax button{
+	background-color: lightgray;
+	border: none;
+	height: auto;
+	color: black;
+	box-shadow: none;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+
+}
+
+.sugerenciaAjax button:hover, .sugerenciaAjax button:focus{
+	background-color: #a0a0a0;
+}
+
+#valor{
+	display: inline-block;
+	font-size: 1.5em;
+	padding-right: 1em;
+	font-weight: bold;
+	color: #172C36;
+}
+
+table{
+	margin-top: 2em;
+	width: 100%;
+}
+
+table tr{
+	width: 100%;
+}
+
+table tr td{
+	width: 10% !important;
+	white-space: nowrap;
+}
+
+table tr td:first-of-type{
+	width: 0.1% !important;
+}
+
+#anadir{
+	margin-top: 10px;
+}
+
+form{
+	margin-top: 30px;
+	margin-left: 25%;
+}
+
+input[type="text"], select{
+	border-radius: 4px;
+	transition-duration: 0.3s;
+	background: lightgray;
+	width: 30%;
+}
+
+input[type="text"]:focus, select:focus{
+	width: 35%;
+	background: white;
+}
+
+#info{
+	background: #fffd98;
+	float: right;
+	color: black;
+	border: 2px solid black;
+}
+
+#cuadroInfo{
+	margin-top: 40px;
+}
+
+#cuadroInfo button{
+	background: #ff7077;
+	color: black;
+	border: 2px solid black;
+}
+
+/* inicio de sesión con Google */
+
+#inicioSesionGoogletitulo{
+	margin: auto;
+	margin-top: 3em;
+	width: 30%;
+	text-align: center;
+}
+
+#inicioSesionGoogle #infoSesion{/* párrafo que informa de que la cuenta no tiene usuario en la aplicación */
+	border: 1px solid #ff5c5c;
+	background-color: #eeee87;
+	margin: 1em 7%;
+	padding: 0.4em 2%;
+	text-align: center;
+	border-radius: 10px;
+}
+
+#inicioSesionGoogle #botonInicioCierre { /* botones de inicio y cierre de sesión */
+	color: white!important;
+	display: inline-block;
+	margin-left: 40%;
+	transition-duration: 0.2s;
+}
+
+#inicioSesionGoogle #botonInicioCierre:hover{
+	background-color: #ce382e !important;
+}
+
+#inicioSesionGoogleCarta{/* carta que presenta el icono del usuario e información adicional */
+	padding: 0 30%;
+	width: 100%;
+}
+
+#inicioSesionGoogleCarta #cerrarCard{/* botón para cerra la información adicional en la carta */
+	transition-duration: 0.4s;
+	display: inline-block;
+	padding: 0.1em 2%;
+}
+
+#inicioSesionGoogleCarta #cerrarCard:hover{
+	background-color: #eeeeee;
+	border-radius: 10px;
+}
+
+/* grid */
+
+#gridAplicaciones{
+	padding: 2em 5%;
+}
+
+#gridAplicaciones>.aplicacion{
+	display: inline-block;
+	padding: .5em 2%;
+	margin: .5em 5%;
+	border-radius: 10px;
+	background-color: #eeeeee;
+	transition-duration: 0.3s;
+}
+
+#gridAplicaciones>.aplicacion:hover {
+	filter: brightness(0.8);
+	text-decoration: none;
+}
+
+#gridAplicaciones>a:last-of-type {
+	margin-top: 3em!important;
+}
+
+#iconoApp{/* imagen con el icono de la aplicación */
+	width: 60px;
+	height: 60px;
+	border-radius: 100%;
+	margin-left: 15px;/* si se le pone porcentaje se baja el icono sin razón */
+	overflow: hidden;
+	object-fit: cover;
+	box-shadow: 0px 2px 10px lightblue;
+}
