@@ -7,82 +7,90 @@ class M_GestionEVG extends CI_Model
 	public function __construct()
 	{
 		parent::__construct();
-		$this->bd=$this->load->database('default',true);
+		$this -> bd = $this -> load -> database('default',true);
 	}
 
 
-	public function insertar($tabla,$datos){
-		if($this->bd->insert($tabla,$datos))
-			return $this->bd->insert_id();
+	public function insertar($tabla,$datos)
+	{
+		if($this -> bd -> insert($tabla,$datos))
+			return $this -> bd -> insert_id();
 		else
-			echo $this->bd->error();
+			echo $this -> bd -> error();
 	}
 
-	public function borrar($tabla,$id,$nombreId){
-		$this->bd->delete($tabla,array($nombreId => $id));
+	public function borrar($tabla,$id,$nombreId)
+	{
+		$this -> bd -> delete($tabla,array($nombreId => $id));
 	}
 
-	public function borrarCompuesta($tabla,$id1,$id2,$nombreId1,$nombreId2){
-		$this->bd->delete($tabla,array($nombreId1 => $id1, $nombreId2=>$id2));
+	public function borrarCompuesta($tabla,$id1,$id2,$nombreId1,$nombreId2)
+	{
+		$this -> bd -> delete($tabla,array($nombreId1 => $id1, $nombreId2 => $id2));
 	}
 
-	public function modificar($tabla,$datos,$id,$nombreId){
+	public function modificar($tabla,$datos,$id,$nombreId)
+	{
 		foreach($datos as $indice => $valor)
-			$this->bd->set($indice, $valor);
-		$this->bd->where($nombreId, $id);
-		$this->bd->update($tabla);
+			$this -> bd -> set($indice, $valor);
+		$this -> bd -> where($nombreId, $id);
+		$this -> bd -> update($tabla);
 	}
 
-	public function seleccionar($tabla, $campos, $condicion){
-		$this->bd->select($campos);
-		$this->bd->from($tabla);
-		$this->bd->where($condicion);
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function seleccionar($tabla, $campos, $condicion)
+	{
+		$this -> bd -> select($campos);
+		$this -> bd -> from($tabla);
+		$this -> bd -> where($condicion);
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
 	public function buscar($tabla, $valor, $campo)
 	{
-		$this->bd->select($campo);
-		$this->bd->from($tabla);
-		$this->bd->where($campo."='".$valor."'");
-		$query = $this->bd->get();
-		$rows = $query->num_rows();
-		$query->free_result();
+		$this -> bd -> select($campo);
+		$this -> bd -> from($tabla);
+		$this -> bd -> where($campo."='".$valor."'");
+		$query = $this -> bd->get();
+		$rows = $query -> num_rows();
+		$query -> free_result();
 		return $rows;
 	}
 
 	/*APLICACIONES*/
 
-	public function seleccionarApps(){
-		$this->bd->select('idAplicacion, nombre');
-		$this->bd->from('Aplicaciones');
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function seleccionarApps()
+	{
+		$this -> bd -> select('idAplicacion, nombre');
+		$this -> bd -> from('Aplicaciones');
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
-	public function datosApp($idAplicacion){
-		$this->bd->select('nombre, descripcion, url, icono');
-		$this->bd->from('Aplicaciones');
-		$this->bd->where('idAplicacion='.$idAplicacion);
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function datosApp($idAplicacion)
+	{
+		$this -> bd -> select('nombre, descripcion, url, icono');
+		$this -> bd -> from('Aplicaciones');
+		$this -> bd -> where('idAplicacion='.$idAplicacion);
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
-	public function cogerPerfilesAplicacion($idAplicacion){
-		$this->bd->select('p.idPerfil, p.nombre');
-		$this->bd->from('perfiles p');
-		$this->bd->join('aplicaciones_perfiles ap','p.idPerfil = ap.idPerfil');
-		$this->bd->where('ap.idAplicacion='.$idAplicacion);
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function cogerPerfilesAplicacion($idAplicacion)
+	{
+		$this -> bd -> select('p.idPerfil, p.nombre');
+		$this -> bd -> from('perfiles p');
+		$this -> bd -> join('aplicaciones_perfiles ap','p.idPerfil = ap.idPerfil');
+		$this -> bd -> where('ap.idAplicacion='.$idAplicacion);
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
@@ -94,13 +102,14 @@ ON p.idPerfil=ap.idPerfil
 WHERE ap.idAplicacion=12;
 	*/
 
-	public function cogerPerfilesNoAplicacion($idAplicacion){
-		$this->bd->select('p.idPerfil, p.nombre');
-		$this->bd->from('perfiles p');
-		$this->bd->where('p.idPerfil NOT IN (SELECT ap2.idPerfil FROM aplicaciones_perfiles ap2 WHERE ap2.idAplicacion='.$idAplicacion.')');
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function cogerPerfilesNoAplicacion($idAplicacion)
+	{
+		$this -> bd -> select('p.idPerfil, p.nombre');
+		$this -> bd -> from('perfiles p');
+		$this -> bd -> where('p.idPerfil NOT IN (SELECT ap2.idPerfil FROM aplicaciones_perfiles ap2 WHERE ap2.idAplicacion='.$idAplicacion.')');
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
@@ -114,33 +123,36 @@ WHERE
 
 	/*PERFILES*/
 
-	public function seleccionarPerfiles(){
-		$this->bd->select('idPerfil, nombre');
-		$this->bd->from('Perfiles');
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function seleccionarPerfiles()
+	{
+		$this -> bd -> select('idPerfil, nombre');
+		$this -> bd -> from('Perfiles');
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
-	public function datosPerfil($idPerfil){
-		$this->bd->select('nombre, descripcion');
-		$this->bd->from('Perfiles');
-		$this->bd->where('idPerfil='.$idPerfil);
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function datosPerfil($idPerfil)
+	{
+		$this -> bd -> select('nombre, descripcion');
+		$this -> bd -> from('Perfiles');
+		$this -> bd -> where('idPerfil='.$idPerfil);
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
-	public function cogerUsuariosPerfil($idPerfil){
-		$this->bd->select('u.idUsuario, u.correo');
-		$this->bd->from('Usuarios u');
-		$this->bd->join('Perfiles_Usuarios pu','pu.idUsuario = u.idUsuario');
-		$this->bd->where('pu.idPerfil='.$idPerfil);
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function cogerUsuariosPerfil($idPerfil)
+	{
+		$this -> bd -> select('u.idUsuario, u.correo');
+		$this -> bd -> from('Usuarios u');
+		$this -> bd -> join('Perfiles_Usuarios pu','pu.idUsuario = u.idUsuario');
+		$this -> bd -> where('pu.idPerfil='.$idPerfil);
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 /*
@@ -151,83 +163,91 @@ ON pu.idUsuario=u.idUsuario
 WHERE pu.idPerfil=5
 */
 
-	public function obtenerIdUsuario($correo){
-		$this->bd->select('idUsuario');
-		$this->bd->from('Usuarios');
-		$this->bd->where('correo='.$this->bd->escape($correo));
-		$query = $this->bd->get();
-		if($query->num_rows()>0) {
-			$rows = $query->result_array();
+	public function obtenerIdUsuario($correo)
+	{
+		$this -> bd -> select('idUsuario');
+		$this -> bd -> from('Usuarios');
+		$this -> bd -> where('correo='.$this->bd->escape($correo));
+		$query = $this -> bd -> get();
+		if($query -> num_rows() > 0) 
+		{
+			$rows = $query -> result_array();
 			$idUsuario = $rows[0]['idUsuario'];
 		}
 		else
 			return false;
-		$query->free_result();
+		$query -> free_result();
 		return $idUsuario;
 	}
 
 	/*USUARIOS*/
 
-	public function seleccionarUsuarios(){
-		$this->bd->select('idUsuario, correo');
-		$this->bd->from('Usuarios');
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function seleccionarUsuarios()
+	{
+		$this -> bd -> select('idUsuario, correo');
+		$this -> bd -> from('Usuarios');
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
-	public function datosUsuario($idUsuario){
-		$this->bd->select('nombre, correo, bajaTemporal');
-		$this->bd->from('Usuarios');
-		$this->bd->where('idUsuario='.$idUsuario);
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function datosUsuario($idUsuario)
+	{
+		$this -> bd -> select('nombre, correo, bajaTemporal');
+		$this -> bd -> from('Usuarios');
+		$this -> bd -> where('idUsuario='.$idUsuario);
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
 	/*ETAPAS*/
 
-	public function seleccionarEtapas(){
-		$this->bd->select('idEtapa, codEtapa');
-		$this->bd->from('Etapas');
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function seleccionarEtapas()
+	{
+		$this -> bd -> select('idEtapa, codEtapa');
+		$this -> bd -> from('Etapas');
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
-	public function cogerUsuarios(){
-		$this->bd->select('idUsuario, correo');
-		$this->bd->from('Usuarios');
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function cogerUsuarios()
+	{
+		$this -> bd -> select('idUsuario, correo');
+		$this -> bd -> from('Usuarios');
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
 
 
-	public function datosEtapa($idEtapa){
-		$this->bd->select('codEtapa, nombre, idCoordinador');
-		$this->bd->from('Etapas');
-		$this->bd->where('idEtapa='.$idEtapa);
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function datosEtapa($idEtapa)
+	{
+		$this -> bd -> select('codEtapa, nombre, idCoordinador');
+		$this -> bd -> from('Etapas');
+		$this -> bd -> where('idEtapa='.$idEtapa);
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
-	public function cogerEtapasPadre($idEtapa){
-		$this->bd->select('E.codEtapa, s.idEtapaPadre, E2.codEtapa');
-		$this->bd->from('Etapas E');
-		$this->bd->join('Subetapas S','E.idEtapa = S.idEtapa');
-		$this->bd->join('etapas E2','S.idEtapaPadre=E2.idEtapa');
-		$this->bd->where('E.idEtapa='.$idEtapa);
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function cogerEtapasPadre($idEtapa)
+	{
+		$this -> bd -> select('E.codEtapa, s.idEtapaPadre, E2.codEtapa');
+		$this -> bd -> from('Etapas E');
+		$this -> bd -> join('Subetapas S','E.idEtapa = S.idEtapa');
+		$this -> bd -> join('etapas E2','S.idEtapaPadre=E2.idEtapa');
+		$this -> bd -> where('E.idEtapa='.$idEtapa);
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
@@ -240,14 +260,15 @@ INNER JOIN etapas e2
 ON s.idEtapaPadre=e2.idEtapa
 WHERE e.idEtapa=8*/
 
-	public function cogerEtapasNoPadre($idEtapa){
-		$this->bd->select('e.idEtapa, e.codEtapa');
-		$this->bd->from('Etapas e');
-		$this->bd->join('Subetapas S','e.idEtapa = S.idEtapa','left');
-		$this->bd->where('e.idEtapa!='.$idEtapa.' AND e.idEtapa NOT IN (SELECT S2.idEtapaPadre FROM etapas e2 INNER JOIN subetapas s2 ON e2.idEtapa = s2.idEtapa WHERE e2.idEtapa='.$idEtapa.' )');
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function cogerEtapasNoPadre($idEtapa)
+	{
+		$this -> bd -> select('e.idEtapa, e.codEtapa');
+		$this -> bd -> from('Etapas e');
+		$this -> bd -> join('Subetapas S','e.idEtapa = S.idEtapa','left');
+		$this -> bd -> where('e.idEtapa!='.$idEtapa.' AND e.idEtapa NOT IN (SELECT S2.idEtapaPadre FROM etapas e2 INNER JOIN subetapas s2 ON e2.idEtapa = s2.idEtapa WHERE e2.idEtapa='.$idEtapa.' )');
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 	/*
@@ -266,176 +287,193 @@ WHERE e2.idEtapa=8
 
 	/*CURSOS*/
 
-	public function seleccionarCursos(){
-		$this->bd->select('idCurso, codCurso');
-		$this->bd->from('Cursos');
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function seleccionarCursos()
+	{
+		$this -> bd -> select('idCurso, codCurso');
+		$this -> bd -> from('Cursos');
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
-	public function datosCurso($idCurso){
-		$this->bd->select('idCursoColegio, codCurso, nombre, idEtapa');
-		$this->bd->select('idCursoColegio, codCurso, nombre, idEtapa');
-		$this->bd->from('Cursos');
-		$this->bd->where('idCurso='.$idCurso);
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function datosCurso($idCurso)
+	{
+		$this -> bd -> select('idCursoColegio, codCurso, nombre, idEtapa');
+		$this -> bd -> select('idCursoColegio, codCurso, nombre, idEtapa');
+		$this -> bd -> from('Cursos');
+		$this -> bd -> where('idCurso='.$idCurso);
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
-	public function cogerEtapas(){
-		$this->bd->select('idEtapa, codEtapa');
-		$this->bd->from('Etapas');
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function cogerEtapas()
+	{
+		$this -> bd -> select('idEtapa, codEtapa');
+		$this -> bd -> from('Etapas');
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
 
 	/*DEPARTAMENTOS*/
 
-	public function seleccionarDepartamentos(){
-		$this->bd->select('idDepartamento, nombre');
-		$this->bd->from('FP_Departamentos');
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function seleccionarDepartamentos()
+	{
+		$this -> bd -> select('idDepartamento, nombre');
+		$this -> bd -> from('FP_Departamentos');
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
-	public function datosDepartamento($idDepartamento){
-		$this->bd->select('nombre');
-		$this->bd->from('FP_Departamentos');
-		$this->bd->where('idDepartamento='.$idDepartamento);
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function datosDepartamento($idDepartamento)
+	{
+		$this -> bd -> select('nombre');
+		$this -> bd -> from('FP_Departamentos');
+		$this -> bd -> where('idDepartamento='.$idDepartamento);
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
 	/*FAMILIAS PROFESIONALES*/
 
-	public function seleccionarFamilias(){
-		$this->bd->select('idFamilia, nombre');
-		$this->bd->from('FP_FamiliasProfesionales');
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function seleccionarFamilias()
+	{
+		$this -> bd -> select('idFamilia, nombre');
+		$this -> bd -> from('FP_FamiliasProfesionales');
+		$query = $this -> bd->get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
-	public function cogerDepartamentos(){
-		$this->bd->select('idDepartamento, nombre');
-		$this->bd->from('FP_Departamentos');
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function cogerDepartamentos()
+	{
+		$this -> bd -> select('idDepartamento, nombre');
+		$this -> bd -> from('FP_Departamentos');
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
-	public function datosFamilia($idFamilia){
-		$this->bd->select('idFamilia, nombre, idDepartamento');
-		$this->bd->from('FP_FamiliasProfesionales');
-		$this->bd->where('idFamilia='.$idFamilia);
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function datosFamilia($idFamilia)
+	{
+		$this -> bd -> select('idFamilia, nombre, idDepartamento');
+		$this -> bd -> from('FP_FamiliasProfesionales');
+		$this -> bd -> where('idFamilia='.$idFamilia);
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
 	/*CICLOS*/
 
-	public function seleccionarCiclos(){
-		$this->bd->select('idCiclo, codCiclo');
-		$this->bd->from('FP_Ciclos');
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function seleccionarCiclos()
+	{
+		$this -> bd -> select('idCiclo, codCiclo');
+		$this -> bd -> from('FP_Ciclos');
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
-	public function cogerFamilias(){
-		$this->bd->select('idFamilia, nombre');
-		$this->bd->from('FP_FamiliasProfesionales');
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function cogerFamilias()
+	{
+		$this -> bd -> select('idFamilia, nombre');
+		$this -> bd -> from('FP_FamiliasProfesionales');
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
-	public function datosCiclo($idCiclo){
-		$this->bd->select('idCiclo, codCiclo, nombre, idFamilia');
-		$this->bd->from('FP_Ciclos');
-		$this->bd->where('idCiclo='.$idCiclo);
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function datosCiclo($idCiclo)
+	{
+		$this -> bd -> select('idCiclo, codCiclo, nombre, idFamilia');
+		$this -> bd -> from('FP_Ciclos');
+		$this -> bd -> where('idCiclo='.$idCiclo);
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
-	public function cogerCursosCiclo($idCiclo){
-		$this->bd->select('cu.idCurso, cu.codCurso');
-		$this->bd->from('Cursos cu');
-		$this->bd->join('FP_Ciclos_Cursos cc','cu.idCurso = cc.idCurso');
-		$this->bd->where('cc.idCiclo='.$idCiclo);
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function cogerCursosCiclo($idCiclo)
+	{
+		$this -> bd -> select('cu.idCurso, cu.codCurso');
+		$this -> bd -> from('Cursos cu');
+		$this -> bd -> join('FP_Ciclos_Cursos cc','cu.idCurso = cc.idCurso');
+		$this -> bd -> where('cc.idCiclo='.$idCiclo);
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
-	public function cogerCursosNoCiclo($idCiclo){
-		$this->bd->select('cu.idCurso, cu.codCurso');
-		$this->bd->from('Cursos cu');
-		$this->bd->where('cu.idCurso NOT IN (SELECT cc2.idCurso FROM FP_Ciclos_Cursos cc2 WHERE cc2.idCiclo='.$idCiclo.')');
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function cogerCursosNoCiclo($idCiclo)
+	{
+		$this -> bd -> select('cu.idCurso, cu.codCurso');
+		$this -> bd -> from('Cursos cu');
+		$this -> bd -> where('cu.idCurso NOT IN (SELECT cc2.idCurso FROM FP_Ciclos_Cursos cc2 WHERE cc2.idCiclo='.$idCiclo.')');
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
 	/*SECCIONES*/
 
-	public function seleccionarSecciones(){
-		$this->bd->select('idSeccion, codSeccion');
-		$this->bd->from('Secciones');
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function seleccionarSecciones()
+	{
+		$this -> bd -> select('idSeccion, codSeccion');
+		$this -> bd -> from('Secciones');
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
-	public function cogerCursos(){
-		$this->bd->select('idCurso, codCurso');
-		$this->bd->from('Cursos');
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function cogerCursos()
+	{
+		$this -> bd -> select('idCurso, codCurso');
+		$this -> bd -> from('Cursos');
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
-	public function datosSeccion($idSeccion){
-		$this->bd->select('idSeccion, idSeccionColegio, codSeccion, nombre, idCurso');
-		$this->bd->from('Secciones');
-		$this->bd->where('idSeccion='.$idSeccion);
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function datosSeccion($idSeccion)
+	{
+		$this -> bd -> select('idSeccion, idSeccionColegio, codSeccion, nombre, idCurso');
+		$this -> bd -> from('Secciones');
+		$this -> bd -> where('idSeccion='.$idSeccion);
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
-	public function cogerProfesores(){
-		$this->bd->select('idUsuario, correo');
-		$this->bd->from('Usuarios');
-		$this->bd->where("idUsuario IN (SELECT idUsuario FROM perfiles_usuarios WHERE idPerfil=( SELECT idPerfil FROM perfiles WHERE nombre='profesor')AND idUsuario NOT IN (SELECT idUsuario FROM perfiles_usuarios WHERE idPerfil=(SELECT idPerfil FROM perfiles WHERE nombre='tutor')))");
-		$this->bd->order_by('correo');
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function cogerProfesores()
+	{
+		$this -> bd -> select('idUsuario, correo');
+		$this -> bd -> from('Usuarios');
+		$this -> bd -> where("idUsuario IN (SELECT idUsuario FROM perfiles_usuarios WHERE idPerfil=( SELECT idPerfil FROM perfiles WHERE nombre='profesor')AND idUsuario NOT IN (SELECT idUsuario FROM perfiles_usuarios WHERE idPerfil=(SELECT idPerfil FROM perfiles WHERE nombre='tutor')))");
+		$this -> bd -> order_by('correo');
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
@@ -461,35 +499,38 @@ WHERE idUsuario IN (
 )
 */
 
-	public function idPerfilTutor(){
-		$this->bd->select('idPerfil');
-		$this->bd->from('Perfiles');
-		$this->bd->where("nombre='tutor'");
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function idPerfilTutor()
+	{
+		$this -> bd -> select('idPerfil');
+		$this -> bd -> from('Perfiles');
+		$this -> bd -> where("nombre='tutor'");
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
-	public function idTutorSeccion($idSeccion){
-		$this->bd->select('idTutor');
-		$this->bd->from('Secciones');
-		$this->bd->where("idSeccion=".$idSeccion);
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function idTutorSeccion($idSeccion)
+	{
+		$this -> bd -> select('idTutor');
+		$this -> bd -> from('Secciones');
+		$this -> bd -> where("idSeccion=".$idSeccion);
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
-	public function seleccionarSeccionesEtapa($idEtapa){
-		$this->bd->select('s.idSeccion, s.codSeccion');
-		$this->bd->from('Secciones s');
-		$this->bd->join('Cursos c','s.idCurso=c.idCurso');
-		$this->bd->join('Etapas e','c.idEtapa=e.idEtapa');
-		$this->bd->where("e.idEtapa",$idEtapa);
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function seleccionarSeccionesEtapa($idEtapa)
+	{
+		$this -> bd -> select('s.idSeccion, s.codSeccion');
+		$this -> bd -> from('Secciones s');
+		$this -> bd -> join('Cursos c','s.idCurso=c.idCurso');
+		$this -> bd -> join('Etapas e','c.idEtapa=e.idEtapa');
+		$this -> bd -> where("e.idEtapa",$idEtapa);
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
@@ -507,13 +548,14 @@ WHERE e.idEtapa=14
 
 	/*LISTADO DE TUTORES*/
 
-	public function listadoTutores(){
-		$this->bd->select('S.codSeccion, U.correo');
-		$this->bd->from('Secciones s');
-		$this->bd->join('Usuarios u','s.idTutor=u.idUsuario','left');
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function listadoTutores()
+	{
+		$this -> bd -> select('S.codSeccion, U.correo');
+		$this -> bd -> from('Secciones s');
+		$this -> bd -> join('Usuarios u','s.idTutor=u.idUsuario','left');
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
@@ -523,15 +565,16 @@ from secciones s left join usuarios u
 on s.idTutor=u.idUsuario */
 
 
-	public function aplicacionesPermitidas($idUsuario){
-		$this->bd->select('distinct(a.url), a.nombre, a.icono');
-		$this->bd->from('Aplicaciones a');
-		$this->bd->join('Aplicaciones_Perfiles ap','a.idAplicacion= ap.idAplicacion');
-		$this->bd->join('Perfiles_Usuarios pu','pu.idPerfil=ap.idPerfil');
-		$this->bd->where("idUsuario=",$idUsuario);
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+	public function aplicacionesPermitidas($idUsuario)
+	{
+		$this -> bd -> select('distinct(a.url), a.nombre, a.icono');
+		$this -> bd -> from('Aplicaciones a');
+		$this -> bd -> join('Aplicaciones_Perfiles ap','a.idAplicacion= ap.idAplicacion');
+		$this -> bd -> join('Perfiles_Usuarios pu','pu.idPerfil=ap.idPerfil');
+		$this -> bd -> where("idUsuario=",$idUsuario);
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 
@@ -545,17 +588,18 @@ on pu.idPerfil=ap.idPerfil
 where idUsuario=2;
 */
 
-	public function buscarUsuarios($idPerfil, $valor){
-		$this->bd->select('*');
-		$this->bd->from('usuarios');
-		$this->bd->where("idUsuario NOT IN(
+	public function buscarUsuarios($idPerfil, $valor)
+	{
+		$this -> bd -> select('*');
+		$this -> bd -> from('usuarios');
+		$this -> bd -> where("idUsuario NOT IN(
 			SELECT idUsuario
 			FROM perfiles_usuarios
 			WHERE idPerfil=".$idPerfil."
 		) AND correo LIKE ('%".$valor."%')");
-		$query = $this->bd->get();
-		$rows = $query->result_array();
-		$query->free_result();
+		$query = $this -> bd -> get();
+		$rows = $query -> result_array();
+		$query -> free_result();
 		return $rows;
 	}
 

@@ -1120,7 +1120,7 @@ class C_GestionEVG extends CI_Controller
 			$pdf -> Cell(50, 10, 'TUTOR', 1, 1, 'C');
 
 
-			foreach ($this->listaTutores as $indice => $valor) 
+			foreach ($this -> listaTutores as $indice => $valor) 
 			{
 				$pdf -> Cell(50, 10, $indice, 1, 0, 'C');
 				if (!empty($valor))
@@ -1144,8 +1144,9 @@ class C_GestionEVG extends CI_Controller
 
 	/* NUEVO CURSO */
 
-	public function nuevoCurso(){
-		$this->M_GestionEVG->borrar('alumnos', 1, 1);
+	public function nuevoCurso()
+	{
+		$this -> M_GestionEVG -> borrar('alumnos', 1, 1);
 		header('Location:'.base_url().'C_GestionEVG/importarAlumnosForm');
 	}
 }
