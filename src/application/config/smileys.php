@@ -13,7 +13,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | https://codeigniter.com/user_guide/helpers/smiley_helper.html
 |
 */
-$smileys = array(
+$smileys = array
+(
 
 //	smiley			image name						width	height	alt
 

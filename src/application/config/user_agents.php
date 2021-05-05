@@ -10,7 +10,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | mobile device data. The array keys are used to identify the device
 | and the array values are used to set the actual name of the item.
 */
-$platforms = array(
+$platforms = array
+(
 	'windows nt 10.0'	=> 'Windows 10',
 	'windows nt 6.3'	=> 'Windows 8.1',
 	'windows nt 6.2'	=> 'Windows 8',
@@ -58,7 +59,8 @@ $platforms = array(
 
 // The order of this array should NOT be changed. Many browsers return
 // multiple browser types so we want to identify the sub-type first.
-$browsers = array(
+$browsers = array
+(
 	'OPR'			=> 'Opera',
 	'Flock'			=> 'Flock',
 	'Edge'			=> 'Edge',
@@ -90,7 +92,8 @@ $browsers = array(
 	'Ubuntu'		=> 'Ubuntu Web Browser'
 );
 
-$mobiles = array(
+$mobiles = array
+(
 	// legacy array, old values commented out
 	'mobileexplorer'	=> 'Mobile Explorer',
 //  'openwave'			=> 'Open Wave',
@@ -193,7 +196,8 @@ $mobiles = array(
 );
 
 // There are hundreds of bots but these are the most common.
-$robots = array(
+$robots = array
+(
 	'googlebot'		=> 'Googlebot',
 	'msnbot'		=> 'MSNBot',
 	'baiduspider'		=> 'Baiduspider',
