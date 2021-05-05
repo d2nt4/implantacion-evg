@@ -9,7 +9,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | conversion used by the Text helper
 |
 */
-$foreign_characters = array(
+$foreign_characters = array
+(
 	'/ä|æ|ǽ/' => 'ae',
 	'/ö|œ/' => 'oe',
 	'/ü/' => 'ue',

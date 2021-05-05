@@ -1,15 +1,9 @@
 {
-	"description": "The CodeIgniter framework",
-	"name": "codeigniter/framework",
+	"description": "Despliegue de aplicaciones EVG",
+	"name": "gestion/evg",
 	"type": "project",
 	"homepage": "https://codeigniter.com",
-	"license": "MIT",
-	"support": {
-		"forum": "http://forum.codeigniter.com/",
-		"wiki": "https://github.com/bcit-ci/CodeIgniter/wiki",
-		"slack": "https://codeigniterchat.slack.com",
-		"source": "https://github.com/bcit-ci/CodeIgniter"
-	},
+	"license": "GNU General Public License 3.0",
 	"require": {
 		"php": ">=5.3.7"
 	},

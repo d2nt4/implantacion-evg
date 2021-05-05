@@ -1,14 +1,15 @@
 function confirmar(texto, ruta)
 {
 	if(confirm(texto))
-		location.href =ruta;
+		location.href=ruta;
 }
 var deshabilitar=[];
-//-----------------------------AJAX
+//-----------------------------AJAX-----------------------------//
 function buscarCSU(baseURL, tabla, valor, campo, idDiv, textoBase, permitido)
 {
 	var infoAjax=document.getElementById(idDiv);
-	if (valor != '') {
+	if (valor != '')
+	{
 		if (permitido==undefined || valor.toUpperCase() != permitido.toUpperCase())/* si el valor escrito es el valor permitido, no deshabilita el botón de enviar */
 		{
 			$.ajax
@@ -16,8 +17,10 @@ function buscarCSU(baseURL, tabla, valor, campo, idDiv, textoBase, permitido)
 				type: "POST",
 				url: baseURL + 'C_GestionEVG/comprobarCSU',
 				data: {campo:campo, valor:valor, tabla:tabla},
-				success: function (datos) {
-					if (datos == 'no') {
+				success: function (datos)
+				{
+					if (datos == 'no')
+					{
 						deshabilitar[idDiv]=false;
 						infoAjax.style.opacity = '0';
 						infoAjax.innerHTML = '';

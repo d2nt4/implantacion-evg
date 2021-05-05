@@ -18,13 +18,15 @@ include('application/views/Plantilla/header.php');
 		<div class="col-12" >
 			<h2>Usuario Administrador</h2>
 			<?php
-			$nombre=array(
+			$nombre = array
+			(
 				'name'=>'nombre',
 				'placeholder'=>'Nombre',
 				'required'=>'required'
 			);
 
-			$correo=array(
+			$correo = array
+			(
 				'name'=>'correo',
 				'placeholder'=>'Correo',
 				'required'=>'required'
