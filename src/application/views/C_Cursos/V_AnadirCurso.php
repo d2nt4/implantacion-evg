@@ -9,8 +9,8 @@ include('application/views/Plantilla/header.php');
 		function pruebaInicial()
 		{// tendrá que haber en esta función tantas líneas como distintos id de texto de ajax haya en la página
 			// se podría mejorar creando los id desde javascript directamente
-			buscarCSU('<?php echo base_url();?>', 'cursos', '', 'codCurso', 'infoAjax', ' ');
-			buscarCSU('<?php echo base_url();?>', 'cursos', '', 'nombre', 'infoAjax2', ' ');
+			buscarCSU('<?php echo base_url();?>', 'Cursos', '', 'codCurso', 'infoAjax', ' ');
+			buscarCSU('<?php echo base_url();?>', 'Cursos', '', 'nombre', 'infoAjax2', ' ');
 		}// hago esto para que se inicialice el array que contiene la información de los id que deben ser correctos, si no, puede dar fallos
 	</script>
 </head>
@@ -28,20 +28,20 @@ include('application/views/Plantilla/header.php');
 			<?php
 			$codCurso=array(
 				'name'=>'codCurso',
-				'oninput'=>"buscarCSU('".base_url()."', 'cursos', this.value, 'codCurso', 'infoAjax', 'Ya existe un curso con el código ')",
+				'oninput'=>"buscarCSU('".base_url()."', 'Cursos', this.value, 'codCurso', 'infoAjax', 'Ya existe un curso con el código ')",
 				'placeholder'=>'Código',
 				'required'=>'required'
 			);
 
 			$idCursoColegio=array(
 				'name'=>'idCursoColegio',
-				'oninput'=>"buscarCSU('".base_url()."', 'cursos', this.value, 'idCursoColegio', 'infoAjax2', 'Ya existe un curso con el id ')",
+				'oninput'=>"buscarCSU('".base_url()."', 'Cursos', this.value, 'idCursoColegio', 'infoAjax2', 'Ya existe un curso con el id ')",
 				'placeholder'=>'Identificador de curso del colegio'
 			);
 
 			$nombre=array(
 				'name'=>'nombre',
-				'oninput'=>"buscarCSU('".base_url()."', 'cursos', this.value, 'nombre', 'infoAjax3', 'Ya existe un curso con el nombre ')",
+				'oninput'=>"buscarCSU('".base_url()."', 'Cursos', this.value, 'nombre', 'infoAjax3', 'Ya existe un curso con el nombre ')",
 				'placeholder'=>'Nombre',
 				'required'=>'required'
 			);

@@ -1,6 +1,6 @@
 -- Borramos las etapas existentes e introducimos las etapas que usaremos
-DELETE FROM etapas;
-INSERT INTO etapas (idEtapa, codEtapa, nombre) VALUES
+DELETE FROM Etapas;
+INSERT INTO Etapas (idEtapa, codEtapa, nombre) VALUES
 (1, 'BACH', 'bachillerato'),
 (2, 'CFGS', 'Ciclos Superiores'),
 (3, 'CFGM', 'Ciclos Medios'),
@@ -10,8 +10,8 @@ INSERT INTO etapas (idEtapa, codEtapa, nombre) VALUES
 
 
 -- Borramos los cursos existentes e introducimos los que usaremos
-DELETE FROM cursos;
-INSERT INTO cursos (idCurso, codCurso, nombre, idEtapa) VALUES
+DELETE FROM Cursos;
+INSERT INTO Cursos (idCurso, codCurso, nombre, idEtapa) VALUES
 (1, 'BC1', '1º de Bachillerato', 1),
 (2, 'DAW1', '1º F.P.E.G.S.(Desarrollo de Aplicaciones Web)', 2),
 (3, 'DAW2', '2º F.P.E.G.S.(Desarrollo de Aplicaciones Web)(LOE)', 2),
@@ -42,30 +42,30 @@ INSERT INTO cursos (idCurso, codCurso, nombre, idEtapa) VALUES
 
 
 -- Asignamos cursos a secciones
-UPDATE secciones SET idCurso=1 WHERE codSeccion LIKE 'BC1_'; -- primero bachillerato
-UPDATE secciones SET idCurso=2 WHERE codSeccion='DAW1'; -- DAW1
-UPDATE secciones SET idCurso=3 WHERE codSeccion='DAW2'; -- DAW2
-UPDATE secciones SET idCurso=4 WHERE codSeccion='EMV1'; -- EMV1
-UPDATE secciones SET idCurso=5 WHERE codSeccion='EMV2'; -- EMV2
-UPDATE secciones SET idCurso=6 WHERE codSeccion LIKE 'ES1_'; -- ES1
-UPDATE secciones SET idCurso=7 WHERE codSeccion LIKE 'ES2_'; -- ES2
-UPDATE secciones SET idCurso=8 WHERE codSeccion LIKE 'ES3_'; -- ES3
-UPDATE secciones SET idCurso=9 WHERE codSeccion LIKE 'ES4_'; -- ES4
-UPDATE secciones SET idCurso=10 WHERE codSeccion='GA1'; -- GA1
-UPDATE secciones SET idCurso=11 WHERE codSeccion='GA2'; -- GA2
-UPDATE secciones SET idCurso=12 WHERE codSeccion='ME1'; -- ME1
-UPDATE secciones SET idCurso=13 WHERE codSeccion='ME2'; -- ME2
-UPDATE secciones SET idCurso=14 WHERE codSeccion='MI1'; -- MI1
-UPDATE secciones SET idCurso=15 WHERE codSeccion='MI2'; -- MI2
-UPDATE secciones SET idCurso=16 WHERE codSeccion='SMR1'; -- SMR1
-UPDATE secciones SET idCurso=17 WHERE codSeccion='SMR2'; -- SMR2
-UPDATE secciones SET idCurso=18 WHERE codSeccion LIKE '1º EI _'; -- 1º EI
-UPDATE secciones SET idCurso=19 WHERE codSeccion LIKE '1º EP _'; -- 1º EP
-UPDATE secciones SET idCurso=20 WHERE codSeccion LIKE '2º EI _'; -- 2º EI
-UPDATE secciones SET idCurso=21 WHERE codSeccion LIKE '2º EP _'; -- 2º EP
-UPDATE secciones SET idCurso=22 WHERE codSeccion LIKE '2B%'; -- 2B
-UPDATE secciones SET idCurso=23 WHERE codSeccion LIKE '3º EI _'; -- 3º EI
-UPDATE secciones SET idCurso=24 WHERE codSeccion LIKE '3º EP _'; -- 3º EP
-UPDATE secciones SET idCurso=25 WHERE codSeccion LIKE '4º EP _'; -- 4º EP
-UPDATE secciones SET idCurso=26 WHERE codSeccion LIKE '5º EP _'; -- 5º EP
-UPDATE secciones SET idCurso=27 WHERE codSeccion LIKE '6º EP _'; -- 6º EP
+UPDATE Secciones SET idCurso=1 WHERE codSeccion LIKE 'BC1_'; -- primero bachillerato
+UPDATE Secciones SET idCurso=2 WHERE codSeccion='DAW1'; -- DAW1
+UPDATE Secciones SET idCurso=3 WHERE codSeccion='DAW2'; -- DAW2
+UPDATE Secciones SET idCurso=4 WHERE codSeccion='EMV1'; -- EMV1
+UPDATE Secciones SET idCurso=5 WHERE codSeccion='EMV2'; -- EMV2
+UPDATE Secciones SET idCurso=6 WHERE codSeccion LIKE 'ES1_'; -- ES1
+UPDATE Secciones SET idCurso=7 WHERE codSeccion LIKE 'ES2_'; -- ES2
+UPDATE Secciones SET idCurso=8 WHERE codSeccion LIKE 'ES3_'; -- ES3
+UPDATE Secciones SET idCurso=9 WHERE codSeccion LIKE 'ES4_'; -- ES4
+UPDATE Secciones SET idCurso=10 WHERE codSeccion='GA1'; -- GA1
+UPDATE Secciones SET idCurso=11 WHERE codSeccion='GA2'; -- GA2
+UPDATE Secciones SET idCurso=12 WHERE codSeccion='ME1'; -- ME1
+UPDATE Secciones SET idCurso=13 WHERE codSeccion='ME2'; -- ME2
+UPDATE Secciones SET idCurso=14 WHERE codSeccion='MI1'; -- MI1
+UPDATE Secciones SET idCurso=15 WHERE codSeccion='MI2'; -- MI2
+UPDATE Secciones SET idCurso=16 WHERE codSeccion='SMR1'; -- SMR1
+UPDATE Secciones SET idCurso=17 WHERE codSeccion='SMR2'; -- SMR2
+UPDATE Secciones SET idCurso=18 WHERE codSeccion LIKE '1º EI _'; -- 1º EI
+UPDATE Secciones SET idCurso=19 WHERE codSeccion LIKE '1º EP _'; -- 1º EP
+UPDATE Secciones SET idCurso=20 WHERE codSeccion LIKE '2º EI _'; -- 2º EI
+UPDATE Secciones SET idCurso=21 WHERE codSeccion LIKE '2º EP _'; -- 2º EP
+UPDATE Secciones SET idCurso=22 WHERE codSeccion LIKE '2B%'; -- 2B
+UPDATE Secciones SET idCurso=23 WHERE codSeccion LIKE '3º EI _'; -- 3º EI
+UPDATE Secciones SET idCurso=24 WHERE codSeccion LIKE '3º EP _'; -- 3º EP
+UPDATE Secciones SET idCurso=25 WHERE codSeccion LIKE '4º EP _'; -- 4º EP
+UPDATE Secciones SET idCurso=26 WHERE codSeccion LIKE '5º EP _'; -- 5º EP
+UPDATE Secciones SET idCurso=27 WHERE codSeccion LIKE '6º EP _'; -- 6º EP

@@ -10,8 +10,8 @@ include('application/views/Plantilla/header.php');
 		function pruebaInicial()
 		{// tendrá que haber en esta función tantas líneas como distintos id de texto de ajax haya en la página
 			// se podría mejorar creando los id desde javascript directamente
-			buscarCSU('<?php echo base_url();?>', 'secciones', '', 'codSeccion', 'infoAjax', ' ');
-			buscarCSU('<?php echo base_url();?>', 'secciones', '', 'idSeccionCurso', 'infoAjax2', ' ');
+			buscarCSU('<?php echo base_url();?>', 'Secciones', '', 'codSeccion', 'infoAjax', ' ');
+			buscarCSU('<?php echo base_url();?>', 'Secciones', '', 'idSeccionCurso', 'infoAjax2', ' ');
 
 		}// hago esto para que se inicialice el array que contiene la información de los id que deben ser correctos, si no, puede dar fallos
 	</script>
@@ -31,14 +31,14 @@ include('application/views/Plantilla/header.php');
 
 			$codSeccion=array(
 				'name'=>'codSeccion',
-				'oninput'=>"buscarCSU('".base_url()."', 'secciones', this.value, 'codSeccion', 'infoAjax', 'Ya existe una sección con el código ')",
+				'oninput'=>"buscarCSU('".base_url()."', 'Secciones', this.value, 'codSeccion', 'infoAjax', 'Ya existe una sección con el código ')",
 				'placeholder'=>'Código',
 				'required'=>'required'
 			);
 
 			$idSeccionColegio=array(
 				'name'=>'idSeccionColegio',
-				'oninput'=>"buscarCSU('".base_url()."', 'secciones', this.value, 'idSeccionColegio', 'infoAjax2', 'Ya existe una sección con el identificador ')",
+				'oninput'=>"buscarCSU('".base_url()."', 'Secciones', this.value, 'idSeccionColegio', 'infoAjax2', 'Ya existe una sección con el identificador ')",
 				'placeholder'=>'Identificador de sección del colegio'
 			);
 

@@ -8,8 +8,8 @@
 		function pruebaInicial()
 		{// tendrá que haber en esta función tantas líneas como distintos id de texto de ajax haya en la página
 			// se podría mejorar creando los id desde javascript directamente
-			buscarCSU('<?php echo base_url();?>', 'aplicaciones', '', 'url', 'infoAjax', ' ');
-			buscarCSU('<?php echo base_url();?>', 'aplicaciones', '', 'nombre', 'infoAjax2', ' ');
+			buscarCSU('<?php echo base_url();?>', 'Aplicaciones', '', 'url', 'infoAjax', ' ');
+			buscarCSU('<?php echo base_url();?>', 'Aplicaciones', '', 'nombre', 'infoAjax2', ' ');
 		}// hago esto para que se inicialice el array que contiene la información de los id que deben ser correctos, si no, puede dar fallos
 	</script>
 </head>
@@ -27,7 +27,7 @@
 			<?php
 			$nombre=array(
 				'name'=>'nombre',
-				'oninput'=>"buscarCSU('".base_url()."', 'aplicaciones', this.value, 'nombre', 'infoAjax', 'Ya existe una aplicación con el nombre ')",
+				'oninput'=>"buscarCSU('".base_url()."', 'Aplicaciones', this.value, 'nombre', 'infoAjax', 'Ya existe una aplicación con el nombre ')",
 				'placeholder'=>'Nombre',
 				'required'=>'required'
 			);
@@ -40,7 +40,7 @@
 
 			$url=array(
 				'name'=>'url',
-				'oninput'=>"buscarCSU('".base_url()."', 'aplicaciones', this.value, 'url', 'infoAjax2', 'Ya existe una aplicación con la URL ')",
+				'oninput'=>"buscarCSU('".base_url()."', 'Aplicaciones', this.value, 'url', 'infoAjax2', 'Ya existe una aplicación con la URL ')",
 				'placeholder'=>'URL de acceso',
 				'required'=>'required'
 			);

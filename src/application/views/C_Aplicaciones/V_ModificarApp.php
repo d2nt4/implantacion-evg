@@ -21,7 +21,7 @@ include('application/views/Plantilla/header.php');
 			<?php
 			$nombre=array(
 				'name'=>'nombre',
-				'oninput'=>"buscarCSU('".base_url()."', 'aplicaciones', this.value, 'nombre', 'infoAjax', 'Ya existe otra aplicación con el nombre ', '".$this->datosApp[0]['nombre']."')",
+				'oninput'=>"buscarCSU('".base_url()."', 'Aplicaciones', this.value, 'nombre', 'infoAjax', 'Ya existe otra aplicación con el nombre ', '".$this->datosApp[0]['nombre']."')",
 				'value'=>$this->datosApp[0]['nombre'],
 				'required'=>'required'
 			);
@@ -34,7 +34,7 @@ include('application/views/Plantilla/header.php');
 
 			$url=array(
 				'name'=>'url',
-				'oninput'=>"buscarCSU('".base_url()."', 'aplicaciones', this.value, 'url', 'infoAjax2', 'Ya existe otra aplicación con la url ', '".$this->datosApp[0]['url']."')",
+				'oninput'=>"buscarCSU('".base_url()."', 'Aplicaciones', this.value, 'url', 'infoAjax2', 'Ya existe otra aplicación con la url ', '".$this->datosApp[0]['url']."')",
 				'value'=>$this->datosApp[0]['url'],
 				'required'=>'required'
 			);

@@ -27,7 +27,7 @@ include('application/views/Plantilla/header.php');
 
 			$correo=array(
 				'name'=>'correo',
-				'oninput'=>"buscarCSU('".base_url()."', 'usuarios', this.value, 'correo', 'infoAjax', 'Ya existe un usuario con el correo ')",
+				'oninput'=>"buscarCSU('".base_url()."', 'Usuarios', this.value, 'correo', 'infoAjax', 'Ya existe un usuario con el correo ')",
 				'placeholder'=>'Correo',
 				'required'=>'required'
 			);

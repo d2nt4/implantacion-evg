@@ -22,7 +22,7 @@ include('application/views/Plantilla/header.php');
 
 			$nombre=array(
 				'name'=>'nombre',
-				'oninput'=>"buscarCSU('".base_url()."', 'fp_familiasprofesionales', this.value, 'nombre', 'infoAjax', 'Ya existe una familia con el nombre ')",
+				'oninput'=>"buscarCSU('".base_url()."', 'FP_FamiliasProfesionales', this.value, 'nombre', 'infoAjax', 'Ya existe una familia con el nombre ')",
 				'placeholder'=>'Nombre',
 				'required'=>'required'
 			);

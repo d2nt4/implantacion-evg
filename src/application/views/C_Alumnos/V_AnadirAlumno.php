@@ -21,7 +21,7 @@
 						$nia = array
 						(
 							'name'=>'nia',
-							'oninput'=>"buscarCSU('".base_url()."', 'alumnos', this.value, 'nia', 'infoAjax', 'Ya existe un alumno con el nia ')",
+							'oninput'=>"buscarCSU('".base_url()."', 'Alumnos', this.value, 'nia', 'infoAjax', 'Ya existe un alumno con el nia ')",
 							'placeholder'=>'NIA',
 							'required'=>'required'
 						);

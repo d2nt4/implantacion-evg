@@ -21,7 +21,7 @@ include('application/views/Plantilla/header.php');
 			<?php
 			$nombre=array(
 				'name'=>'nombre',
-				'oninput'=>"buscarCSU('".base_url()."', 'fp_departamentos', this.value, 'nombre', 'infoAjax', 'Ya existe un departamento con el nombre ')",
+				'oninput'=>"buscarCSU('".base_url()."', 'FP_Departamentos', this.value, 'nombre', 'infoAjax', 'Ya existe un departamento con el nombre ')",
 				'placeholder'=>'Nombre',
 				'required'=>'required'
 			);

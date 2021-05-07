@@ -19,7 +19,7 @@ include('application/views/Plantilla/header.php');
 			<?php
 			$nombre=array(
 				'name'=>'nombre',
-				'oninput'=>"buscarCSU('".base_url()."', 'perfiles', this.value, 'nombre', 'infoAjax', 'Ya existe otro perfil con el nombre ', '".$this->datosPerfil[0]['nombre']."')",
+				'oninput'=>"buscarCSU('".base_url()."', 'Perfiles', this.value, 'nombre', 'infoAjax', 'Ya existe otro perfil con el nombre ', '".$this->datosPerfil[0]['nombre']."')",
 				'value'=>$this->datosPerfil[0]['nombre'],
 				'required'=>'required'
 			);

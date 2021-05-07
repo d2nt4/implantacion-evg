@@ -21,14 +21,14 @@ include('application/views/Plantilla/header.php');
 			<?php
 			$codEtapa=array(
 				'name'=>'codEtapa',
-				'oninput'=>"buscarCSU('".base_url()."', 'etapas', this.value, 'codEtapa', 'infoAjax', 'Ya existe otra etapa con el código ', '".$this->datosEtapa[0]['codEtapa']."')",
+				'oninput'=>"buscarCSU('".base_url()."', 'Etapas', this.value, 'codEtapa', 'infoAjax', 'Ya existe otra etapa con el código ', '".$this->datosEtapa[0]['codEtapa']."')",
 				'value' => $this->datosEtapa[0]['codEtapa'],
 				'required'=>'required'
 			);
 
 			$nombre=array(
 				'name'=>'nombre',
-				'oninput'=>"buscarCSU('".base_url()."', 'etapas', this.value, 'nombre', 'infoAjax2', 'Ya existe otra etapa con el nombre ', '".$this->datosEtapa[0]['nombre']."')",
+				'oninput'=>"buscarCSU('".base_url()."', 'Etapas', this.value, 'nombre', 'infoAjax2', 'Ya existe otra etapa con el nombre ', '".$this->datosEtapa[0]['nombre']."')",
 				'value'=>$this->datosEtapa[0]['nombre'],
 				'required'=>'required'
 			);

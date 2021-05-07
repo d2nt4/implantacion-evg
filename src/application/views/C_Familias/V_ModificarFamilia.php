@@ -20,7 +20,7 @@ include('application/views/Plantilla/header.php');
 			<?php
 			$nombre=array(
 				'name'=>'nombre',
-				'oninput'=>"buscarCSU('".base_url()."', 'fp_familiasprofesionales', this.value, 'nombre', 'infoAjax', 'Ya existe una familia profesional con el nombre ', '".$this->datosFamilia[0]['nombre']."')",
+				'oninput'=>"buscarCSU('".base_url()."', 'FP_FamiliasProfesionales', this.value, 'nombre', 'infoAjax', 'Ya existe una familia profesional con el nombre ', '".$this->datosFamilia[0]['nombre']."')",
 				'value'=>$this->datosFamilia[0]['nombre'],
 				'required'=>'required'
 			);

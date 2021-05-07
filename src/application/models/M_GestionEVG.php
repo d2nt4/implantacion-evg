@@ -85,8 +85,8 @@ class M_GestionEVG extends CI_Model
 	public function cogerPerfilesAplicacion($idAplicacion)
 	{
 		$this -> bd -> select('p.idPerfil, p.nombre');
-		$this -> bd -> from('perfiles p');
-		$this -> bd -> join('aplicaciones_perfiles ap','p.idPerfil = ap.idPerfil');
+		$this -> bd -> from('Perfiles p');
+		$this -> bd -> join('Aplicaciones_Perfiles ap','p.idPerfil = ap.idPerfil');
 		$this -> bd -> where('ap.idAplicacion='.$idAplicacion);
 		$query = $this -> bd -> get();
 		$rows = $query -> result_array();
@@ -105,8 +105,8 @@ WHERE ap.idAplicacion=12;
 	public function cogerPerfilesNoAplicacion($idAplicacion)
 	{
 		$this -> bd -> select('p.idPerfil, p.nombre');
-		$this -> bd -> from('perfiles p');
-		$this -> bd -> where('p.idPerfil NOT IN (SELECT ap2.idPerfil FROM aplicaciones_perfiles ap2 WHERE ap2.idAplicacion='.$idAplicacion.')');
+		$this -> bd -> from('Perfiles p');
+		$this -> bd -> where('p.idPerfil NOT IN (SELECT ap2.idPerfil FROM Aplicaciones_Perfiles ap2 WHERE ap2.idAplicacion='.$idAplicacion.')');
 		$query = $this -> bd -> get();
 		$rows = $query -> result_array();
 		$query -> free_result();
@@ -243,7 +243,7 @@ WHERE pu.idPerfil=5
 		$this -> bd -> select('E.codEtapa, s.idEtapaPadre, E2.codEtapa');
 		$this -> bd -> from('Etapas E');
 		$this -> bd -> join('Subetapas S','E.idEtapa = S.idEtapa');
-		$this -> bd -> join('etapas E2','S.idEtapaPadre=E2.idEtapa');
+		$this -> bd -> join('Etapas E2','S.idEtapaPadre=E2.idEtapa');
 		$this -> bd -> where('E.idEtapa='.$idEtapa);
 		$query = $this -> bd -> get();
 		$rows = $query -> result_array();
@@ -265,7 +265,7 @@ WHERE e.idEtapa=8*/
 		$this -> bd -> select('e.idEtapa, e.codEtapa');
 		$this -> bd -> from('Etapas e');
 		$this -> bd -> join('Subetapas S','e.idEtapa = S.idEtapa','left');
-		$this -> bd -> where('e.idEtapa!='.$idEtapa.' AND e.idEtapa NOT IN (SELECT S2.idEtapaPadre FROM etapas e2 INNER JOIN subetapas s2 ON e2.idEtapa = s2.idEtapa WHERE e2.idEtapa='.$idEtapa.' )');
+		$this -> bd -> where('e.idEtapa!='.$idEtapa.' AND e.idEtapa NOT IN (SELECT S2.idEtapaPadre FROM Etapas e2 INNER JOIN Subetapas s2 ON e2.idEtapa = s2.idEtapa WHERE e2.idEtapa='.$idEtapa.' )');
 		$query = $this -> bd -> get();
 		$rows = $query -> result_array();
 		$query -> free_result();
@@ -469,7 +469,7 @@ WHERE e2.idEtapa=8
 	{
 		$this -> bd -> select('idUsuario, correo');
 		$this -> bd -> from('Usuarios');
-		$this -> bd -> where("idUsuario IN (SELECT idUsuario FROM perfiles_usuarios WHERE idPerfil=( SELECT idPerfil FROM perfiles WHERE nombre='profesor')AND idUsuario NOT IN (SELECT idUsuario FROM perfiles_usuarios WHERE idPerfil=(SELECT idPerfil FROM perfiles WHERE nombre='tutor')))");
+		$this -> bd -> where("idUsuario IN (SELECT idUsuario FROM Perfiles_Usuarios WHERE idPerfil=( SELECT idPerfil FROM Perfiles WHERE nombre='profesor')AND idUsuario NOT IN (SELECT idUsuario FROM Perfiles_Usuarios WHERE idPerfil=(SELECT idPerfil FROM Perfiles WHERE nombre='tutor')))");
 		$this -> bd -> order_by('correo');
 		$query = $this -> bd -> get();
 		$rows = $query -> result_array();
@@ -591,10 +591,10 @@ where idUsuario=2;
 	public function buscarUsuarios($idPerfil, $valor)
 	{
 		$this -> bd -> select('*');
-		$this -> bd -> from('usuarios');
+		$this -> bd -> from('Usuarios');
 		$this -> bd -> where("idUsuario NOT IN(
 			SELECT idUsuario
-			FROM perfiles_usuarios
+			FROM Perfiles_Usuarios
 			WHERE idPerfil=".$idPerfil."
 		) AND correo LIKE ('%".$valor."%')");
 		$query = $this -> bd -> get();

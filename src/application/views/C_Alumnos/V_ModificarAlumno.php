@@ -23,7 +23,7 @@ include('application/views/Plantilla/header.php');
 			$nia=array(
 				'name'=>'nia',
 				'placeholder'=>'NIA',
-				'oninput'=>"buscarCSU('".base_url()."', 'alumnos', this.value, 'nia', 'infoAjax', 'Ya existe otro alumno con el NIA ', '".$this->datosAlumno[0]['NIA']."')",
+				'oninput'=>"buscarCSU('".base_url()."', 'Alumnos', this.value, 'nia', 'infoAjax', 'Ya existe otro alumno con el NIA ', '".$this->datosAlumno[0]['NIA']."')",
 				'value'=>$this->datosAlumno[0]['NIA'],
 				'required'=>'required'
 			);

@@ -21,19 +21,19 @@ include('application/views/Plantilla/header.php');
 			<?php
 			$codCurso=array(
 				'name'=>'codCurso',
-				'oninput'=>"buscarCSU('".base_url()."', 'cursos', this.value, 'codCurso', 'infoAjax', 'Ya existe otro curso con el código ', '".$this->datosCurso[0]['codCurso']."')",
+				'oninput'=>"buscarCSU('".base_url()."', 'Cursos', this.value, 'codCurso', 'infoAjax', 'Ya existe otro curso con el código ', '".$this->datosCurso[0]['codCurso']."')",
 				'value'=>$this->datosCurso[0]['codCurso']
 			);
 
 			$idCursoColegio=array(
 				'name'=>'idCursoColegio',
-				'oninput'=>"buscarCSU('".base_url()."', 'cursos', this.value, 'idCursoColegio', 'infoAjax2', 'Ya existe un curso con el id , '".$this->datosCurso[0]['idCursoColegio']."')",
+				'oninput'=>"buscarCSU('".base_url()."', 'Cursos', this.value, 'idCursoColegio', 'infoAjax2', 'Ya existe un curso con el id , '".$this->datosCurso[0]['idCursoColegio']."')",
 				'value'=>$this->datosCurso[0]['idCursoColegio']
 			);
 
 			$nombre=array(
 				'name'=>'nombre',
-				'oninput'=>"buscarCSU('".base_url()."', 'cursos', this.value, 'nombre', 'infoAjax3', 'Ya existe otro curso con el nombre ', '".$this->datosCurso[0]['nombre']."')",
+				'oninput'=>"buscarCSU('".base_url()."', 'Cursos', this.value, 'nombre', 'infoAjax3', 'Ya existe otro curso con el nombre ', '".$this->datosCurso[0]['nombre']."')",
 				'value'=>$this->datosCurso[0]['nombre']
 			);
 

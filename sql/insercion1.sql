@@ -72,14 +72,14 @@ VALUES
 ;
 
 DELETE FROM
-    FP_Familiasprofesionales
+    FP_FamiliasProfesionales
 WHERE
     idFamilia=1
     OR nombre='tecnología'
 ;
 
 INSERT INTO
-    FP_Familiasprofesionales (idFamilia, nombre, idDepartamento)
+    FP_FamiliasProfesionales (idFamilia, nombre, idDepartamento)
 VALUES
     (1, 'tecnología', 1)
 ;

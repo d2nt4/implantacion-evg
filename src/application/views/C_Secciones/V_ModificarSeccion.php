@@ -24,14 +24,14 @@ include('application/views/Plantilla/header.php');
 
 			$codSeccion=array(
 				'name'=>'codSeccion',
-				'oninput'=>"buscarCSU('".base_url()."', 'secciones', this.value, 'codSeccion', 'infoAjax', 'Ya existe otra sección con el código ', '".$this->datosSeccion[0]['codSeccion']."')",
+				'oninput'=>"buscarCSU('".base_url()."', 'Secciones', this.value, 'codSeccion', 'infoAjax', 'Ya existe otra sección con el código ', '".$this->datosSeccion[0]['codSeccion']."')",
 				'value'=>$this->datosSeccion[0]['codSeccion'],
 				'required'=>'required'
 			);
 
 			$idSeccionColegio=array(
 				'name'=>'idSeccionColegio',
-				'oninput'=>"buscarCSU('".base_url()."', 'secciones', this.value, 'idSeccionColegio', 'infoAjax2', 'Ya existe otra sección con el identificador '', '".$this->datosSeccion[0]['idSeccionColegio'].")",
+				'oninput'=>"buscarCSU('".base_url()."', 'Secciones', this.value, 'idSeccionColegio', 'infoAjax2', 'Ya existe otra sección con el identificador '', '".$this->datosSeccion[0]['idSeccionColegio'].")",
 				'value'=>$this->datosSeccion[0]['idSeccionColegio']
 			);
 

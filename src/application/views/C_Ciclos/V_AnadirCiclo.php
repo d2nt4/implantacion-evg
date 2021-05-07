@@ -9,8 +9,8 @@ include('application/views/Plantilla/header.php');
 		function pruebaInicial()
 		{// tendrá que haber en esta función tantas líneas como distintos id de texto de ajax haya en la página
 			// se podría mejorar creando los id desde javascript directamente
-			buscarCSU('<?php echo base_url();?>', 'fp_ciclos', '', 'codCiclo', 'infoAjax', ' ');
-			buscarCSU('<?php echo base_url();?>', 'fp_ciclos', '', 'nombre', 'infoAjax2', ' ');
+			buscarCSU('<?php echo base_url();?>', 'FP_Ciclos', '', 'codCiclo', 'infoAjax', ' ');
+			buscarCSU('<?php echo base_url();?>', 'FP_Ciclos', '', 'nombre', 'infoAjax2', ' ');
 		}// hago esto para que se inicialice el array que contiene la información de los id que deben ser correctos, si no, puede dar fallos
 	</script>
 </head>
@@ -29,14 +29,14 @@ include('application/views/Plantilla/header.php');
 
 			$codCiclo=array(
 				'name'=>'codCiclo',
-				'oninput'=>"buscarCSU('".base_url()."', 'fp_ciclos', this.value, 'codCiclo', 'infoAjax', 'Ya existe un ciclo con el código ')",
+				'oninput'=>"buscarCSU('".base_url()."', 'FP_Ciclos', this.value, 'codCiclo', 'infoAjax', 'Ya existe un ciclo con el código ')",
 				'placeholder'=>'Código',
 				'required'=>'required'
 			);
 
 			$nombre=array(
 				'name'=>'nombre',
-				'oninput'=>"buscarCSU('".base_url()."', 'fp_ciclos', this.value, 'nombre', 'infoAjax2', 'Ya existe un ciclo con el nombre ')",
+				'oninput'=>"buscarCSU('".base_url()."', 'FP_Ciclos', this.value, 'nombre', 'infoAjax2', 'Ya existe un ciclo con el nombre ')",
 				'placeholder'=>'Nombre',
 				'required'=>'required'
 			);

@@ -21,14 +21,14 @@ include('application/views/Plantilla/header.php');
 			<?php
 			$codCiclo=array(
 				'name'=>'codCiclo',
-				'oninput'=>"buscarCSU('".base_url()."', 'fp_ciclos', this.value, 'codCiclo', 'infoAjax', 'Ya existe otro ciclo con el código ', '".$this->datosCiclo[0]['codCiclo']."')",
+				'oninput'=>"buscarCSU('".base_url()."', 'FP_Ciclos', this.value, 'codCiclo', 'infoAjax', 'Ya existe otro ciclo con el código ', '".$this->datosCiclo[0]['codCiclo']."')",
 				'value'=>$this->datosCiclo[0]['codCiclo'],
 				'required'=>'required'
 			);
 
 			$nombre=array(
 				'name'=>'nombre',
-				'oninput'=>"buscarCSU('".base_url()."', 'fp_ciclos', this.value, 'nombre', 'infoAjax2', 'Ya existe otro ciclo con el nombre ', '".$this->datosCiclo[0]['nombre']."')",
+				'oninput'=>"buscarCSU('".base_url()."', 'FP_Ciclos', this.value, 'nombre', 'infoAjax2', 'Ya existe otro ciclo con el nombre ', '".$this->datosCiclo[0]['nombre']."')",
 				'value'=>$this->datosCiclo[0]['nombre'],
 				'required'=>'required'
 			);

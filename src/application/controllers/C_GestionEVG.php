@@ -111,7 +111,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function borrarApp($idAplicacion)
 	{
-		$iconoActual = $this -> M_GestionEVG -> seleccionar('aplicaciones', 'icono', 'idAplicacion='.$idAplicacion);
+		$iconoActual = $this -> M_GestionEVG -> seleccionar('Aplicaciones', 'icono', 'idAplicacion='.$idAplicacion);
 		$iconoActual = $iconoActual[0]['icono'];
 		if(file_exists('uploads/iconos/'.$iconoActual))
 			unlink('uploads/iconos/'.$iconoActual);
@@ -135,7 +135,7 @@ class C_GestionEVG extends CI_Controller
 
 		if(!empty($_FILES['icono']['name']))
 		{
-			$iconoActual = $this -> M_GestionEVG -> seleccionar('aplicaciones', 'icono', 'idAplicacion='.$idAplicacion);
+			$iconoActual = $this -> M_GestionEVG -> seleccionar('Aplicaciones', 'icono', 'idAplicacion='.$idAplicacion);
 			$iconoActual = $iconoActual[0]['icono'];
 			if(file_exists('uploads/iconos/'.$iconoActual))
 				unlink('uploads/iconos/'.$iconoActual);
@@ -346,7 +346,7 @@ class C_GestionEVG extends CI_Controller
 				$nombre = $worksheet -> getCellByColumnAndRow(0, $row) -> getValue();
 				if(empty($nombre))/* por si la tabla tiene una longitud máxima mayor que los datos que tiene*/
 					break;
-				$correo = $this -> M_GestionEVG -> seleccionar('usuarios', 'correo', "correo='".$worksheet -> getCellByColumnAndRow(1, $row) -> getValue()."'");
+				$correo = $this -> M_GestionEVG -> seleccionar('Usuarios', 'correo', "correo='".$worksheet -> getCellByColumnAndRow(1, $row) -> getValue()."'");
 				if(empty($correo[0]['correo']))
 				{
 					$datos[$row]['nombre'] = $nombre;
@@ -360,8 +360,8 @@ class C_GestionEVG extends CI_Controller
 			$idUsuario = $this -> M_GestionEVG -> insertar('Usuarios', Array('nombre' => $valor['nombre'], 'correo' => $valor['correo']));
 			if($valor['profesor'] == 'si') 
 			{
-				$idPerfil = $this -> M_GestionEVG -> seleccionar('perfiles', 'idPerfil', "nombre='Profesor'");
-				$this -> M_GestionEVG -> insertar('perfiles_usuarios', Array('idPerfil' => $idPerfil[0]['idPerfil'], 'idUsuario' => $idUsuario));
+				$idPerfil = $this -> M_GestionEVG -> seleccionar('Perfiles', 'idPerfil', "nombre='Profesor'");
+				$this -> M_GestionEVG -> insertar('Perfiles_Usuarios', Array('idPerfil' => $idPerfil[0]['idPerfil'], 'idUsuario' => $idUsuario));
 			}
 		}
 
@@ -563,7 +563,7 @@ class C_GestionEVG extends CI_Controller
 				$codCurso = $worksheet -> getCellByColumnAndRow(0, $row) -> getValue();
 				if(empty($codCurso))/* por si la tabla tiene una longitud máxima mayor que los datos que tiene*/
 					break;
-				$codCursoComprobar = $this -> M_GestionEVG -> seleccionar('cursos', 'codCurso', "codCurso='".$codCurso."'");
+				$codCursoComprobar = $this -> M_GestionEVG -> seleccionar('Cursos', 'codCurso', "codCurso='".$codCurso."'");
 				if(empty($codCursoComprobar[0]['codCurso'])) {
 					$datos[$row]['codCurso'] = $codCurso;
 					$datos[$row]['nombre'] = $worksheet -> getCellByColumnAndRow(1, $row) -> getValue();
@@ -818,7 +818,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function borrarSeccion($idSeccion)
 	{
-		$alumnos = $this -> M_GestionEVG -> seleccionar('alumnos', '*', 'idSeccion='.$idSeccion);
+		$alumnos = $this -> M_GestionEVG -> seleccionar('Alumnos', '*', 'idSeccion='.$idSeccion);
 		if(!empty($alumnos))
 			echo '
 				<script>
@@ -931,7 +931,7 @@ class C_GestionEVG extends CI_Controller
 				$codSeccion = $worksheet -> getCellByColumnAndRow(0, $row) -> getValue();
 				if(empty($codSeccion))/* por si la tabla tiene una longitud máxima mayor que los datos que tiene*/
 					break;
-				$codSeccionComprobar = $this -> M_GestionEVG->seleccionar('secciones', 'codSeccion', "codSeccion='".$codSeccion."'");
+				$codSeccionComprobar = $this -> M_GestionEVG->seleccionar('Secciones', 'codSeccion', "codSeccion='".$codSeccion."'");
 				if(empty($codSeccionComprobar[0]['codSeccion'])) {
 					$datos[$row]['codSeccion'] = $codSeccion;
 					$datos[$row]['nombre'] = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
@@ -1039,7 +1039,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function importarAlumnosForm()
 	{
-		$this -> secciones = $this -> M_GestionEVG -> seleccionar('secciones', '*', '1=1');
+		$this -> secciones = $this -> M_GestionEVG -> seleccionar('Secciones', '*', '1=1');
 		$this -> load -> view('C_Alumnos/V_ImportarAlumnos');
 	}
 
@@ -1064,7 +1064,7 @@ class C_GestionEVG extends CI_Controller
 				/* por si la tabla tiene una longitud máxima mayor que los datos que tiene*/
 				if(empty($nia))
 					break;
-				$niaComprobar = $this -> M_GestionEVG -> seleccionar('alumnos', 'nia', "nia=".$nia);
+				$niaComprobar = $this -> M_GestionEVG -> seleccionar('Alumnos', 'nia', "nia=".$nia);
 				$estado = $worksheet -> getCellByColumnAndRow(9, $row) -> getValue();
 				if(empty($niaComprobar[0]['nia']) && $estado != 'Trasladada' && $estado != 'Obtiene Título' && $estado != 'Anulada')
 				{
@@ -1081,18 +1081,18 @@ class C_GestionEVG extends CI_Controller
 					if($worksheet -> getCellByColumnAndRow(6, $row) -> getValue() != '')
 						$datos[$row]['correo'] = $worksheet -> getCellByColumnAndRow(6, $row) -> getValue();
 
-					$idSeccion = $this -> M_GestionEVG -> seleccionar('secciones', 'idSeccion', "codSeccion='".$worksheet -> getCellByColumnAndRow(7, $row) -> getValue()."'");
+					$idSeccion = $this -> M_GestionEVG -> seleccionar('Secciones', 'idSeccion', "codSeccion='".$worksheet -> getCellByColumnAndRow(7, $row) -> getValue()."'");
 					$datos[$row]['idSeccion'] = $idSeccion[0]['idSeccion'];
 				}
 				else if($estado=='Trasladada' || $estado=='Obtiene Título' || $estado=='Anulada')
 				{
-					$this -> M_GestionEVG -> borrar('alumnos', $nia, 'nia');
+					$this -> M_GestionEVG -> borrar('Alumnos', $nia, 'nia');
 				}
 			}
 		}
 		/* recorrer el array con los datos del excel que no estén en la base de datos para insertarlos */
 		foreach($datos as $valor)
-			$this -> M_GestionEVG -> insertar('alumnos', $valor);
+			$this -> M_GestionEVG -> insertar('Alumnos', $valor);
 
 		header('Location:'.base_url().'C_GestionEVG/verAlumnos');
 	}
@@ -1146,7 +1146,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function nuevoCurso()
 	{
-		$this -> M_GestionEVG -> borrar('alumnos', 1, 1);
+		$this -> M_GestionEVG -> borrar('Alumnos', 1, 1);
 		header('Location:'.base_url().'C_GestionEVG/importarAlumnosForm');
 	}
 }
