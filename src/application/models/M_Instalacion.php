@@ -12,8 +12,8 @@ class M_Instalacion extends CI_Model
 
 	public function tablas()
 	{
-
-		$tabla1 = "CREATE TABLE Aplicaciones
+		$tabla = [];
+		$tabla[0] = "CREATE TABLE Aplicaciones
 				(
 					idAplicacion tinyint unsigned primary key auto_increment,
 					nombre varchar(60) not null unique,
@@ -24,7 +24,7 @@ class M_Instalacion extends CI_Model
 					updated_at timestamp default current_timestamp not null on update current_timestamp
 				)ENGINE=INNODB;";
 
-		$tabla2 = "CREATE TABLE Perfiles
+		$tabla[1] = "CREATE TABLE Perfiles
 				(
 					idPerfil tinyint unsigned primary key auto_increment,
 					nombre varchar(60) not null unique,
@@ -33,7 +33,7 @@ class M_Instalacion extends CI_Model
 					updated_at timestamp default current_timestamp not null on update current_timestamp
 				)ENGINE=INNODB;";
 
-		$tabla3 = "CREATE TABLE Aplicaciones_Perfiles
+		$tabla[2] = "CREATE TABLE Aplicaciones_Perfiles
 				(
 					idPerfil tinyint unsigned,
 					idAplicacion tinyint unsigned,
@@ -52,7 +52,7 @@ class M_Instalacion extends CI_Model
 								on update cascade
 				)ENGINE=INNODB;";
 
-		$tabla4 = "CREATE TABLE Usuarios
+		$tabla[3] = "CREATE TABLE Usuarios
 				(
 					idUsuario smallint unsigned primary key auto_increment,
 					nombre varchar(60) not null,
@@ -62,7 +62,7 @@ class M_Instalacion extends CI_Model
 					updated_at timestamp default current_timestamp not null on update current_timestamp
 				)ENGINE=INNODB;";
 
-		$tabla5 = "CREATE TABLE Perfiles_Usuarios
+		$tabla[4] = "CREATE TABLE Perfiles_Usuarios
 				(
 					idPerfil tinyint unsigned,
 					idUsuario smallint unsigned,
@@ -81,7 +81,7 @@ class M_Instalacion extends CI_Model
 								on update cascade
 				)ENGINE=INNODB;";
 
-		$tabla6 = "CREATE TABLE Etapas
+		$tabla[5] = "CREATE TABLE Etapas
 				(
 					idEtapa tinyint unsigned primary key auto_increment,
 					codEtapa char(5) not null unique,
@@ -96,7 +96,7 @@ class M_Instalacion extends CI_Model
 								on update cascade
 				)ENGINE=INNODB;";
 
-		$tabla7 = "CREATE TABLE Subetapas
+		$tabla[6] = "CREATE TABLE Subetapas
 				(
 					idEtapa tinyint unsigned,
 					idEtapaPadre tinyint unsigned,
@@ -115,7 +115,7 @@ class M_Instalacion extends CI_Model
 								on update cascade
 				)ENGINE=INNODB;";
 
-		$tabla8 = "CREATE TABLE Cursos
+		$tabla[7] = "CREATE TABLE Cursos
 				(
 					idCurso tinyint unsigned primary key auto_increment,
 					codCurso char(5) not null unique,
@@ -131,7 +131,7 @@ class M_Instalacion extends CI_Model
 								on update cascade
 				)ENGINE=INNODB;";
 
-		$tabla9 = "CREATE TABLE FP_Departamentos
+		$tabla[8] = "CREATE TABLE FP_Departamentos
 				(
 					idDepartamento tinyint unsigned primary key auto_increment,
 					nombre varchar(40) not null unique,
@@ -139,7 +139,7 @@ class M_Instalacion extends CI_Model
 					updated_at timestamp default current_timestamp not null on update current_timestamp
 				)ENGINE=INNODB;";
 
-		$tabla10 = "CREATE TABLE FP_FamiliasProfesionales
+		$tabla[9] = "CREATE TABLE FP_FamiliasProfesionales
 				(
 					idFamilia tinyint unsigned primary key auto_increment,
 					nombre varchar(40) not null unique,
@@ -153,7 +153,7 @@ class M_Instalacion extends CI_Model
 								on update cascade
 				)ENGINE=INNODB;";
 
-		$tabla11 = "CREATE TABLE FP_Ciclos
+		$tabla[10] = "CREATE TABLE FP_Ciclos
 				(
 					idCiclo tinyint unsigned primary key auto_increment,
 					codCiclo char(4) not null unique,
@@ -168,7 +168,7 @@ class M_Instalacion extends CI_Model
 								on update cascade
 				)ENGINE=INNODB;";
 
-		$tabla12 = "CREATE TABLE FP_Ciclos_Cursos
+		$tabla[11] = "CREATE TABLE FP_Ciclos_Cursos
 				(
 					idCiclo tinyint unsigned,
 					idCurso tinyint unsigned, 
@@ -187,7 +187,7 @@ class M_Instalacion extends CI_Model
 								on update cascade
 				)ENGINE=INNODB;";
 
-		$tabla13 = "CREATE TABLE Secciones
+		$tabla[12] = "CREATE TABLE Secciones
 				(
 					idSeccion smallint unsigned primary key auto_increment,
 					codSeccion char(8) not null unique,
@@ -209,7 +209,7 @@ class M_Instalacion extends CI_Model
 								on update cascade
 				)ENGINE=INNODB;";
 
-		$tabla14 = "CREATE TABLE Alumnos
+		$tabla[13] = "CREATE TABLE Alumnos
 				(
 					idAlumno int unsigned primary key auto_increment,
 					NIA int unsigned not null unique,
@@ -227,7 +227,7 @@ class M_Instalacion extends CI_Model
 								on update cascade
 				)ENGINE=INNODB;";
 
-		$this -> bd -> query($tabla1);
+		/*$this -> bd -> query($tabla1);
 		$this -> bd -> query($tabla2);
 		$this -> bd -> query($tabla3);
 		$this -> bd -> query($tabla4);
@@ -240,7 +240,11 @@ class M_Instalacion extends CI_Model
 		$this -> bd -> query($tabla11);
 		$this -> bd -> query($tabla12);
 		$this -> bd -> query($tabla13);
-		$this -> bd -> query($tabla14);
+		$this -> bd -> query($tabla14);*/
+
+		for($i = 0; $i < 14; $i++)
+			$this -> bd -> query($tabla[$i]);
+
 	}
 
 
