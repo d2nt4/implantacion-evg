@@ -106,7 +106,9 @@ class C_GestionEVG extends CI_Controller
 		$datos['icono'] = $archivo_nombre;
 
 		$this-> M_GestionEVG-> insertar('Aplicaciones',$datos);
-		header("Location:".base_url()."C_GestionEVG/verApps");
+		//header("Location:".base_url()."C_GestionEVG/verApps");
+
+		$this->headerLocation("C_GestionEVG/verApps");
 	}
 
 	public function borrarApp($idAplicacion)
@@ -118,7 +120,9 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> borrar('Aplicaciones',$idAplicacion,'idAplicacion');
 
-		header("Location:".base_url()."C_GestionEVG/verApps");
+		//header("Location:".base_url()."C_GestionEVG/verApps");
+
+		$this->headerLocation("C_GestionEVG/verApps");
 	}
 
 	public function modificarAppForm($idAplicacion)
@@ -155,7 +159,9 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> modificar('Aplicaciones',$datos,$idAplicacion,'idAplicacion');
 
-		header("Location:".base_url()."C_GestionEVG/verApps");
+		//header("Location:".base_url()."C_GestionEVG/verApps");
+
+		$this->headerLocation("C_GestionEVG/verApps");
 	}
 
 	public function perfilesAplicacion($idAplicacion)
@@ -177,13 +183,17 @@ class C_GestionEVG extends CI_Controller
 	public function quitarPerfilAplicacion($idAplicacion, $idPerfil)
 	{
 		$this -> M_GestionEVG -> borrarCompuesta('Aplicaciones_Perfiles',$idPerfil, $idAplicacion, 'idPerfil', 'idAplicacion');
-		header("Location:".base_url()."C_GestionEVG/perfilesAplicacion/".$idAplicacion);
+		//header("Location:".base_url()."C_GestionEVG/perfilesAplicacion/".$idAplicacion);
+
+		$this->headerLocation("C_GestionEVG/perfilesAplicacion/".$idAplicacion);
 	}
 
 	public function anadirPerfilAplicacion($idAplicacion, $idPerfil)
 	{
 		$this -> M_GestionEVG -> insertar('Aplicaciones_Perfiles',array('idPerfil'=>$idPerfil,'idAplicacion'=>$idAplicacion));
-		header("Location:".base_url()."C_GestionEVG/perfilesAplicacion/".$idAplicacion);
+		//header("Location:".base_url()."C_GestionEVG/perfilesAplicacion/".$idAplicacion);
+
+		$this->headerLocation("C_GestionEVG/perfilesAplicacion/".$idAplicacion);
 	}
 
 		/*PERFILES*/
@@ -209,13 +219,17 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> insertar('Perfiles',$datos);
 
-		header("Location:".base_url()."C_GestionEVG/verPerfiles");
+		//header("Location:".base_url()."C_GestionEVG/verPerfiles");
+
+		$this->headerLocation("C_GestionEVG/verPerfiles");
 	}
 
 	public function borrarPerfil($idPerfil)
 	{
 		$this -> M_GestionEVG -> borrar('Perfiles',$idPerfil,'idPerfil');
-		header("Location:".base_url()."C_GestionEVG/verPerfiles");
+		//header("Location:".base_url()."C_GestionEVG/verPerfiles");
+
+		$this->headerLocation("C_GestionEVG/verPerfiles");
 	}
 
 	public function modificarPerfilForm($idPerfil)
@@ -231,7 +245,9 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> modificar('Perfiles',$datos,$idPerfil,'idPerfil');
 
-		header("Location:".base_url()."C_GestionEVG/verPerfiles");
+		//header("Location:".base_url()."C_GestionEVG/verPerfiles");
+
+		$this->headerLocation("C_GestionEVG/verPerfiles");
 	}
 
 	public function usuariosPerfil($idPerfil)
@@ -249,7 +265,9 @@ class C_GestionEVG extends CI_Controller
 	public function quitarUsuarioPerfil($idPerfil,$idUsuario)
 	{
 		$this -> M_GestionEVG -> borrarCompuesta('Perfiles_Usuarios',$idPerfil, $idUsuario, 'idPerfil', 'idUsuario');
-		header("Location:".base_url()."C_GestionEVG/usuariosPerfil/".$idPerfil);
+		//header("Location:".base_url()."C_GestionEVG/usuariosPerfil/".$idPerfil);
+
+		$this->headerLocation("C_GestionEVG/usuariosPerfil/".$idPerfil);
 	}
 
 	public function anadirUsuarioPerfil($idPerfil)
@@ -261,7 +279,9 @@ class C_GestionEVG extends CI_Controller
 				$this -> M_GestionEVG -> insertar('Perfiles_Usuarios',array('idPerfil'=>$idPerfil,'idUsuario'=>$idUsuario));
 		}
 
-		header("Location:".base_url()."C_GestionEVG/usuariosPerfil/".$idPerfil);
+		//header("Location:".base_url()."C_GestionEVG/usuariosPerfil/".$idPerfil);
+
+		$this->headerLocation("C_GestionEVG/usuariosPerfil/".$idPerfil);
 	}
 
 
@@ -293,13 +313,17 @@ class C_GestionEVG extends CI_Controller
 		if(isset($_POST['profesor']))
 			$this -> M_GestionEVG -> insertar('Perfiles_Usuarios', Array('idPerfil' => $idPerfil[0]['idPerfil'],'idUsuario' => $idUsuario));
 
-		header("Location:".base_url()."C_GestionEVG/verUsuarios");
+		//header("Location:".base_url()."C_GestionEVG/verUsuarios");
+
+		$this->headerLocation("C_GestionEVG/verUsuarios");
 	}
 
 	public function borrarUsuario($idUsuario)
 	{
 		$this -> M_GestionEVG -> borrar('Usuarios',$idUsuario,'idUsuario');
-		header("Location:".base_url()."C_GestionEVG/verUsuarios");
+		//header("Location:".base_url()."C_GestionEVG/verUsuarios");
+
+		$this->headerLocation("C_GestionEVG/verUsuarios");
 	}
 
 	public function modificarUsuarioForm($idUsuario)
@@ -319,7 +343,9 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> modificar('Usuarios',$datos,$idUsuario,'idUsuario');
 
-		header("Location:".base_url()."C_GestionEVG/verUsuarios");
+		//header("Location:".base_url()."C_GestionEVG/verUsuarios");
+
+		$this->headerLocation("C_GestionEVG/verUsuarios");
 	}
 
 	public function importarUsuariosForm()
@@ -365,7 +391,9 @@ class C_GestionEVG extends CI_Controller
 			}
 		}
 
-		header('Location:'.base_url().'C_GestionEVG/verUsuarios');
+		//header('Location:'.base_url().'C_GestionEVG/verUsuarios');
+
+		$this->headerLocation("C_GestionEVG/verUsuarios");
 	}
 
 		/*ETAPAS*/
@@ -398,13 +426,17 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> insertar('Etapas',$datos);
 
-		header("Location:".base_url()."C_GestionEVG/verEtapas");
+		//header("Location:".base_url()."C_GestionEVG/verEtapas");
+
+		$this->headerLocation("C_GestionEVG/verEtapas");
 	}
 
 	public function borrarEtapa($idEtapa)
 	{
 		$this -> M_GestionEVG -> borrar('Etapas',$idEtapa,'idEtapa');
-		header("Location:".base_url()."C_GestionEVG/verEtapas");
+		//header("Location:".base_url()."C_GestionEVG/verEtapas");
+
+		$this->headerLocation("C_GestionEVG/verEtapas");
 	}
 
 	public function modificarEtapaForm($idEtapa)
@@ -429,7 +461,9 @@ class C_GestionEVG extends CI_Controller
 			$datos['idCoordinador'] = null;
 
 		$this -> M_GestionEVG -> modificar('Etapas',$datos,$idEtapa,'idEtapa');
-		header("Location:".base_url()."C_GestionEVG/verEtapas");
+		//header("Location:".base_url()."C_GestionEVG/verEtapas");
+
+		$this->headerLocation("C_GestionEVG/verEtapas");
 	}
 
 	public function etapaPadre($idEtapa)
@@ -451,13 +485,17 @@ class C_GestionEVG extends CI_Controller
 	public function quitarEtapaPadre($idEtapa, $idEtapaPadre)
 	{
 		$this -> M_GestionEVG -> borrarCompuesta('Subetapas',$idEtapa, $idEtapaPadre, 'idEtapa', 'idEtapaPadre');
-		header("Location:".base_url()."C_GestionEVG/etapaPadre/".$idEtapa);
+		//header("Location:".base_url()."C_GestionEVG/etapaPadre/".$idEtapa);
+
+		$this->headerLocation("C_GestionEVG/etapaPadre/".$idEtapa);
 	}
 
 	public function anadirEtapaPadre($idEtapa, $idEtapaPadre)
 	{
 		$this -> M_GestionEVG -> insertar('Subetapas',array('idEtapa' => $idEtapa,'idEtapaPadre' => $idEtapaPadre));
-		header("Location:".base_url()."C_GestionEVG/etapaPadre/".$idEtapa);
+		//header("Location:".base_url()."C_GestionEVG/etapaPadre/".$idEtapa);
+
+		$this->headerLocation("C_GestionEVG/etapaPadre/".$idEtapa);
 	}
 
 		/*CURSOS*/
@@ -487,13 +525,17 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> insertar('Cursos',$datos);
 
-		header("Location:".base_url()."C_GestionEVG/verCursos");
+		//header("Location:".base_url()."C_GestionEVG/verCursos");
+
+		$this->headerLocation("C_GestionEVG/verCursos");
 	}
 
 	public function borrarCurso($idCurso)
 	{
 		$this -> M_GestionEVG -> borrar('Cursos',$idCurso,'idCurso');
-		header("Location:".base_url()."C_GestionEVG/verCursos");
+		//header("Location:".base_url()."C_GestionEVG/verCursos");
+
+		$this->headerLocation("C_GestionEVG/verCursos");
 	}
 
 	public  function modificarCursoForm($idCurso)
@@ -510,7 +552,9 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> modificar('Cursos',$datos,$idCurso,'idCurso');
 
-		header("Location:".base_url()."C_GestionEVG/verCursos");
+		//header("Location:".base_url()."C_GestionEVG/verCursos");
+
+		$this->headerLocation("C_GestionEVG/verCursos");
 	}
 
 	public function asignarEtapaCursoForm($idCurso)
@@ -536,7 +580,9 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> modificar('Cursos',$datos,$idCurso,'idCurso');
 
-		header("Location:".base_url()."C_GestionEVG/verCursos");
+		//header("Location:".base_url()."C_GestionEVG/verCursos");
+
+		$this->headerLocation("C_GestionEVG/verCursos");
 	}
 
 	public function importarCursosForm()
@@ -573,7 +619,9 @@ class C_GestionEVG extends CI_Controller
 		foreach($datos as $valor)
 			$this -> M_GestionEVG -> insertar('Cursos', Array('nombre' => $valor['nombre'], 'codCurso' => $valor['codCurso']));
 
-		header('Location:'.base_url().'C_GestionEVG/verCursos');
+		//header('Location:'.base_url().'C_GestionEVG/verCursos');
+
+		$this->headerLocation("C_GestionEVG/verCursos");
 
 	}
 
@@ -598,13 +646,17 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> insertar('FP_Departamentos',$datos);
 
-		header("Location:".base_url()."C_GestionEVG/verDepartamentos");
+		//header("Location:".base_url()."C_GestionEVG/verDepartamentos");
+
+		$this->headerLocation("C_GestionEVG/verDepartamentos");
 	}
 
 	public function borrarDepartamento($idDepartamento)
 	{
 		$this -> M_GestionEVG -> borrar('FP_Departamentos',$idDepartamento,'idDepartamento');
-		header("Location:".base_url()."C_GestionEVG/verDepartamentos");
+		//header("Location:".base_url()."C_GestionEVG/verDepartamentos");
+
+		$this->headerLocation("C_GestionEVG/verDepartamentos");
 	}
 
 	public  function modificarDepartamentoForm($idDepartamento)
@@ -619,7 +671,9 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> modificar('FP_Departamentos',$datos,$idDepartamento,'idDepartamento');
 
-		header("Location:".base_url()."C_GestionEVG/verDepartamentos");
+		//header("Location:".base_url()."C_GestionEVG/verDepartamentos");
+
+		$this->headerLocation("C_GestionEVG/verDepartamentos");
 	}
 
 		/*FAMILIAS PROFESIONALES*/
@@ -651,13 +705,17 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> insertar('FP_FamiliasProfesionales',$datos);
 
-		header("Location:".base_url()."C_GestionEVG/verFamilias");
+		//header("Location:".base_url()."C_GestionEVG/verFamilias");
+
+		$this->headerLocation("C_GestionEVG/verFamilias");
 	}
 
 	public function borrarFamilia($idFamilia)
 	{
 		$this -> M_GestionEVG -> borrar('FP_FamiliasProfesionales',$idFamilia,'idFamilia');
-		header("Location:".base_url()."C_GestionEVG/verFamilias");
+		//header("Location:".base_url()."C_GestionEVG/verFamilias");
+
+		$this->headerLocation("C_GestionEVG/verFamilias");
 	}
 
 	public function modificarFamiliaForm($idFamilia)
@@ -682,7 +740,9 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> modificar('FP_FamiliasProfesionales',$datos,$idFamilia,'idFamilia');
 
-		header("Location:".base_url()."C_GestionEVG/verFamilias");
+		//header("Location:".base_url()."C_GestionEVG/verFamilias");
+
+		$this->headerLocation("C_GestionEVG/verFamilias");
 	}
 
 		/*CICLOS*/
@@ -717,13 +777,17 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> insertar('FP_Ciclos',$datos);
 
-		header("Location:".base_url()."C_GestionEVG/verCiclos");
+		//header("Location:".base_url()."C_GestionEVG/verCiclos");
+
+		$this->headerLocation("C_GestionEVG/verCiclos");
 	}
 
 	public function borrarCiclo($idCiclo)
 	{
 		$this -> M_GestionEVG -> borrar('FP_Ciclos',$idCiclo,'idCiclo');
-		header("Location:".base_url()."C_GestionEVG/verCiclos");
+		//header("Location:".base_url()."C_GestionEVG/verCiclos");
+
+		$this->headerLocation("C_GestionEVG/verCiclos");
 	}
 
 	public function modificarCicloForm($idCiclo)
@@ -749,7 +813,9 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> modificar('FP_Ciclos',$datos,$idCiclo,'idCiclo');
 
-		header("Location:".base_url()."C_GestionEVG/verCiclos");
+		//header("Location:".base_url()."C_GestionEVG/verCiclos");
+
+		$this->headerLocation("C_GestionEVG/verCiclos");
 	}
 
 	public function cursosCiclo($idCiclo)
@@ -771,13 +837,17 @@ class C_GestionEVG extends CI_Controller
 	public function quitarCursoCiclo($idCiclo, $idCurso)
 	{
 		$this -> M_GestionEVG -> borrarCompuesta('FP_Ciclos_Cursos',$idCurso, $idCiclo, 'idCurso', 'idCiclo');
-		header("Location:".base_url()."C_GestionEVG/cursosCiclo/".$idCiclo);
+		//header("Location:".base_url()."C_GestionEVG/cursosCiclo/".$idCiclo);
+
+		$this->headerLocation("C_GestionEVG/cursosCiclo/".$idCiclo);
 	}
 
 	public function anadirCursoCiclo($idCiclo, $idCurso)
 	{
 		$this -> M_GestionEVG -> insertar('FP_Ciclos_Cursos',array('idCurso' => $idCurso,'idCiclo' => $idCiclo));
-		header("Location:".base_url()."C_GestionEVG/cursosCiclo/".$idCiclo);
+		//header("Location:".base_url()."C_GestionEVG/cursosCiclo/".$idCiclo);
+
+		$this->headerLocation("C_GestionEVG/cursosCiclo/".$idCiclo);
 	}
 
 	/*SECCIONES*/
@@ -813,7 +883,9 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> insertar('Secciones',$datos);
 
-		header("Location:".base_url()."C_GestionEVG/verSecciones");
+		//header("Location:".base_url()."C_GestionEVG/verSecciones");
+
+		$this->headerLocation("C_GestionEVG/verSecciones");
 	}
 
 	public function borrarSeccion($idSeccion)
@@ -828,7 +900,9 @@ class C_GestionEVG extends CI_Controller
 			';
 		else{
 			$this -> M_GestionEVG -> borrar('Secciones',$idSeccion,'idSeccion');
-			header("Location:".base_url()."C_GestionEVG/verSecciones");
+			//header("Location:".base_url()."C_GestionEVG/verSecciones");
+
+			$this->headerLocation("C_GestionEVG/verSecciones");
 		}
 	}
 
@@ -858,7 +932,9 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> modificar('Secciones',$datos,$idSeccion,'idSeccion');
 
-		header("Location:".base_url()."C_GestionEVG/verSecciones");
+		//header("Location:".base_url()."C_GestionEVG/verSecciones");
+
+		$this->headerLocation("C_GestionEVG/verSecciones");
 	}
 
 	public function asignarTutorForm($idSeccion)
@@ -902,7 +978,9 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> borrarCompuesta('Perfiles_Usuarios', $idTutorActual, $idPerfilTutor, 'idUsuario', 'idPerfil');
 
-		header("Location:".base_url()."C_GestionEVG/verSecciones");
+		//header("Location:".base_url()."C_GestionEVG/verSecciones");
+
+		$this->headerLocation("C_GestionEVG/verSecciones");
 	}
 
 	public function importarSeccionesForm()
@@ -941,7 +1019,10 @@ class C_GestionEVG extends CI_Controller
 		foreach($datos as $valor)
 			$this -> M_GestionEVG -> insertar('Secciones', $valor);
 
-		header('Location:'.base_url().'C_GestionEVG/verSecciones');
+		//header('Location:'.base_url().'C_GestionEVG/verSecciones');
+
+		$this->headerLocation("C_GestionEVG/verSecciones");
+
 	}
 
 	/*ALUMNOS*/
@@ -1000,13 +1081,17 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> insertar('Alumnos',$datos);
 
-		header("Location:".base_url()."C_GestionEVG/verAlumnos");
+		//header("Location:".base_url()."C_GestionEVG/verAlumnos");
+
+		$this->headerLocation("C_GestionEVG/verAlumnos");
 	}
 
 	public function borrarAlumno($idAlumno)
 	{
 		$this -> M_GestionEVG -> borrar('Alumnos',$idAlumno,'idAlumno');
-		header("Location:".base_url()."C_GestionEVG/verAlumnos");
+		//header("Location:".base_url()."C_GestionEVG/verAlumnos");
+
+		$this->headerLocation("C_GestionEVG/verAlumnos");
 	}
 
 	public function modificarAlumnoForm($idAlumno, $idEtapa)
@@ -1034,7 +1119,9 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> modificar('Alumnos',$datos,$idAlumno,'idAlumno');
 
-		header('Location:'.base_url().'C_GestionEVG/verAlumnosSeccion/'.$idSeccion.'/'.$idEtapa);
+		//header('Location:'.base_url().'C_GestionEVG/verAlumnosSeccion/'.$idSeccion.'/'.$idEtapa);
+
+		$this->headerLocation('C_GestionEVG/verAlumnosSeccion/'.$idSeccion.'/'.$idEtapa);
 	}
 
 	public function importarAlumnosForm()
@@ -1094,7 +1181,9 @@ class C_GestionEVG extends CI_Controller
 		foreach($datos as $valor)
 			$this -> M_GestionEVG -> insertar('Alumnos', $valor);
 
-		header('Location:'.base_url().'C_GestionEVG/verAlumnos');
+		//header('Location:'.base_url().'C_GestionEVG/verAlumnos');
+
+		$this->headerLocation('C_GestionEVG/verAlumnos');
 	}
 
 	/*LISTADO TUTORES*/
@@ -1147,7 +1236,16 @@ class C_GestionEVG extends CI_Controller
 	public function nuevoCurso()
 	{
 		$this -> M_GestionEVG -> borrar('Alumnos', 1, 1);
-		header('Location:'.base_url().'C_GestionEVG/importarAlumnosForm');
+		//header('Location:'.base_url().'C_GestionEVG/importarAlumnosForm');
+		
+		$this->headerLocation('C_GestionEVG/importarAlumnosForm'); 
 	}
+
+	/*Redirecionar localizaciones*/
+
+	public function headerLocation($location){
+		header('Location:'.base_url().$location);
+	}
+
 }
 ?>
