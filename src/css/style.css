@@ -206,12 +206,11 @@ input[type="text"]:focus, select:focus
 }
 
 /* Inicio de sesión con Google */
-
-#inicioSesionGoogletitulo
+#main
 {
-	margin: auto;
-	margin-top: 3em;
-	width: 30%;
+	display: table-cell;
+	height: 100%;
+	vertical-align: middle;
 	text-align: center;
 }
 
@@ -229,7 +228,6 @@ input[type="text"]:focus, select:focus
 { /* Botones de inicio y cierre de sesión */
 	color: white!important;
 	display: inline-block;
-	margin-left: 40%;
 	transition-duration: 0.2s;
 }
 
