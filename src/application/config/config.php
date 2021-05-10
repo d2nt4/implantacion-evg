@@ -35,7 +35,7 @@ $config['base_url'] = 'http://12.2daw.esvirgua.com/GestionEVG/src';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
