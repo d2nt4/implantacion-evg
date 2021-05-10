@@ -19,10 +19,11 @@ include('application/views/Plantilla/header.php');
 				if(empty($this->aplicaciones))
 					echo 'Aún no tienes aplicaciones disponibles';
 				else
-					foreach($this->aplicaciones as $valor){
+					foreach($this->aplicaciones as $valor)
+					{
 						echo '<a class="aplicacion" href="'.$valor['url'].'">'.$valor['nombre'];
 						if(isset($valor['icono']))
-							echo '<img id="iconoApp" src="../uploads/iconos/'.$valor['icono'].'"/>';
+							echo '<img id="iconoApp" src="uploads/iconos/'.$valor['icono'].'"/>';
 						echo '</a>';
 					}
 			?>
