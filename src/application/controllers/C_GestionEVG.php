@@ -320,7 +320,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function borrarUsuario($idUsuario)
 	{
-		$this -> M_GestionEVG -> borrar('Usuarios',$idUsuario,'idUsuario');
+		$this -> M_GestionEVG -> borrar('Usuarios', $idUsuario, 'idUsuario');
 		//header("Location:".base_url()."C_GestionEVG/verUsuarios");
 
 		$this->headerLocation("C_GestionEVG/verUsuarios");

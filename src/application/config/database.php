@@ -76,10 +76,10 @@ $query_builder = TRUE;
 $db['default'] = array
 (
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'gestion_escuela',
+	'hostname' => '12.2daw.esvirgua.com',
+	'username' => 'user2daw_12',
+	'password' => '}U.)v^*4{-h!',
+	'database' => 'user2daw_BD2-12',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
