@@ -18,7 +18,7 @@ class Grid extends CI_Controller
 	public function index()
 	{
 		$idUsuario = $this -> M_GestionEVG -> obtenerIdUsuario($_SESSION['email']);
-		$this -> aplicaciones = $this -> M_GestionEVG -> aplicacionesPermitidas($idUsuario);
+		$this -> aplicaciones = $this -> M_GestionEVG -> seleccionar('Aplicaciones a','distinct(a.url), a.nombre, a.icono',"idUsuario=".$idUsuario,$tabla_relacion = ['Aplicaciones_Perfiles ap','Perfiles_Usuarios pu'], $relacion = ['a.idAplicacion= ap.idAplicacion','pu.idPerfil=ap.idPerfil'], $tipo_relacion = ['join','join']);
 		$this -> load -> view('V_Grid');
 	}
 }

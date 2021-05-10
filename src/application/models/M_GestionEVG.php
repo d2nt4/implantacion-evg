@@ -37,11 +37,17 @@ class M_GestionEVG extends CI_Model
 		$this -> bd -> update($tabla);
 	}
 
-	public function seleccionar($tabla, $campos, $condicion)
+	public function seleccionar($tabla, $campos, $condicion = null,$tabla_relacion = null, $relacion = null, $tipo_relacion = ['join'], $ordenacion = null)
 	{
 		$this -> bd -> select($campos);
 		$this -> bd -> from($tabla);
-		$this -> bd -> where($condicion);
+		if(isset($relacion) && isset($tabla_relacion) && sizeof($tabla_relacion) == sizeof($relacion) && sizeof($tabla_relacion) == sizeof($tipo_relacion))
+			for($i = 0; $i < sizeof($tabla_relacion); $i++)
+				$this -> bd -> join($tabla_relacion[$i],$relacion[$i],$tipo_relacion[$i]);
+		if(isset($condicion))
+			$this -> bd -> where($condicion);
+		if(isset($ordenacion))
+			$this -> bd -> order_by($ordenacion);
 		$query = $this -> bd -> get();
 		$rows = $query -> result_array();
 		$query -> free_result();
@@ -59,9 +65,26 @@ class M_GestionEVG extends CI_Model
 		return $rows;
 	}
 
+	public function obtenerIdUsuario($correo)
+	{
+		$this -> bd -> select('idUsuario');
+		$this -> bd -> from('Usuarios');
+		$this -> bd -> where('correo='.$this->bd->escape($correo));
+		$query = $this -> bd -> get();
+		if($query -> num_rows() > 0) 
+		{
+			$rows = $query -> result_array();
+			$idUsuario = $rows[0]['idUsuario'];
+		}
+		else
+			return false;
+		$query -> free_result();
+		return $idUsuario;
+	}
+
 	/*APLICACIONES*/
 
-	public function seleccionarApps()
+	/*public function seleccionarApps()
 	{
 		$this -> bd -> select('idAplicacion, nombre');
 		$this -> bd -> from('Aplicaciones');
@@ -80,9 +103,9 @@ class M_GestionEVG extends CI_Model
 		$rows = $query -> result_array();
 		$query -> free_result();
 		return $rows;
-	}
+	}*/
 
-	public function cogerPerfilesAplicacion($idAplicacion)
+	/*public function cogerPerfilesAplicacion($idAplicacion)
 	{
 		$this -> bd -> select('p.idPerfil, p.nombre');
 		$this -> bd -> from('Perfiles p');
@@ -92,7 +115,7 @@ class M_GestionEVG extends CI_Model
 		$rows = $query -> result_array();
 		$query -> free_result();
 		return $rows;
-	}
+	}*/
 
 	/*
 SELECT p.idPerfil, p.nombre
@@ -102,7 +125,7 @@ ON p.idPerfil=ap.idPerfil
 WHERE ap.idAplicacion=12;
 	*/
 
-	public function cogerPerfilesNoAplicacion($idAplicacion)
+	/*public function cogerPerfilesNoAplicacion($idAplicacion)
 	{
 		$this -> bd -> select('p.idPerfil, p.nombre');
 		$this -> bd -> from('Perfiles p');
@@ -111,7 +134,7 @@ WHERE ap.idAplicacion=12;
 		$rows = $query -> result_array();
 		$query -> free_result();
 		return $rows;
-	}
+	}*/
 
 /*
 SELECT p.idPerfil, p.nombre
@@ -123,7 +146,7 @@ WHERE
 
 	/*PERFILES*/
 
-	public function seleccionarPerfiles()
+	/*public function seleccionarPerfiles()
 	{
 		$this -> bd -> select('idPerfil, nombre');
 		$this -> bd -> from('Perfiles');
@@ -131,9 +154,9 @@ WHERE
 		$rows = $query -> result_array();
 		$query -> free_result();
 		return $rows;
-	}
+	}*/
 
-	public function datosPerfil($idPerfil)
+	/*public function datosPerfil($idPerfil)
 	{
 		$this -> bd -> select('nombre, descripcion');
 		$this -> bd -> from('Perfiles');
@@ -154,7 +177,7 @@ WHERE
 		$rows = $query -> result_array();
 		$query -> free_result();
 		return $rows;
-	}
+	}*/
 /*
 SELECT u.idUsuario, u.correo
 FROM usuarios u
@@ -163,24 +186,9 @@ ON pu.idUsuario=u.idUsuario
 WHERE pu.idPerfil=5
 */
 
-	public function obtenerIdUsuario($correo)
-	{
-		$this -> bd -> select('idUsuario');
-		$this -> bd -> from('Usuarios');
-		$this -> bd -> where('correo='.$this->bd->escape($correo));
-		$query = $this -> bd -> get();
-		if($query -> num_rows() > 0) 
-		{
-			$rows = $query -> result_array();
-			$idUsuario = $rows[0]['idUsuario'];
-		}
-		else
-			return false;
-		$query -> free_result();
-		return $idUsuario;
-	}
+	
 
-	/*USUARIOS*/
+	/*USUARIOS
 
 	public function seleccionarUsuarios()
 	{
@@ -201,11 +209,11 @@ WHERE pu.idPerfil=5
 		$rows = $query -> result_array();
 		$query -> free_result();
 		return $rows;
-	}
+	}*/
 
 	/*ETAPAS*/
 
-	public function seleccionarEtapas()
+	/*public function seleccionarEtapas()
 	{
 		$this -> bd -> select('idEtapa, codEtapa');
 		$this -> bd -> from('Etapas');
@@ -236,9 +244,9 @@ WHERE pu.idPerfil=5
 		$rows = $query -> result_array();
 		$query -> free_result();
 		return $rows;
-	}
+	}*/
 
-	public function cogerEtapasPadre($idEtapa)
+	/*public function cogerEtapasPadre($idEtapa)
 	{
 		$this -> bd -> select('E.codEtapa, s.idEtapaPadre, E2.codEtapa');
 		$this -> bd -> from('Etapas E');
@@ -249,7 +257,7 @@ WHERE pu.idPerfil=5
 		$rows = $query -> result_array();
 		$query -> free_result();
 		return $rows;
-	}
+	}*/
 
 	/*
 SELECT s.idEtapaPadre, e2.codEtapa
@@ -260,17 +268,17 @@ INNER JOIN etapas e2
 ON s.idEtapaPadre=e2.idEtapa
 WHERE e.idEtapa=8*/
 
-	public function cogerEtapasNoPadre($idEtapa)
+	/*public function cogerEtapasNoPadre($idEtapa)
 	{
 		$this -> bd -> select('e.idEtapa, e.codEtapa');
 		$this -> bd -> from('Etapas e');
-		$this -> bd -> join('Subetapas S','e.idEtapa = S.idEtapa','left');
+		$this -> bd -> join('Subetapas s','e.idEtapa = s.idEtapa','left');
 		$this -> bd -> where('e.idEtapa!='.$idEtapa.' AND e.idEtapa NOT IN (SELECT S2.idEtapaPadre FROM Etapas e2 INNER JOIN Subetapas s2 ON e2.idEtapa = s2.idEtapa WHERE e2.idEtapa='.$idEtapa.' )');
 		$query = $this -> bd -> get();
 		$rows = $query -> result_array();
 		$query -> free_result();
 		return $rows;
-	}
+	}*/
 	/*
 SELECT *
 FROM etapas e
@@ -287,7 +295,7 @@ WHERE e2.idEtapa=8
 
 	/*CURSOS*/
 
-	public function seleccionarCursos()
+	/*public function seleccionarCursos()
 	{
 		$this -> bd -> select('idCurso, codCurso');
 		$this -> bd -> from('Cursos');
@@ -317,12 +325,12 @@ WHERE e2.idEtapa=8
 		$rows = $query -> result_array();
 		$query -> free_result();
 		return $rows;
-	}
+	}*/
 
 
 	/*DEPARTAMENTOS*/
 
-	public function seleccionarDepartamentos()
+	/*public function seleccionarDepartamentos()
 	{
 		$this -> bd -> select('idDepartamento, nombre');
 		$this -> bd -> from('FP_Departamentos');
@@ -341,11 +349,11 @@ WHERE e2.idEtapa=8
 		$rows = $query -> result_array();
 		$query -> free_result();
 		return $rows;
-	}
+	}*/
 
 	/*FAMILIAS PROFESIONALES*/
 
-	public function seleccionarFamilias()
+	/*public function seleccionarFamilias()
 	{
 		$this -> bd -> select('idFamilia, nombre');
 		$this -> bd -> from('FP_FamiliasProfesionales');
@@ -374,11 +382,11 @@ WHERE e2.idEtapa=8
 		$rows = $query -> result_array();
 		$query -> free_result();
 		return $rows;
-	}
+	}*/
 
 	/*CICLOS*/
 
-	public function seleccionarCiclos()
+	/*public function seleccionarCiclos()
 	{
 		$this -> bd -> select('idCiclo, codCiclo');
 		$this -> bd -> from('FP_Ciclos');
@@ -407,9 +415,9 @@ WHERE e2.idEtapa=8
 		$rows = $query -> result_array();
 		$query -> free_result();
 		return $rows;
-	}
+	}*/
 
-	public function cogerCursosCiclo($idCiclo)
+	/*public function cogerCursosCiclo($idCiclo)
 	{
 		$this -> bd -> select('cu.idCurso, cu.codCurso');
 		$this -> bd -> from('Cursos cu');
@@ -419,9 +427,9 @@ WHERE e2.idEtapa=8
 		$rows = $query -> result_array();
 		$query -> free_result();
 		return $rows;
-	}
+	}*/
 
-	public function cogerCursosNoCiclo($idCiclo)
+	/*public function cogerCursosNoCiclo($idCiclo)
 	{
 		$this -> bd -> select('cu.idCurso, cu.codCurso');
 		$this -> bd -> from('Cursos cu');
@@ -430,11 +438,11 @@ WHERE e2.idEtapa=8
 		$rows = $query -> result_array();
 		$query -> free_result();
 		return $rows;
-	}
+	}*/
 
 	/*SECCIONES*/
 
-	public function seleccionarSecciones()
+	/*public function seleccionarSecciones()
 	{
 		$this -> bd -> select('idSeccion, codSeccion');
 		$this -> bd -> from('Secciones');
@@ -463,9 +471,9 @@ WHERE e2.idEtapa=8
 		$rows = $query -> result_array();
 		$query -> free_result();
 		return $rows;
-	}
+	}*/
 
-	public function cogerProfesores()
+	/*public function cogerProfesores()
 	{
 		$this -> bd -> select('idUsuario, correo');
 		$this -> bd -> from('Usuarios');
@@ -499,7 +507,7 @@ WHERE idUsuario IN (
 )
 */
 
-	public function idPerfilTutor()
+	/*public function idPerfilTutor()
 	{
 		$this -> bd -> select('idPerfil');
 		$this -> bd -> from('Perfiles');
@@ -519,9 +527,9 @@ WHERE idUsuario IN (
 		$rows = $query -> result_array();
 		$query -> free_result();
 		return $rows;
-	}
+	}*/
 
-	public function seleccionarSeccionesEtapa($idEtapa)
+	/*public function seleccionarSeccionesEtapa($idEtapa)
 	{
 		$this -> bd -> select('s.idSeccion, s.codSeccion');
 		$this -> bd -> from('Secciones s');
@@ -532,7 +540,7 @@ WHERE idUsuario IN (
 		$rows = $query -> result_array();
 		$query -> free_result();
 		return $rows;
-	}
+	}*/
 
 
 
@@ -548,7 +556,7 @@ WHERE e.idEtapa=14
 
 	/*LISTADO DE TUTORES*/
 
-	public function listadoTutores()
+	/*public function listadoTutores()
 	{
 		$this -> bd -> select('S.codSeccion, U.correo');
 		$this -> bd -> from('Secciones s');
@@ -557,7 +565,7 @@ WHERE e.idEtapa=14
 		$rows = $query -> result_array();
 		$query -> free_result();
 		return $rows;
-	}
+	}*/
 
 
 	/*select S.codSeccion, U.nombre
@@ -565,7 +573,7 @@ from secciones s left join usuarios u
 on s.idTutor=u.idUsuario */
 
 
-	public function aplicacionesPermitidas($idUsuario)
+/*	public function aplicacionesPermitidas($idUsuario)
 	{
 		$this -> bd -> select('distinct(a.url), a.nombre, a.icono');
 		$this -> bd -> from('Aplicaciones a');
@@ -588,7 +596,7 @@ on pu.idPerfil=ap.idPerfil
 where idUsuario=2;
 */
 
-	public function buscarUsuarios($idPerfil, $valor)
+	/*public function buscarUsuarios($idPerfil, $valor)
 	{
 		$this -> bd -> select('*');
 		$this -> bd -> from('Usuarios');
@@ -601,7 +609,7 @@ where idUsuario=2;
 		$rows = $query -> result_array();
 		$query -> free_result();
 		return $rows;
-	}
+	}*/
 
 /*
 SELECT *

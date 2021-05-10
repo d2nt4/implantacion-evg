@@ -26,7 +26,7 @@ class C_GestionEVG extends CI_Controller
 		{
         	$acceso = false;
 
-			$aplicaciones = $this -> M_GestionEVG -> aplicacionesPermitidas($idUsuario);
+			$aplicaciones = $this -> M_GestionEVG -> seleccionar('Aplicaciones a','distinct(a.url), a.nombre, a.icono',"idUsuario=".$idUsuario,$tabla_relacion = ['Aplicaciones_Perfiles ap','Perfiles_Usuarios pu'], $relacion = ['a.idAplicacion= ap.idAplicacion','pu.idPerfil=ap.idPerfil'], $tipo_relacion = ['join','join']);
 			foreach($aplicaciones as $valor)
 				if( $valor['nombre'] == 'GestionEVG' || $valor['nombre'] == 'AdministracionEVG' )
 					$acceso=true;
@@ -67,7 +67,11 @@ class C_GestionEVG extends CI_Controller
 
 	public function comprobarUsuarios()
 	{
-		$usuarios = $this -> M_GestionEVG -> buscarUsuarios($_POST['idPerfil'], $_POST['valor']);
+		$usuarios = $this -> M_GestionEVG -> seleccionar('Usuarios','*',"idUsuario NOT IN(
+			SELECT idUsuario
+			FROM Perfiles_Usuarios
+			WHERE idPerfil=".$_POST['idPerfil']."
+		) AND correo LIKE ('%".$_POST['valor']."%')");
 		echo(json_encode($usuarios));
 	}
 
@@ -75,7 +79,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function verApps()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionarApps();
+		$lista = $this -> M_GestionEVG -> seleccionar('Aplicaciones','idAplicacion, nombre');
 		foreach ($lista as $valor)
 			$this -> listaApps[$valor['idAplicacion']] = $valor['nombre'];
 
@@ -127,7 +131,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function modificarAppForm($idAplicacion)
 	{
-		$this -> datosApp = $this -> M_GestionEVG -> datosApp($idAplicacion);
+		$this -> datosApp = $this -> M_GestionEVG -> seleccionar('Aplicaciones','nombre, descripcion, url, icono','idAplicacion='.$idAplicacion);
 		$this -> load -> view("C_Aplicaciones/V_ModificarApp", Array('idAplicacion' => $idAplicacion));
 	}
 
@@ -166,14 +170,14 @@ class C_GestionEVG extends CI_Controller
 
 	public function perfilesAplicacion($idAplicacion)
 	{
-		$nombreApp = $this -> M_GestionEVG -> datosApp($idAplicacion);
+		$nombreApp = $this -> M_GestionEVG -> seleccionar('Aplicaciones','nombre, descripcion, url, icono','idAplicacion='.$idAplicacion);
 		$nombreApp = $nombreApp[0]['nombre'];
 
-		$lista = $this -> M_GestionEVG -> cogerPerfilesAplicacion($idAplicacion);
+		$lista = $this -> M_GestionEVG -> seleccionar('Perfiles p','p.idPerfil, p.nombre','ap.idAplicacion='.$idAplicacion, $tabla_relacion = ['Aplicaciones_Perfiles ap'],$relacion = ['p.idPerfil = ap.idPerfil']);
 		foreach($lista as $valor)
 			$this -> perfilesAplicacion[$valor['idPerfil']] = $valor['nombre'];
 
-		$lista2 = $this -> M_GestionEVG -> cogerPerfilesNoAplicacion($idAplicacion);
+		$lista2 = $this -> M_GestionEVG -> seleccionar('Perfiles p','p.idPerfil, p.nombre','p.idPerfil NOT IN (SELECT ap2.idPerfil FROM Aplicaciones_Perfiles ap2 WHERE ap2.idAplicacion='.$idAplicacion.')');
 		foreach($lista2 as $valor)
 			$this -> perfilesNoAplicacion[$valor['idPerfil']] = $valor['nombre'];
 
@@ -200,7 +204,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function verPerfiles()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionarPerfiles();
+		$lista = $this -> M_GestionEVG -> seleccionar('Perfiles','idPerfil, nombre');
 		foreach ($lista as $valor)
 			$this -> listaPerfiles[$valor['idPerfil']] = $valor['nombre'];
 
@@ -234,7 +238,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function modificarPerfilForm($idPerfil)
 	{
-		$this -> datosPerfil = $this -> M_GestionEVG -> datosPerfil($idPerfil);
+		$this -> datosPerfil = $this -> M_GestionEVG -> seleccionar('Perfiles','nombre, descripcion','idPerfil='.$idPerfil);
 		$this -> load -> view("C_Perfiles/V_ModificarPerfil", Array('idPerfil' => $idPerfil));
 	}
 
@@ -252,10 +256,10 @@ class C_GestionEVG extends CI_Controller
 
 	public function usuariosPerfil($idPerfil)
 	{
-		$nombre = $this -> M_GestionEVG -> datosPerfil($idPerfil);
+		$nombre = $this -> M_GestionEVG -> seleccionar('Perfiles','nombre, descripcion','idPerfil='.$idPerfil);
 		$nombre = $nombre[0]['nombre'];
 
-		$lista = $this -> M_GestionEVG -> cogerUsuariosPerfil($idPerfil);
+		$lista = $this -> M_GestionEVG -> seleccionar('Usuarios u','u.idUsuario, u.correo','pu.idPerfil='.$idPerfil,$tabla_relacion=['Perfiles_Usuarios pu'],$relacion = ['pu.idUsuario = u.idUsuario']);
 		foreach($lista as $valor)
 			$this -> usuariosPerfil[$valor['idUsuario']] = $valor['correo'];
 
@@ -290,7 +294,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function verUsuarios()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionarUsuarios();
+		$lista = $this -> M_GestionEVG -> seleccionar('Usuarios','idUsuario, correo');
 		foreach ($lista as $valor)
 			$this -> listaUsuarios[$valor['idUsuario']] = $valor['correo'];
 
@@ -328,7 +332,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function modificarUsuarioForm($idUsuario)
 	{
-		$this -> datosUsuario = $this -> M_GestionEVG -> datosUsuario($idUsuario);
+		$this -> datosUsuario = $this -> M_GestionEVG -> seleccionar('Usuarios','nombre, correo, bajaTemporal','idUsuario='.$idUsuario);
 		$this -> load -> view("C_Usuarios/V_ModificarUsuario", Array('idUsuario' => $idUsuario));
 	}
 
@@ -400,7 +404,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function verEtapas()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionarEtapas();
+		$lista = $this -> M_GestionEVG -> seleccionar('Etapas','idEtapa, codEtapa');
 		foreach ($lista as $valor)
 			$this -> listaEtapas[$valor['idEtapa']] = $valor['codEtapa'];
 
@@ -409,7 +413,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function anadirEtapaForm()
 	{
-		$lista = $this -> M_GestionEVG -> cogerUsuarios();
+		$lista = $this -> M_GestionEVG -> seleccionar('Usuarios','idUsuario, correo');
 		$this -> usuarios = array(0=>'Ninguno');
 		foreach ($lista as $valor)
 			$this -> usuarios[$valor['idUsuario']] = $valor['correo'];
@@ -441,9 +445,9 @@ class C_GestionEVG extends CI_Controller
 
 	public function modificarEtapaForm($idEtapa)
 	{
-		$this -> datosEtapa = $this -> M_GestionEVG -> datosEtapa($idEtapa);
+		$this -> datosEtapa = $this -> M_GestionEVG -> seleccionar('Etapas','codEtapa, nombre, idCoordinador','idEtapa='.$idEtapa);
 
-		$lista = $this -> M_GestionEVG -> cogerUsuarios();
+		$lista = $this -> M_GestionEVG -> seleccionar('Usuarios','idUsuario, correo');
 		$this -> usuarios = array(0=>'Ninguno');
 		foreach($lista as $valor)
 			$this -> usuarios[$valor['idUsuario']] = $valor['correo'];
@@ -468,14 +472,14 @@ class C_GestionEVG extends CI_Controller
 
 	public function etapaPadre($idEtapa)
 	{
-		$codEtapa = $this -> M_GestionEVG->datosEtapa($idEtapa);
+		$codEtapa = $this -> M_GestionEVG->seleccionar('Etapas','codEtapa, nombre, idCoordinador','idEtapa='.$idEtapa);
 		$codEtapa = $codEtapa[0]['codEtapa'];
 
-		$lista = $this -> M_GestionEVG -> cogerEtapasPadre($idEtapa);
+		$lista = $this -> M_GestionEVG -> seleccionar('Etapas e','e.idEtapa, e.codEtapa','e.idEtapa!='.$idEtapa,$tabla_relacion = ['Subetapas S','Etapas E2'], $relacion = ['e.idEtapa = S.idEtapa','S.idEtapaPadre=E2.idEtapa'],$tipo_relacion = ['join','join']);
 		foreach($lista as $valor)
 			$this -> etapasPadre[$valor['idEtapaPadre']] = $valor['codEtapa'];
 
-		$lista2 = $this -> M_GestionEVG->cogerEtapasNoPadre($idEtapa);
+		$lista2 = $this -> M_GestionEVG->seleccionar('Etapas e','e.idEtapa, e.codEtapa','e.idEtapa!='.$idEtapa.' AND e.idEtapa NOT IN (SELECT s2.idEtapaPadre FROM Etapas e2 INNER JOIN Subetapas s2 ON e2.idEtapa = s2.idEtapa WHERE e2.idEtapa='.$idEtapa.' )',$tabla_relacion = ['Subetapas s'], $relacion = ['e.idEtapa = s.idEtapa'],$tipo_relacion = ['left']);
 		foreach($lista2 as $valor)
 			$this -> etapasNoPadre[$valor['idEtapa']] = $valor['codEtapa'];
 
@@ -503,7 +507,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function verCursos()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionarCursos();
+		$lista = $this -> M_GestionEVG -> seleccionar('Cursos','idCurso, codCurso');
 		foreach ($lista as $valor)
 			$this -> listaCursos[$valor['idCurso']] = $valor['codCurso'];
 
@@ -540,7 +544,7 @@ class C_GestionEVG extends CI_Controller
 
 	public  function modificarCursoForm($idCurso)
 	{
-		$this -> datosCurso = $this -> M_GestionEVG -> datosCurso($idCurso);
+		$this -> datosCurso = $this -> M_GestionEVG -> seleccionar('Cursos','idCursoColegio, codCurso, nombre, idEtapa','idCurso='.$idCurso);
 		$this ->load -> view("C_Cursos/V_ModificarCurso", Array('idCurso' => $idCurso));
 	}
 
@@ -559,11 +563,11 @@ class C_GestionEVG extends CI_Controller
 
 	public function asignarEtapaCursoForm($idCurso)
 	{
-		$codCurso = $this -> M_GestionEVG -> datosCurso($idCurso);
+		$codCurso = $this -> M_GestionEVG -> seleccionar('Cursos','idCursoColegio, codCurso, nombre, idEtapa','idCurso='.$idCurso);
 		$idEtapa = $codCurso[0]['idEtapa'];
 		$codCurso = $codCurso[0]['codCurso'];
 
-		$lista = $this -> M_GestionEVG -> cogerEtapas();
+		$lista = $this -> M_GestionEVG -> seleccionar('Etapas','idEtapa, codEtapa');
 		$this -> etapas = Array(0 => 'Ninguna');
 		foreach($lista as $valor)
 			$this -> etapas[$valor['idEtapa']] = $valor['codEtapa'];
@@ -629,7 +633,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function verDepartamentos()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionarDepartamentos();
+		$lista = $this -> M_GestionEVG -> seleccionar('FP_Departamentos','idDepartamento, nombre');
 		foreach ($lista as $valor)
 			$this -> listaDepartamentos[$valor['idDepartamento']] = $valor['nombre'];
 
@@ -661,7 +665,7 @@ class C_GestionEVG extends CI_Controller
 
 	public  function modificarDepartamentoForm($idDepartamento)
 	{
-		$this -> datosDepartamento = $this -> M_GestionEVG -> datosDepartamento($idDepartamento);
+		$this -> datosDepartamento = $this -> M_GestionEVG -> seleccionar('FP_Departamentos','nombre','idDepartamento='.$idDepartamento);
 		$this -> load -> view("C_Departamentos/V_ModificarDepartamento", Array('idDepartamento' => $idDepartamento));
 	}
 
@@ -680,7 +684,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function verFamilias()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionarFamilias();
+		$lista = $this -> M_GestionEVG -> seleccionar('FP_FamiliasProfesionales','idFamilia, nombre');
 		foreach ($lista as $valor)
 			$this -> listaFamilias[$valor['idFamilia']] = $valor['nombre'];
 
@@ -689,7 +693,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function anadirFamiliaForm()
 	{
-		$lista = $this -> M_GestionEVG -> cogerDepartamentos();
+		$lista = $this -> M_GestionEVG -> seleccionar('FP_Departamentos','idDepartamento, nombre');
 		$this -> departamentos = array(0 => 'Ninguno');
 		foreach ($lista as $valor)
 			$this -> departamentos[$valor['idDepartamento']] = $valor['nombre'];
@@ -720,9 +724,9 @@ class C_GestionEVG extends CI_Controller
 
 	public function modificarFamiliaForm($idFamilia)
 	{
-		$this -> datosFamilia = $this -> M_GestionEVG -> datosFamilia($idFamilia);
+		$this -> datosFamilia = $this -> M_GestionEVG -> seleccionar('FP_FamiliasProfesionales','idFamilia, nombre, idDepartamento','idFamilia='.$idFamilia);
 
-		$lista = $this -> M_GestionEVG -> cogerDepartamentos();
+		$lista = $this -> M_GestionEVG -> seleccionar('FP_Departamentos','idDepartamento, nombre');
 		$this -> departamentos = array(0 => 'Ninguno');
 		foreach($lista as $valor)
 			$this -> departamentos[$valor['idDepartamento']] = $valor['nombre'];
@@ -749,7 +753,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function verCiclos()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionarCiclos();
+		$lista = $this -> M_GestionEVG -> seleccionar('FP_Ciclos','idCiclo, codCiclo');
 
 		foreach ($lista as $valor)
 			$this -> listaCiclos[$valor['idCiclo']] = $valor['codCiclo'];
@@ -759,7 +763,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function anadirCicloForm()
 	{
-		$lista = $this -> M_GestionEVG -> cogerFamilias();
+		$lista = $this -> M_GestionEVG -> seleccionar('FP_FamiliasProfesionales','idFamilia, nombre');
 
 		$this -> familias = array(0 => 'Ninguna');
 		foreach ($lista as $valor)
@@ -792,9 +796,9 @@ class C_GestionEVG extends CI_Controller
 
 	public function modificarCicloForm($idCiclo)
 	{
-		$this -> datosCiclo = $this -> M_GestionEVG -> datosCiclo($idCiclo);
+		$this -> datosCiclo = $this -> M_GestionEVG -> seleccionar('FP_Ciclos','idCiclo, codCiclo, nombre, idFamilia','idCiclo='.$idCiclo);
 
-		$lista = $this -> M_GestionEVG -> cogerFamilias();
+		$lista = $this -> M_GestionEVG -> seleccionar('FP_FamiliasProfesionales','idFamilia, nombre');
 		$this -> familias = array(0 => 'Ninguna');
 		foreach($lista as $valor)
 			$this -> familias[$valor['idFamilia']] = $valor['nombre'];
@@ -820,14 +824,14 @@ class C_GestionEVG extends CI_Controller
 
 	public function cursosCiclo($idCiclo)
 	{
-		$codCiclo = $this -> M_GestionEVG -> datosCiclo($idCiclo);
+		$codCiclo = $this -> M_GestionEVG -> seleccionar('FP_Ciclos','idCiclo, codCiclo, nombre, idFamilia','idCiclo='.$idCiclo);
 		$codCiclo = $codCiclo[0]['codCiclo'];
 
-		$lista = $this -> M_GestionEVG -> cogerCursosCiclo($idCiclo);
+		$lista = $this -> M_GestionEVG -> seleccionar('Cursos cu','cu.idCurso, cu.codCurso','cc.idCiclo='.$idCiclo, $tabla_relacion = ['FP_Ciclos_Cursos cc'], $relacion = ['cu.idCurso = cc.idCurso']);
 		foreach($lista as $valor)
 			$this -> ciclosCurso[$valor['idCurso']] = $valor['codCurso'];
 
-		$lista2 = $this -> M_GestionEVG -> cogerCursosNoCiclo($idCiclo);
+		$lista2 = $this -> M_GestionEVG -> seleccionar('Cursos cu','cu.idCurso, cu.codCurso','cu.idCurso NOT IN (SELECT cc2.idCurso FROM FP_Ciclos_Cursos cc2 WHERE cc2.idCiclo='.$idCiclo.')');
 		foreach($lista2 as $valor)
 			$this -> cursosNoCiclo[$valor['idCurso']] = $valor['codCurso'];
 
@@ -854,7 +858,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function verSecciones()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionarSecciones();
+		$lista = $this -> M_GestionEVG -> seleccionar('Secciones','idSeccion, codSeccion');
 
 		foreach ($lista as $valor)
 			$this -> listaSecciones[$valor['idSeccion']] = $valor['codSeccion'];
@@ -864,7 +868,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function anadirSeccionForm()
 	{
-		$lista = $this -> M_GestionEVG -> cogerCursos();
+		$lista = $this -> M_GestionEVG -> seleccionar('Cursos','idCurso, codCurso');
 		$this -> cursos = array(0 => 'Ninguno');
 		foreach ($lista as $valor)
 			$this -> cursos[$valor['idCurso']] = $valor['codCurso'];
@@ -907,9 +911,9 @@ class C_GestionEVG extends CI_Controller
 	}
 
 	public function modificarSeccionForm($idSeccion){
-		$this -> datosSeccion = $this -> M_GestionEVG -> datosSeccion($idSeccion);
+		$this -> datosSeccion = $this -> M_GestionEVG -> seleccionar('Secciones','idSeccion, idSeccionColegio, codSeccion, nombre, idCurso','idSeccion='.$idSeccion);
 
-		$lista = $this -> M_GestionEVG -> cogerCursos();
+		$lista = $this -> M_GestionEVG -> seleccionar('Cursos','idCurso, codCurso');
 		$this -> cursos = Array(0 => 'Ninguno');
 		foreach($lista as $valor)
 			$this -> cursos[$valor['idCurso']] = $valor['codCurso'];
@@ -939,9 +943,9 @@ class C_GestionEVG extends CI_Controller
 
 	public function asignarTutorForm($idSeccion)
 	{
-		$codSeccion = $this -> M_GestionEVG -> datosSeccion($idSeccion);
+		$codSeccion = $this -> M_GestionEVG -> seleccionar('Secciones','idSeccion, idSeccionColegio, codSeccion, nombre, idCurso','idSeccion='.$idSeccion);
 		$codSeccion = $codSeccion[0]['codSeccion'];
-		$idTutorActual = $this -> M_GestionEVG -> idTutorSeccion($idSeccion);
+		$idTutorActual = $this -> M_GestionEVG -> seleccionar('Secciones','idTutor',"idSeccion=".$idSeccion);
 		if(isset($idTutorActual[0]['idTutor'])) 
 		{
 			$idTutorActual = $idTutorActual[0]['idTutor'];
@@ -954,7 +958,7 @@ class C_GestionEVG extends CI_Controller
 			$nombreTutor = 'No hay tutor';
 		}
 
-		$lista = $this -> M_GestionEVG -> cogerProfesores();
+		$lista = $this -> M_GestionEVG -> seleccionar('Usuarios','idUsuario, correo',"idUsuario IN (SELECT idUsuario FROM Perfiles_Usuarios WHERE idPerfil=( SELECT idPerfil FROM Perfiles WHERE nombre='profesor')AND idUsuario NOT IN (SELECT idUsuario FROM Perfiles_Usuarios WHERE idPerfil=(SELECT idPerfil FROM Perfiles WHERE nombre='tutor')))",null,null,null,'correo');
 		$this -> profesores = array(0 => 'Ninguno');
 		foreach ($lista as $valor)
 			$this -> profesores[$valor['idUsuario']] = $valor['correo'];
@@ -964,7 +968,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function anadirQuitarTutor($idSeccion, $idTutorActual)
 	{
-		$idPerfilTutor = $this -> M_GestionEVG -> idPerfilTutor();
+		$idPerfilTutor = $this -> M_GestionEVG -> seleccionar('Perfiles','idPerfil',"nombre='tutor'");
 		$idPerfilTutor = $idPerfilTutor[0]['idPerfil'];
 		if($_POST['tutor'] == 0)
 		{
@@ -1029,7 +1033,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function verAlumnos()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionarEtapas();
+		$lista = $this -> M_GestionEVG -> seleccionar('Etapas','idEtapa, codEtapa');
 		foreach ($lista as $valor)
 			$this -> listaEtapas[$valor['idEtapa']] = $valor['codEtapa'];
 
@@ -1041,7 +1045,7 @@ class C_GestionEVG extends CI_Controller
 		$codEtapa = $this -> M_GestionEVG -> seleccionar('Etapas','codEtapa','idEtapa='.$idEtapa);
 		$codEtapa = $codEtapa[0]['codEtapa'];
 
-		$lista = $this -> M_GestionEVG -> seleccionarSeccionesEtapa($idEtapa);
+		$lista = $this -> M_GestionEVG -> seleccionar('Secciones s','s.idSeccion, s.codSeccion',"e.idEtapa = ".$idEtapa,$tabla_relacion = ['Cursos c','Etapas e'], $relacion = ['s.idCurso=c.idCurso','c.idEtapa=e.idEtapa'],$tipo_relacion =['join','join']);
 		foreach ($lista as $valor)
 			$this -> listaSecciones[$valor['idSeccion']] = $valor['codSeccion'];
 
@@ -1062,7 +1066,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function anadirAlumnoForm()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionarSecciones();
+		$lista = $this -> M_GestionEVG -> seleccionar('Secciones','idSeccion, codSeccion');
 		foreach ($lista as $valor)
 			$this -> secciones[$valor['idSeccion']] = $valor['codSeccion'];
 
@@ -1098,7 +1102,7 @@ class C_GestionEVG extends CI_Controller
 	{
 		$this -> datosAlumno = $this -> M_GestionEVG -> seleccionar('Alumnos','*','idAlumno='.$idAlumno);
 
-		$lista = $this -> M_GestionEVG -> seleccionarSecciones();
+		$lista = $this -> M_GestionEVG -> seleccionar('Secciones','idSeccion, codSeccion');
 		foreach($lista as $valor)
 			$this -> secciones[$valor['idSeccion']] = $valor['codSeccion'];
 
@@ -1192,7 +1196,7 @@ class C_GestionEVG extends CI_Controller
 	{
 		include('application/FPDF/fpdf.php');
 
-		$datos = $this -> M_GestionEVG -> listadoTutores();
+		$datos = $this -> M_GestionEVG -> seleccionar('Secciones s','s.codSeccion, u.correo',null,$tabla_relacion = ['Usuarios u'],$relacion = ['s.idTutor=u.idUsuario'],$tipo_relacion = ['left']);
 		foreach ($datos as $valor)
 			$this -> listaTutores[$valor['codSeccion']] = $valor['correo'];
 
