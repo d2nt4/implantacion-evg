@@ -1,18 +1,9 @@
-header
-{
-	background: #006293;
-	color: white;
-	text-align: center;
-	height: 100px;
-	padding-top: 25px;
-}
-
 #contenedor
 {
 	background: #c3cbce;
 }
 
-#contenedor>div
+#contenedor > div
 {
 	background: white;
 	padding-bottom: 7em;
@@ -226,9 +217,17 @@ input[type="text"]:focus, select:focus
 	border-radius: 10px;
 }
 
+.gbtn
+{
+	transition: all .5s ease;
+	color: #000;
+	border: 3px solid black;
+}
 .gbtn:hover
 {
-	transform: scale(1.1);
+	color: #fff;
+	background-color: #C82333;
+	border-color: #C82333;
 }
 
 /* Carta que presenta el icono del usuario e información adicional */
@@ -240,6 +239,53 @@ input[type="text"]:focus, select:focus
 }
 
 /* Grid de Aplicaciones */
+
+header
+{
+	background: #006293;
+	color: white;
+	height: 10vh;
+}
+
+.header-div
+{
+	display: table-cell;
+	vertical-align: middle;
+}
+
+header div + div
+{
+	text-align: right;
+}
+
+.row > header
+{
+	display: table;
+}
+
+.row > header > div > h2
+{
+	margin-top: unset;
+	margin-bottom: .5rem;
+}
+
+#profile_picture
+{
+	width: 4rem;
+	height: auto;
+}
+
+.logout
+{
+	text-decoration: none;
+	font-size: 1.25rem;
+	margin-left: .75rem;
+}
+
+.logout:hover
+{
+	color: orangered;
+}
 
 #gridAplicaciones
 {

@@ -1,5 +1,5 @@
 <?php
-include('application/views/Plantilla/header.php');
+	include('application/views/Plantilla/header.php');
 ?>
 
 <html>
@@ -10,9 +10,15 @@ include('application/views/Plantilla/header.php');
 <div class="container-fluid">
 	<div class="row">
 		<header class="col-12">
-			<h2>Aplicaciones disponibles</h2>
+			<div class="header-div"><h3>Escuela Virgen de Guadalupe - Aplicaciones</h3></div>
+			<div class="header-div">
+				<?php
+					$picture = $this -> session -> userdata('profile_pic');
+					echo '<img id="profile_picture" src="'.$picture.'" alt="Google Profile Picture" class="img-fluid rounded-circle"/>';
+				?>
+				<?php echo '<a href="'.base_url().'Auth/logout" class="logout"><i class="fa fa-sign-out-alt"></i></a>';?>
+			</div>
 		</header>
-		<?php echo "<button onclick='".base_url()."Auth/logout'><i class=\"fa fa-sign-out-alt\"></i></button>";?>
 	</div>
 	<div class="row" id="contenedor">
 		<div class="col-12" id="gridAplicaciones">

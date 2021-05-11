@@ -29,7 +29,7 @@
 		<div>
 				<?php 
 				if($this->session->userdata('sess_logged_in')==0){?>
-					<a href="<?=$google_login_url?>" class="btn btn-danger gbtn font-weight-bolder"><i class="fa fa-google left mr-2"></i>Iniciar sesión con Google</a>
+					<a href="<?=$google_login_url?>" class="btn gbtn font-weight-bolder"><i class="fa fa-google left mr-2"></i>Iniciar sesión con Google</a>
 				<?php }else{?>
 					
 				<?php }
@@ -43,7 +43,7 @@
 							<h3 class="card-title"><?=$_SESSION['name']?></h3>
 							<p class="card-subtitle my-3"><?=$_SESSION['email']?></p>
 							<p class="card-text">Parece que ha iniciado sesión con una cuenta no registrada en la aplicación, cambie la cuenta o pida al administrador que añada su correo a la aplicación.</p>
-							<a href="<?=base_url()?>auth/logout" class="btn btn-danger gbtn font-weight-bolder"><i class="fa fa-google left mr-2"></i>Cerrar sesión</a>
+							<a href="<?=base_url()?>auth/logout" class="btn gbtn font-weight-bolder"><i class="fa fa-google left mr-2"></i>Cerrar sesión</a>
 						</div>
 					</div>
 				<?php }?>
