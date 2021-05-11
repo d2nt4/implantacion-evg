@@ -57,9 +57,9 @@ class C_GestionEVG extends CI_Controller
 
 	public function comprobarCSU()
 	{
-		$numeroFilas = $this -> M_GestionEVG -> buscar($_POST['tabla'], $_POST['valor'], $_POST['campo']);
+		$numeroFilas = $this -> M_GestionEVG -> seleccionar($_POST['tabla'],$_POST['campo'],$_POST['campo']."='".$_POST['valor']."'"); //buscar($_POST['tabla'], $_POST['valor'], $_POST['campo']);
 
-		if ($numeroFilas != 0)
+		if (!empty($numeroFilas))
 			echo('si');
 		else
 			echo('no');

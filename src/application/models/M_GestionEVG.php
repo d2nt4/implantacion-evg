@@ -54,17 +54,6 @@ class M_GestionEVG extends CI_Model
 		return $rows;
 	}
 
-	public function buscar($tabla, $valor, $campo)
-	{
-		$this -> bd -> select($campo);
-		$this -> bd -> from($tabla);
-		$this -> bd -> where($campo."='".$valor."'");
-		$query = $this -> bd->get();
-		$rows = $query -> num_rows();
-		$query -> free_result();
-		return $rows;
-	}
-
 	public function obtenerIdUsuario($correo)
 	{
 		$this -> bd -> select('idUsuario');
@@ -81,6 +70,17 @@ class M_GestionEVG extends CI_Model
 		$query -> free_result();
 		return $idUsuario;
 	}
+
+	/*public function buscar($tabla, $valor, $campo)
+	{
+		$this -> bd -> select($campo);
+		$this -> bd -> from($tabla);
+		$this -> bd -> where($campo."='".$valor."'");
+		$query = $this -> bd->get();
+		$rows = $query -> num_rows();
+		$query -> free_result();
+		return $rows;
+	}*/
 
 	/*APLICACIONES*/
 
