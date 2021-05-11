@@ -12,6 +12,7 @@ include('application/views/Plantilla/header.php');
 		<header class="col-12">
 			<h2>Aplicaciones disponibles</h2>
 		</header>
+		<?php echo "<button onclick='".base_url()."Auth/logout'><i class=\"fa fa-sign-out-alt\"></i></button>";?>
 	</div>
 	<div class="row" id="contenedor">
 		<div class="col-12" id="gridAplicaciones">
@@ -27,7 +28,6 @@ include('application/views/Plantilla/header.php');
 						echo '</a>';
 					}
 			?>
-			<?php echo "<br/><br/><br/><a href='".base_url()."Auth/logout'>Cerrar sesión</a>";?>
 		</div>
 	</div>
 </body>

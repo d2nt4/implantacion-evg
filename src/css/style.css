@@ -206,6 +206,7 @@ input[type="text"]:focus, select:focus
 }
 
 /* Inicio de sesión con Google */
+
 #main
 {
 	display: table-cell;
@@ -214,8 +215,9 @@ input[type="text"]:focus, select:focus
 	text-align: center;
 }
 
+/* Párrafo que informa de que la cuenta no tiene usuario en la aplicación */
 #inicioSesionGoogle #infoSesion
-{/* Párrafo que informa de que la cuenta no tiene usuario en la aplicación */
+{
 	border: 1px solid #ff5c5c;
 	background-color: #eeee87;
 	margin: 1em 7%;
@@ -224,35 +226,17 @@ input[type="text"]:focus, select:focus
 	border-radius: 10px;
 }
 
-#inicioSesionGoogle #botonInicioCierre
-{ /* Botones de inicio y cierre de sesión */
-	color: white!important;
-	display: inline-block;
-	transition-duration: 0.2s;
-}
-
-#inicioSesionGoogle #botonInicioCierre:hover
+.gbtn:hover
 {
-	background-color: #ce382e !important;
+	transform: scale(1.1);
 }
 
-#inicioSesionGoogleCarta
-{/* Carta que presenta el icono del usuario e información adicional */
-	padding: 0 30%;
-	width: 100%;
-}
-
-#inicioSesionGoogleCarta #cerrarCard
-{/* Botón para cerra la información adicional en la carta */
-	transition-duration: 0.4s;
-	display: inline-block;
-	padding: 0.1em 2%;
-}
-
-#inicioSesionGoogleCarta #cerrarCard:hover
+/* Carta que presenta el icono del usuario e información adicional */
+#cartaGoogle
 {
-	background-color: #eeeeee;
-	border-radius: 10px;
+	margin: auto;
+	width: 25rem;
+	height: auto;
 }
 
 /* Grid de Aplicaciones */
