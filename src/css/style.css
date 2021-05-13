@@ -18,6 +18,7 @@
 	padding: 0;
 	overflow: hidden;
 	border-radius: 10px;
+	margin-top: 1rem;
 }
 
 .sugerenciaAjax button
@@ -44,14 +45,13 @@
 
 form
 {
-	margin-top: 30px;
-	margin-left: 25%;
+	margin-bottom: unset!important;
 }
 
 input[type="text"], select
 {
-	border-radius: 4px;
-	transition-duration: 0.3s;
+	margin-left: 1rem;
+	border-radius: 5px;
 	background: lightgray;
 	width: 30%;
 }
@@ -173,7 +173,7 @@ header div
 header div:nth-child(2)
 {
 	display: flex;
-	justify-content: right;
+	justify-content: flex-end;
 }
 
 header h3
@@ -287,8 +287,6 @@ header h3
 	object-fit: cover;
 }
 
-
-
 /* Logo EVG en el Header */
 #logo-evg
 {
@@ -298,7 +296,7 @@ header h3
 }
 
 /* Gestor de Aplicaciones */
-#gestion-apps
+.gestion-apps
 {
 	display: flex;
 	flex-direction: column;
@@ -318,3 +316,21 @@ header h3
 	font-weight: bolder;
 	margin-right: 1rem;
 }
+
+
+/* ---------------------------------------------------
+    PERFILES
+----------------------------------------------------- */
+.gestiones
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.gestiones > div:nth-child(2)
+{
+	justify-content: flex-end;
+	margin-left: 3rem;
+}
+

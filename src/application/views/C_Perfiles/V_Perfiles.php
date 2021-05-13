@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<div class="container-fluid">
-		<div class="row">
+			<div class="row">
 				<header class="col-12">
 					<div class="col-6">
 						<?php echo '<a href="'.base_url().'C_GestionEVG/"><img id="logo-evg" src="'.base_url().'uploads/iconos/escudo-evg.png" alt="img-fluid" class="img-fluid"/></a>' ;?>
@@ -39,7 +39,7 @@
 
 							<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/anadirPerfilForm'\" class=\"btn btn-success\"><i class=\"fas fa-plus-square\"></i></button>"; ?>
 
-							<div id="gestion-apps">
+							<div class="gestion-apps">
 
 								<?php
 									foreach($this->listaPerfiles as $indice => $valor)

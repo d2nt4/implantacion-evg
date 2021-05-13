@@ -139,27 +139,27 @@ function info(texto)
  * @param {number} idPerfil - Identificador de la fila del usuario.
  * @param {string} valor - Input a buscar en la base de datos.
  */
-function buscarUsuarios(baseURL, idPerfil, valor)
-{
-	if(valor != '')
-		$.ajax
-		({
-			type: "POST",
-			url: baseURL + 'C_GestionEVG/comprobarUsuarios',
-			data: 'idPerfil=' + idPerfil + '&valor=' + valor,
-			success: function (datos)
-			{
-				datos = JSON.parse(datos);
-				document.getElementsByClassName('sugerenciaAjax')[0].innerHTML = '';
-				for(i = 0; i < datos.length; i++)
-					document.getElementsByClassName('sugerenciaAjax')[0].innerHTML += '<button onclick="escribir(\'correo\', this.innerHTML)">'+datos[i].correo+'</button><br/>';
-				if(datos == '')
-					document.getElementsByClassName('sugerenciaAjax')[0].innerHTML = '<button>Sin coincidencias</button>';
-			}
-		})
-	else
-		document.getElementsByClassName('sugerenciaAjax')[0].innerHTML = '';
-}
+ function buscarUsuarios(baseURL, idPerfil, valor)
+ {
+	 if(valor != '')
+		 $.ajax
+		 ({
+			 type: "POST",
+			 url: baseURL + 'C_GestionEVG/comprobarUsuarios',
+			 data: 'idPerfil=' + idPerfil + '&valor=' + valor,
+			 success: function (datos)
+			 {
+				 datos = JSON.parse(datos);
+				 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML = '';
+				 for(i = 0; i < datos.length; i++)
+					 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML += '<button onclick="escribir(\'correo\', this.innerHTML)">'+datos[i].correo+'</button><br/>';
+				 if(datos == '')
+					 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML = '<button>Sin coincidencias</button>';
+			 }
+		 })
+	 else
+		 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML = '';
+ }
 
 /**
  * @function escribir - Función para seleccionar el correo del usuario tras la búsqueda de AJAX.

@@ -41,7 +41,7 @@
 
 							<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/anadirAppForm'\" class=\"btn btn-success\"><i class=\"fas fa-plus-square\"></i></button>"; ?>
 
-							<div id="gestion-apps">
+							<div class="gestion-apps">
 
 								<?php
 									foreach($this->listaApps as $indice => $valor)
