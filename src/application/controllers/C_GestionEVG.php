@@ -26,7 +26,7 @@ class C_GestionEVG extends CI_Controller
 		{
         	$acceso = false;
 
-			$aplicaciones = $this -> M_GestionEVG -> seleccionar('Aplicaciones a','distinct(a.url), a.nombre, a.icono',"idUsuario=".$idUsuario,$tabla_relacion = ['Aplicaciones_Perfiles ap','Perfiles_Usuarios pu'], $relacion = ['a.idAplicacion= ap.idAplicacion','pu.idPerfil=ap.idPerfil'], $tipo_relacion = ['join','join']);
+			$aplicaciones = $this -> M_GestionEVG -> seleccionar('Aplicaciones a','distinct(a.url), a.nombre, a.icono',"idUsuario=".$idUsuario,['Aplicaciones_Perfiles ap','Perfiles_Usuarios pu'], ['a.idAplicacion= ap.idAplicacion','pu.idPerfil=ap.idPerfil'], ['join','join']);
 			foreach($aplicaciones as $valor)
 				if( $valor['nombre'] == 'GestionEVG' || $valor['nombre'] == 'AdministracionEVG' )
 					$acceso=true;
@@ -57,7 +57,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function comprobarCSU()
 	{
-		$numeroFilas = $this -> M_GestionEVG -> seleccionar($_POST['tabla'],$_POST['campo'],$_POST['campo']."='".$_POST['valor']."'"); //buscar($_POST['tabla'], $_POST['valor'], $_POST['campo']);
+		$numeroFilas = $this -> M_GestionEVG -> seleccionar($_POST['tabla'],$_POST['campo'],$_POST['campo']."='".$_POST['valor']."'");
 
 		if (!empty($numeroFilas))
 			echo('si');
@@ -173,7 +173,7 @@ class C_GestionEVG extends CI_Controller
 		$nombreApp = $this -> M_GestionEVG -> seleccionar('Aplicaciones','nombre, descripcion, url, icono','idAplicacion='.$idAplicacion);
 		$nombreApp = $nombreApp[0]['nombre'];
 
-		$lista = $this -> M_GestionEVG -> seleccionar('Perfiles p','p.idPerfil, p.nombre','ap.idAplicacion='.$idAplicacion, $tabla_relacion = ['Aplicaciones_Perfiles ap'],$relacion = ['p.idPerfil = ap.idPerfil']);
+		$lista = $this -> M_GestionEVG -> seleccionar('Perfiles p','p.idPerfil, p.nombre','ap.idAplicacion='.$idAplicacion, ['Aplicaciones_Perfiles ap'],['p.idPerfil = ap.idPerfil']);
 		foreach($lista as $valor)
 			$this -> perfilesAplicacion[$valor['idPerfil']] = $valor['nombre'];
 
@@ -259,7 +259,7 @@ class C_GestionEVG extends CI_Controller
 		$nombre = $this -> M_GestionEVG -> seleccionar('Perfiles','nombre, descripcion','idPerfil='.$idPerfil);
 		$nombre = $nombre[0]['nombre'];
 
-		$lista = $this -> M_GestionEVG -> seleccionar('Usuarios u','u.idUsuario, u.correo','pu.idPerfil='.$idPerfil,$tabla_relacion=['Perfiles_Usuarios pu'],$relacion = ['pu.idUsuario = u.idUsuario']);
+		$lista = $this -> M_GestionEVG -> seleccionar('Usuarios u','u.idUsuario, u.correo','pu.idPerfil='.$idPerfil,['Perfiles_Usuarios pu'],['pu.idUsuario = u.idUsuario']);
 		foreach($lista as $valor)
 			$this -> usuariosPerfil[$valor['idUsuario']] = $valor['correo'];
 
@@ -475,11 +475,11 @@ class C_GestionEVG extends CI_Controller
 		$codEtapa = $this -> M_GestionEVG->seleccionar('Etapas','codEtapa, nombre, idCoordinador','idEtapa='.$idEtapa);
 		$codEtapa = $codEtapa[0]['codEtapa'];
 
-		$lista = $this -> M_GestionEVG -> seleccionar('Etapas e','e.idEtapa, e.codEtapa','e.idEtapa!='.$idEtapa,$tabla_relacion = ['Subetapas S','Etapas E2'], $relacion = ['e.idEtapa = S.idEtapa','S.idEtapaPadre=E2.idEtapa'],$tipo_relacion = ['join','join']);
+		$lista = $this -> M_GestionEVG -> seleccionar('Etapas e','e.idEtapa, S.idEtapaPadre,E2.codEtapa','e.idEtapa='.$idEtapa,['Subetapas S','Etapas E2'], ['e.idEtapa = S.idEtapa','S.idEtapaPadre=E2.idEtapa'],['join','join']);
 		foreach($lista as $valor)
 			$this -> etapasPadre[$valor['idEtapaPadre']] = $valor['codEtapa'];
 
-		$lista2 = $this -> M_GestionEVG->seleccionar('Etapas e','e.idEtapa, e.codEtapa','e.idEtapa!='.$idEtapa.' AND e.idEtapa NOT IN (SELECT s2.idEtapaPadre FROM Etapas e2 INNER JOIN Subetapas s2 ON e2.idEtapa = s2.idEtapa WHERE e2.idEtapa='.$idEtapa.' )',$tabla_relacion = ['Subetapas s'], $relacion = ['e.idEtapa = s.idEtapa'],$tipo_relacion = ['left']);
+		$lista2 = $this -> M_GestionEVG->seleccionar('Etapas e','e.idEtapa, e.codEtapa','e.idEtapa!='.$idEtapa.' AND e.idEtapa NOT IN (SELECT s2.idEtapaPadre FROM Etapas e2 INNER JOIN Subetapas s2 ON e2.idEtapa = s2.idEtapa WHERE e2.idEtapa='.$idEtapa.' )',['Subetapas s'], ['e.idEtapa = s.idEtapa'],['left']);
 		foreach($lista2 as $valor)
 			$this -> etapasNoPadre[$valor['idEtapa']] = $valor['codEtapa'];
 
@@ -827,7 +827,7 @@ class C_GestionEVG extends CI_Controller
 		$codCiclo = $this -> M_GestionEVG -> seleccionar('FP_Ciclos','idCiclo, codCiclo, nombre, idFamilia','idCiclo='.$idCiclo);
 		$codCiclo = $codCiclo[0]['codCiclo'];
 
-		$lista = $this -> M_GestionEVG -> seleccionar('Cursos cu','cu.idCurso, cu.codCurso','cc.idCiclo='.$idCiclo, $tabla_relacion = ['FP_Ciclos_Cursos cc'], $relacion = ['cu.idCurso = cc.idCurso']);
+		$lista = $this -> M_GestionEVG -> seleccionar('Cursos cu','cu.idCurso, cu.codCurso','cc.idCiclo='.$idCiclo, ['FP_Ciclos_Cursos cc'], ['cu.idCurso = cc.idCurso']);
 		foreach($lista as $valor)
 			$this -> ciclosCurso[$valor['idCurso']] = $valor['codCurso'];
 
@@ -1045,7 +1045,7 @@ class C_GestionEVG extends CI_Controller
 		$codEtapa = $this -> M_GestionEVG -> seleccionar('Etapas','codEtapa','idEtapa='.$idEtapa);
 		$codEtapa = $codEtapa[0]['codEtapa'];
 
-		$lista = $this -> M_GestionEVG -> seleccionar('Secciones s','s.idSeccion, s.codSeccion',"e.idEtapa = ".$idEtapa,$tabla_relacion = ['Cursos c','Etapas e'], $relacion = ['s.idCurso=c.idCurso','c.idEtapa=e.idEtapa'],$tipo_relacion =['join','join']);
+		$lista = $this -> M_GestionEVG -> seleccionar('Secciones s','s.idSeccion, s.codSeccion',"e.idEtapa = ".$idEtapa,['Cursos c','Etapas e'], ['s.idCurso=c.idCurso','c.idEtapa=e.idEtapa'],['join','join']);
 		foreach ($lista as $valor)
 			$this -> listaSecciones[$valor['idSeccion']] = $valor['codSeccion'];
 
@@ -1196,7 +1196,7 @@ class C_GestionEVG extends CI_Controller
 	{
 		include('application/FPDF/fpdf.php');
 
-		$datos = $this -> M_GestionEVG -> seleccionar('Secciones s','s.codSeccion, u.correo',null,$tabla_relacion = ['Usuarios u'],$relacion = ['s.idTutor=u.idUsuario'],$tipo_relacion = ['left']);
+		$datos = $this -> M_GestionEVG -> seleccionar('Secciones s','s.codSeccion, u.correo',null,['Usuarios u'],['s.idTutor=u.idUsuario'],['left']);
 		foreach ($datos as $valor)
 			$this -> listaTutores[$valor['codSeccion']] = $valor['correo'];
 
