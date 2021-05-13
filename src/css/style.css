@@ -1,85 +1,3 @@
-#contenedor
-{
-	background: #c3cbce;
-}
-
-#contenedor > div
-{
-	background: white;
-	padding-bottom: 7em;
-}
-
-aside
-{
-	background: #c3cbce;
-	padding-left: 0!important;
-	padding-right: 0!important;
-}
-
-aside a
-{
-	line-height: 30px;
-	font-weight: bold;
-	color:#006293;
-	text-decoration: none!important;
-	display: inline-block;
-	width: 100%;
-	transition-duration: 0.4s;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	padding-left: 10%;
-
-}
-
-aside a:hover, aside a:focus
-{
-	background: #DEE9EE;
-	outline: none;
-}
-
-aside a
-{
-	cursor: pointer;
-}
-
-aside #cerrarSesionAside
-{
-	color: red;
-}
-
-aside #cerrarSesionAside:hover, aside #cerrarSesionAside:focus
-{
-	background-color: #b63636;
-	color: white;
-}
-
-button, input[type="submit"]
-{
-	border-radius: 4px;
-	margin-left: 2%;
-	margin-right: 2%;
-	margin-top: 7px;
-	background: #006293;
-	color: white;
-	border: 2px solid #003293;
-	transition-duration: 0.4s;
-	padding: 5px 1%;
-}
-
-button:hover, input[type="submit"]:not(:disabled):hover, button:focus, input[type="submit"]:not(:disabled):focus
-{
-	margin-left: 1%;
-	margin-right: 3%;
-	box-shadow: gray 5px 3px 3px;
-	outline: none;
-}
-
-input[type="submit"]:disabled
-{/* Cuando se bloquee un botón de enviar (al inicio en las páginas de añadir y con AJAX normalmente) */
-	background-color: #791515!important;
-	border-color: black;
-}
-
 .divInfo
 {/* El div que empieza vacío, solo vale para mostrar el mensaje de AJAX (en todas las páginas debe tener este nombre para que AJAX funcione correctamente) */
 	float: right;
@@ -120,41 +38,9 @@ input[type="submit"]:disabled
 	background-color: #a0a0a0;
 }
 
-#valor
-{
-	display: inline-block;
-	font-size: 1.5em;
-	padding-right: 1em;
-	font-weight: bold;
-	color: #172C36;
-}
-
-table
-{
-	margin-top: 2em;
-	width: 100%;
-}
-
-table tr
-{
-	width: 100%;
-}
-
-table tr td
-{
-	width: 10% !important;
-	white-space: nowrap;
-}
-
-table tr td:first-of-type
-{
-	width: 0.1% !important;
-}
-
-#anadir
-{
-	margin-top: 10px;
-}
+/* ---------------------------------------------------
+    FORMULARIOS
+----------------------------------------------------- */
 
 form
 {
@@ -176,6 +62,35 @@ input[type="text"]:focus, select:focus
 	background: white;
 }
 
+input[type="submit"]
+{
+	border-radius: 4px;
+	margin-left: 2%;
+	margin-right: 2%;
+	margin-top: 7px;
+	background: #006293;
+	color: white;
+	border: 2px solid #003293;
+	transition-duration: 0.4s;
+	padding: 5px 1%;
+}
+
+input[type="submit"]:not(:disabled):hover, input[type="submit"]:not(:disabled):focus
+{
+	margin-left: 1%;
+	margin-right: 3%;
+	box-shadow: gray 5px 3px 3px;
+	outline: none;
+}
+
+/* Cuando se bloquee un botón de enviar (al inicio en las páginas de añadir y con AJAX normalmente) */
+input[type="submit"]:disabled
+{
+	background-color: #791515!important;
+	border-color: black;
+}
+
+/* Información que se le proporciona al usuario */
 #info
 {
 	background: #fffd98;
@@ -196,7 +111,9 @@ input[type="text"]:focus, select:focus
 	border: 2px solid black;
 }
 
-/* Inicio de sesión con Google */
+/* ---------------------------------------------------
+    GOOGLE
+----------------------------------------------------- */
 
 #main
 {
@@ -206,15 +123,10 @@ input[type="text"]:focus, select:focus
 	text-align: center;
 }
 
-/* Párrafo que informa de que la cuenta no tiene usuario en la aplicación */
-#inicioSesionGoogle #infoSesion
+#logo
 {
-	border: 1px solid #ff5c5c;
-	background-color: #eeee87;
-	margin: 1em 7%;
-	padding: 0.4em 2%;
-	text-align: center;
-	border-radius: 10px;
+	width: 6rem;
+	height: 100%;
 }
 
 .gbtn
@@ -223,6 +135,7 @@ input[type="text"]:focus, select:focus
 	color: #000;
 	border: 3px solid black;
 }
+
 .gbtn:hover
 {
 	color: #fff;
@@ -238,35 +151,34 @@ input[type="text"]:focus, select:focus
 	height: auto;
 }
 
-/* Grid de Aplicaciones */
+/* ---------------------------------------------------
+    GRID DE APLICACIONES
+----------------------------------------------------- */
 
 header
 {
-	background: #006293;
+	background: #0076CE;
 	color: white;
 	height: 10vh;
+	display: flex;
+	flex-direction: row;
 }
 
-.header-div
+header div
 {
-	display: table-cell;
-	vertical-align: middle;
+	display: flex;
+	align-items: center;
 }
 
-header div + div
+header div:nth-child(2)
 {
-	text-align: right;
+	display: flex;
+	justify-content: right;
 }
 
-.row > header
+header h3
 {
-	display: table;
-}
-
-.row > header > div > h2
-{
-	margin-top: unset;
-	margin-bottom: .5rem;
+	font-weight: bolder!important;
 }
 
 #profile_picture
@@ -275,51 +187,134 @@ header div + div
 	height: auto;
 }
 
-.logout
+#icon-grid
 {
-	text-decoration: none;
+	font-size: 1.25rem;
+	margin-right: .75rem;
+}
+
+#icon-logout
+{
 	font-size: 1.25rem;
 	margin-left: .75rem;
 }
 
-.logout:hover
+#icon-grid:hover,
+#icon-logout:hover
 {
-	color: orangered;
+	color: lightgray;
 }
 
 #gridAplicaciones
 {
-	padding: 2em 5%;
+	padding: 2rem;
+	justify-content: center;
 }
 
-#gridAplicaciones>.aplicacion
+#gridAplicaciones a div
 {
-	display: inline-block;
-	padding: .5em 2%;
-	margin: .5em 5%;
+	margin: 3rem auto;
+}
+
+/* Diseño de la tarjeta */
+.box
+{
+	margin: 2.45rem;
+	padding-left: unset!important;
+	padding-right: unset!important;
+	height: 20rem;
+	text-align: center;
 	border-radius: 10px;
-	background-color: #eeeeee;
-	transition-duration: 0.3s;
+	cursor: pointer;
+	-webkit-transition: 200ms ease-in-out;
+	-o-transition: 200ms ease-in-out;
+	transition: 200ms ease-in-out;
+	-webkit-box-shadow: 0 0 15px rgba(0,0,0,0.3);
+	        box-shadow: 0 0 15px rgba(0,0,0,0.3);
 }
 
-#gridAplicaciones>.aplicacion:hover
+.box:hover
 {
-	filter: brightness(0.8);
-	text-decoration: none;
+	margin-top: 10px;
+	-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.7);
+			box-shadow: 0 0 5px rgba(0,0,0,0.7);
 }
 
-#gridAplicaciones>a:last-of-type
+.box h1
 {
-	margin-top: 3em!important;
+	color: #fff;
+	padding: 30px;
+	margin-top: unset!important;
+	border-radius: 10px;
+	text-align: center;
+	font-weight: 450;
+	font-size: 1.65rem;
+	background: rgba(0,0,0,0.8);
+	-webkit-box-shadow: 0 0 30px rgba(0,0,0,0.7);
+	        box-shadow: 0 0 30px rgba(0,0,0,0.8);
 }
 
-#iconoApp
-{/* Imagen con el icono de la aplicación */
-	width: 60px;
-	height: 60px;
+.one
+{
+	background-color: #eee;
+}
+
+.poster
+{
+	width: 130px;
+	height: 130px;
+	border-radius: 100px;
+}
+
+.p1
+{
+	background: #2b5876;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #4e4376, #2b5876);  /* Chrome 10-25, Safari 5.1-6 */
+	background: -webkit-gradient(linear, left top, right top, from(#4e4376), to(#2b5876));
+	background: -webkit-linear-gradient(left, #4e4376, #2b5876);
+	background: -o-linear-gradient(left, #4e4376, #2b5876);
+	background: linear-gradient(to right, #4e4376, #2b5876); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	-webkit-box-shadow: 0 0 20px darkblue;
+	        box-shadow: 0 0 20px darkblue;
+}
+
+#icono-app
+{
+	width: 100%;
+	height: 100%;
 	border-radius: 100%;
-	margin-left: 15px;/* Si se le pone porcentaje se baja el icono sin razón */
 	overflow: hidden;
 	object-fit: cover;
-	box-shadow: 0px 2px 10px lightblue;
+}
+
+
+
+/* Logo EVG en el Header */
+#logo-evg
+{
+	height: auto;
+	width: 13rem;
+	margin-right: 2rem;
+}
+
+/* Gestor de Aplicaciones */
+#gestion-apps
+{
+	display: flex;
+	flex-direction: column;
+	margin-top: 2rem;
+}
+
+/* Filas de gestión de contenido */
+.fila
+{
+	margin-bottom: 2rem;
+}
+
+.fila h3
+{
+	display: inline-block;
+	vertical-align: middle;
+	font-weight: bolder;
+	margin-right: 1rem;
 }
