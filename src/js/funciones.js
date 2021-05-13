@@ -13,7 +13,7 @@ function confirmar(texto, ruta, header, botonCancelar, botonConfirmar)
 	body.innerHTML += 
 		`
 			<!--Bootstrap Modal-->
-			<div id="myModal" class="modal fade" role="dialog" data-backdrop="static">
+			<div id="myModal" class="modal fade" role="dialog" tabindex="-1" data-backdrop="static">
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
 						<div class="modal-header">

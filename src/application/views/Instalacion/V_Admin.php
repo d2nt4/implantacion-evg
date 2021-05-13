@@ -1,5 +1,5 @@
 <?php
-include('application/views/Plantilla/header.php');
+	include('application/views/Plantilla/header.php');
 ?>
 
 
@@ -18,20 +18,19 @@ include('application/views/Plantilla/header.php');
 		<div class="col-12" >
 			<h2>Usuario Administrador</h2>
 			<?php
-			$nombre = array
-			(
-				'name'=>'nombre',
-				'placeholder'=>'Nombre',
-				'required'=>'required'
-			);
+				$nombre = array
+				(
+					'name'=>'nombre',
+					'placeholder'=>'Nombre',
+					'required'=>'required'
+				);
 
-			$correo = array
-			(
-				'name'=>'correo',
-				'placeholder'=>'Correo',
-				'required'=>'required'
-			);
-
+				$correo = array
+				(
+					'name'=>'correo',
+					'placeholder'=>'Correo',
+					'required'=>'required'
+				);
 			?>
 			<?php echo validation_errors();?>
 			<?php echo form_open(base_url().'C_Instalacion/anadirAdmin');?>
