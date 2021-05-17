@@ -17,14 +17,14 @@
 				</li>
 			</ul>
 
-			<ul class="list-unstyled CTAs">
-				<li>
-					<a href="#" class="download">Botón 1</a>
-				</li>
-				<li>
-					<a href="#" class="article">Botón 2</a>
-				</li>
-			</ul>
+<!--			<ul class="list-unstyled CTAs">-->
+<!--				<li>-->
+<!--					<a href="#" class="download">Botón 1</a>-->
+<!--				</li>-->
+<!--				<li>-->
+<!--					<a href="#" class="article">Botón 2</a>-->
+<!--				</li>-->
+<!--			</ul>-->
 		</nav>
 	</div>
 </aside>

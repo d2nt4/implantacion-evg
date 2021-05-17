@@ -75,13 +75,13 @@ function buscarCSU(baseURL, tabla, valor, campo, idDiv, textoBase, permitido)
 					if (datos == 'no')
 					{
 						deshabilitar[idDiv] = false;
-						infoAjax.style.opacity = '0';
+						infoAjax.style.display = 'none';
 						infoAjax.innerHTML = '';
 					}
 					else
 					{
 						deshabilitar[idDiv] = true;
-						infoAjax.style.opacity = '1';
+						infoAjax.style.display = 'block';
 						infoAjax.innerHTML = textoBase + valor;
 					}
 				}
@@ -91,13 +91,13 @@ function buscarCSU(baseURL, tabla, valor, campo, idDiv, textoBase, permitido)
 		{
 			infoAjax.innerHTML = '';
 			deshabilitar[idDiv] = false;
-			infoAjax.style.opacity = '0';
+			infoAjax.style.display = 'none';
 		}
 	}
 	else
 	{
 		deshabilitar[idDiv] = true;
-		infoAjax.style.opacity = '0';
+		infoAjax.style.display = 'none';
 		infoAjax.innerHTML = '';
 	}
 	comprobarBotonEnviar();
@@ -123,7 +123,7 @@ function comprobarBotonEnviar()
  */
 function info(texto)
 {
-	var cuadroInfo = document.getElementById("cuadroInfo")
+	var cuadroInfo = document.getElementById("cuadroInfo");
 	if(cuadroInfo.innerHTML == '')
 	{
 		cuadroInfo.innerHTML = texto;
@@ -152,7 +152,7 @@ function info(texto)
 				 datos = JSON.parse(datos);
 				 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML = '';
 				 for(i = 0; i < datos.length; i++)
-					 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML += '<button onclick="escribir(\'correo\', this.innerHTML)">'+datos[i].correo+'</button><br/>';
+					 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML += '<button onmousedown="escribir(\'correo\', this.innerHTML)">'+datos[i].correo+'</button><br/>';
 				 if(datos == '')
 					 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML = '<button>Sin coincidencias</button>';
 			 }

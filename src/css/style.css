@@ -1,12 +1,10 @@
 .divInfo
 {/* El div que empieza vacío, solo vale para mostrar el mensaje de AJAX (en todas las páginas debe tener este nombre para que AJAX funcione correctamente) */
-	float: right;
-	margin: 0 5%;
 	padding: .5em 1%;
-	max-width: 55%;
+	max-width: 50%;
 	background-color: #fffd98;
 	border: 1px solid #ff6363 !important;
-	opacity: 0;
+	display: none;
 	border-radius: 10px;
 	transition-duration: .5s;
 	overflow: hidden;
@@ -18,7 +16,7 @@
 	padding: 0;
 	overflow: hidden;
 	border-radius: 10px;
-	margin-top: 1rem;
+	margin-top: .8rem;
 }
 
 .sugerenciaAjax button
@@ -31,7 +29,6 @@
 	width: 100%;
 	padding: 0;
 	margin: 0;
-
 }
 
 .sugerenciaAjax button:hover, .sugerenciaAjax button:focus
@@ -45,7 +42,19 @@
 
 form
 {
+	text-align: center;
+	width: 35rem;
 	margin-bottom: unset!important;
+}
+
+label
+{
+	font-weight: bolder;
+}
+
+input
+{
+	margin-bottom: 1.25rem;
 }
 
 input[type="text"], select
@@ -53,26 +62,28 @@ input[type="text"], select
 	margin-left: 1rem;
 	border-radius: 5px;
 	background: lightgray;
-	width: 30%;
 }
 
 input[type="text"]:focus, select:focus
 {
-	width: 35%;
 	background: white;
+}
+
+.submit-container
+{
+	text-align: center;
+	margin-top: .5rem;
 }
 
 input[type="submit"]
 {
-	border-radius: 4px;
-	margin-left: 2%;
-	margin-right: 2%;
-	margin-top: 7px;
-	background: #006293;
+	border-radius: 5px;
+	background: #0076CE;
 	color: white;
-	border: 2px solid #003293;
+	font-weight: bolder;
+	border: 2px solid #000;
 	transition-duration: 0.4s;
-	padding: 5px 1%;
+	padding: .35rem;
 }
 
 input[type="submit"]:not(:disabled):hover, input[type="submit"]:not(:disabled):focus
@@ -287,20 +298,24 @@ header h3
 	object-fit: cover;
 }
 
+.icono-app
+{
+	width: 10rem;
+	height: auto;
+	margin-bottom: 3rem;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 100%;
+	overflow: hidden;
+	object-fit: cover;
+}
+
 /* Logo EVG en el Header */
 #logo-evg
 {
 	height: auto;
 	width: 13rem;
 	margin-right: 2rem;
-}
-
-/* Gestor de Aplicaciones */
-.gestion-apps
-{
-	display: flex;
-	flex-direction: column;
-	margin-top: 2rem;
 }
 
 /* Filas de gestión de contenido */
@@ -319,8 +334,13 @@ header h3
 
 
 /* ---------------------------------------------------
-    PERFILES
+    Disposición del Contenido
 ----------------------------------------------------- */
+content
+{
+	padding: 2.5rem;
+}
+
 .gestiones
 {
 	display: flex;
@@ -330,7 +350,28 @@ header h3
 
 .gestiones > div:nth-child(2)
 {
-	justify-content: flex-end;
 	margin-left: 3rem;
 }
 
+.gestion-apps
+{
+	display: flex;
+	flex-direction: column;
+	margin-top: 2rem;
+	min-height: 30vh;
+}
+
+.perfiles-app-div
+{
+	margin: .5rem 0;
+}
+
+.perfiles-app-div span
+{
+	font-size: 1.15rem;
+}
+
+.perfiles-app-div button
+{
+	margin-left: .45rem;
+}
