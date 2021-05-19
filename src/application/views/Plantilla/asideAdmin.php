@@ -4,7 +4,7 @@
 			<div class="sidebar-header">
 					<?php
 						$name = $this -> session -> userdata('name');
-						echo "<h4>".$name."</h4>";
+						echo "<h5 class='font-weight-bolder'>".$name."</h5>";
 					?>
 			</div>
 

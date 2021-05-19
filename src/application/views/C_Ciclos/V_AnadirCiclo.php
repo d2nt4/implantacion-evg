@@ -9,13 +9,13 @@ include('application/views/Plantilla/header.php');
 		function pruebaInicial()
 		{// tendrá que haber en esta función tantas líneas como distintos id de texto de ajax haya en la página
 			// se podría mejorar creando los id desde javascript directamente
-			buscarCSU('<?php echo base_url();?>', 'FP_Ciclos', '', 'codCiclo', 'infoAjax', ' ');
-			buscarCSU('<?php echo base_url();?>', 'FP_Ciclos', '', 'nombre', 'infoAjax2', ' ');
+			buscarCSU('<?php echo base_url() ;?>', 'FP_Ciclos', '', 'codCiclo', 'infoAjax', ' ');
+			buscarCSU('<?php echo base_url() ;?>', 'FP_Ciclos', '', 'nombre', 'infoAjax2', ' ');
 		}// hago esto para que se inicialice el array que contiene la información de los id que deben ser correctos, si no, puede dar fallos
 	</script>
 </head>
 <body onload="pruebaInicial()">
-<div class="container-fluid">
+<div id="principal" class="container-fluid">
 	<div class="row">
 		<header class="col-12">
 			<h2>GESTIÓN EVG</h2>
@@ -46,16 +46,16 @@ include('application/views/Plantilla/header.php');
 				'options'=> $this->familias
 			);
 			?>
-			<?php echo validation_errors();?>
-			<?php echo form_open(base_url().'C_GestionEVG/anadirCiclo');?>
+			<?php echo validation_errors() ;?>
+			<?php echo form_open(base_url().'C_GestionEVG/anadirCiclo') ;?>
 			<?php echo form_input($codCiclo); ?>
-			<?php echo '<div class="divInfo" id="infoAjax"></div>';?><br/><br/>
+			<?php echo '<div class="divInfo" id="infoAjax"></div>' ;?></br></br>
 			<?php echo form_input($nombre); ?>
-			<?php echo '<div class="divInfo" id="infoAjax2"></div>';?><br/><br/>
-			<?php echo form_label('Familia Profesional:');?><br/>
-			<?php echo form_dropdown($familia); ?><br/><br/>
+			<?php echo '<div class="divInfo" id="infoAjax2"></div>' ;?></br></br>
+			<?php echo form_label('Familia Profesional:') ;?></br>
+			<?php echo form_dropdown($familia); ?></br></br>
 			<?php echo form_submit('enviar','ENVIAR', 'disabled'); ?>
-			<?php echo form_close();?><br/><br/>
+			<?php echo form_close() ;?></br></br>
 			<a href="<?php echo base_url()?>C_GestionEVG/verCiclos">Volver</a>
 		</div>
 	</div>

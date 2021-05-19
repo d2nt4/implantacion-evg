@@ -22,10 +22,10 @@
 			<div id="inicioSesionGoogle">
 				<div>
 					<?php 
-					if($this->session->userdata('sess_logged_in')==0){?>
+					if($this->session->userdata('sess_logged_in') == 0){?>
 						<a href="<?=$google_login_url?>" class="btn gbtn font-weight-bolder"><i class="fa fa-google left mr-2"></i>Iniciar sesión con Google</a>
 					<?php }else{?>
-						
+
 					<?php }
 					?>
 				</div>

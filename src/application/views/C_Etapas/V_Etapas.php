@@ -6,11 +6,11 @@
 		<title>Etapas</title>
 	</head>
 	<body>
-		<div class="container-fluid">
+		<div id="principal" class="container-fluid">
 			<div class="row">
 				<header class="col-12">
 					<div class="col-6">
-						<?php echo '<a href="'.base_url().'C_GestionEVG/"><img id="logo-evg" src="'.base_url().'uploads/iconos/escudo-evg.png" alt="img-fluid" class="img-fluid"/></a>' ;?>
+						<?php echo '<a href="'.base_url().'C_GestionEVG/"><img id="logo-evg" src="'.base_url().'uploads/iconos/escudo-evg.png" alt="Escudo EVG" class="img-fluid"/></a>'  ;?>
 						<h3>Gestión EVG - Etapas</h3>
 					</div>
 					<div class="col-6">
@@ -19,21 +19,20 @@
 							$picture = $this -> session -> userdata('profile_pic');
 							echo '<img id="profile_picture" src="'.$picture.'" alt="Google Profile Picture" class="img-fluid rounded-circle"/>';
 						?>
-						<?php echo "<button onclick=\"confirmar('¿Seguro que quieres cerrar sesión?','".base_url()."Auth/logout', 'Cerrar Sesión', 'Cancelar', 'Cerrar')\" data-toggle=\"modal\" data-target=\"#myModal\" id=\"icon-logout\" class=\"btn\"><i class=\"fa fa-sign-out-alt\"></i></button>";?>
+						<?php echo "<button onclick=\"confirmar('¿Seguro que quieres cerrar sesión?','".base_url()."Auth/logout', 'Cerrar Sesión', 'Cancelar', 'Cerrar')\" data-toggle=\"modal\" data-target=\"#myModal\" id=\"icon-logout\" class=\"btn\"><i class=\"fa fa-sign-out-alt\"></i></button>" ;?>
 					</div>
 				</header>
 			</div>
 			<div class="row">
 				<?php include('application/views/Plantilla/asideGestor.php') ?>
-				<content>
+				<div class="general">
 					<button type="button" id="sidebarCollapse" class="btn btn-sidebar">
 						<i class="fas fa-bars"></i>
 						<i class="fas fa-times"></i>
 					</button>
-					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/verEtapas'\" class=\"btn btn-secondary\"><i class=\"fas fa-arrow-left\"></i></button>"; ?>
+					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/anadirEtapaForm'\" class=\"btn btn-success\"><i class=\"fas fa-plus-square\"></i></button>"; ?>
 					<div class="gestion-apps">
 						<?php
-							echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/anadirEtapaForm'\" class=\"btn btn-success\"><i class=\"fas fa-plus-square\"></i></button>";
 							foreach($this->listaEtapas as $indice => $valor)
 								echo
 								"
@@ -43,11 +42,10 @@
 										<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/modificarEtapaForm/".$indice."'\" class=\"btn btn-warning\"><i class=\"fas fa-edit\"></i></button>
 										<button onclick=\"confirmar('¿Seguro que quieres borrar la etapa: <b>".$valor."</b>?', '".base_url()."C_GestionEVG/borrarEtapa/".$indice."', 'Eliminar Etapa', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>													
 									</div>					
-								"
-								;
+								";
 						?>
 					</div>
-				</content>
+				</div>
 			</div>
 		</div>
 	</body>

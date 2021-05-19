@@ -8,7 +8,7 @@ include('application/views/Plantilla/header.php');
 	<title>Gestión EVG</title>
 </head>
 <body>
-<div class="container-fluid">
+<div id="principal" class="container-fluid">
 	<div class="row">
 		<header class="col-12">
 			<h2>GESTIÓN EVG</h2>
@@ -82,25 +82,25 @@ include('application/views/Plantilla/header.php');
 
 
 			?>
-			<?php echo validation_errors();?>
-			<?php echo form_open(base_url().'C_GestionEVG/modificarAlumno/'.$idAlumno.'/'.$this->datosAlumno[0]['idSeccion'].'/'.$idEtapa);?>
-			<?php echo form_label('NIA:');?><br/>
+			<?php echo validation_errors() ;?>
+			<?php echo form_open(base_url().'C_GestionEVG/modificarAlumno/'.$idAlumno.'/'.$this->datosAlumno[0]['idSeccion'].'/'.$idEtapa) ;?>
+			<?php echo form_label('NIA:') ;?></br>
 			<?php echo form_input($nia); ?>
-			<?php echo '<div class="divInfo" id="infoAjax"></div>';?><br/><br/>
-			<?php echo form_label('Nombre:');?><br/>
-			<?php echo form_input($nombre); ?><br/><br/>
-			<?php echo form_label('Sección:');?><br/>
-			<?php echo form_dropdown($secciones); ?><br/><br/>
-			<?php echo form_label('Correo:');?><br/>
-			<?php echo form_input($correo); ?><br/><br/>
-			<?php echo form_label('Masculino:');?>
+			<?php echo '<div class="divInfo" id="infoAjax"></div>' ;?></br></br>
+			<?php echo form_label('Nombre:') ;?></br>
+			<?php echo form_input($nombre); ?></br></br>
+			<?php echo form_label('Sección:') ;?></br>
+			<?php echo form_dropdown($secciones); ?></br></br>
+			<?php echo form_label('Correo:') ;?></br>
+			<?php echo form_input($correo); ?></br></br>
+			<?php echo form_label('Masculino:') ;?>
 			<?php echo form_radio($m); ?>
-			<?php echo form_label('Femenino:');?>
-			<?php echo form_radio($f); ?><br/><br/>
-			<?php echo form_label('Teléfono:');?><br/>
-			<?php echo form_input($telefono); ?><br/><br/>
-			<?php echo form_submit('enviar','ENVIAR'); ?><br/><br/>
-			<?php echo form_close();?>
+			<?php echo form_label('Femenino:') ;?>
+			<?php echo form_radio($f); ?></br></br>
+			<?php echo form_label('Teléfono:') ;?></br>
+			<?php echo form_input($telefono); ?></br></br>
+			<?php echo form_submit('enviar','ENVIAR'); ?></br></br>
+			<?php echo form_close() ;?>
 			<?php echo '<a href="'.base_url().'C_GestionEVG/verAlumnosSeccion/'.$this->datosAlumno[0]['idSeccion'].'/'.$idEtapa.'">Volver</a>'?>
 		</div>
 	</div>

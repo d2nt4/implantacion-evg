@@ -8,7 +8,7 @@
 	<title>Gestión EVG</title>
 </head>
 <body>
-<div class="container-fluid">
+<div id="principal" class="container-fluid">
 	<div class="row">
 		<header class="col-12">
 			<h2>ADMINISTRACIÓN EVG</h2>
@@ -32,12 +32,12 @@
 					'required'=>'required'
 				);
 			?>
-			<?php echo validation_errors();?>
-			<?php echo form_open(base_url().'C_Instalacion/anadirAdmin');?>
-			<?php echo form_input($nombre); ?><br/><br/>
-			<?php echo form_input($correo); ?><br/><br/>
-			<?php echo form_submit('enviar','ENVIAR'); ?><br/><br/>
-			<?php echo form_close();?>
+			<?php echo validation_errors() ;?>
+			<?php echo form_open(base_url().'C_Instalacion/anadirAdmin') ;?>
+			<?php echo form_input($nombre); ?></br></br>
+			<?php echo form_input($correo); ?></br></br>
+			<?php echo form_submit('enviar','ENVIAR'); ?></br></br>
+			<?php echo form_close() ;?>
 		</div>
 	</div>
 </div>

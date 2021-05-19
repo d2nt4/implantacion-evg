@@ -10,14 +10,14 @@ include('application/views/Plantilla/header.php');
 		function pruebaInicial()
 		{// tendrá que haber en esta función tantas líneas como distintos id de texto de ajax haya en la página
 			// se podría mejorar creando los id desde javascript directamente
-			buscarCSU('<?php echo base_url();?>', 'Secciones', '', 'codSeccion', 'infoAjax', ' ');
-			buscarCSU('<?php echo base_url();?>', 'Secciones', '', 'idSeccionCurso', 'infoAjax2', ' ');
+			buscarCSU('<?php echo base_url() ;?>', 'Secciones', '', 'codSeccion', 'infoAjax', ' ');
+			buscarCSU('<?php echo base_url() ;?>', 'Secciones', '', 'idSeccionCurso', 'infoAjax2', ' ');
 
 		}// hago esto para que se inicialice el array que contiene la información de los id que deben ser correctos, si no, puede dar fallos
 	</script>
 </head>
 <body onload="pruebaInicial()">
-<div class="container-fluid">
+<div id="principal" class="container-fluid">
 	<div class="row">
 		<header class="col-12">
 			<h2>GESTIÓN EVG</h2>
@@ -54,17 +54,17 @@ include('application/views/Plantilla/header.php');
 			);
 
 			?>
-			<?php echo validation_errors();?>
-			<?php echo form_open(base_url().'C_GestionEVG/anadirSeccion');?>
+			<?php echo validation_errors() ;?>
+			<?php echo form_open(base_url().'C_GestionEVG/anadirSeccion') ;?>
 			<?php echo form_input($codSeccion); ?>
-			<?php echo '<div class="divInfo" id="infoAjax"></div>';?><br/><br/>
+			<?php echo '<div class="divInfo" id="infoAjax"></div>' ;?></br></br>
 			<?php echo form_input($idSeccionColegio); ?>
-			<?php echo '<div class="divInfo" id="infoAjax2"></div>';?><br/><br/>
-			<?php echo form_input($nombre); ?><br/><br/>
-			<?php echo form_label('Curso:');?><br/>
-			<?php echo form_dropdown($cursos); ?><br/><br/>
-			<?php echo form_submit('enviar','ENVIAR', 'disabled'); ?><br/><br/>
-			<?php echo form_close();?>
+			<?php echo '<div class="divInfo" id="infoAjax2"></div>' ;?></br></br>
+			<?php echo form_input($nombre); ?></br></br>
+			<?php echo form_label('Curso:') ;?></br>
+			<?php echo form_dropdown($cursos); ?></br></br>
+			<?php echo form_submit('enviar','ENVIAR', 'disabled'); ?></br></br>
+			<?php echo form_close() ;?>
 			<a href="<?php echo base_url()?>C_GestionEVG/verSecciones">Volver</a>
 		</div>
 	</div>

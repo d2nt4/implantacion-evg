@@ -8,9 +8,8 @@
 */
 function confirmar(texto, ruta, header, botonCancelar, botonConfirmar)
 {
-	const body = document.getElementsByTagName('body')[0];
-
-	body.innerHTML += 
+	$('#principal').after
+	(
 		`
 			<!--Bootstrap Modal-->
 			<div id="myModal" class="modal fade" role="dialog" tabindex="-1" data-backdrop="static">
@@ -33,6 +32,7 @@ function confirmar(texto, ruta, header, botonCancelar, botonConfirmar)
 				</div>
 			</div>
 		`
+	)
 	;
 }
 
@@ -152,7 +152,7 @@ function info(texto)
 				 datos = JSON.parse(datos);
 				 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML = '';
 				 for(i = 0; i < datos.length; i++)
-					 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML += '<button onmousedown="escribir(\'correo\', this.innerHTML)">'+datos[i].correo+'</button><br/>';
+					 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML += '<button onmousedown="escribir(\'correo\', this.innerHTML)">'+datos[i].correo+'</button></br>';
 				 if(datos == '')
 					 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML = '<button>Sin coincidencias</button>';
 			 }
@@ -169,4 +169,32 @@ function info(texto)
 function escribir(name, valor)
 {
 	document.getElementsByName(name)[0].value = valor;
+}
+
+/**
+ * @function function - Función para mostrar y ocultar el menú aside.
+ */
+$(document).ready(function ()
+{
+	$('#sidebarCollapse').on('click', function ()
+	{
+		$('#sidebar').toggleClass('active');
+		$('aside').toggleClass('show');
+	});
+});
+
+/**
+ * @function previsualizarImagen - Función para previsualizar la imagen antes de subirla.
+ */
+function previsualizarImagen(input)
+{
+	if (input.files && input.files[0])
+	{
+		var reader = new FileReader();
+		reader.onload = function (e)
+		{
+			$('#test').attr('src', e.target.result);
+		}
+		reader.readAsDataURL(input.files[0]);
+	}
 }

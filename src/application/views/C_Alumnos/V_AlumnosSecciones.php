@@ -8,7 +8,7 @@
 		<title>Gestión EVG</title>
 	</head>
 	<body>
-		<div class="container-fluid">
+		<div id="principal" class="container-fluid">
 			<div class="row">
 				<header class="col-12">
 					<h2>GESTIÓN EVG</h2>
@@ -24,7 +24,7 @@
 						else
 							foreach($this->listaSecciones as $indice => $valor)
 								echo '<a href="'.base_url().'C_GestionEVG/verAlumnosSeccion/'.$indice.'/'.$idEtapa.'"  tabindex=\'-1\'><button>'.$valor.'</button></a>';
-						echo '<br/><br/><a href="'.base_url().'C_GestionEVG/verAlumnos">Volver</a>';
+						echo '</br></br><a href="'.base_url().'C_GestionEVG/verAlumnos">Volver</a>';
 					?>
 				</div>
 			</div>

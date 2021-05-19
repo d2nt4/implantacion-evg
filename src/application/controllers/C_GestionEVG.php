@@ -294,9 +294,12 @@ class C_GestionEVG extends CI_Controller
 
 	public function verUsuarios()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionar('Usuarios','idUsuario, correo');
+		$lista = $this -> M_GestionEVG -> seleccionar('Usuarios','idUsuario, correo, bajaTemporal');
 		foreach ($lista as $valor)
+		{
 			$this -> listaUsuarios[$valor['idUsuario']] = $valor['correo'];
+			$this -> listaBajaTemporal[$valor['idUsuario']] = $valor['bajaTemporal'];
+		}
 
 		$this -> load -> view('C_Usuarios/V_Usuarios');
 	}

@@ -6,11 +6,11 @@
 		<title>Añadir Usuarios</title>
 	</head>
 	<body>
-		<div class="container-fluid">
+		<div id="principal" class="container-fluid">
 			<div class="row">
 				<header class="col-12">
 					<div class="col-6">
-						<?php echo '<a href="' . base_url() . 'C_GestionEVG/"><img id="logo-evg" src="' . base_url() . 'uploads/iconos/escudo-evg.png" alt="img-fluid" class="img-fluid"/></a>'; ?>
+						<?php echo '<a href="' . base_url() . 'C_GestionEVG/"><img id="logo-evg" src="' . base_url() . 'uploads/iconos/escudo-evg.png" alt="Escudo EVG" class="img-fluid"/></a>'; ?>
 						<h3>GestiónEVG - Añadir Usuarios</h3>
 					</div>
 					<div class="col-6">
@@ -25,7 +25,7 @@
 			</div>
 			<div class="row">
 				<?php include('application/views/Plantilla/asideGestor.php') ?>
-				<content>
+				<div class="general">
 					<button type="button" id="sidebarCollapse" class="btn btn-sidebar">
 						<i class="fas fa-bars"></i>
 						<i class="fas fa-times"></i>
@@ -56,15 +56,15 @@
 
 						<?php echo validation_errors(); ?>
 						<?php echo form_open(base_url().'C_GestionEVG/anadirUsuario'); ?>
-						<?php echo form_input($nombre); ?><br/>
+						<?php echo form_input($nombre); ?></br>
 						<?php echo form_input($correo); ?>
-						<?php echo '<div id="infoAjax" class="divInfo"></div>'; ?><br/>
+						<?php echo '<div id="infoAjax" class="divInfo"></div>'; ?></br>
 						<?php echo form_checkbox('profesor','on',false,$profesor); ?>
-						<?php echo form_label('Es profesor'); ?><br/>
-						<?php echo form_submit('enviar','ENVIAR', 'disabled'); ?><br/>
+						<?php echo form_label('Es profesor'); ?></br>
+						<?php echo form_submit('enviar','ENVIAR', 'disabled'); ?></br>
 						<?php echo form_close(); ?>
 					</div>
-				</content>
+				</div>
 			</div>
 		</div>
 	</body>

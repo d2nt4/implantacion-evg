@@ -1,49 +1,66 @@
 <?php
-include('application/views/Plantilla/header.php');
+	include('application/views/Plantilla/header.php');
 ?>
-
 <html>
-<head>
-	<title>Gestión EVG</title>
-</head>
-<body>
-<div class="container-fluid">
-	<div class="row">
-		<header class="col-12">
-			<h2>GESTIÓN EVG</h2>
-		</header>
-	</div>
-	<div class="row" id="contenedor">
-		<?php include('application/views/Plantilla/asideGestor.php') ?>
-		<div class="col-9" >
-			<h2>MODIFICAR Familia</h2>
-			<?php
-			$nombre=array(
-				'name'=>'nombre',
-				'oninput'=>"buscarCSU('".base_url()."', 'FP_FamiliasProfesionales', this.value, 'nombre', 'infoAjax', 'Ya existe una familia profesional con el nombre ', '".$this->datosFamilia[0]['nombre']."')",
-				'value'=>$this->datosFamilia[0]['nombre'],
-				'required'=>'required'
-			);
+	<head>
+		<title>Gestión EVG</title>
+	</head>
+	<body>
+		<div id="principal" class="container-fluid">
+			<div class="row">
+				<header class="col-12">
+					<div class="col-6">
+						<?php echo '<a href="'.base_url().'C_GestionEVG/"><img id="logo-evg" src="'.base_url().'uploads/iconos/escudo-evg.png" alt="Escudo EVG" class="img-fluid"/></a>'  ;?>
+						<h3>Familias Profesionales -  Modificar</h3>
+					</div>
+					<div class="col-6">
+						<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/'\" id=\"icon-grid\" class=\"btn mr-2\"><i class=\"fas fa-th\"></i></button>"; ?>
+						<?php
+							$picture = $this -> session -> userdata('profile_pic');
+							echo '<img id="profile_picture" src="'.$picture.'" alt="Google Profile Picture" class="img-fluid rounded-circle"/>';
+						?>
+						<?php echo "<button onclick=\"confirmar('¿Seguro que quieres cerrar sesión?','".base_url()."Auth/logout', 'Cerrar Sesión', 'Cancelar', 'Cerrar')\" data-toggle=\"modal\" data-target=\"#myModal\" id=\"icon-logout\" class=\"btn\"><i class=\"fa fa-sign-out-alt\"></i></button>" ;?>
+					</div>
+				</header>
+			</div>
+			<div class="row">
+				<?php include('application/views/Plantilla/asideGestor.php') ?>
+				<div class="general">
+					<button type="button" id="sidebarCollapse" class="btn btn-sidebar">
+						<i class="fas fa-bars"></i>
+						<i class="fas fa-times"></i>
+					</button>
+					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/verFamilias'\" class=\"btn btn-secondary\"><i class=\"fas fa-arrow-left\"></i></button>"; ?>
+					<div class="gestion-apps">
+						<?php
+							$nombre = array
+							(
+									'name'=>'nombre',
+									'oninput'=>"buscarCSU('".base_url()."', 'FP_FamiliasProfesionales', this.value, 'nombre', 'infoAjax', 'Ya existe una familia profesional con el nombre ', '".$this->datosFamilia[0]['nombre']."')",
+									'value'=>$this->datosFamilia[0]['nombre'],
+									'required'=>'required'
+							);
 
-			$departamento=array(
-				'name'=>'departamento',
-				'options'=>$this->departamentos,
-				'selected' => $idDepartamento
-			);
+							$departamento = array
+							(
+									'name'=>'departamento',
+									'options'=>$this->departamentos,
+									'selected' => $idDepartamento
+							);
+						?>
 
-			?>
-			<?php echo validation_errors();?>
-			<?php echo form_open(base_url().'C_GestionEVG/modificarFamilia/'.$idFamilia);?><!--está bien pero php storm no lo coge -->
-			<?php echo form_label('Nombre:');?><br/>
-			<?php echo form_input($nombre); ?>
-			<?php echo '<div class="divInfo" id="infoAjax"></div>';?><br/><br/>
-			<?php echo form_label('Departamento:');?><br/>
-			<?php echo form_dropdown($departamento); ?><br/><br/>
-			<?php echo form_submit('enviar','ENVIAR'); ?><br/><br/>
-			<?php echo form_close();?>
-			<a href="<?php echo base_url()?>C_GestionEVG/verFamilias">Volver</a>
+						<?php echo validation_errors(); ?>
+						<?php echo form_open(base_url().'C_GestionEVG/modificarFamilia/'.$idFamilia); ?>
+						<?php echo form_label('Nombre:'); ?>
+						<?php echo form_input($nombre); ?>
+						<?php echo '<div id="infoAjax" class="divInfo"></div>'; ?></br>
+						<?php echo form_label('Departamento:'); ?>
+						<?php echo form_dropdown($departamento); ?></br>
+						<?php echo '<div class="submit-container">'.form_submit('enviar','ENVIAR').'</div>'; ?>
+						<?php echo form_close(); ?>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
-</body>
+	</body>
 </html>

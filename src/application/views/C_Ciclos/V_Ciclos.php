@@ -8,7 +8,7 @@
 		<title>Gestión EVG</title>
 	</head>
 	<body>
-		<div class="container-fluid">
+		<div id="principal" class="container-fluid">
 			<div class="row">
 				<header class="col-12">
 					<h2>GESTIÓN EVG</h2>

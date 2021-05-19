@@ -6,11 +6,11 @@
 		<title>Gestión EVG</title>
 	</head>
 	<body>
-		<div class="container-fluid">
+		<div id="principal" class="container-fluid">
 			<div class="row">
 				<header class="col-12">
 					<div class="col-6">
-						<?php echo '<a href="' . base_url() . 'C_GestionEVG/"><img id="logo-evg" src="' . base_url() . 'uploads/iconos/escudo-evg.png" alt="img-fluid" class="img-fluid"/></a>'; ?>
+						<?php echo '<a href="' . base_url() . 'C_GestionEVG/"><img id="logo-evg" src="' . base_url() . 'uploads/iconos/escudo-evg.png" alt="Escudo EVG" class="img-fluid"/></a>'; ?>
 						<h3>GestiónEVG - Usuarios</h3>
 					</div>
 					<div class="col-6">
@@ -25,8 +25,8 @@
 			</div>
 			<div class="row">
 				<?php include('application/views/Plantilla/asideGestor.php') ?>
-				<content>
-					<div class="container-fluid">
+				<div class="general">
+					<div id="principal" class="container-fluid">
 						<button type="button" id="sidebarCollapse" class="btn btn-sidebar">
 							<i class="fas fa-bars"></i>
 							<i class="fas fa-times"></i>
@@ -36,19 +36,24 @@
 						<div class="gestion-apps">
 							<?php
 								foreach($this->listaUsuarios as $indice => $valor)
+								{
 									echo
-										"
+											"
 											<div class=\"fila\">
-												<h3>".$valor."</h3>
-												<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/modificarUsuarioForm/".$indice."'\" class=\"btn btn-warning\"><i class=\"fas fa-edit\"></i></button>
-												<button onclick=\"confirmar('¿Seguro que quieres borrar el usuario: <b>".$valor."</b>?', '".base_url()."C_GestionEVG/borrarUsuario/".$indice."', 'Eliminar Usuario', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>													
+												<h3>" . $valor . "</h3>
+												<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/modificarUsuarioForm/" . $indice . "'\" class=\"btn btn-warning\"><i class=\"fas fa-edit\"></i></button>
+												<button onclick=\"confirmar('¿Seguro que quieres borrar el usuario: <b>" . $valor . "</b>?', '" . base_url() . "C_GestionEVG/borrarUsuario/" . $indice . "', 'Eliminar Usuario', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>";
+									if ($this->listaBajaTemporal[$indice] == 1)
+										echo
+										"													
+														<button type='button' class='btn btn-info''><i class='fas fa-clock'></i></button>												
 											</div>			
-										"
-									;
+										";
+								}
 							?>
 						</div>
 					</div>
-				</content>
+				</div>
 			</div>
 		</div>
 	</body>

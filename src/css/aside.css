@@ -1,6 +1,6 @@
-/*
-    Aside
-*/
+/* ---------------------------------------------------
+    ASIDE
+----------------------------------------------------- */
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
@@ -169,12 +169,12 @@ a.article:hover
     color: #fff !important;
 }
 
-.show + content button i:first-child, aside:not(.show) + content button i:last-child
+.show + .general button i:first-child, aside:not(.show) + .general button i:last-child
 {
     display: none;
 }
 
-.show + content button i:last-child, aside:not(.show) + content button i:first-child
+.show + .general button i:last-child, aside:not(.show) + .general button i:first-child
 {
     display: block;
 }
