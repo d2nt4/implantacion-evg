@@ -1,14 +1,45 @@
 <?php
-
+/**
+ * M_Instalacion
+ * 
+ * Clase para realizar la instalación de la aplicación
+ * 
+ * @author Abraham Núñez Palos y Daniel Torres Galindo
+ * @version demo
+ */
 class M_Instalacion extends CI_Model
 {
+	/**
+	 * Guarda el valor de carga de la base de datos
+	 * 
+	 * @var undefined
+	 *
+	 */
+
 	var $bd = null;
 
+	/**
+	 * __construct
+	 *
+	 *Carga la base de datos en la variable bd
+	 * 
+	 * @return void
+	 */
+	
 	public function __construct()
 	{
 		parent::__construct();
 		$this -> bd = $this -> load -> database('default',true);
 	}
+	
+	/**
+	 * tablas
+	 *
+	 * Crea las tablas en la base de datos , cuando realiza la instalación
+	 * 
+	 * @return void
+	 */
+
 
 	public function tablas()
 	{
@@ -226,21 +257,6 @@ class M_Instalacion extends CI_Model
 								on delete cascade 
 								on update cascade
 				)ENGINE=INNODB;";
-
-		/*$this -> bd -> query($tabla1);
-		$this -> bd -> query($tabla2);
-		$this -> bd -> query($tabla3);
-		$this -> bd -> query($tabla4);
-		$this -> bd -> query($tabla5);
-		$this -> bd -> query($tabla6);
-		$this -> bd -> query($tabla7);
-		$this -> bd -> query($tabla8);
-		$this -> bd -> query($tabla9);
-		$this -> bd -> query($tabla10);
-		$this -> bd -> query($tabla11);
-		$this -> bd -> query($tabla12);
-		$this -> bd -> query($tabla13);
-		$this -> bd -> query($tabla14);*/
 
 		for($i = 0; $i < 14; $i++)
 			$this -> bd -> query($tabla[$i]);
