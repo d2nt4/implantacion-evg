@@ -7,7 +7,7 @@ include('application/views/Plantilla/header.php');
 	<title>Gestión EVG</title>
 </head>
 <body>
-<div class="container-fluid">
+<div id="principal" class="container-fluid">
 	<div class="row">
 		<header class="col-12">
 			<h2>GESTIÓN EVG</h2>
@@ -23,11 +23,11 @@ include('application/views/Plantilla/header.php');
 				'required'=>'required'
 			);
 			?>
-			<?php echo validation_errors();?>
-			<?php echo form_open_multipart(base_url().'C_GestionEVG/importarSecciones');?>
-			<?php echo form_upload($secciones); ?><br/><br/>
-			<?php echo form_submit('enviar','ENVIAR'); ?><br/><br/>
-			<?php echo form_close();?>
+			<?php echo validation_errors() ;?>
+			<?php echo form_open_multipart(base_url().'C_GestionEVG/importarSecciones') ;?>
+			<?php echo form_upload($secciones); ?></br></br>
+			<?php echo form_submit('enviar','ENVIAR'); ?></br></br>
+			<?php echo form_close() ;?>
 			<a href="<?php echo base_url()?>C_GestionEVG/verSecciones">Volver</a>
 		</div>
 	</div>

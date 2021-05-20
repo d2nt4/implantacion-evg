@@ -7,11 +7,11 @@
 		<title>EVG - Aplicaciones</title>
 	</head>
 	<body>
-		<div class="container-fluid">
+		<div id="principal" class="container-fluid">
 			<div class="row">
 				<header class="col-12">
 					<div class="col-6">
-						<?php echo '<a href="'.base_url().'C_GestionEVG/"><img id="logo-evg" src="'.base_url().'uploads/iconos/escudo-evg.png" alt="img-fluid" class="img-fluid"/></a>' ;?>
+						<?php echo '<a href="'.base_url().'C_GestionEVG/"><img id="logo-evg" src="'.base_url().'uploads/iconos/escudo-evg.png" alt="Escudo EVG" class="img-fluid"/></a>'  ;?>
 						<h3>APLICACIONES</h3>
 					</div>
 					<div class="col-6">
@@ -19,11 +19,11 @@
 							$picture = $this -> session -> userdata('profile_pic');
 							echo '<img id="profile_picture" src="'.$picture.'" alt="Google Profile Picture" class="img-fluid rounded-circle"/>';
 						?>
-						<?php echo "<button onclick=\"confirmar('¿Seguro que quieres cerrar sesión?','".base_url()."Auth/logout', 'Cerrar Sesión', 'Cancelar', 'Cerrar')\" data-toggle=\"modal\" data-target=\"#myModal\" id=\"icon-logout\" class=\"btn\"><i class=\"fa fa-sign-out-alt\"></i></button>";?>
+						<?php echo "<button onclick=\"confirmar('¿Seguro que quieres cerrar sesión?','".base_url()."Auth/logout', 'Cerrar Sesión', 'Cancelar', 'Cerrar')\" data-toggle=\"modal\" data-target=\"#myModal\" id=\"icon-logout\" class=\"btn\"><i class=\"fa fa-sign-out-alt\"></i></button>" ;?>
 					</div>
 				</header>
 			</div>
-			<div class="container-fluid">
+			<div id="principal" class="container-fluid">
 				<div id="gridAplicaciones" class="row row-cols-4">
 					<?php
 						if(empty($this->aplicaciones))

@@ -8,9 +8,8 @@
 */
 function confirmar(texto, ruta, header, botonCancelar, botonConfirmar)
 {
-	const body = document.getElementsByTagName('body')[0];
-
-	body.innerHTML += 
+	$('#principal').after
+	(
 		`
 			<!--Bootstrap Modal-->
 			<div id="myModal" class="modal fade" role="dialog" tabindex="-1" data-backdrop="static">
@@ -33,6 +32,7 @@ function confirmar(texto, ruta, header, botonCancelar, botonConfirmar)
 				</div>
 			</div>
 		`
+	)
 	;
 }
 
@@ -75,13 +75,13 @@ function buscarCSU(baseURL, tabla, valor, campo, idDiv, textoBase, permitido)
 					if (datos == 'no')
 					{
 						deshabilitar[idDiv] = false;
-						infoAjax.style.opacity = '0';
+						infoAjax.style.display = 'none';
 						infoAjax.innerHTML = '';
 					}
 					else
 					{
 						deshabilitar[idDiv] = true;
-						infoAjax.style.opacity = '1';
+						infoAjax.style.display = 'block';
 						infoAjax.innerHTML = textoBase + valor;
 					}
 				}
@@ -91,13 +91,13 @@ function buscarCSU(baseURL, tabla, valor, campo, idDiv, textoBase, permitido)
 		{
 			infoAjax.innerHTML = '';
 			deshabilitar[idDiv] = false;
-			infoAjax.style.opacity = '0';
+			infoAjax.style.display = 'none';
 		}
 	}
 	else
 	{
 		deshabilitar[idDiv] = true;
-		infoAjax.style.opacity = '0';
+		infoAjax.style.display = 'none';
 		infoAjax.innerHTML = '';
 	}
 	comprobarBotonEnviar();
@@ -123,7 +123,7 @@ function comprobarBotonEnviar()
  */
 function info(texto)
 {
-	var cuadroInfo = document.getElementById("cuadroInfo")
+	var cuadroInfo = document.getElementById("cuadroInfo");
 	if(cuadroInfo.innerHTML == '')
 	{
 		cuadroInfo.innerHTML = texto;
@@ -139,27 +139,27 @@ function info(texto)
  * @param {number} idPerfil - Identificador de la fila del usuario.
  * @param {string} valor - Input a buscar en la base de datos.
  */
-function buscarUsuarios(baseURL, idPerfil, valor)
-{
-	if(valor != '')
-		$.ajax
-		({
-			type: "POST",
-			url: baseURL + 'C_GestionEVG/comprobarUsuarios',
-			data: 'idPerfil=' + idPerfil + '&valor=' + valor,
-			success: function (datos)
-			{
-				datos = JSON.parse(datos);
-				document.getElementsByClassName('sugerenciaAjax')[0].innerHTML = '';
-				for(i = 0; i < datos.length; i++)
-					document.getElementsByClassName('sugerenciaAjax')[0].innerHTML += '<button onclick="escribir(\'correo\', this.innerHTML)">'+datos[i].correo+'</button><br/>';
-				if(datos == '')
-					document.getElementsByClassName('sugerenciaAjax')[0].innerHTML = '<button>Sin coincidencias</button>';
-			}
-		})
-	else
-		document.getElementsByClassName('sugerenciaAjax')[0].innerHTML = '';
-}
+ function buscarUsuarios(baseURL, idPerfil, valor)
+ {
+	 if(valor != '')
+		 $.ajax
+		 ({
+			 type: "POST",
+			 url: baseURL + 'C_GestionEVG/comprobarUsuarios',
+			 data: 'idPerfil=' + idPerfil + '&valor=' + valor,
+			 success: function (datos)
+			 {
+				 datos = JSON.parse(datos);
+				 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML = '';
+				 for(i = 0; i < datos.length; i++)
+					 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML += '<button onmousedown="escribir(\'correo\', this.innerHTML)">'+datos[i].correo+'</button></br>';
+				 if(datos == '')
+					 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML = '<button>Sin coincidencias</button>';
+			 }
+		 })
+	 else
+		 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML = '';
+ }
 
 /**
  * @function escribir - Función para seleccionar el correo del usuario tras la búsqueda de AJAX.
@@ -169,4 +169,32 @@ function buscarUsuarios(baseURL, idPerfil, valor)
 function escribir(name, valor)
 {
 	document.getElementsByName(name)[0].value = valor;
+}
+
+/**
+ * @function function - Función para mostrar y ocultar el menú aside.
+ */
+$(document).ready(function ()
+{
+	$('#sidebarCollapse').on('click', function ()
+	{
+		$('#sidebar').toggleClass('active');
+		$('aside').toggleClass('show');
+	});
+});
+
+/**
+ * @function previsualizarImagen - Función para previsualizar la imagen antes de subirla.
+ */
+function previsualizarImagen(input)
+{
+	if (input.files && input.files[0])
+	{
+		var reader = new FileReader();
+		reader.onload = function (e)
+		{
+			$('#test').attr('src', e.target.result);
+		}
+		reader.readAsDataURL(input.files[0]);
+	}
 }

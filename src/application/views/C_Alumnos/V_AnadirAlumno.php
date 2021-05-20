@@ -6,7 +6,7 @@
 		<title>Gestión EVG</title>
 	</head>
 	<body>
-		<div class="container-fluid">
+		<div id="principal" class="container-fluid">
 			<div class="row">
 				<header class="col-12">
 					<h2>GESTIÓN EVG</h2>
@@ -75,24 +75,24 @@
 						else
 						{
 							?>
-							<?php echo validation_errors();?>
-							<?php echo form_open(base_url().'C_GestionEVG/anadirAlumno');?>
+							<?php echo validation_errors() ;?>
+							<?php echo form_open(base_url().'C_GestionEVG/anadirAlumno') ;?>
 							<?php echo form_input($nia); ?>
-							<?php echo '<div class="divInfo" id="infoAjax"></div>';?><br/><br/>
-							<?php echo form_input($nombre); ?><br/><br/>
-							<?php echo form_label('Sección:');?><br/>
-							<?php echo form_dropdown($secciones); ?><br/><br/>
-							<?php echo form_input($correo); ?><br/><br/>
-							<?php echo form_label('Masculino:');?>
+							<?php echo '<div class="divInfo" id="infoAjax"></div>' ;?></br></br>
+							<?php echo form_input($nombre); ?></br></br>
+							<?php echo form_label('Sección:') ;?></br>
+							<?php echo form_dropdown($secciones); ?></br></br>
+							<?php echo form_input($correo); ?></br></br>
+							<?php echo form_label('Masculino:') ;?>
 							<?php echo form_radio($m); ?>
-							<?php echo form_label('Femenino:');?>
-							<?php echo form_radio($f); ?><br/><br/>
-							<?php echo form_input($telefono); ?><br/><br/>
+							<?php echo form_label('Femenino:') ;?>
+							<?php echo form_radio($f); ?></br></br>
+							<?php echo form_input($telefono); ?></br></br>
 							<?php echo form_submit('enviar','ENVIAR', 'disabled'); ?>
-							<?php echo form_close();?>
+							<?php echo form_close() ;?>
 							<?php
-						} 	?><br/><br/>
-					<?php echo '<br/><br/><a href="'.base_url().'C_GestionEVG/verAlumnos">Volver</a>';?>
+						} 	?></br></br>
+					<?php echo '</br></br><a href="'.base_url().'C_GestionEVG/verAlumnos">Volver</a>' ;?>
 				</div>
 			</div>
 		</div>

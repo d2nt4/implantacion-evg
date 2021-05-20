@@ -8,7 +8,7 @@ include('application/views/Plantilla/header.php');
 	<title>Gestión EVG</title>
 </head>
 <body>
-<div class="container-fluid">
+<div id="principal" class="container-fluid">
 	<div class="row">
 		<header class="col-12">
 			<h2>GESTIÓN EVG</h2>
@@ -41,18 +41,18 @@ include('application/views/Plantilla/header.php');
 
 
 			?>
-			<?php echo validation_errors();?>
-			<?php echo form_open(base_url().'C_GestionEVG/ModificarCiclo/'.$idCiclo);?>
-			<?php echo form_label('Código:');?><br/>
+			<?php echo validation_errors() ;?>
+			<?php echo form_open(base_url().'C_GestionEVG/ModificarCiclo/'.$idCiclo) ;?>
+			<?php echo form_label('Código:') ;?></br>
 			<?php echo form_input($codCiclo); ?>
-			<?php echo '<div class="divInfo" id="infoAjax"></div>';?><br/><br/>
-			<?php echo form_label('Nombre:');?><br/>
+			<?php echo '<div class="divInfo" id="infoAjax"></div>' ;?></br></br>
+			<?php echo form_label('Nombre:') ;?></br>
 			<?php echo form_input($nombre); ?>
-			<?php echo '<div class="divInfo" id="infoAjax2"></div>';?><br/><br/>
-			<?php echo form_label('Familia Profesional:');?><br/>
-			<?php echo form_dropdown($familia); ?><br/><br/>
-			<?php echo form_submit('enviar','ENVIAR'); ?><br/><br/>
-			<?php echo form_close();?>
+			<?php echo '<div class="divInfo" id="infoAjax2"></div>' ;?></br></br>
+			<?php echo form_label('Familia Profesional:') ;?></br>
+			<?php echo form_dropdown($familia); ?></br></br>
+			<?php echo form_submit('enviar','ENVIAR'); ?></br></br>
+			<?php echo form_close() ;?>
 			<a href="<?php echo base_url()?>C_GestionEVG/verCiclos">Volver</a>
 		</div>
 	</div>

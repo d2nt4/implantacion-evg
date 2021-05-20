@@ -7,7 +7,7 @@
 		<title>Gestión EVG</title>
 	</head>
 	<body>
-		<div class="container-fluid">
+		<div id="principal" class="container-fluid">
 			<div class="row">
 				<header class="col-12">
 					<h2>GESTIÓN EVG</h2>
@@ -27,7 +27,7 @@
 								echo '<tr><td><p id="valor">' . $valor . '</p></td><td><a href="' . base_url() . 'C_GestionEVG/modificarAlumnoForm/' . $indice . '/' . $idEtapa . '" tabindex=\'-1\'><button>Modificar</button></a><button data-toggle="modal" data-target="#myModal" onclick="confirmar(\'¿Seguro que quieres borrar el alumno: ' . $valor . '?\',\'' . base_url() . 'C_GestionEVG/borrarAlumno/' . $indice . '\', Eliminar Alumno, Cancelar, Eliminar)">Eliminar</button></td></tr>';
 							echo '</table>';
 						}
-						echo '<br/><br/><a href="' . base_url() . 'C_GestionEVG/verSeccionesEtapa/' . $idEtapa . '">Volver</a>';
+						echo '</br></br><a href="' . base_url() . 'C_GestionEVG/verSeccionesEtapa/' . $idEtapa . '">Volver</a>';
 					?>
 				</div>
 			</div>

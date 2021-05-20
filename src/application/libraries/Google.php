@@ -23,6 +23,7 @@ class Google
 				"https://www.googleapis.com/auth/userinfo.profile"
 			)
 		);
+		$this -> client -> setApprovalPrompt('force');
 	}
 
 	public function get_login_url()

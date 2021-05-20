@@ -4,7 +4,7 @@
 			<div class="sidebar-header">
 					<?php
 						$name = $this -> session -> userdata('name');
-						echo "<h4>".$name."</h4>";
+						echo "<h5 class='font-weight-bolder'>".$name."</h5>";
 					?>
 			</div>
 
@@ -17,14 +17,14 @@
 				</li>
 			</ul>
 
-			<ul class="list-unstyled CTAs">
-				<li>
-					<a href="#" class="download">Botón 1</a>
-				</li>
-				<li>
-					<a href="#" class="article">Botón 2</a>
-				</li>
-			</ul>
+<!--			<ul class="list-unstyled CTAs">-->
+<!--				<li>-->
+<!--					<a href="#" class="download">Botón 1</a>-->
+<!--				</li>-->
+<!--				<li>-->
+<!--					<a href="#" class="article">Botón 2</a>-->
+<!--				</li>-->
+<!--			</ul>-->
 		</nav>
 	</div>
 </aside>
