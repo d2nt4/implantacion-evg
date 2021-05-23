@@ -1,15 +1,13 @@
-.divInfo
-{/* El div que empieza vacío, solo vale para mostrar el mensaje de AJAX (en todas las páginas debe tener este nombre para que AJAX funcione correctamente) */
-	padding: .5em 1%;
-	max-width: 50%;
-	background-color: #fffd98;
-	border: 1px solid #ff6363 !important;
-	display: none;
-	border-radius: 10px;
-	transition-duration: .5s;
-	overflow: hidden;
+/* ---------------------------------------------------
+    ESTILOS
+----------------------------------------------------- */
+body
+{
+	background: #fafafa;
 }
-
+/* ---------------------------------------------------
+    AJAX
+----------------------------------------------------- */
 .sugerenciaAjax
 {
 	background-color: lightgray;
@@ -43,7 +41,7 @@
 form
 {
 	text-align: center;
-	width: 35rem;
+	width: 25rem;
 	margin-bottom: unset!important;
 }
 
@@ -52,15 +50,8 @@ label
 	font-weight: bolder;
 }
 
-input
-{
-	margin-bottom: 1.25rem;
-}
-
 input[type="text"], select
 {
-	margin-left: 1rem;
-	border-radius: 5px;
 	background: lightgray;
 }
 
@@ -69,57 +60,21 @@ input[type="text"]:focus, select:focus
 	background: white;
 }
 
-.submit-container
-{
-	text-align: center;
-	margin-top: 1rem;
-}
-
 input[type="submit"]
 {
-	border-radius: 5px;
-	background: #0076CE;
-	color: white;
+	background-color: #00FF08;
 	font-weight: bolder;
-	border: 2px solid #000;
-	transition-duration: 0.4s;
-	padding: .35rem;
+	color: #fff;
 }
 
-input[type="submit"]:not(:disabled):hover, input[type="submit"]:not(:disabled):focus
-{
-	margin-left: 1%;
-	margin-right: 3%;
-	box-shadow: gray 5px 3px 3px;
-	outline: none;
-}
-
-/* Cuando se bloquee un botón de enviar (al inicio en las páginas de añadir y con AJAX normalmente) */
 input[type="submit"]:disabled
 {
-	background-color: #791515!important;
-	border-color: black;
+	background-color: lightgray;
 }
 
-/* Información que se le proporciona al usuario */
-#info
+h3 > span
 {
-	background: #fffd98;
-	float: right;
-	color: black;
-	border: 2px solid black;
-}
-
-#cuadroInfo
-{
-	margin-top: 40px;
-}
-
-#cuadroInfo button
-{
-	background: #ff7077;
-	color: black;
-	border: 2px solid black;
+	font-weight: 400;
 }
 
 /* ---------------------------------------------------
@@ -375,3 +330,8 @@ header h3
 {
 	margin-left: .45rem;
 }
+
+/* ---------------------------------------------------
+    MODALES
+----------------------------------------------------- */
+

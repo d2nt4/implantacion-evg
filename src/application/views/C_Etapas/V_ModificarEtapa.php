@@ -37,18 +37,22 @@
 						<?php
 							$codEtapa = array
 							(
+									'id'=>'codEtapa',
 									'name'=>'codEtapa',
-									'oninput'=>"buscarCSU('".base_url()."', 'Etapas', this.value, 'codEtapa', 'infoAjax', 'Ya existe otra etapa con el código ', '".$this->datosEtapa[0]['codEtapa']."')",
+									'oninput'=>"buscarCSU('".base_url()."', 'Etapas', this.value, 'codEtapa', 'infoAjax', 'codEtapa', 'Ya existe otra etapa con el código ', '".$this->datosEtapa[0]['codEtapa']."')",
 									'value' => $this->datosEtapa[0]['codEtapa'],
-									'required'=>'required'
+									'required'=>'required',
+									'class'=>'form-control'
 							);
 
 							$nombre = array
 							(
+									'id'=>'nombre',
 									'name'=>'nombre',
-									'oninput'=>"buscarCSU('".base_url()."', 'Etapas', this.value, 'nombre', 'infoAjax2', 'Ya existe otra etapa con el nombre ', '".$this->datosEtapa[0]['nombre']."')",
+									'oninput'=>"buscarCSU('".base_url()."', 'Etapas', this.value, 'nombre', 'infoAjax2', 'nombre', 'Ya existe otra etapa con el nombre ', '".$this->datosEtapa[0]['nombre']."')",
 									'value'=>$this->datosEtapa[0]['nombre'],
-									'required'=>'required'
+									'required'=>'required',
+									'class'=>'form-control'
 							);
 
 							if($this->datosEtapa[0]['idCoordinador'] == null)
@@ -59,7 +63,16 @@
 									'name'=>'idCoordinador',
 									'options'=> $this->usuarios,
 									'selected'=>$this->datosEtapa[0]['idCoordinador'],
-									'required'=>'required'
+									'required'=>'required',
+									'class'=>'form-control'
+							);
+
+							$enviar = array
+							(
+									'name'=>'enviar',
+									'value'=>'ENVIAR',
+									'disabled'=>'disabled',
+									'class'=>'form-control'
 							);
 						?>
 
@@ -67,13 +80,13 @@
 						<?php echo form_open(base_url().'C_GestionEVG/modificarEtapa/'.$idEtapa); ?>
 						<?php echo form_label('Código'); ?></br>
 						<?php echo form_input($codEtapa); ?>
-						<?php echo '<div id="infoAjax" class="divInfo"></div>'; ?></br>
+						<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?></br>
 						<?php echo form_label('Nombre'); ?></br>
 						<?php echo form_input($nombre); ?>
-						<?php echo '<div id="infoAjax2" class="divInfo"></div>'; ?></br>
+						<?php echo '<small id="infoAjax2" class="form-text text-muted"></small>'; ?></br>
 						<?php echo form_label('Coordinador'); ?></br>
 						<?php echo form_dropdown($idCoordinador); ?></br>
-						<?php echo '<div class="submit-container">'.form_submit('enviar','ENVIAR', 'disabled').'</div>'; ?>
+						<?php echo form_submit($enviar); ?>
 						<?php echo form_close(); ?>
 					</div>
 				</div>

@@ -35,28 +35,39 @@
 						<?php
 							$nombre = array
 							(
+									'id'=>'nombre',
 									'name'=>'nombre',
-									'oninput'=>"buscarCSU('".base_url()."', 'FP_FamiliasProfesionales', this.value, 'nombre', 'infoAjax', 'Ya existe una familia profesional con el nombre ', '".$this->datosFamilia[0]['nombre']."')",
+									'oninput'=>"buscarCSU('".base_url()."', 'FP_FamiliasProfesionales', this.value, 'nombre', 'infoAjax', 'nombre', 'Ya existe una familia profesional con el nombre ', '".$this->datosFamilia[0]['nombre']."')",
 									'value'=>$this->datosFamilia[0]['nombre'],
-									'required'=>'required'
+									'required'=>'required',
+									'class'=>'form-control'
 							);
 
 							$departamento = array
 							(
 									'name'=>'departamento',
 									'options'=>$this->departamentos,
-									'selected' => $idDepartamento
+									'selected' => $idDepartamento,
+									'class'=>'form-control'
+							);
+
+							$enviar = array
+							(
+									'name'=>'enviar',
+									'value'=>'ENVIAR',
+									'disabled'=>'disabled',
+									'class'=>'form-control'
 							);
 						?>
 
 						<?php echo validation_errors(); ?>
 						<?php echo form_open(base_url().'C_GestionEVG/modificarFamilia/'.$idFamilia); ?>
-						<?php echo form_label('Nombre:'); ?>
+						<?php echo form_label('Nombre'); ?>
 						<?php echo form_input($nombre); ?>
-						<?php echo '<div id="infoAjax" class="divInfo"></div>'; ?></br>
-						<?php echo form_label('Departamento:'); ?>
+						<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?></br>
+						<?php echo form_label('Departamento'); ?>
 						<?php echo form_dropdown($departamento); ?></br>
-						<?php echo '<div class="submit-container">'.form_submit('enviar','ENVIAR').'</div>'; ?>
+						<?php echo form_submit($enviar); ?>
 						<?php echo form_close(); ?>
 					</div>
 				</div>

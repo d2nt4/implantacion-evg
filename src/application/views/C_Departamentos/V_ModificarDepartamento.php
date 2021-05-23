@@ -35,19 +35,29 @@
 						<?php
 							$nombre = array
 							(
+									'id'=>'nombre',
 									'name'=>'nombre',
-									'oninput'=>"buscarCSU('".base_url()."', 'FP_Departamentos', this.value, 'nombre', 'infoAjax', 'Ya existe un departamento con el nombre ', '".$this->datosDepartamento[0]['nombre']."')",
+									'oninput'=>"buscarCSU('".base_url()."', 'FP_Departamentos', this.value, 'nombre', 'infoAjax', 'nombre', 'Ya existe un departamento con el nombre ', '".$this->datosDepartamento[0]['nombre']."')",
 									'value'=>$this->datosDepartamento[0]['nombre'],
-									'required'=>'required'
+									'required'=>'required',
+									'class'=>'form-control'
+							);
+
+							$enviar = array
+							(
+									'name'=>'enviar',
+									'value'=>'ENVIAR',
+									'disabled'=>'disabled',
+									'class'=>'form-control'
 							);
 						?>
 
 						<?php echo validation_errors(); ?>
 						<?php echo form_open(base_url().'C_GestionEVG/modificarDepartamento/'.$idDepartamento); ?>
-						<?php echo form_label('Nombre:'); ?></br>
+						<?php echo form_label('Nombre'); ?></br>
 						<?php echo form_input($nombre); ?>
-						<?php echo '<div id="infoAjax" class="divInfo"></div>'; ?></br>
-						<?php echo '<div class="submit-container">'.form_submit('enviar','ENVIAR').'</div>'; ?>
+						<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?></br>
+						<?php echo form_submit($enviar); ?>
 						<?php echo form_close(); ?>
 					</div>
 				</div>

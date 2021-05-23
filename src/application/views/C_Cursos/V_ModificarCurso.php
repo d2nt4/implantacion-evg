@@ -35,23 +35,36 @@
 						<?php
 							$codCurso = array
 							(
+									'id'=>'codCurso',
 									'name'=>'codCurso',
-									'oninput'=>"buscarCSU('".base_url()."', 'Cursos', this.value, 'codCurso', 'infoAjax', 'Ya existe otro curso con el código ', '".$this->datosCurso[0]['codCurso']."')",
-									'value'=>$this->datosCurso[0]['codCurso']
+									'oninput'=>"buscarCSU('".base_url()."', 'Cursos', this.value, 'codCurso', 'infoAjax', 'codCurso', 'Ya existe otro curso con el código ', '".$this->datosCurso[0]['codCurso']."')",
+									'value'=>$this->datosCurso[0]['codCurso'],
+									'class'=>'form-control'
 							);
 
 							$idCursoColegio = array
 							(
+									'id'=>'idCursoColegio',
 									'name'=>'idCursoColegio',
-									'oninput'=>"buscarCSU('".base_url()."', 'Cursos', this.value, 'idCursoColegio', 'infoAjax2', 'Ya existe un curso con el id , '".$this->datosCurso[0]['idCursoColegio']."')",
-									'value'=>$this->datosCurso[0]['idCursoColegio']
+									'oninput'=>"buscarCSU('".base_url()."', 'Cursos', this.value, 'idCursoColegio', 'infoAjax2', 'idCursoColegio', 'Ya existe un curso con el id , '".$this->datosCurso[0]['idCursoColegio']."')",
+									'value'=>$this->datosCurso[0]['idCursoColegio'],
+									'class'=>'form-control'
 							);
 
 							$nombre = array
 							(
+									'id'=>'nombre',
 									'name'=>'nombre',
-									'oninput'=>"buscarCSU('".base_url()."', 'Cursos', this.value, 'nombre', 'infoAjax3', 'Ya existe otro curso con el nombre ', '".$this->datosCurso[0]['nombre']."')",
-									'value'=>$this->datosCurso[0]['nombre']
+									'oninput'=>"buscarCSU('".base_url()."', 'Cursos', this.value, 'nombre', 'infoAjax3', 'nombre', 'Ya existe otro curso con el nombre ', '".$this->datosCurso[0]['nombre']."')",
+									'value'=>$this->datosCurso[0]['nombre'],
+									'class'=>'form-control'
+							);
+
+							$enviar = array
+							(
+									'name'=>'enviar',
+									'value'=>'ENVIAR',
+									'class'=>'form-control'
 							);
 						?>
 
@@ -59,14 +72,14 @@
 						<?php echo form_open(base_url().'C_GestionEVG/modificarCurso/'.$idCurso) ;?>
 						<?php echo form_label('Código'); ?></br>
 						<?php echo form_input($codCurso); ?>
-						<?php echo '<div class="divInfo" id="infoAjax"></div>'; ?></br>
+						<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?></br>
 						<?php echo form_label('Identificador de curso del colegio'); ?></br>
 						<?php echo form_input($idCursoColegio); ?>
-						<?php echo '<div class="divInfo" id="infoAjax2"></div>'; ?></br>
+						<?php echo '<small id="infoAjax2" class="form-text text-muted"></small>'; ?></br>
 						<?php echo form_label('Nombre'); ?></br>
 						<?php echo form_input($nombre); ?>
-						<?php echo '<div class="divInfo" id="infoAjax3"></div>'; ?></br>
-						<?php echo '<div class="submit-container">'.form_submit('enviar','ENVIAR').'</div>'; ?>
+						<?php echo '<small id="infoAjax3" class="form-text text-muted"></small>'; ?></br>
+						<?php echo form_submit($enviar); ?>
 						<?php echo form_close(); ?>
 					</div>
 				</div>
