@@ -16,7 +16,7 @@ function confirmar(texto, ruta, header, botonCancelar, botonConfirmar)
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">` + header + `</h5>
+							<h5 class="modal-title"><b>` + header + `</b></h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="eliminarModal()">
 								<span aria-hidden="true">&times;</span>
 							</button>
@@ -25,8 +25,8 @@ function confirmar(texto, ruta, header, botonCancelar, botonConfirmar)
 							<p>` + texto + `</p>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="eliminarModal()">`+ botonCancelar +`</button>
-							<button type="button" class="btn btn-danger" onclick="location.href = '` + ruta + `'">` + botonConfirmar + `</button>
+							<button type="button" class="btn btn-secondary font-weight-bolder" data-dismiss="modal" onclick="eliminarModal()">`+ botonCancelar +`</button>
+							<button type="button" class="btn btn-danger font-weight-bolder" onclick="location.href = '` + ruta + `'">` + botonConfirmar + `</button>
 						</div>
 					</div>
 				</div>
@@ -52,14 +52,16 @@ function eliminarModal()
  * @param {string} tabla - Tabla a realizar la consulta.
  * @param {string} valor - Valor a contrastar con la base de datos.
  * @param {string} campo - Campo de la tabla de la base de datos a comprobar.
- * @param {string} idDiv -  ID del div a mostrar el resultado de la consulta.
+ * @param {string} idHTML -  ID del elemento HTML a mostrar el resultado de la consulta.
+ * @param {string} idInput - ID del input para colorear el borde de rojo cuando hay un fallo.
  * @param {string} textoBase - Resultado obtenido de la consulta.
  * @param {string} permitido - Valor para poder modificar una fila si ya existe, es decir, modificar la descripción de una aplicación en la que no modificas su nombre (si no le pasas este valor, el sistema no dejará modificar ya que existe una aplicación con este nombre).
  */
 var deshabilitar = [];
-function buscarCSU(baseURL, tabla, valor, campo, idDiv, textoBase, permitido)
+function buscarCSU(baseURL, tabla, valor, campo, idHTML, idInput, textoBase, permitido)
 {
-	var infoAjax = document.getElementById(idDiv);
+	const infoAjax = document.getElementById(idHTML);
+	const input = document.getElementById(idInput);
 	if (valor != '')
 	{
 		if (permitido == undefined || valor.toUpperCase() != permitido.toUpperCase())
@@ -74,14 +76,16 @@ function buscarCSU(baseURL, tabla, valor, campo, idDiv, textoBase, permitido)
 				{
 					if (datos == 'no')
 					{
-						deshabilitar[idDiv] = false;
+						deshabilitar[idHTML] = false;
 						infoAjax.style.display = 'none';
+						input.style.border = 'unset';
 						infoAjax.innerHTML = '';
 					}
 					else
 					{
-						deshabilitar[idDiv] = true;
+						deshabilitar[idHTML] = true;
 						infoAjax.style.display = 'block';
+						input.style.border = '2px solid red';
 						infoAjax.innerHTML = textoBase + valor;
 					}
 				}
@@ -89,15 +93,17 @@ function buscarCSU(baseURL, tabla, valor, campo, idDiv, textoBase, permitido)
 		}
 		else
 		{
-			infoAjax.innerHTML = '';
-			deshabilitar[idDiv] = false;
+			deshabilitar[idHTML] = false;
 			infoAjax.style.display = 'none';
+			input.style.border = 'unset';
+			infoAjax.innerHTML = '';
 		}
 	}
 	else
 	{
-		deshabilitar[idDiv] = true;
+		deshabilitar[idHTML] = true;
 		infoAjax.style.display = 'none';
+		input.style.border = 'unset';
 		infoAjax.innerHTML = '';
 	}
 	comprobarBotonEnviar();

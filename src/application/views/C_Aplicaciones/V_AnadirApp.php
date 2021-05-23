@@ -8,8 +8,8 @@
 			// Tendrá que haber en esta función tantas líneas como distintos id de texto de ajax haya en la página.
 			function pruebaInicial()
 			{
-				buscarCSU('<?php echo base_url() ;?>', 'Aplicaciones', '', 'url', 'infoAjax', ' ');
-				buscarCSU('<?php echo base_url() ;?>', 'Aplicaciones', '', 'nombre', 'infoAjax2', ' ');
+				buscarCSU('<?php echo base_url() ;?>', 'Aplicaciones', '', 'nombre', 'infoAjax', 'nombre');
+				buscarCSU('<?php echo base_url() ;?>', 'Aplicaciones', '', 'url', 'infoAjax2', 'url');
 			}
 		</script>
 	</head>
@@ -44,46 +44,60 @@
 						<?php
 							$nombre = array
 							(
+									'id'=>'nombre',
 									'name'=>'nombre',
-									'oninput'=>"buscarCSU('".base_url()."', 'Aplicaciones', this.value, 'nombre', 'infoAjax', 'Ya existe una aplicación con el nombre ')",
+									'oninput'=>"buscarCSU('".base_url()."', 'Aplicaciones', this.value, 'nombre', 'infoAjax', 'nombre', 'Ya existe una aplicación con el nombre ')",
 									'placeholder'=>'Nombre',
-									'required'=>'required'
+									'required'=>'required',
+									'class'=>'form-control'
 							);
 
 							$descripcion = array
 							(
 									'name'=>'descripcion',
 									'placeholder'=>'Descripción',
-									'required'=>'required'
+									'required'=>'required',
+									'class'=>'form-control'
 							);
 
 							$url = array
 							(
+									'id'=>'url',
 									'name'=>'url',
-									'oninput'=>"buscarCSU('".base_url()."', 'Aplicaciones', this.value, 'url', 'infoAjax2', 'Ya existe una aplicación con la URL ')",
+									'oninput'=>"buscarCSU('".base_url()."', 'Aplicaciones', this.value, 'url', 'infoAjax2', 'url', 'Ya existe una aplicación con la URL ')",
 									'placeholder'=>'URL de acceso',
-									'required'=>'required'
+									'required'=>'required',
+									'class'=>'form-control'
 							);
 
 							$icono = array
 							(
 									'name'=>'icono',
 									'onchange'=>'previsualizarImagen(this)',
-									'required'=>'required'
+									'required'=>'required',
+									'class'=>'form-control'
+							);
+
+							$enviar = array
+							(
+									'name'=>'enviar',
+									'value'=>'ENVIAR',
+									'disabled'=>'disabled',
+									'class'=>'form-control'
 							);
 						?>
 
 						<?php echo validation_errors(); ?>
 						<?php echo form_open_multipart(base_url().'C_GestionEVG/anadirAPP'); ?>
 						<?php echo form_input($nombre); ?>
-						<?php echo '<div id="infoAjax" class="divInfo"></div>'; ?></br>
+						<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?></br>
 						<?php echo form_input($descripcion); ?></br>
 						<?php echo form_input($url); ?>
-						<?php echo '<div id="infoAjax2" class="divInfo"></div>'; ?></br>
+						<?php echo '<small id="infoAjax2" class="form-text text-muted"></small>'; ?></br>
 						<?php echo form_label('Icono') ;?></br>
 						<?php echo form_upload($icono); ?></br>
 						<div class="icono-app"><img src="#" id="test" class="img-fluid" alt="Elegir Imagen"></div>
-						<?php echo '<div class="submit-container">'.form_submit('enviar','ENVIAR', disabled).'</div>'; ?>
+						<?php echo form_submit($enviar); ?>
 						<?php echo form_close(); ?>
 					</div>
 				</div>
