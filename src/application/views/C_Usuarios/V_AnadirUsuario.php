@@ -37,20 +37,31 @@
 							(
 								'name'=>'nombre',
 								'placeholder'=>'Nombre',
-								'required'=>'required'
+								'required'=>'required',
+								'class'=>'form-control'
 							);
 
 							$correo = array
 							(
+								'id'=>'correo',
 								'name'=>'correo',
-								'oninput'=>"buscarCSU('".base_url()."', 'Usuarios', this.value, 'correo', 'infoAjax', 'Ya existe un usuario con el correo ')",
+								'oninput'=>"buscarCSU('".base_url()."', 'Usuarios', this.value, 'correo', 'infoAjax', 'correo', 'Ya existe un usuario con el correo ')",
 								'placeholder'=>'Correo',
-								'required'=>'required'
+								'required'=>'required',
+								'class'=>'form-control'
 							);
 
 							$profesor = array
 							(
 								'name'=>'profesor'
+							);
+
+							$enviar = array
+							(
+									'name'=>'enviar',
+									'value'=>'ENVIAR',
+									'disabled'=>'disabled',
+									'class'=>'form-control'
 							);
 						?>
 
@@ -58,10 +69,10 @@
 						<?php echo form_open(base_url().'C_GestionEVG/anadirUsuario'); ?>
 						<?php echo form_input($nombre); ?></br>
 						<?php echo form_input($correo); ?>
-						<?php echo '<div id="infoAjax" class="divInfo"></div>'; ?></br>
-						<?php echo form_checkbox('profesor','on',false,$profesor); ?>
+						<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?></br>
+						<?php echo form_checkbox('profesor','on',false, $profesor); ?>
 						<?php echo form_label('Es profesor'); ?></br>
-						<?php echo form_submit('enviar','ENVIAR', 'disabled'); ?></br>
+						<?php echo form_submit($enviar); ?>
 						<?php echo form_close(); ?>
 					</div>
 				</div>

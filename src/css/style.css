@@ -60,12 +60,6 @@ input[type="text"]:focus, select:focus
 	background: white;
 }
 
-.submit-container
-{
-	text-align: center;
-	margin-top: 1rem;
-}
-
 input[type="submit"]
 {
 	background-color: #00FF08;
@@ -78,25 +72,9 @@ input[type="submit"]:disabled
 	background-color: lightgray;
 }
 
-/* Información que se le proporciona al usuario */
-#info
+h3 > span
 {
-	background: #fffd98;
-	float: right;
-	color: black;
-	border: 2px solid black;
-}
-
-#cuadroInfo
-{
-	margin-top: 40px;
-}
-
-#cuadroInfo button
-{
-	background: #ff7077;
-	color: black;
-	border: 2px solid black;
+	font-weight: 400;
 }
 
 /* ---------------------------------------------------

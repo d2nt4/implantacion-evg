@@ -35,26 +35,37 @@
 						<?php
 							$nombre = array
 							(
+									'id'=>'nombre',
 									'name'=>'nombre',
-									'oninput'=>"buscarCSU('".base_url()."', 'Perfiles', this.value, 'nombre', 'infoAjax', 'Ya existe un perfil con el nombre ')",
+									'oninput'=>"buscarCSU('".base_url()."', 'Perfiles', this.value, 'nombre', 'infoAjax', 'nombre','Ya existe un perfil con el nombre ')",
 									'placeholder'=>'Nombre',
-									'required'=>'required'
+									'required'=>'required',
+									'class'=>'form-control'
 							);
 
 							$descripcion = array
 							(
 									'name'=>'descripcion',
 									'placeholder'=>'Descripción',
-									'required'=>'required'
+									'required'=>'required',
+									'class'=>'form-control'
+							);
+
+							$enviar = array
+							(
+									'name'=>'enviar',
+									'value'=>'ENVIAR',
+									'disabled'=>'disabled',
+									'class'=>'form-control'
 							);
 						?>
 
 						<?php echo validation_errors(); ?>
 						<?php echo form_open(base_url().'C_GestionEVG/anadirPerfil'); ?>
 						<?php echo form_input($nombre); ?>
-						<?php echo '<div id="infoAjax" class="divInfo"></div>'; ?></br>
+						<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?></br>
 						<?php echo form_input($descripcion); ?></br>
-						<?php echo '<div class="submit-container">'.form_submit('enviar','ENVIAR', disabled).'</div>'; ?>
+						<?php echo form_submit($enviar); ?>
 						<?php echo form_close(); ?>
 					</div>
 				</div>

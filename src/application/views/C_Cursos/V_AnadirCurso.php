@@ -5,13 +5,13 @@
 	<head>
 		<title>Añadir Curso</title>
 		<script>
-			// Tendrá que haber en esta función tantas líneas como distintos id de texto de ajax haya en la página
+			// Tendrá que haber en esta función tantas líneas como distintos id de texto de ajax haya en la página.
 			function pruebaInicial()
 			{
-				buscarCSU('<?php echo base_url() ;?>', 'Cursos', '', 'codCurso', 'infoAjax', ' ');
-				buscarCSU('<?php echo base_url() ;?>', 'Cursos', '', 'idCursoColegio', 'infoAjax2', ' ');
-				buscarCSU('<?php echo base_url() ;?>', 'Cursos', '', 'nombre', 'infoAjax3', ' ');
-			}// hago esto para que se inicialice el array que contiene la información de los id que deben ser correctos, si no, puede dar fallos
+				buscarCSU('<?php echo base_url() ;?>', 'Cursos', '', 'codCurso', 'infoAjax', 'codCurso');
+				buscarCSU('<?php echo base_url() ;?>', 'Cursos', '', 'idCursoColegio', 'infoAjax2', 'idCursoColegio');
+				buscarCSU('<?php echo base_url() ;?>', 'Cursos', '', 'nombre', 'infoAjax3', 'nombre');
+			}
 		</script>
 	</head>
 	<body onload="pruebaInicial()">
@@ -44,37 +44,52 @@
 						<?php
 							$codCurso = array
 							(
+									'id'=>'codCurso',
 									'name'=>'codCurso',
-									'oninput'=>"buscarCSU('".base_url()."', 'Cursos', this.value, 'codCurso', 'infoAjax', 'Ya existe un curso con el código ')",
+									'oninput'=>"buscarCSU('".base_url()."', 'Cursos', this.value, 'codCurso', 'infoAjax', 'codCurso', 'Ya existe un curso con el código ')",
 									'placeholder'=>'Código',
-									'required'=>'required'
+									'required'=>'required',
+									'class'=>'form-control'
 							);
 	
 							$idCursoColegio = array
 							(
+									'id'=>'idCursoColegio',
 									'name'=>'idCursoColegio',
-									'oninput'=>"buscarCSU('".base_url()."', 'Cursos', this.value, 'idCursoColegio', 'infoAjax2', 'Ya existe un curso con el id ')",
-									'placeholder'=>'Identificador de curso del colegio'
+									'oninput'=>"buscarCSU('".base_url()."', 'Cursos', this.value, 'idCursoColegio', 'infoAjax2', 'idCursoColegio', 'Ya existe un curso con el id ')",
+									'placeholder'=>'Identificador de curso del colegio',
+									'class'=>'form-control'
 							);
 	
 							$nombre = array
 							(
+									'id'=>'nombre',
 									'name'=>'nombre',
-									'oninput'=>"buscarCSU('".base_url()."', 'Cursos', this.value, 'nombre', 'infoAjax3', 'Ya existe un curso con el nombre ')",
+									'oninput'=>"buscarCSU('".base_url()."', 'Cursos', this.value, 'nombre', 'infoAjax3', 'nombre', 'Ya existe un curso con el nombre ')",
 									'placeholder'=>'Nombre',
-									'required'=>'required'
+									'required'=>'required',
+									'class'=>'form-control'
+							);
+
+							$enviar = array
+							(
+									'name'=>'enviar',
+									'value'=>'ENVIAR',
+									'disabled'=>'disabled',
+									'class'=>'form-control',
+									'class'=>'form-control'
 							);
 						?>
 						
 						<?php echo validation_errors(); ?>
 						<?php echo form_open(base_url().'C_GestionEVG/anadirCurso'); ?>
 						<?php echo form_input($codCurso); ?>
-						<?php echo '<div id="infoAjax" class="divInfo"></div>'; ?></br>
+						<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?></br>
 						<?php echo form_input($idCursoColegio); ?>
-						<?php echo '<div id="infoAjax2" class="divInfo"></div>'; ?></br>
+						<?php echo '<small id="infoAjax2" class="form-text text-muted"></small>'; ?></br>
 						<?php echo form_input($nombre); ?>
-						<?php echo '<div id="infoAjax3" class="divInfo"></div>'; ?></br>
-						<?php echo '<div class="submit-container">'.form_submit('enviar','ENVIAR', 'disabled').'</div>'; ?>
+						<?php echo '<small id="infoAjax3" class="form-text text-muted"></small>'; ?></br>
+						<?php echo form_submit($enviar); ?>
 						<?php echo form_close(); ?>
 					</div>
 				</div>

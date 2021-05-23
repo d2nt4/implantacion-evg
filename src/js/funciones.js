@@ -124,22 +124,6 @@ function comprobarBotonEnviar()
 }
 
 /**
- * @function info - Función para mostrar información en pantalla.
- * @param {string} texto - Texto a mostrar.
- */
-function info(texto)
-{
-	var cuadroInfo = document.getElementById("cuadroInfo");
-	if(cuadroInfo.innerHTML == '')
-	{
-		cuadroInfo.innerHTML = texto;
-		cuadroInfo.innerHTML += '<button onclick="info()">Cerrar</button>';
-	}
-	else
-		cuadroInfo.innerHTML = "";
-}
-
-/**
  * @function buscarUsuarios - Función para buscar usuarios en la base de datos.
  * @param {string} baseURL - URL base del proyecto.
  * @param {number} idPerfil - Identificador de la fila del usuario.
@@ -157,7 +141,7 @@ function info(texto)
 			 {
 				 datos = JSON.parse(datos);
 				 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML = '';
-				 for(i = 0; i < datos.length; i++)
+				 for(let i = 0; i < datos.length; i++)
 					 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML += '<button onmousedown="escribir(\'correo\', this.innerHTML)">'+datos[i].correo+'</button></br>';
 				 if(datos == '')
 					 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML = '<button>Sin coincidencias</button>';

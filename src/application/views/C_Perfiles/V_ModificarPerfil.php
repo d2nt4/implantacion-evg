@@ -36,28 +36,39 @@
 							<?php
 								$nombre = array
 								(
+										'id'=>'nombre',
 										'name'=>'nombre',
-										'oninput'=>"buscarCSU('".base_url()."', 'Perfiles', this.value, 'nombre', 'infoAjax', 'Ya existe otro perfil con el nombre ', '".$this->datosPerfil[0]['nombre']."')",
+										'oninput'=>"buscarCSU('".base_url()."', 'Perfiles', this.value, 'nombre', 'infoAjax', 'nombre', 'Ya existe otro perfil con el nombre ', '".$this->datosPerfil[0]['nombre']."')",
 										'value'=>$this->datosPerfil[0]['nombre'],
-										'required'=>'required'
+										'required'=>'required',
+										'class'=>'form-control'
 								);
 
 								$descripcion = array
 								(
 										'name'=>'descripcion',
 										'value'=>$this->datosPerfil[0]['descripcion'],
-										'required'=>'required'
+										'required'=>'required',
+										'class'=>'form-control'
+								);
+
+								$enviar = array
+								(
+										'name'=>'enviar',
+										'value'=>'ENVIAR',
+										'disabled'=>'disabled',
+										'class'=>'form-control'
 								);
 							?>
 
 							<?php echo validation_errors(); ?>
 							<?php echo form_open(base_url().'C_GestionEVG/modificarPerfil/'.$idPerfil) ;?><!--Correcta, pero da fallo en PHPStorm-->
-							<?php echo form_label('Nombre:'); ?></br>
+							<?php echo form_label('Nombre'); ?></br>
 							<?php echo form_input($nombre); ?>
-							<?php echo '<div class="divInfo" id="infoAjax"></div>'; ?></br>
-							<?php echo form_label('Descripción:'); ?></br>
+							<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?></br>
+							<?php echo form_label('Descripción'); ?></br>
 							<?php echo form_input($descripcion); ?></br>
-							<?php echo '<div class="submit-container">'.form_submit('enviar','ENVIAR').'</div>'; ?></br>
+							<?php echo form_submit($enviar); ?>
 							<?php echo form_close(); ?>
 						</div>
 					</div>

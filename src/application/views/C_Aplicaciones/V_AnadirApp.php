@@ -34,7 +34,6 @@
 			<div class="row">
 				<?php include('application/views/Plantilla/asideAdmin.php') ?>
 				<div class="general">
-
 					<button type="button" id="sidebarCollapse" class="btn btn-sidebar">
 						<i class="fas fa-bars"></i>
 						<i class="fas fa-times"></i>

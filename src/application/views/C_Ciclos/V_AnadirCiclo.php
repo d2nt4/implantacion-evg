@@ -7,9 +7,9 @@
 		<title>Añadir Ciclo</title>
 		<script>
 			function pruebaInicial()
-			{// Tendrá que haber en esta función tantas líneas como distintos id de texto de ajax haya en la página
-				buscarCSU('<?php echo base_url() ;?>', 'FP_Ciclos', '', 'codCiclo', 'infoAjax', ' ');
-				buscarCSU('<?php echo base_url() ;?>', 'FP_Ciclos', '', 'nombre', 'infoAjax2', ' ');
+			{// Tendrá que haber en esta función tantas líneas como distintos id de texto de ajax haya en la página.
+				buscarCSU('<?php echo base_url() ;?>', 'FP_Ciclos', '', 'codCiclo', 'infoAjax', 'codCiclo');
+				buscarCSU('<?php echo base_url() ;?>', 'FP_Ciclos', '', 'nombre', 'infoAjax2', 'nombre');
 			}
 		</script>
 	</head>
@@ -43,8 +43,9 @@
 						<?php
 							$codCiclo = array
 							(
+									'id'=>'codCiclo',
 									'name'=>'codCiclo',
-									'oninput'=>"buscarCSU('".base_url()."', 'FP_Ciclos', this.value, 'codCiclo', 'infoAjax', 'Ya existe un ciclo con el código ')",
+									'oninput'=>"buscarCSU('".base_url()."', 'FP_Ciclos', this.value, 'codCiclo', 'infoAjax', 'codCiclo', 'Ya existe un ciclo con el código ')",
 									'placeholder'=>'Código',
 									'required'=>'required',
 									'class'=>'form-control'
@@ -52,28 +53,39 @@
 
 							$nombre = array
 							(
+									'id'=>'nombre',
 									'name'=>'nombre',
-									'oninput'=>"buscarCSU('".base_url()."', 'FP_Ciclos', this.value, 'nombre', 'infoAjax2', 'Ya existe un ciclo con el nombre ')",
+									'oninput'=>"buscarCSU('".base_url()."', 'FP_Ciclos', this.value, 'nombre', 'infoAjax2', 'nombre', 'Ya existe un ciclo con el nombre ')",
 									'placeholder'=>'Nombre',
-									'required'=>'required'
+									'required'=>'required',
+									'class'=>'form-control'
 							);
 
 							$familia = array
 							(
 									'name'=>'familia',
-									'options'=> $this->familias
+									'options'=> $this->familias,
+									'class'=>'form-control'
+							);
+
+							$enviar = array
+							(
+									'name'=>'enviar',
+									'value'=>'ENVIAR',
+									'disabled'=>'disabled',
+									'class'=>'form-control'
 							);
 						?>
 
 						<?php echo validation_errors() ;?>
 						<?php echo form_open(base_url().'C_GestionEVG/anadirCiclo') ;?>
 						<?php echo form_input($codCiclo); ?>
-						<?php echo '<div id="infoAjax" class="divInfo"></div>' ;?></br>
+						<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?></br>
 						<?php echo form_input($nombre); ?>
-						<?php echo '<div id="infoAjax2" class="divInfo"></div>' ;?></br>
-						<?php echo form_label('Familia Profesional:') ;?>
+						<?php echo '<small id="infoAjax2" class="form-text text-muted"></small>'; ?></br>
+						<?php echo form_label('Familia Profesional') ;?>
 						<?php echo form_dropdown($familia); ?></br>
-						<?php echo '<div class="submit-container">'.form_submit('enviar','ENVIAR', disabled).'</div>'; ?>
+						<?php echo form_submit($enviar); ?>
 						<?php echo form_close() ;?>
 					</div>
 				</div>

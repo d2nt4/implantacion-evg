@@ -54,16 +54,24 @@
 									'onfocusin'=>'document.getElementsByClassName(\'sugerenciaAjax\')[0].style.visibility=\'visible\'',
 									'onfocusout'=>'document.getElementsByClassName(\'sugerenciaAjax\')[0].style.visibility=\'hidden\'',
 									'required'=>'required',
-									'autocomplete'=>'off'
+									'autocomplete'=>'off',
+									'class'=>'form-control'
+								);
+
+								$enviar = array
+								(
+										'name'=>'enviar',
+										'value'=>'ENVIAR',
+										'class'=>'form-control'
 								);
 							?>
 
 							<?php echo validation_errors() ;?>
 							<?php echo form_open(base_url().'C_GestionEVG/anadirUsuarioPerfil/'.$idPerfil) ;?>
-							<?php echo form_label('Correo:') ;?>
+							<?php echo form_label('Correo') ;?>
 							<?php echo form_input($correo); ?>
-							<?php echo form_submit('enviar', 'ENVIAR'); ?>
-							<?php echo '<div class="sugerenciaAjax"></div>' ;?>
+							<?php echo '<small class="form-text text-muted sugerenciaAjax"></small>'; ?></br>
+							<?php echo form_submit($enviar); ?>
 							<?php echo form_close() ;?>
 						</div>
 					</div>

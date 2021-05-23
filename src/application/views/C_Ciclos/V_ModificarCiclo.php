@@ -35,25 +35,38 @@
 						<?php
 							$codCiclo = array
 							(
+									'id'=>'codCiclo',
 									'name'=>'codCiclo',
-									'oninput'=>"buscarCSU('".base_url()."', 'FP_Ciclos', this.value, 'codCiclo', 'infoAjax', 'Ya existe otro ciclo con el código ', '".$this->datosCiclo[0]['codCiclo']."')",
+									'oninput'=>"buscarCSU('".base_url()."', 'FP_Ciclos', this.value, 'codCiclo', 'infoAjax', 'codCiclo', 'Ya existe otro ciclo con el código ', '".$this->datosCiclo[0]['codCiclo']."')",
 									'value'=>$this->datosCiclo[0]['codCiclo'],
-									'required'=>'required'
+									'required'=>'required',
+									'class'=>'form-control'
 							);
 
 							$nombre = array
 							(
+									'id'=>'nombre',
 									'name'=>'nombre',
-									'oninput'=>"buscarCSU('".base_url()."', 'FP_Ciclos', this.value, 'nombre', 'infoAjax2', 'Ya existe otro ciclo con el nombre ', '".$this->datosCiclo[0]['nombre']."')",
+									'oninput'=>"buscarCSU('".base_url()."', 'FP_Ciclos', this.value, 'nombre', 'infoAjax2', 'nombre', 'Ya existe otro ciclo con el nombre ', '".$this->datosCiclo[0]['nombre']."')",
 									'value'=>$this->datosCiclo[0]['nombre'],
-									'required'=>'required'
+									'required'=>'required',
+									'class'=>'form-control'
 							);
 
 							$familia = array
 							(
 									'name'=>'familia',
 									'options'=> $this->familias,
-									'selected' => $idFamilia
+									'selected' => $idFamilia,
+									'class'=>'form-control'
+							);
+
+							$enviar = array
+							(
+									'name'=>'enviar',
+									'value'=>'ENVIAR',
+									'disabled'=>'disabled',
+									'class'=>'form-control'
 							);
 						?>
 
@@ -61,13 +74,13 @@
 						<?php echo form_open(base_url().'C_GestionEVG/ModificarCiclo/'.$idCiclo) ;?>
 						<?php echo form_label('Código') ;?></br>
 						<?php echo form_input($codCiclo); ?>
-						<?php echo '<div id="infoAjax" class="divInfo"></div>' ;?></br>
+						<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?></br>
 						<?php echo form_label('Nombre') ;?></br>
 						<?php echo form_input($nombre); ?>
-						<?php echo '<div id="infoAjax2" class="divInfo"></div>' ;?></br>
+						<?php echo '<small id="infoAjax2" class="form-text text-muted"></small>'; ?></br>
 						<?php echo form_label('Familia Profesional') ;?></br>
 						<?php echo form_dropdown($familia); ?></br>
-						<?php echo '<div class="submit-container">'.form_submit('enviar','ENVIAR').'</div>'; ?>
+						<?php echo form_submit($enviar); ?>
 						<?php echo form_close() ;?>
 					</div>
 				</div>
