@@ -20,15 +20,12 @@
 				<div class="p-2 d-table-cell align-middle"><h2 class="font-weight-bolder">Gestión EVG</h2></div>
 			</div>
 			<div id="inicioSesionGoogle">
-				<div>
-					<?php 
-					if($this->session->userdata('sess_logged_in') == 0){?>
-						<a href="<?=$google_login_url?>" class="btn gbtn font-weight-bolder"><i class="fa fa-google left mr-2"></i>Iniciar sesión con Google</a>
-					<?php }else{?>
-
-					<?php }
-					?>
-				</div>
+				<?php
+					if($this->session->userdata('sess_logged_in') == 0)
+						echo "<a href='".$google_login_url."' class='btn gbtn font-weight-bolder'><i class='fa fa-google left mr-2'></i>Iniciar sesión con Google</a>";
+					else
+						header("Location: ".base_url()."");
+				?>
 				<div id="cartaGoogle">
 					<?php if(isset($_SESSION['name'])){?>
 						<div class="card">

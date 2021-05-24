@@ -1,9 +1,24 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * C_Instalacion
+ *  
+ * Clase que permite realizar la instalación de la aplicacion
+ * 
+ * @author Abraham Núñez Palos y Daniel Torres Galindo
+ * @version demo
+ */
 class C_Instalacion extends CI_Controller
 {
-
+	
+	/**
+	 * __construct
+	 * 
+	 * Carga los metodos
+	 *
+	 * @return void
+	 */
 	public function __construct()
 	{
 		parent::__construct();
@@ -13,7 +28,14 @@ class C_Instalacion extends CI_Controller
 		$this -> load -> model('M_GestionEVG');
 		$this -> load -> model('M_Instalacion');
 	}
-
+	
+	/**
+	 * index
+	 * 
+	 * Añade los perfiles basico
+	 *
+	 * @return void
+	 */
 	public function index()
 	{
 		$this -> M_Instalacion -> tablas();
@@ -23,7 +45,14 @@ class C_Instalacion extends CI_Controller
 		$this -> M_GestionEVG -> insertar('Perfiles', Array('nombre' => 'Profesor','descripcion' => 'profesor'));
 		$this -> load -> view('Instalacion/V_Admin');
 	}
-
+	
+	/**
+	 * anadirAdmin
+	 * 
+	 * Permite registrar al administrador de la aplicación
+	 *
+	 * @return void
+	 */
 	public function anadirAdmin()
 	{
 		$datos = array();
@@ -45,5 +74,4 @@ class C_Instalacion extends CI_Controller
 	}
 
 }
-
 ?>

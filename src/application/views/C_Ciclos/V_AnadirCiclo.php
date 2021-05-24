@@ -1,64 +1,95 @@
 <?php
-include('application/views/Plantilla/header.php');
+	include('application/views/Plantilla/header.php');
 ?>
 
 <html>
-<head>
-	<title>Gestión EVG</title>
-	<script>
-		function pruebaInicial()
-		{// tendrá que haber en esta función tantas líneas como distintos id de texto de ajax haya en la página
-			// se podría mejorar creando los id desde javascript directamente
-			buscarCSU('<?php echo base_url() ;?>', 'FP_Ciclos', '', 'codCiclo', 'infoAjax', ' ');
-			buscarCSU('<?php echo base_url() ;?>', 'FP_Ciclos', '', 'nombre', 'infoAjax2', ' ');
-		}// hago esto para que se inicialice el array que contiene la información de los id que deben ser correctos, si no, puede dar fallos
-	</script>
-</head>
-<body onload="pruebaInicial()">
-<div id="principal" class="container-fluid">
-	<div class="row">
-		<header class="col-12">
-			<h2>GESTIÓN EVG</h2>
-		</header>
-	</div>
-	<div class="row" id="contenedor">
-		<?php include('application/views/Plantilla/asideGestor.php') ?>
-		<div class="col-9" >
-			<h2>NUEVO CICLO</h2>
-			<?php
+	<head>
+		<title>Añadir Ciclo</title>
+		<script>
+			function pruebaInicial()
+			{// Tendrá que haber en esta función tantas líneas como distintos id de texto de ajax haya en la página.
+				buscarCSU('<?php echo base_url() ;?>', 'FP_Ciclos', '', 'codCiclo', 'infoAjax', 'codCiclo');
+				buscarCSU('<?php echo base_url() ;?>', 'FP_Ciclos', '', 'nombre', 'infoAjax2', 'nombre');
+			}
+		</script>
+	</head>
+	<body onload="pruebaInicial()">
+		<div id="principal" class="container-fluid">
+			<div class="row">
+				<header class="col-12">
+					<div class="col-6">
+						<?php echo '<a href="'.base_url().'C_GestionEVG/"><img id="logo-evg" src="'.base_url().'uploads/iconos/escudo-evg.png" alt="Escudo EVG" class="img-fluid"/></a>'; ?>
+						<h3>Ciclos - Añadir Ciclo</h3>
+					</div>
+					<div class="col-6">
+						<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/'\" id=\"icon-grid\" class=\"btn mr-2\"><i class=\"fas fa-th\"></i></button>"; ?>
+						<?php
+							$picture = $this -> session -> userdata('profile_pic');
+							echo '<img id="profile_picture" src="'.$picture.'" alt="Google Profile Picture" class="img-fluid rounded-circle"/>';
+						?>
+						<?php echo "<button onclick=\"confirmar('¿Seguro que quieres cerrar sesión?','".base_url()."Auth/logout', 'Cerrar Sesión', 'Cancelar', 'Cerrar')\" data-toggle=\"modal\" data-target=\"#myModal\" id=\"icon-logout\" class=\"btn\"><i class=\"fa fa-sign-out-alt\"></i></button>" ;?>
+					</div>
+				</header>
+			</div>
+			<div class="row">
+				<?php include('application/views/Plantilla/asideGestor.php') ?>
+				<div class="general">
+					<button type="button" id="sidebarCollapse" class="btn btn-sidebar">
+						<i class="fas fa-bars"></i>
+						<i class="fas fa-times"></i>
+					</button>
+					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/verCiclos'\" class=\"btn btn-secondary\"><i class=\"fas fa-arrow-left\"></i></button>"; ?>
+					<div class="gestion-apps">
+						<?php
+							$codCiclo = array
+							(
+									'id'=>'codCiclo',
+									'name'=>'codCiclo',
+									'oninput'=>"buscarCSU('".base_url()."', 'FP_Ciclos', this.value, 'codCiclo', 'infoAjax', 'codCiclo', 'Ya existe un ciclo con el código ')",
+									'placeholder'=>'Código',
+									'required'=>'required',
+									'class'=>'form-control'
+							);
 
-			$codCiclo=array(
-				'name'=>'codCiclo',
-				'oninput'=>"buscarCSU('".base_url()."', 'FP_Ciclos', this.value, 'codCiclo', 'infoAjax', 'Ya existe un ciclo con el código ')",
-				'placeholder'=>'Código',
-				'required'=>'required'
-			);
+							$nombre = array
+							(
+									'id'=>'nombre',
+									'name'=>'nombre',
+									'oninput'=>"buscarCSU('".base_url()."', 'FP_Ciclos', this.value, 'nombre', 'infoAjax2', 'nombre', 'Ya existe un ciclo con el nombre ')",
+									'placeholder'=>'Nombre',
+									'required'=>'required',
+									'class'=>'form-control'
+							);
 
-			$nombre=array(
-				'name'=>'nombre',
-				'oninput'=>"buscarCSU('".base_url()."', 'FP_Ciclos', this.value, 'nombre', 'infoAjax2', 'Ya existe un ciclo con el nombre ')",
-				'placeholder'=>'Nombre',
-				'required'=>'required'
-			);
+							$familia = array
+							(
+									'name'=>'familia',
+									'options'=> $this->familias,
+									'class'=>'form-control'
+							);
 
-			$familia=array(
-				'name'=>'familia',
-				'options'=> $this->familias
-			);
-			?>
-			<?php echo validation_errors() ;?>
-			<?php echo form_open(base_url().'C_GestionEVG/anadirCiclo') ;?>
-			<?php echo form_input($codCiclo); ?>
-			<?php echo '<div class="divInfo" id="infoAjax"></div>' ;?></br></br>
-			<?php echo form_input($nombre); ?>
-			<?php echo '<div class="divInfo" id="infoAjax2"></div>' ;?></br></br>
-			<?php echo form_label('Familia Profesional:') ;?></br>
-			<?php echo form_dropdown($familia); ?></br></br>
-			<?php echo form_submit('enviar','ENVIAR', 'disabled'); ?>
-			<?php echo form_close() ;?></br></br>
-			<a href="<?php echo base_url()?>C_GestionEVG/verCiclos">Volver</a>
+							$enviar = array
+							(
+									'name'=>'enviar',
+									'value'=>'ENVIAR',
+									'disabled'=>'disabled',
+									'class'=>'form-control'
+							);
+						?>
+
+						<?php echo validation_errors() ;?>
+						<?php echo form_open(base_url().'C_GestionEVG/anadirCiclo') ;?>
+						<?php echo form_input($codCiclo); ?>
+						<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?></br>
+						<?php echo form_input($nombre); ?>
+						<?php echo '<small id="infoAjax2" class="form-text text-muted"></small>'; ?></br>
+						<?php echo form_label('Familia Profesional') ;?>
+						<?php echo form_dropdown($familia); ?></br>
+						<?php echo form_submit($enviar); ?>
+						<?php echo form_close() ;?>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
-</body>
+	</body>
 </html>

@@ -36,14 +36,22 @@
 							$cursos = array
 							(
 									'name'=>'archivo',
-									'required'=>'required'
+									'required'=>'required',
+									'class'=>'form-control'
+							);
+
+							$enviar = array
+							(
+									'name'=>'enviar',
+									'value'=>'ENVIAR',
+									'class'=>'form-control'
 							);
 						?>
 
 						<?php echo validation_errors(); ?>
 						<?php echo form_open_multipart(base_url().'C_GestionEVG/importarCursos'); ?>
 						<?php echo form_upload($cursos); ?></br>
-						<?php echo form_submit('enviar','ENVIAR'); ?></br>
+						<?php echo form_submit($enviar); ?>
 						<?php echo form_close(); ?>
 					</div>
 				</div>

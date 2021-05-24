@@ -37,33 +37,43 @@
 							(
 									'name'=>'nombre',
 									'value'=>$this->datosUsuario[0]['nombre'],
-									'required'=>'required'
+									'required'=>'required',
+									'class'=>'form-control'
 							);
 
 							$correo = array
 							(
+									'id'=>'correo',
 									'name'=>'correo',
-									'oninput'=>"buscarCSU('".base_url()."', 'Usuarios', this.value, 'correo', 'infoAjax', 'Ya existe otro usuario con el correo ', '".$this->datosUsuario[0]['correo']."')",
+									'oninput'=>"buscarCSU('".base_url()."', 'Usuarios', this.value, 'correo', 'infoAjax', 'correo', 'Ya existe otro usuario con el correo ', '".$this->datosUsuario[0]['correo']."')",
 									'value'=>$this->datosUsuario[0]['correo'],
-									'required'=>'required'
+									'required'=>'required',
+									'class'=>'form-control'
 							);
 
 							$bajaTemporal = array
 							(
 									'name'=>'bajaTemporal'
 							);
+
+							$enviar = array
+							(
+									'name'=>'enviar',
+									'value'=>'ENVIAR',
+									'class'=>'form-control'
+							);
 						?>
 
 						<?php echo validation_errors(); ?>
 						<?php echo form_open(base_url().'C_GestionEVG/modificarUsuario/'.$idUsuario); ?>
-						<?php echo form_label('Nombre:'); ?></br>
+						<?php echo form_label('Nombre'); ?></br>
 						<?php echo form_input($nombre); ?></br>
-						<?php echo form_label('Correo:'); ?></br>
+						<?php echo form_label('Correo'); ?></br>
 						<?php echo form_input($correo); ?>
-						<?php echo '<div id="infoAjax" class="divInfo"></div>'; ?></br>
+						<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?></br>
 						<?php echo form_checkbox('bajaTemporal','on',$this->datosUsuario[0]['bajaTemporal'],$bajaTemporal); ?>
 						<?php echo form_label('Baja temporal'); ?></br>
-						<?php echo form_submit('enviar','ENVIAR'); ?></br>
+						<?php echo form_submit($enviar); ?>
 						<?php echo form_close(); ?>
 					</div>
 				</div>

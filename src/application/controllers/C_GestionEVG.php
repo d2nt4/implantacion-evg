@@ -2,6 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
+/**
+ * C_GestionEVG
+ * 
+ * Clase que contiene todos los metodos necesario para la aplicación
+ * 
+ * @author Abraham Núñez Palos y Daniel Torres Galindo
+ * @version demo
+ */
 class C_GestionEVG extends CI_Controller 
 {
 
@@ -35,26 +43,27 @@ class C_GestionEVG extends CI_Controller
 				redirect('Grid');
 		}
 	}
-
+	
+	/**
+	 * index
+	 * 
+	 * Redirigre al Grid
+	 *
+	 * @return void
+	 */
 	public function index()
 	{
-
-/*
-		if(file_exists('application/controllers/C_Instalacion.php'))
-			unlink('application/controllers/C_Instalacion.php');
-
-		if(file_exists('application/models/M_Instalacion.php'))
-			unlink('application/models/M_Instalacion.php');
-
-		if(file_exists('application/views/Instalacion/V_Admin.php')){
-			unlink('application/views/Instalacion/V_Admin.php');
-			rmdir('application/views/Instalacion'); // el directorio tiene que estar vacío para poder borrarlo
-		}
-*/
 		redirect('Grid');
 
 	}
-
+	
+	/**
+	 * comprobarCSU
+	 * 
+	 * Comprueba que no se repitan los mismos valores
+	 *
+	 * @return void
+	 */
 	public function comprobarCSU()
 	{
 		$numeroFilas = $this -> M_GestionEVG -> seleccionar($_POST['tabla'],$_POST['campo'],$_POST['campo']."='".$_POST['valor']."'");
@@ -64,6 +73,14 @@ class C_GestionEVG extends CI_Controller
 		else
 			echo('no');
 	}
+	
+	/**
+	 * comprobarUsuarios
+	 * 
+	 * Busca usuarios en la base de datos
+	 *
+	 * @return void
+	 */
 
 	public function comprobarUsuarios()
 	{

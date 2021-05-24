@@ -34,16 +34,16 @@
 					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/importarCursosForm'\" class=\"btn btn-warning\"><i class=\"fas fa-file-import\"></i></button>"; ?>
 					<div class="gestion-apps">
 						<?php
-						foreach($this->listaCursos as $indice => $valor)
-							echo
-							"
-								<div class=\"fila\">
-									<h3>".$valor."</h3>
-									<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/asignarEtapaCursoForm/".$indice."'\" class=\"btn btn-info\"><i class=\"fas fa-cog\"></i></button>
-									<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/modificarCursoForm/".$indice."'\" class=\"btn btn-warning\"><i class=\"fas fa-edit\"></i></button>
-									<button onclick=\"confirmar('¿Seguro que quieres borrar el curso: <b>".$valor."</b>?', '".base_url()."C_GestionEVG/borrarCurso/".$indice."', 'Eliminar Curso', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>													
-								</div>						
-							";
+							foreach($this->listaCursos as $indice => $valor)
+								echo
+								"
+									<div class=\"fila\">
+										<h3>".$valor."</h3>
+										<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/asignarEtapaCursoForm/".$indice."'\" class=\"btn btn-info\"><i class=\"fas fa-cog\"></i></button>
+										<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/modificarCursoForm/".$indice."'\" class=\"btn btn-warning\"><i class=\"fas fa-edit\"></i></button>
+										<button onclick=\"confirmar('¿Seguro que quieres borrar el curso: <b>".$valor."</b>?', '".base_url()."C_GestionEVG/borrarCurso/".$indice."', 'Eliminar Curso', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>													
+									</div>						
+								";
 						?>
 					</div>
 				</div>

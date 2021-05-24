@@ -39,7 +39,7 @@
 							<?php
 							if(isset($this->etapasPadre))
 								foreach($this->etapasPadre as $indice => $valor)
-									echo '<div> '.$valor.'<a href="'.base_url().'C_GestionEVG/quitarEtapaPadre/'.$idEtapa.'/'.$indice.'"><button  class="btn btn-outline-danger">Quitar</button></a></div>';
+									echo '<div class="operaciones"><span>'.$valor.'</span><a href="'.base_url().'C_GestionEVG/quitarEtapaPadre/'.$idEtapa.'/'.$indice.'"><button  class="btn btn-outline-danger">Quitar</button></a></div>';
 							else
 								echo 'No hay etapas padre';
 							?>
@@ -49,7 +49,7 @@
 							<?php
 								if(isset($this->etapasNoPadre))
 									foreach($this->etapasNoPadre as $indice => $valor)
-										echo '<div>'.$valor.'<a href="'.base_url().'C_GestionEVG/anadirEtapaPadre/'.$idEtapa.'/'.$indice.'"><button class="btn btn-outline-success">Añadir</button></a></div>';
+										echo '<div class="operaciones"><span>'.$valor.'</span><a href="'.base_url().'C_GestionEVG/anadirEtapaPadre/'.$idEtapa.'/'.$indice.'"><button class="btn btn-outline-success">Añadir</button></a></div>';
 								else
 									echo 'No hay etapas padre disponibles';
 							?>

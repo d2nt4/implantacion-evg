@@ -33,21 +33,21 @@
 					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/VerApps'\" class=\"btn btn-secondary\"><i class=\"fas fa-arrow-left\"></i></button>"; ?>
 					<div class="gestiones">
 						<div class="gestion-apps">
-							<h3 class="font-weight-bolder">QUITAR ACCESO AL PERFIL</h3>
+							<h3 class="font-weight-bolder">QUITAR acceso AL PERFIL</h3>
 							<?php
 								if(isset($this->perfilesAplicacion))
 									foreach($this->perfilesAplicacion as $indice => $valor)
-										echo '<div class="perfiles-app-div"><span>'.$valor.'</span><a href="'.base_url().'C_GestionEVG/quitarPerfilAplicacion/'.$idAplicacion.'/'.$indice.'"><button  class="btn btn-outline-danger">Quitar</button></a></div>';
+										echo '<div class="operaciones"><span>'.$valor.'</span><a href="'.base_url().'C_GestionEVG/quitarPerfilAplicacion/'.$idAplicacion.'/'.$indice.'"><button  class="btn btn-outline-danger">Quitar</button></a></div>';
 								else
 									echo 'No hay perfiles con acceso a la aplicación';
 							?>
 						</div>
 						<div class="gestion-apps">
-							<h3 class="font-weight-bolder">AÑADIR ACCESO AL PERFIL</h3>
+							<h3 class="font-weight-bolder">AÑADIR acceso AL PERFIL</h3>
 							<?php
 								if(isset($this->perfilesNoAplicacion))
 									foreach($this->perfilesNoAplicacion as $indice => $valor)
-										echo '<div class="perfiles-app-div"><span>'.$valor.'</span><a ondblclick="location.href=\''.base_url().'C_GestionEVG/perfilesAplicacion/'.$idAplicacion.'\'" href="'.base_url().'C_GestionEVG/anadirPerfilAplicacion/'.$idAplicacion.'/'.$indice.'"><button class="btn btn-outline-success">Añadir</button></a></div>';
+										echo '<div class="operaciones"><span>'.$valor.'</span><a ondblclick="location.href=\''.base_url().'C_GestionEVG/perfilesAplicacion/'.$idAplicacion.'\'" href="'.base_url().'C_GestionEVG/anadirPerfilAplicacion/'.$idAplicacion.'/'.$indice.'"><button class="btn btn-outline-success">Añadir</button></a></div>';
 								else
 									echo 'No hay perfiles disponibles para añadir';
 							?>

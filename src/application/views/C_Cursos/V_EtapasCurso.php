@@ -38,15 +38,23 @@
 							(
 									'name'=>'etapa',
 									'options'=>$this->etapas,
-									'selected'=>$idEtapa
+									'selected'=>$idEtapa,
+									'class'=>'form-control'
+							);
+
+							$enviar = array
+							(
+									'name'=>'enviar',
+									'value'=>'ENVIAR',
+									'class'=>'form-control'
 							);
 						?>
 
 						<?php echo validation_errors(); ?>
 						<?php echo form_open(base_url().'C_GestionEVG/asignarEtapaCurso/'.$idCurso); ?>
-						<?php echo form_label('Etapa:'); ?>
+						<?php echo form_label('Etapa'); ?>
 						<?php echo form_dropdown($etapas); ?></br>
-						<?php echo '<div class="submit-container">'.form_submit('enviar','ENVIAR').'</div>'; ?>
+						<?php echo form_submit($enviar); ?>
 						<?php echo form_close(); ?>
 					</div>
 				</div>

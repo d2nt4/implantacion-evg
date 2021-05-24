@@ -1,7 +1,23 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Grid
+ * 
+ * Clase para gestionar las aplicaciones
+ * 
+ * @author Abraham Núñez Palos y Daniel Torres Galindo
+ * @version demo
+ */
 class Grid extends CI_Controller
-{
+{	
+	/**
+	 * __construct
+	 * 
+	 * Carga las librerias y los modelos ademas de comprobar si tienes iniciado sesión
+	 *
+	 * @return void
+	 */
+	
 	function __construct()
 	{
 		parent::__construct();
@@ -14,6 +30,14 @@ class Grid extends CI_Controller
 
 		$this -> load -> model('M_GestionEVG');
 	}
+	
+	/**
+	 * index
+	 * 
+	 * Obtiene las aplicaciones del usuario y lo carga en las vista V_Grid
+	 *
+	 * @return void
+	 */
 
 	public function index()
 	{

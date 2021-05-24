@@ -126,7 +126,7 @@ CREATE TABLE Subetapas
 CREATE TABLE Cursos
 (
 	idCurso TINYINT UNSIGNED AUTO_INCREMENT,
-	codCurso char(5) NOT NULL UNIQUE,
+	codCurso CHAR(5) NOT NULL UNIQUE,
 	nombre VARCHAR(40) NULL UNIQUE,
 	idEtapa TINYINT UNSIGNED NULL,
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
@@ -171,7 +171,7 @@ CREATE TABLE FP_FamiliasProfesionales
 CREATE TABLE FP_Ciclos
 (
 	idCiclo TINYINT UNSIGNED AUTO_INCREMENT,
-	codCiclo char(4) NOT NULL UNIQUE,
+	codCiclo CHAR(4) NOT NULL UNIQUE,
 	nombre VARCHAR(40) NOT NULL UNIQUE,
 	idFamilia TINYINT UNSIGNED NULL,
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
@@ -257,8 +257,8 @@ CREATE TABLE Alumnos
 INSERT INTO
 	Perfiles (nombre, descripcion)
 VALUES 
-	('administrador', 'administrador'),
-	('gestor', 'gestor'),
-	('profesor', 'profesor'),
-	('tutor', 'tutor');
+	('Administrador', 'Administrador'),
+	('Gestor', 'Gestor'),
+	('Profesor', 'Profesor'),
+	('Tutor', 'Tutor');
 COMMIT;

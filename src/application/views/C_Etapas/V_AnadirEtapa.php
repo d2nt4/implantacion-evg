@@ -7,12 +7,12 @@
 	<head>
 		<title>Añadir Etapa</title>
 		<script>
-			// Tendrá que haber en esta función tantas líneas como distintos id de texto de ajax haya en la página
+			// Tendrá que haber en esta función tantas líneas como distintos id de texto de ajax haya en la página.
 			function pruebaInicial()
 			{
-				buscarCSU('<?php echo base_url() ;?>', 'Etapas', '', 'codEtapa', 'infoAjax', ' ');
-				buscarCSU('<?php echo base_url() ;?>', 'Etapas', '', 'nombre', 'infoAjax2', ' ');
-			}// hago esto para que se inicialice el array que contiene la información de los id que deben ser correctos, si no, puede dar fallos
+				buscarCSU('<?php echo base_url() ;?>', 'Etapas', '', 'codEtapa', 'infoAjax', 'codEtapa');
+				buscarCSU('<?php echo base_url() ;?>', 'Etapas', '', 'nombre', 'infoAjax2', 'nombre');
+			}
 		</script>
 	</head>
 	<body onload="pruebaInicial()">
@@ -45,36 +45,49 @@
 						<?php
 							$codEtapa = array
 							(
+									'id'=>'codEtapa',
 									'name'=>'codEtapa',
-									'oninput'=>"buscarCSU('".base_url()."', 'Etapas', this.value, 'codEtapa', 'infoAjax', 'Ya existe una etapa con el código ')",
+									'oninput'=>"buscarCSU('".base_url()."', 'Etapas', this.value, 'codEtapa', 'infoAjax', 'codEtapa', 'Ya existe una etapa con el código ')",
 									'placeholder'=>'Código',
-									'required'=>'required'
+									'required'=>'required',
+									'class'=>'form-control'
 							);
 
 							$nombre = array
 							(
+									'id'=>'nombre',
 									'name'=>'nombre',
-									'oninput'=>"buscarCSU('".base_url()."', 'Etapas', this.value, 'nombre', 'infoAjax2', 'Ya existe una etapa con el nombre ')",
+									'oninput'=>"buscarCSU('".base_url()."', 'Etapas', this.value, 'nombre', 'infoAjax2', 'nombre', 'Ya existe una etapa con el nombre ')",
 									'placeholder'=>'Nombre',
-									'required'=>'required'
+									'required'=>'required',
+									'class'=>'form-control'
 							);
 
 							$idCoordinador = array
 							(
 									'name'=>'idCoordinador',
-									'options'=> $this->usuarios
+									'options'=> $this->usuarios,
+									'class'=>'form-control'
+							);
+
+							$enviar = array
+							(
+									'name'=>'enviar',
+									'value'=>'ENVIAR',
+									'disabled'=>'disabled',
+									'class'=>'form-control'
 							);
 						?>
 
 						<?php echo validation_errors(); ?>
 						<?php echo form_open(base_url().'C_GestionEVG/anadirEtapa'); ?>
 						<?php echo form_input($codEtapa); ?>
-						<?php echo '<div id="infoAjax" class="divInfo"></div>'; ?></br>
+						<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?></br>
 						<?php echo form_input($nombre); ?>
-						<?php echo '<div id="infoAjax2" class="divInfo"></div>'; ?></br>
+						<?php echo '<small id="infoAjax2" class="form-text text-muted"></small>'; ?></br>
 						<?php echo form_label('Coordinador'); ?></br>
 						<?php echo form_dropdown($idCoordinador); ?></br>
-						<?php echo '<div class="submit-container">'.form_submit('enviar','ENVIAR', disabled).'</div>'; ?>
+						<?php echo form_submit($enviar); ?>
 						<?php echo form_close(); ?>
 					</div>
 				</div>
