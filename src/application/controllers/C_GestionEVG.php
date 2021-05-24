@@ -76,6 +76,14 @@ class C_GestionEVG extends CI_Controller
 	}
 
 		/*APLICACIONES*/
+	
+	/**
+	 * verApps
+	 * 
+	 * Permite ver todos las aplicaciones existente
+	 *
+	 * @return void
+	 */
 
 	public function verApps()
 	{
@@ -85,11 +93,27 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view('C_Aplicaciones/V_Aplicaciones');
 	}
+	
+	/**
+	 * anadirAppForm
+	 * 
+	 * Muestra el formulario para añadir la aplicación
+	 *
+	 * @return void
+	 */
 
 	public function anadirAppForm()
 	{
 		$this -> load -> view("C_Aplicaciones/V_AnadirApp");
 	}
+	
+	/**
+	 * anadirApp
+	 * 
+	 * Añade la aplicación a la base de datos
+	 *
+	 * @return void
+	 */
 
 	public function anadirApp()
 	{
@@ -110,10 +134,18 @@ class C_GestionEVG extends CI_Controller
 		$datos['icono'] = $archivo_nombre;
 
 		$this-> M_GestionEVG-> insertar('Aplicaciones',$datos);
-		//header("Location:".base_url()."C_GestionEVG/verApps");
 
 		$this->headerLocation("C_GestionEVG/verApps");
 	}
+	
+	/**
+	 * borrarApp
+	 *
+	 * Elimina la aplicación de la base de datos
+	 * 
+	 * @param  integer $idAplicacion
+	 * @return void
+	 */
 
 	public function borrarApp($idAplicacion)
 	{
@@ -124,16 +156,32 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> borrar('Aplicaciones',$idAplicacion,'idAplicacion');
 
-		//header("Location:".base_url()."C_GestionEVG/verApps");
-
 		$this->headerLocation("C_GestionEVG/verApps");
 	}
+	
+	/**
+	 * modificarAppForm
+	 *
+	 * Muestra un formulario con los datos de la aplicación
+	 * 
+	 * @param  integer $idAplicacion
+	 * @return void
+	 */
 
 	public function modificarAppForm($idAplicacion)
 	{
 		$this -> datosApp = $this -> M_GestionEVG -> seleccionar('Aplicaciones','nombre, descripcion, url, icono','idAplicacion='.$idAplicacion);
 		$this -> load -> view("C_Aplicaciones/V_ModificarApp", Array('idAplicacion' => $idAplicacion));
 	}
+	
+	/**
+	 * modificarApp
+	 *
+	 * Actualiza los datos de la aplicación en la base de datos
+	 * 
+	 * @param  integer $idAplicacion
+	 * @return void
+	 */
 
 	public function modificarApp($idAplicacion)
 	{
@@ -163,10 +211,18 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> modificar('Aplicaciones',$datos,$idAplicacion,'idAplicacion');
 
-		//header("Location:".base_url()."C_GestionEVG/verApps");
-
 		$this->headerLocation("C_GestionEVG/verApps");
 	}
+	
+	/**
+	 * perfilesAplicacion
+	 *
+	 * Muestra los perfiles que están asociado a la aplicación, 
+	 * ademas de todos los perfiles para poder añadir o quitar perfiles
+	 * 
+	 * @param  integer $idAplicacion
+	 * @return void
+	 */
 
 	public function perfilesAplicacion($idAplicacion)
 	{
@@ -183,24 +239,50 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view('C_Aplicaciones/V_PerfilesAplicaciones', Array('idAplicacion'=>$idAplicacion, 'nombreApp'=>$nombreApp));
 	}
+	
+	/**
+	 * quitarPerfilAplicacion
+	 *
+	 * Permite quitar perfiles a una aplicación
+	 * 
+	 * @param  integer $idAplicacion
+	 * @param  integer $idPerfil
+	 * @return void
+	 */
 
 	public function quitarPerfilAplicacion($idAplicacion, $idPerfil)
 	{
 		$this -> M_GestionEVG -> borrarCompuesta('Aplicaciones_Perfiles',$idPerfil, $idAplicacion, 'idPerfil', 'idAplicacion');
-		//header("Location:".base_url()."C_GestionEVG/perfilesAplicacion/".$idAplicacion);
 
 		$this->headerLocation("C_GestionEVG/perfilesAplicacion/".$idAplicacion);
 	}
+	
+	/**
+	 * anadirPerfilAplicacion
+	 *
+	 * Permite añadir perfiles a una aplicación
+	 * 
+	 * @param  integer $idAplicacion
+	 * @param  integer $idPerfil
+	 * @return void
+	 */
 
 	public function anadirPerfilAplicacion($idAplicacion, $idPerfil)
 	{
 		$this -> M_GestionEVG -> insertar('Aplicaciones_Perfiles',array('idPerfil'=>$idPerfil,'idAplicacion'=>$idAplicacion));
-		//header("Location:".base_url()."C_GestionEVG/perfilesAplicacion/".$idAplicacion);
 
 		$this->headerLocation("C_GestionEVG/perfilesAplicacion/".$idAplicacion);
 	}
 
 		/*PERFILES*/
+	
+	/**
+	 * verPerfiles
+	 * 
+	 * Muestra los perfiles
+	 *
+	 * @return void
+	 */
 
 	public function verPerfiles()
 	{
@@ -210,11 +292,27 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view('C_Perfiles/V_Perfiles');
 	}
+	
+	/**
+	 * anadirPerfilForm
+	 * 
+	 * Muestra el formulario para añadir un perfil
+	 *
+	 * @return void
+	 */
 
 	public function anadirPerfilForm()
 	{
 		$this -> load -> view("C_Perfiles/V_AnadirPerfil");
 	}
+	
+	/**
+	 * anadirPerfil
+	 * 
+	 * Añade el perfil a la base de datos
+	 *
+	 * @return void
+	 */
 
 	public function anadirPerfil()
 	{
@@ -223,24 +321,48 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> insertar('Perfiles',$datos);
 
-		//header("Location:".base_url()."C_GestionEVG/verPerfiles");
-
 		$this->headerLocation("C_GestionEVG/verPerfiles");
 	}
-
+	
+	/**
+	 * borrarPerfil
+	 * 
+	 * Elimina el perfil de la base de datos
+	 *
+	 * @param  integer $idPerfil
+	 * @return void
+	 */
+	
 	public function borrarPerfil($idPerfil)
 	{
 		$this -> M_GestionEVG -> borrar('Perfiles',$idPerfil,'idPerfil');
-		//header("Location:".base_url()."C_GestionEVG/verPerfiles");
 
 		$this->headerLocation("C_GestionEVG/verPerfiles");
 	}
+	
+	/**
+	 * modificarPerfilForm
+	 * 
+	 * Muestra el formulario con los datos del perfil a modificar
+	 *
+	 * @param  integer $idPerfil
+	 * @return void
+	 */
 
 	public function modificarPerfilForm($idPerfil)
 	{
 		$this -> datosPerfil = $this -> M_GestionEVG -> seleccionar('Perfiles','nombre, descripcion','idPerfil='.$idPerfil);
 		$this -> load -> view("C_Perfiles/V_ModificarPerfil", Array('idPerfil' => $idPerfil));
 	}
+	
+	/**
+	 * modificarPerfil
+	 *
+	 * Actualiza los datos del perfil en la base de datos
+	 * 
+	 * @param  integer $idPerfil
+	 * @return void
+	 */
 
 	public function modificarPerfil($idPerfil)
 	{
@@ -249,10 +371,18 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> modificar('Perfiles',$datos,$idPerfil,'idPerfil');
 
-		//header("Location:".base_url()."C_GestionEVG/verPerfiles");
-
 		$this->headerLocation("C_GestionEVG/verPerfiles");
 	}
+	
+	/**
+	 * usuariosPerfil
+	 *
+	 * Muestra los usuario que tiene el perfil,
+	 * dando la opción de añadir o quitar a los usuarios
+	 * 
+	 * @param  integer $idPerfil
+	 * @return void
+	 */
 
 	public function usuariosPerfil($idPerfil)
 	{
@@ -265,14 +395,32 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view('C_Perfiles/V_UsuariosPerfil', Array('idPerfil' => $idPerfil, 'nombre' => $nombre));
 	}
+	
+	/**
+	 * quitarUsuarioPerfil
+	 *
+	 * Quita usuarios del perfil
+	 * 
+	 * @param  integer $idPerfil
+	 * @param  integer $idUsuario
+	 * @return void
+	 */
 
 	public function quitarUsuarioPerfil($idPerfil,$idUsuario)
 	{
 		$this -> M_GestionEVG -> borrarCompuesta('Perfiles_Usuarios',$idPerfil, $idUsuario, 'idPerfil', 'idUsuario');
-		//header("Location:".base_url()."C_GestionEVG/usuariosPerfil/".$idPerfil);
 
 		$this->headerLocation("C_GestionEVG/usuariosPerfil/".$idPerfil);
 	}
+	
+	/**
+	 * anadirUsuarioPerfil
+	 *
+	 * Añade usuario al perfil
+	 * 
+	 * @param  int $idPerfil
+	 * @return void
+	 */
 
 	public function anadirUsuarioPerfil($idPerfil)
 	{
@@ -283,14 +431,20 @@ class C_GestionEVG extends CI_Controller
 				$this -> M_GestionEVG -> insertar('Perfiles_Usuarios',array('idPerfil'=>$idPerfil,'idUsuario'=>$idUsuario));
 		}
 
-		//header("Location:".base_url()."C_GestionEVG/usuariosPerfil/".$idPerfil);
-
 		$this->headerLocation("C_GestionEVG/usuariosPerfil/".$idPerfil);
 	}
 
 
 
 		/*USUARIOS*/
+	
+	/**
+	 * verUsuarios
+	 * 
+	 * Muestra los usuarios existentes
+	 *
+	 * @return void
+	 */
 
 	public function verUsuarios()
 	{
@@ -303,11 +457,27 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view('C_Usuarios/V_Usuarios');
 	}
+	
+	/**
+	 * anadirUsuarioForm
+	 * 
+	 * Muestra el formulario para añadir a un usuario
+	 *
+	 * @return void
+	 */
 
 	public function anadirUsuarioForm()
 	{
 		$this -> load -> view("C_Usuarios/V_AnadirUsuario");
 	}
+	
+	/**
+	 * anadirUsuario
+	 * 
+	 * Añade un usuario a la base de datos
+	 *
+	 * @return void
+	 */
 
 	public function anadirUsuario()
 	{
@@ -320,24 +490,47 @@ class C_GestionEVG extends CI_Controller
 		if(isset($_POST['profesor']))
 			$this -> M_GestionEVG -> insertar('Perfiles_Usuarios', Array('idPerfil' => $idPerfil[0]['idPerfil'],'idUsuario' => $idUsuario));
 
-		//header("Location:".base_url()."C_GestionEVG/verUsuarios");
-
 		$this->headerLocation("C_GestionEVG/verUsuarios");
 	}
-
+	
+	/**
+	 * borrarUsuario
+	 * 
+	 * Elimina a un usuario de la base de datos
+	 *
+	 * @param  integer $idUsuario
+	 * @return void
+	 */
 	public function borrarUsuario($idUsuario)
 	{
 		$this -> M_GestionEVG -> borrar('Usuarios', $idUsuario, 'idUsuario');
-		//header("Location:".base_url()."C_GestionEVG/verUsuarios");
 
 		$this->headerLocation("C_GestionEVG/verUsuarios");
 	}
+	
+	/**
+	 * modificarUsuarioForm
+	 * 
+	 * Muestra un formulario para modificar los datos del usuario
+	 *
+	 * @param  integer $idUsuario
+	 * @return void
+	 */
 
 	public function modificarUsuarioForm($idUsuario)
 	{
 		$this -> datosUsuario = $this -> M_GestionEVG -> seleccionar('Usuarios','nombre, correo, bajaTemporal','idUsuario='.$idUsuario);
 		$this -> load -> view("C_Usuarios/V_ModificarUsuario", Array('idUsuario' => $idUsuario));
 	}
+	
+	/**
+	 * modificarUsuario
+	 * 
+	 * Actualiza los datos del usuario
+	 *
+	 * @param  integer $idUsuario
+	 * @return void
+	 */
 
 	public function modificarUsuario($idUsuario)
 	{
@@ -350,15 +543,29 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> modificar('Usuarios',$datos,$idUsuario,'idUsuario');
 
-		//header("Location:".base_url()."C_GestionEVG/verUsuarios");
-
 		$this->headerLocation("C_GestionEVG/verUsuarios");
 	}
+	
+	/**
+	 * importarUsuariosForm
+	 * 
+	 * Muestrea el formualario para importar a los usuarios
+	 *
+	 * @return void
+	 */
 
 	public function importarUsuariosForm()
 	{
 		$this -> load -> view('C_Usuarios/V_ImportarUsuarios');
 	}
+	
+	/**
+	 * importarUsuarios
+	 * 
+	 * Importa a los usuarios de un documento excel añadiendo los datos a la base de datos
+	 *
+	 * @return void
+	 */
 
 	public function importarUsuarios()
 	{
@@ -398,12 +605,18 @@ class C_GestionEVG extends CI_Controller
 			}
 		}
 
-		//header('Location:'.base_url().'C_GestionEVG/verUsuarios');
-
 		$this->headerLocation("C_GestionEVG/verUsuarios");
 	}
 
 		/*ETAPAS*/
+	
+	/**
+	 * verEtapas
+	 * 
+	 * Muestra las etapas existente
+	 *
+	 * @return void
+	 */
 
 	public function verEtapas()
 	{
@@ -413,7 +626,15 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view('C_Etapas/V_Etapas');
 	}
-
+	
+	/**
+	 * anadirEtapaForm
+	 * 
+	 * Muestra un formualario para añadir las etapas
+	 *
+	 * @return void
+	 */
+	
 	public function anadirEtapaForm()
 	{
 		$lista = $this -> M_GestionEVG -> seleccionar('Usuarios','idUsuario, correo');
@@ -423,6 +644,14 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view("C_Etapas/V_AnadirEtapa");
 	}
+	
+	/**
+	 * anadirEtapa
+	 * 
+	 * Añade la etapa a la base de datos
+	 *
+	 * @return void
+	 */
 
 	public function anadirEtapa()
 	{
@@ -433,18 +662,33 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> insertar('Etapas',$datos);
 
-		//header("Location:".base_url()."C_GestionEVG/verEtapas");
-
 		$this->headerLocation("C_GestionEVG/verEtapas");
 	}
+	
+	/**
+	 * borrarEtapa
+	 *
+	 * Borra la etapa de la base de datos
+	 * 
+	 * @param  integer $idEtapa
+	 * @return void
+	 */
 
 	public function borrarEtapa($idEtapa)
 	{
 		$this -> M_GestionEVG -> borrar('Etapas',$idEtapa,'idEtapa');
-		//header("Location:".base_url()."C_GestionEVG/verEtapas");
 
 		$this->headerLocation("C_GestionEVG/verEtapas");
 	}
+	
+	/**
+	 * modificarEtapaForm
+	 * 
+	 * Muestra un formulario para modificar los datos de una etapa
+	 *
+	 * @param  integer $idEtapa
+	 * @return void
+	 */
 
 	public function modificarEtapaForm($idEtapa)
 	{
@@ -457,6 +701,15 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view("C_Etapas/V_ModificarEtapa", Array('idEtapa' => $idEtapa ));
 	}
+	
+	/**
+	 * modificarEtapa
+	 *
+	 * Actualiza la etapa de la base de datos
+	 * 
+	 * @param  integer $idEtapa
+	 * @return void
+	 */
 
 	public function modificarEtapa($idEtapa)
 	{
@@ -468,10 +721,19 @@ class C_GestionEVG extends CI_Controller
 			$datos['idCoordinador'] = null;
 
 		$this -> M_GestionEVG -> modificar('Etapas',$datos,$idEtapa,'idEtapa');
-		//header("Location:".base_url()."C_GestionEVG/verEtapas");
 
 		$this->headerLocation("C_GestionEVG/verEtapas");
 	}
+	
+	/**
+	 * etapaPadre
+	 *
+	 * Muestra las etapas padres a la que pertenece,
+	 * ademas de permitir añadir o quitar de una etapa padre
+	 * 
+	 * @param  integer $idEtapa
+	 * @return void
+	 */
 
 	public function etapaPadre($idEtapa)
 	{
@@ -488,25 +750,51 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view('C_Etapas/V_EtapasPadre', Array('idEtapa' => $idEtapa, 'codEtapa' => $codEtapa));
 	}
+	
+	/**
+	 * quitarEtapaPadre
+	 * 
+	 * Quita una etapa padre
+	 *
+	 * @param  integer $idEtapa
+	 * @param  integer $idEtapaPadre
+	 * @return void
+	 */
 
 	public function quitarEtapaPadre($idEtapa, $idEtapaPadre)
 	{
 		$this -> M_GestionEVG -> borrarCompuesta('Subetapas',$idEtapa, $idEtapaPadre, 'idEtapa', 'idEtapaPadre');
-		//header("Location:".base_url()."C_GestionEVG/etapaPadre/".$idEtapa);
 
 		$this->headerLocation("C_GestionEVG/etapaPadre/".$idEtapa);
 	}
+	
+	/**
+	 * anadirEtapaPadre
+	 * 
+	 * Añade una etapa padre
+	 *
+	 * @param  integer $idEtapa
+	 * @param  integer $idEtapaPadre
+	 * @return void
+	 */
 
 	public function anadirEtapaPadre($idEtapa, $idEtapaPadre)
 	{
 		$this -> M_GestionEVG -> insertar('Subetapas',array('idEtapa' => $idEtapa,'idEtapaPadre' => $idEtapaPadre));
-		//header("Location:".base_url()."C_GestionEVG/etapaPadre/".$idEtapa);
 
 		$this->headerLocation("C_GestionEVG/etapaPadre/".$idEtapa);
 	}
 
 		/*CURSOS*/
 
+	
+	/**
+	 * verCursos
+	 * 
+	 * Muestra los cursos disponibles
+	 *
+	 * @return void
+	 */
 
 	public function verCursos()
 	{
@@ -516,11 +804,27 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view('C_Cursos/V_Cursos');
 	}
+	
+	/**
+	 * anadirCursoForm
+	 * 
+	 * Muestra un formulario para añadir un curso
+	 *
+	 * @return void
+	 */
 
 	public function anadirCursoForm()
 	{
 		$this -> load -> view("C_Cursos/V_AnadirCurso");
 	}
+	
+	/**
+	 * anadirCurso
+	 *
+	 * Añade un curso a la base de datos
+	 * 
+	 * @return void
+	 */
 
 	public function anadirCurso()
 	{
@@ -532,24 +836,47 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> insertar('Cursos',$datos);
 
-		//header("Location:".base_url()."C_GestionEVG/verCursos");
-
 		$this->headerLocation("C_GestionEVG/verCursos");
 	}
+	
+	/**
+	 * borrarCurso
+	 *
+	 * Borra un curso de la base de datos
+	 * 
+	 * @param  integer $idCurso
+	 * @return void
+	 */
 
 	public function borrarCurso($idCurso)
 	{
 		$this -> M_GestionEVG -> borrar('Cursos',$idCurso,'idCurso');
-		//header("Location:".base_url()."C_GestionEVG/verCursos");
 
 		$this->headerLocation("C_GestionEVG/verCursos");
 	}
-
+	
+	/**
+	 * modificarCursoForm
+	 * 
+	 * Muestra un formulario que permite editar los datos del curso
+	 *
+	 * @param  integer $idCurso
+	 * @return void
+	 */
 	public  function modificarCursoForm($idCurso)
 	{
 		$this -> datosCurso = $this -> M_GestionEVG -> seleccionar('Cursos','idCursoColegio, codCurso, nombre, idEtapa','idCurso='.$idCurso);
 		$this ->load -> view("C_Cursos/V_ModificarCurso", Array('idCurso' => $idCurso));
 	}
+	
+	/**
+	 * modificarCurso
+	 * 
+	 * Actualiza los datos del curso de la base de datos
+	 *
+	 * @param  integer $idCurso
+	 * @return void
+	 */
 
 	public function modificarCurso($idCurso)
 	{
@@ -559,10 +886,17 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> modificar('Cursos',$datos,$idCurso,'idCurso');
 
-		//header("Location:".base_url()."C_GestionEVG/verCursos");
-
 		$this->headerLocation("C_GestionEVG/verCursos");
 	}
+	
+	/**
+	 * asignarEtapaCursoForm
+	 * 
+	 * Formulario para asignar una etapa a un curso
+	 *
+	 * @param  integer $idCurso
+	 * @return void
+	 */
 
 	public function asignarEtapaCursoForm($idCurso)
 	{
@@ -577,6 +911,15 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view('C_Cursos/V_EtapasCurso', Array('idCurso' => $idCurso, 'codCurso' => $codCurso, 'idEtapa' => $idEtapa));
 	}
+	
+	/**
+	 * asignarEtapaCurso
+	 * 
+	 * Asigna la etapa al curso en la base de datos
+	 *
+	 * @param  integer $idCurso
+	 * @return void
+	 */
 
 	public function asignarEtapaCurso($idCurso)
 	{
@@ -587,15 +930,29 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> modificar('Cursos',$datos,$idCurso,'idCurso');
 
-		//header("Location:".base_url()."C_GestionEVG/verCursos");
-
 		$this->headerLocation("C_GestionEVG/verCursos");
 	}
+	
+	/**
+	 * importarCursosForm
+	 * 
+	 * Muestra un formulario para importar los cursos
+	 *
+	 * @return void
+	 */
 
 	public function importarCursosForm()
 	{
 		$this -> load -> view('C_Cursos/V_ImportarCursos');
 	}
+	
+	/**
+	 * importarCursos
+	 * 
+	 * Importa un curso desde un documento excel añadiendo los datos a la base de datos
+	 *
+	 * @return void
+	 */
 
 	public function importarCursos()
 	{
@@ -626,13 +983,19 @@ class C_GestionEVG extends CI_Controller
 		foreach($datos as $valor)
 			$this -> M_GestionEVG -> insertar('Cursos', Array('nombre' => $valor['nombre'], 'codCurso' => $valor['codCurso']));
 
-		//header('Location:'.base_url().'C_GestionEVG/verCursos');
-
 		$this->headerLocation("C_GestionEVG/verCursos");
 
 	}
 
 		/*DEPARTAMENTOS*/
+	
+	/**
+	 * verDepartamentos
+	 * 
+	 * Muestra los departamento existentes
+	 *
+	 * @return void
+	 */
 
 	public function verDepartamentos()
 	{
@@ -642,48 +1005,94 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view('C_Departamentos/V_Departamentos');
 	}
+	
+	/**
+	 * anadirDepartamentoForm
+	 * 
+	 * Muestra un formulario para añadir un departamento
+	 *
+	 * @return void
+	 */
 
 	public function anadirDepartamentoForm()
 	{
 		$this -> load -> view("C_Departamentos/V_AnadirDepartamento");
 	}
+	
+	/**
+	 * anadirDepartamento
+	 * 
+	 * Añade un departamento a la base de datos
+	 *
+	 * @return void
+	 */
 
-	public function anadirDepartamento(){
+	public function anadirDepartamento()
+	{
 		$datos["nombre"] = $_POST["nombre"];
 
 		$this -> M_GestionEVG -> insertar('FP_Departamentos',$datos);
 
-		//header("Location:".base_url()."C_GestionEVG/verDepartamentos");
-
 		$this->headerLocation("C_GestionEVG/verDepartamentos");
 	}
+	
+	/**
+	 * borrarDepartamento
+	 *
+	 * Eliminar un departamento a la base de datos
+	 * 
+	 * @param  integer $idDepartamento
+	 * @return void
+	 */
 
 	public function borrarDepartamento($idDepartamento)
 	{
 		$this -> M_GestionEVG -> borrar('FP_Departamentos',$idDepartamento,'idDepartamento');
-		//header("Location:".base_url()."C_GestionEVG/verDepartamentos");
 
 		$this->headerLocation("C_GestionEVG/verDepartamentos");
 	}
+	
+	/**
+	 * modificarDepartamentoForm
+	 * 
+	 * Muestra un formulario con los datos de un departamento
+	 *
+	 * @param  integer $idDepartamento
+	 * @return void
+	 */
 
 	public  function modificarDepartamentoForm($idDepartamento)
 	{
 		$this -> datosDepartamento = $this -> M_GestionEVG -> seleccionar('FP_Departamentos','nombre','idDepartamento='.$idDepartamento);
 		$this -> load -> view("C_Departamentos/V_ModificarDepartamento", Array('idDepartamento' => $idDepartamento));
 	}
-
+	
+	/**
+	 * modificarDepartamento
+	 * 
+	 * Actualiza los datos de un departameto en la base de datos
+	 *
+	 * @param  integer $idDepartamento
+	 * @return void
+	 */
 	public function modificarDepartamento($idDepartamento)
 	{
 		$datos["nombre"] = $_POST["nombre"];
 
 		$this -> M_GestionEVG -> modificar('FP_Departamentos',$datos,$idDepartamento,'idDepartamento');
 
-		//header("Location:".base_url()."C_GestionEVG/verDepartamentos");
-
 		$this->headerLocation("C_GestionEVG/verDepartamentos");
 	}
 
 		/*FAMILIAS PROFESIONALES*/
+	
+	/**
+	 * verFamilias
+	 * 
+	 * Muestra las familias profesionales existentes
+	 *
+	 * @return void
+	 */
 
 	public function verFamilias()
 	{
@@ -693,6 +1102,14 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view('C_Familias/V_Familias');
 	}
+	
+	/**
+	 * anadirFamiliaForm
+	 * 
+	 * Muestra un formulario para añadir familia profesionales
+	 *
+	 * @return void
+	 */
 
 	public function anadirFamiliaForm()
 	{
@@ -703,6 +1120,14 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view("C_Familias/V_AnadirFamilia");
 	}
+	
+	/**
+	 * anadirFamilia
+	 *
+	 * Añade una familia profesional a la base de datos
+	 * 
+	 * @return void
+	 */
 
 	public function anadirFamilia()
 	{
@@ -712,18 +1137,33 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> insertar('FP_FamiliasProfesionales',$datos);
 
-		//header("Location:".base_url()."C_GestionEVG/verFamilias");
-
 		$this->headerLocation("C_GestionEVG/verFamilias");
 	}
+	
+	/**
+	 * borrarFamilia
+	 * 
+	 * Borra una familia profesional de la base de datos
+	 *
+	 * @param  integer $idFamilia
+	 * @return void
+	 */
 
 	public function borrarFamilia($idFamilia)
 	{
 		$this -> M_GestionEVG -> borrar('FP_FamiliasProfesionales',$idFamilia,'idFamilia');
-		//header("Location:".base_url()."C_GestionEVG/verFamilias");
 
 		$this->headerLocation("C_GestionEVG/verFamilias");
 	}
+	
+	/**
+	 * modificarFamiliaForm
+	 * 
+	 * Muestra un fomulario con los datos de una familia profesional para modificar
+	 *
+	 * @param  mixed $idFamilia
+	 * @return void
+	 */
 
 	public function modificarFamiliaForm($idFamilia)
 	{
@@ -736,6 +1176,15 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view("C_Familias/V_ModificarFamilia", Array('idFamilia' => $idFamilia, 'idDepartamento' => $this->datosFamilia[0]['idDepartamento']));
 	}
+	
+	/**
+	 * modificarFamilia
+	 * 
+	 * Actualiza los datos de una familia profesional
+	 *
+	 * @param  integer $idFamilia
+	 * @return void
+	 */
 
 	public function modificarFamilia($idFamilia)
 	{
@@ -747,12 +1196,18 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> modificar('FP_FamiliasProfesionales',$datos,$idFamilia,'idFamilia');
 
-		//header("Location:".base_url()."C_GestionEVG/verFamilias");
-
 		$this->headerLocation("C_GestionEVG/verFamilias");
 	}
 
 		/*CICLOS*/
+	
+	/**
+	 * verCiclos
+	 * 
+	 * Muestra los ciclos existentes
+	 *
+	 * @return void
+	 */
 
 	public function verCiclos()
 	{
@@ -763,6 +1218,14 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view('C_Ciclos/V_Ciclos');
 	}
+	
+	/**
+	 * anadirCicloForm
+	 * 
+	 * Muestra el formulario para añadir los ciclos
+	 *
+	 * @return void
+	 */
 
 	public function anadirCicloForm()
 	{
@@ -774,6 +1237,14 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view("C_Ciclos/V_AnadirCiclo");
 	}
+	
+	/**
+	 * anadirCiclo
+	 * 
+	 * Añade los ciclos a la base de datos
+	 *
+	 * @return void
+	 */
 
 	public function anadirCiclo()
 	{
@@ -784,18 +1255,33 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> insertar('FP_Ciclos',$datos);
 
-		//header("Location:".base_url()."C_GestionEVG/verCiclos");
-
 		$this->headerLocation("C_GestionEVG/verCiclos");
 	}
+	
+	/**
+	 * borrarCiclo
+	 *
+	 * Elimina el ciclo de la base de datos
+	 * 
+	 * @param  integer $idCiclo
+	 * @return void
+	 */
 
 	public function borrarCiclo($idCiclo)
 	{
 		$this -> M_GestionEVG -> borrar('FP_Ciclos',$idCiclo,'idCiclo');
-		//header("Location:".base_url()."C_GestionEVG/verCiclos");
 
 		$this->headerLocation("C_GestionEVG/verCiclos");
 	}
+	
+	/**
+	 * modificarCicloForm
+	 * 
+	 * Muestra el formulario para modificar los datos de un ciclo
+	 *
+	 * @param  integer $idCiclo
+	 * @return void
+	 */
 
 	public function modificarCicloForm($idCiclo)
 	{
@@ -808,6 +1294,15 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view("C_Ciclos/V_ModificarCiclo", Array('idCiclo' => $idCiclo, 'idFamilia' => $this -> datosCiclo[0]['idFamilia']));
 	}
+	
+	/**
+	 * modificarCiclo
+	 *
+	 * Actualiza los datos de un ciclo de la base de datos
+	 * 
+	 * @param  integer $idCiclo
+	 * @return void
+	 */
 
 	public function modificarCiclo($idCiclo)
 	{
@@ -820,10 +1315,18 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> modificar('FP_Ciclos',$datos,$idCiclo,'idCiclo');
 
-		//header("Location:".base_url()."C_GestionEVG/verCiclos");
-
 		$this->headerLocation("C_GestionEVG/verCiclos");
 	}
+	
+	/**
+	 * cursosCiclo
+	 * 
+	 * Muestra los cursos que pertenece los ciclos,
+	 * permitiendo quitar y añadir cursos
+	 *
+	 * @param  integer $idCiclo
+	 * @return void
+	 */
 
 	public function cursosCiclo($idCiclo)
 	{
@@ -840,24 +1343,50 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view('C_Ciclos/V_CursosCiclos', Array('idCiclo' => $idCiclo, 'codCiclo' => $codCiclo));
 	}
+	
+	/**
+	 * quitarCursoCiclo
+	 * 
+	 * Quita el curso de un ciclo
+	 *
+	 * @param  integer $idCiclo
+	 * @param  integer $idCurso
+	 * @return void
+	 */
 
 	public function quitarCursoCiclo($idCiclo, $idCurso)
 	{
 		$this -> M_GestionEVG -> borrarCompuesta('FP_Ciclos_Cursos',$idCurso, $idCiclo, 'idCurso', 'idCiclo');
-		//header("Location:".base_url()."C_GestionEVG/cursosCiclo/".$idCiclo);
 
 		$this->headerLocation("C_GestionEVG/cursosCiclo/".$idCiclo);
 	}
+	
+	/**
+	 * anadirCursoCiclo
+	 *
+	 * Añade el curso para un ciclo
+	 * 
+	 * @param  integer $idCiclo
+	 * @param  integer $idCurso
+	 * @return void
+	 */
 
 	public function anadirCursoCiclo($idCiclo, $idCurso)
 	{
 		$this -> M_GestionEVG -> insertar('FP_Ciclos_Cursos',array('idCurso' => $idCurso,'idCiclo' => $idCiclo));
-		//header("Location:".base_url()."C_GestionEVG/cursosCiclo/".$idCiclo);
 
 		$this->headerLocation("C_GestionEVG/cursosCiclo/".$idCiclo);
 	}
 
 	/*SECCIONES*/
+	
+	/**
+	 * verSecciones
+	 *
+	 * Muestra las secciones existentes
+	 * 
+	 * @return void
+	 */
 
 	public function verSecciones()
 	{
@@ -868,6 +1397,14 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load-> view('C_Secciones/V_Secciones');
 	}
+	
+	/**
+	 * anadirSeccionForm
+	 * 
+	 * Muestra el formulario para añadir las secciones
+	 *
+	 * @return void
+	 */
 
 	public function anadirSeccionForm()
 	{
@@ -878,6 +1415,14 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view("C_Secciones/V_AnadirSeccion");
 	}
+	
+	/**
+	 * anadirSeccion
+	 * 
+	 * Añade la seccion a la base de datos
+	 *
+	 * @return void
+	 */
 
 	public function anadirSeccion()
 	{
@@ -890,10 +1435,17 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> insertar('Secciones',$datos);
 
-		//header("Location:".base_url()."C_GestionEVG/verSecciones");
-
 		$this->headerLocation("C_GestionEVG/verSecciones");
 	}
+	
+	/**
+	 * borrarSeccion
+	 *
+	 * Elimina una sección de la base de datos
+	 * 
+	 * @param  integer $idSeccion
+	 * @return void
+	 */
 
 	public function borrarSeccion($idSeccion)
 	{
@@ -905,13 +1457,22 @@ class C_GestionEVG extends CI_Controller
 					location.href="'.base_url().'C_GestionEVG/verSecciones";
 				</script>
 			';
-		else{
+		else
+		{
 			$this -> M_GestionEVG -> borrar('Secciones',$idSeccion,'idSeccion');
-			//header("Location:".base_url()."C_GestionEVG/verSecciones");
 
 			$this->headerLocation("C_GestionEVG/verSecciones");
 		}
 	}
+	
+	/**
+	 * modificarSeccionForm
+	 *
+	 * Muestra el formulario para modificar los datos de una sección
+	 * 
+	 * @param  integer $idSeccion
+	 * @return void
+	 */
 
 	public function modificarSeccionForm($idSeccion){
 		$this -> datosSeccion = $this -> M_GestionEVG -> seleccionar('Secciones','idSeccion, idSeccionColegio, codSeccion, nombre, idCurso','idSeccion='.$idSeccion);
@@ -923,6 +1484,15 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view("C_Secciones/V_ModificarSeccion", Array('idSeccion' => $idSeccion, 'idCurso' => $this -> datosSeccion[0]['idCurso']));
 	}
+	
+	/**
+	 * modificarSeccion
+	 *
+	 * Actualiza los datos de una sección en la base de datos
+	 * 
+	 * @param  integer $idSeccion
+	 * @return void
+	 */
 
 	public function modificarSeccion($idSeccion)
 	{
@@ -939,10 +1509,17 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> modificar('Secciones',$datos,$idSeccion,'idSeccion');
 
-		//header("Location:".base_url()."C_GestionEVG/verSecciones");
-
 		$this->headerLocation("C_GestionEVG/verSecciones");
 	}
+	
+	/**
+	 * asignarTutorForm
+	 * 
+	 * Muestra el formulario para seleccionar al tutor de la sección
+	 *
+	 * @param  integer $idSeccion
+	 * @return void
+	 */
 
 	public function asignarTutorForm($idSeccion)
 	{
@@ -968,6 +1545,16 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view('C_Secciones/V_AsignarTutor', Array('idSeccion' => $idSeccion, 'codSeccion' => $codSeccion, 'idTutorActual' => $idTutorActual, 'nombreTutor' => $nombreTutor));
 	}
+	
+	/**
+	 * anadirQuitarTutor
+	 * 
+	 * Permite añadir y quitar el tutor de la sección
+	 *
+	 * @param  integer $idSeccion
+	 * @param  integer $idTutorActual
+	 * @return void
+	 */
 
 	public function anadirQuitarTutor($idSeccion, $idTutorActual)
 	{
@@ -985,15 +1572,29 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> borrarCompuesta('Perfiles_Usuarios', $idTutorActual, $idPerfilTutor, 'idUsuario', 'idPerfil');
 
-		//header("Location:".base_url()."C_GestionEVG/verSecciones");
-
 		$this->headerLocation("C_GestionEVG/verSecciones");
 	}
+	
+	/**
+	 * importarSeccionesForm
+	 *
+	 * Muestra el formulario para importar secciones
+	 * 
+	 * @return void
+	 */
 
 	public function importarSeccionesForm()
 	{
 		$this -> load -> view('C_Secciones/V_ImportarSecciones');
 	}
+	
+	/**
+	 * importarSecciones
+	 * 
+	 * Importa secciones desde un documento excel añadiendo los datos a la base de datos
+	 *
+	 * @return void
+	 */
 
 	public function importarSecciones()
 	{
@@ -1026,14 +1627,20 @@ class C_GestionEVG extends CI_Controller
 		foreach($datos as $valor)
 			$this -> M_GestionEVG -> insertar('Secciones', $valor);
 
-		//header('Location:'.base_url().'C_GestionEVG/verSecciones');
-
 		$this->headerLocation("C_GestionEVG/verSecciones");
 
 	}
 
 	/*ALUMNOS*/
-
+	
+	/**
+	 * verAlumnos
+	 * 
+	 * Muestra las etapas exitentes
+	 *
+	 * @return void
+	 */
+	
 	public function verAlumnos()
 	{
 		$lista = $this -> M_GestionEVG -> seleccionar('Etapas','idEtapa, codEtapa');
@@ -1042,6 +1649,15 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view('C_Alumnos/V_Alumnos');
 	}
+	
+	/**
+	 * verSeccionesEtapa
+	 *
+	 * Muestra las secciones existetes, segun la etapa
+	 * 
+	 * @param  integer $idEtapa
+	 * @return void
+	 */
 
 	public function verSeccionesEtapa($idEtapa)
 	{
@@ -1054,6 +1670,16 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view('C_Alumnos/V_AlumnosSecciones',Array('codEtapa' => $codEtapa, 'idEtapa' => $idEtapa));
 	}
+	
+	/**
+	 * verAlumnosSeccion
+	 *
+	 * Muestra los alumnos existentes, segun la sección
+	 * 
+	 * @param  integer $idSeccion
+	 * @param  integer $idEtapa
+	 * @return void
+	 */
 
 	public function verAlumnosSeccion($idSeccion,$idEtapa)
 	{
@@ -1066,6 +1692,14 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view('C_Alumnos/V_AlumnosClase',Array('codSeccion' => $codSeccion, 'idEtapa' => $idEtapa));
 	}
+	
+	/**
+	 * anadirAlumnoForm
+	 *
+	 * Muestra el formulario para añadir un alumno
+	 * 
+	 * @return void
+	 */
 
 	public function anadirAlumnoForm()
 	{
@@ -1075,6 +1709,14 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view("C_Alumnos/V_AnadirAlumno");
 	}
+	
+	/**
+	 * anadirAlumno
+	 * 
+	 * Añade el alumno a la base de datos
+	 *
+	 * @return void
+	 */
 
 	public function anadirAlumno()
 	{
@@ -1088,18 +1730,34 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> insertar('Alumnos',$datos);
 
-		//header("Location:".base_url()."C_GestionEVG/verAlumnos");
-
 		$this->headerLocation("C_GestionEVG/verAlumnos");
 	}
+	
+	/**
+	 * borrarAlumno
+	 *
+	 * Elimina el alumno de la base de datos
+	 * 
+	 * @param  integer $idAlumno
+	 * @return void
+	 */
 
 	public function borrarAlumno($idAlumno)
 	{
 		$this -> M_GestionEVG -> borrar('Alumnos',$idAlumno,'idAlumno');
-		//header("Location:".base_url()."C_GestionEVG/verAlumnos");
 
 		$this->headerLocation("C_GestionEVG/verAlumnos");
 	}
+	
+	/**
+	 * modificarAlumnoForm
+	 *
+	 * Muestra un formulario para modificar los datos de un alumno
+	 * 
+	 * @param  integer $idAlumno
+	 * @param  integer $idEtapa
+	 * @return void
+	 */
 
 	public function modificarAlumnoForm($idAlumno, $idEtapa)
 	{
@@ -1111,6 +1769,17 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> load -> view("C_Alumnos/V_ModificarAlumno", Array('idAlumno' => $idAlumno, 'idEtapa' => $idEtapa));
 	}
+	
+	/**
+	 * modificarAlumno
+	 * 
+	 * Actualiza los datos del alumno en la base de datos
+	 *
+	 * @param  integer $idAlumno
+	 * @param  integer $idSeccion
+	 * @param  integer $idEtapa
+	 * @return void
+	 */
 
 	public function modificarAlumno($idAlumno, $idSeccion, $idEtapa)
 	{
@@ -1126,16 +1795,30 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_GestionEVG -> modificar('Alumnos',$datos,$idAlumno,'idAlumno');
 
-		//header('Location:'.base_url().'C_GestionEVG/verAlumnosSeccion/'.$idSeccion.'/'.$idEtapa);
-
 		$this->headerLocation('C_GestionEVG/verAlumnosSeccion/'.$idSeccion.'/'.$idEtapa);
 	}
+	
+	/**
+	 * importarAlumnosForm
+	 * 
+	 * Muestra el formulario para importar alumnos
+	 *
+	 * @return void
+	 */
 
 	public function importarAlumnosForm()
 	{
 		$this -> secciones = $this -> M_GestionEVG -> seleccionar('Secciones', '*', '1=1');
 		$this -> load -> view('C_Alumnos/V_ImportarAlumnos');
 	}
+	
+	/**
+	 * importarAlumnos
+	 * 
+	 * Importa alumnos desde un documento excel añadiendo los datos a la base de datos
+	 *
+	 * @return void
+	 */
 
 	public function importarAlumnos()
 	{
@@ -1188,12 +1871,18 @@ class C_GestionEVG extends CI_Controller
 		foreach($datos as $valor)
 			$this -> M_GestionEVG -> insertar('Alumnos', $valor);
 
-		//header('Location:'.base_url().'C_GestionEVG/verAlumnos');
-
 		$this->headerLocation('C_GestionEVG/verAlumnos');
 	}
 
 	/*LISTADO TUTORES*/
+	
+	/**
+	 * listadoTutores
+	 * 
+	 * Genera un pdf, que contiene el listado de los tutores con su sección correspondiente
+	 *
+	 * @return void
+	 */
 
 	public function listadoTutores()
 	{
@@ -1239,17 +1928,31 @@ class C_GestionEVG extends CI_Controller
 	}
 
 	/* NUEVO CURSO */
-
+	
+	/**
+	 * nuevoCurso
+	 * 
+	 * Elimina a todos los alumnos de la base de datos
+	 *
+	 * @return void
+	 */
 	public function nuevoCurso()
 	{
 		$this -> M_GestionEVG -> borrar('Alumnos', 1, 1);
-		//header('Location:'.base_url().'C_GestionEVG/importarAlumnosForm');
 		
 		$this->headerLocation('C_GestionEVG/importarAlumnosForm'); 
 	}
 
 	/*Redirecionar localizaciones*/
-
+	
+	/**
+	 * headerLocation
+	 *
+	 * Metodo para redireccionar
+	 * 
+	 * @param  string $location
+	 * @return void
+	 */
 	public function headerLocation($location){
 		header('Location:'.base_url().$location);
 	}
