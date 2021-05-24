@@ -117,6 +117,14 @@ h3 > span
 	height: auto;
 }
 
+.card-img-top
+{
+	width: 9.5rem;
+	height: auto;
+	border-radius: 100%;
+	margin: 1rem auto;
+}
+
 /* ---------------------------------------------------
     GRID DE APLICACIONES
 ----------------------------------------------------- */
@@ -312,21 +320,21 @@ header h3
 {
 	display: flex;
 	flex-direction: column;
-	margin-top: 2rem;
-	min-height: 30vh;
+	margin-top: 1.5rem;
+	min-height: 50vh;
 }
 
-.perfiles-app-div
+.operaciones
 {
 	margin: .5rem 0;
 }
 
-.perfiles-app-div span
+.operaciones span
 {
 	font-size: 1.15rem;
 }
 
-.perfiles-app-div button
+.operaciones button
 {
 	margin-left: .45rem;
 }

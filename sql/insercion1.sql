@@ -10,8 +10,8 @@ WHERE
 INSERT INTO
     Aplicaciones (nombre, descripcion, url, icono)
 VALUES 
-    ('AppProfesores', 'Aplicación profesores', 'https://google.com', 'profesor.png'),
-    ('GestionDatosFCT', 'Gestión de datos de FCT', 'https://w3schools.com', 'fct.jpg')
+    ('AppProfesores', 'Aplicación Profesores', 'https://google.com', 'profesor.png'),
+    ('GestionDatosFCT', 'Gestión de Datos de FCT', 'https://w3schools.com', 'fct.jpg')
 ;
 
 DELETE FROM
@@ -45,16 +45,16 @@ DELETE FROM
 WHERE
     codEtapa='BACH'
     OR codEtapa='CFGS'
-    OR nombre='bachillerato'
-    OR nombre='ciclos'
+    OR nombre='Bachillerato'
+    OR nombre='Ciclos'
 ;
 
 INSERT INTO
     Etapas (codEtapa, nombre)
 VALUES 
-    ('BACH1', 'bachillerato1'),
-    ('BACH2', 'bachillerato2'),
-    ('BACH', 'bachillerato')
+    ('BACH1', 'Bachillerato1'),
+    ('BACH2', 'Bachillerato2'),
+    ('BACH', 'Bachillerato')
 ;
 
 DELETE FROM
@@ -67,21 +67,21 @@ WHERE
 INSERT INTO
     FP_Departamentos (idDepartamento, nombre)
 VALUES 
-    (1, 'informática'),
-    (2, 'administración')
+    (1, 'Informática'),
+    (2, 'Administración')
 ;
 
 DELETE FROM
     FP_FamiliasProfesionales
 WHERE
     idFamilia=1
-    OR nombre='tecnología'
+    OR nombre='Tecnología'
 ;
 
 INSERT INTO
     FP_FamiliasProfesionales (idFamilia, nombre, idDepartamento)
 VALUES
-    (1, 'tecnología', 1)
+    (1, 'Tecnología', 1)
 ;
 
 DELETE FROM
@@ -94,6 +94,6 @@ WHERE
 INSERT INTO
     FP_Ciclos (codCiclo, nombre, idFamilia)
 VALUES
-    ('DAW', 'desarrollo de aplicaciones web', 1),
-    ('MI', 'mecatrónica industrial', 1)
+    ('DAW', 'Desarrollo de Aplicaciones Web', 1),
+    ('MI', 'Mecatrónica Industrial', 1)
 ;

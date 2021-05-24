@@ -4,12 +4,12 @@ DELETE FROM Etapas;
 INSERT INTO
     Etapas (idEtapa, codEtapa, nombre)
 VALUES
-    (1, 'BACH', 'bachillerato'),
+    (1, 'BACH', 'Bachillerato'),
     (2, 'CFGS', 'Ciclos Superiores'),
     (3, 'CFGM', 'Ciclos Medios'),
-    (4, 'ESO', 'educación secundaria obligatoria'),
-    (5, 'EP', 'educación primaria'),
-    (6, 'EI', 'educación infatil')
+    (4, 'ESO', 'Educación Secundaria Obligatoria'),
+    (5, 'EP', 'Educación Primaria'),
+    (6, 'EI', 'Educación Infatil')
 ;
 
 -- Borramos los cursos existentes e introducimos los que usaremos
@@ -21,8 +21,8 @@ VALUES
     (1, 'BC1', '1º de Bachillerato', 1),
     (2, 'DAW1', '1º F.P.E.G.S.(Desarrollo de Aplicaciones Web)', 2),
     (3, 'DAW2', '2º F.P.E.G.S.(Desarrollo de Aplicaciones Web)(LOE)', 2),
-    (4, 'EMV1', '1º F.P.E.G.M.(Electromecánica de vehículos automóviles)(LOE)', 3),
-    (5, 'EMV2', '2º F.P.E.G.M.(Electromecánica de vehículos automóviles)(LOE)', 3),
+    (4, 'EMV1', '1º F.P.E.G.M.(Electromecánica de Vehículos Automóviles)(LOE)', 3),
+    (5, 'EMV2', '2º F.P.E.G.M.(Electromecánica de Vehículos Automóviles)(LOE)', 3),
     (6, 'ES1', '1º E.S.O.', 4),
     (7, 'ES2', '2º E.S.O.', 4),
     (8, 'ES3', '3º E.S.O.', 4),
@@ -33,8 +33,8 @@ VALUES
     (13, 'ME2', '2º F.P.E.G.M.(Mantenimiento Electromecánico)(LOE)', 3),
     (14, 'MI1', '1º F.P.E.G.S.(Mecatrónica Industrial)(LOE)', 2),
     (15, 'MI2', '2º F.P.E.G.S.(Mecatrónica Industrial)(LOE)', 2),
-    (16, 'SMR1', '1º F.P.E.G.M. (Sistemas microinformáticos y redes)(LOE)', 3),
-    (17, 'SMR2', '2º F.P.E.G.M. (Sistemas microinformáticos y redes)(LOE)', 3),
+    (16, 'SMR1', '1º F.P.E.G.M. (Sistemas Microinformáticos y Redes)(LOE)', 3),
+    (17, 'SMR2', '2º F.P.E.G.M. (Sistemas Microinformáticos y Redes)(LOE)', 3),
     (18, '1º EI', 'Tres Años', 6),
     (19, '1º EP', '1º de Educación Primaria', 5),
     (20, '2º EI', 'Cuatro Años', 6),

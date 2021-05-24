@@ -45,5 +45,4 @@ class C_Instalacion extends CI_Controller
 	}
 
 }
-
 ?>
