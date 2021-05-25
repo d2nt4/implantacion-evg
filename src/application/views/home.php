@@ -1,23 +1,18 @@
+<?php include_once('application/views/Plantilla/header.php'); ?>
 <html>
 	<head>
 		<title>GestiónEVG - Inicio de sesión</title>
-
-		<?php include 'application/views/Plantilla/header.php'?>
-
-		<style>
-			body
-			{
-				height: 100%;
-				width: 100%;
-				display: table;
-			}
-		</style>
+		<style>body { height: 100%; width: 100%; display: table; }</style>
 	</head>
 	<body>
 		<div id="main" class="container">
 			<div class="d-table mx-auto mb-2">
-				<div id="logo" class="d-table-cell align-middle"><img src="<?=base_url()?>uploads/iconos/evg.png" class="img-fluid" alt="EVG Logo"></div>
-				<div class="p-2 d-table-cell align-middle"><h2 class="font-weight-bolder">Gestión EVG</h2></div>
+				<div id="logo" class="d-table-cell align-middle">
+					<img src="<?=base_url()?>uploads/iconos/evg.png" class="img-fluid" alt="EVG Logo">
+				</div>
+				<div class="p-2 d-table-cell align-middle">
+					<h2 class="font-weight-bolder">Gestión EVG</h2>
+				</div>
 			</div>
 			<div id="inicioSesionGoogle">
 				<?php

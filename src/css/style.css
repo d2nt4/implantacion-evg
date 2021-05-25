@@ -308,7 +308,6 @@ header h3
 {
 	display: flex;
 	justify-content: center;
-	align-items: center;
 }
 
 .gestiones > div:nth-child(2)
@@ -321,7 +320,7 @@ header h3
 	display: flex;
 	flex-direction: column;
 	margin-top: 1.5rem;
-	min-height: 50vh;
+	min-height: 30vh;
 }
 
 .operaciones

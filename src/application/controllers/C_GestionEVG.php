@@ -1684,7 +1684,7 @@ class C_GestionEVG extends CI_Controller
 		foreach ($lista as $valor)
 			$this -> listaSecciones[$valor['idSeccion']] = $valor['codSeccion'];
 
-		$this -> load -> view('C_Alumnos/V_AlumnosSecciones',Array('codEtapa' => $codEtapa, 'idEtapa' => $idEtapa));
+		$this -> load -> view('C_Alumnos/V_AlumnosSecciones', Array('codEtapa' => $codEtapa, 'idEtapa' => $idEtapa));
 	}
 	
 	/**
@@ -1706,7 +1706,7 @@ class C_GestionEVG extends CI_Controller
 		foreach ($lista as $valor)
 			$this -> listaAlumnos[$valor['idAlumno']] = $valor['nombre'];
 
-		$this -> load -> view('C_Alumnos/V_AlumnosClase',Array('codSeccion' => $codSeccion, 'idEtapa' => $idEtapa));
+		$this -> load -> view('C_Alumnos/V_AlumnosClase', Array('codSeccion' => $codSeccion, 'idEtapa' => $idEtapa));
 	}
 	
 	/**

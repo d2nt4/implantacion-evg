@@ -1,8 +1,4 @@
-<?php
-	include('application/views/Plantilla/header.php');
-?>
-
-
+<?php include_once('application/views/Plantilla/header.php'); ?>
 <html>
 	<head>
 		<title>Ciclos</title>
@@ -16,7 +12,7 @@
 						<h3>Gestión EVG - Ciclos</h3>
 					</div>
 					<div class="col-6">
-						<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/'\" id=\"icon-grid\" class=\"btn mr-2\"><i class=\"fas fa-th\"></i></button>"; ?>
+						<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/'\" id=\"icon-grid\" class=\"btn mr-2\" data-toggle=\"popover\" data-content=\"Grid Aplicaciones\"><i class=\"fas fa-th\"></i></button>"; ?>
 						<?php
 							$picture = $this -> session -> userdata('profile_pic');
 							echo '<img id="profile_picture" src="'.$picture.'" alt="Google Profile Picture" class="img-fluid rounded-circle"/>';
@@ -26,13 +22,13 @@
 				</header>
 			</div>
 			<div class="row">
-				<?php include('application/views/Plantilla/asideGestor.php') ?>
+				<?php include_once('application/views/Plantilla/asideGestor.php') ?>
 				<div class="general">
 					<button type="button" id="sidebarCollapse" class="btn btn-sidebar">
-						<i class="fas fa-bars"></i>
-						<i class="fas fa-times"></i>
+						<i class="fas fa-bars" data-toggle="popover" data-content="Mostrar menú"></i>
+						<i class="fas fa-times" data-toggle="popover" data-content="Ocultar menú"></i>
 					</button>
-					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/anadirCicloForm'\" class=\"btn btn-success\"><i class=\"fas fa-plus-square\"></i></button>"; ?>
+					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/anadirCicloForm'\" class=\"btn btn-success\" data-toggle=\"popover\" data-content=\"Añadir Ciclo\"><i class=\"fas fa-plus-square\"></i></button>"; ?>
 					<div class="gestion-apps">
 						<?php
 							foreach($this->listaCiclos as $indice => $valor)
@@ -40,8 +36,8 @@
 									"
 										<div class=\"fila\">
 											<h3>".$valor."</h3>
-											<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/cursosCiclo/".$indice."'\" class=\"btn btn-primary\"><i class=\"fas fa-cog\"></i></button>
-											<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/modificarCicloForm/".$indice."'\" class=\"btn btn-warning\"><i class=\"fas fa-edit\"></i></button>
+											<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/cursosCiclo/".$indice."'\" class=\"btn btn-primary\" data-toggle=\"popover\" data-content=\"Cursos Ciclo\"><i class=\"fas fa-cog\"></i></button>
+											<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/modificarCicloForm/".$indice."'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Modificar Ciclo\"><i class=\"fas fa-edit\"></i></button>
 											<button onclick=\"confirmar('¿Seguro que quieres borrar el ciclo: <b>".$valor."</b>?', '".base_url()."C_GestionEVG/borrarCiclo/".$indice."', 'Eliminar Ciclo', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>													
 										</div>						
 									"

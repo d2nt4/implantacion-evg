@@ -1,6 +1,4 @@
-<?php
-	include('application/views/Plantilla/header.php');
-?>
+<?php include_once('application/views/Plantilla/header.php'); ?>
 <html>
 	<head>
 		<title>Alumnos</title>
@@ -14,7 +12,7 @@
 						<h3>Gestión EVG - Alumnos</h3>
 					</div>
 					<div class="col-6">
-						<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/'\" id=\"icon-grid\" class=\"btn mr-2\"><i class=\"fas fa-th\"></i></button>"; ?>
+						<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/'\" id=\"icon-grid\" class=\"btn mr-2\" data-toggle=\"popover\" data-content=\"Grid Aplicaciones\"><i class=\"fas fa-th\"></i></button>"; ?>
 						<?php
 							$picture = $this -> session -> userdata('profile_pic');
 							echo '<img id="profile_picture" src="'.$picture.'" alt="Google Profile Picture" class="img-fluid rounded-circle"/>';
@@ -24,14 +22,14 @@
 				</header>
 			</div>
 			<div class="row">
-				<?php include('application/views/Plantilla/asideGestor.php') ?>
+				<?php include_once('application/views/Plantilla/asideGestor.php') ?>
 				<div class="general">
 					<button type="button" id="sidebarCollapse" class="btn btn-sidebar">
-						<i class="fas fa-bars"></i>
-						<i class="fas fa-times"></i>
+						<i class="fas fa-bars" data-toggle="popover" data-content="Mostrar menú"></i>
+						<i class="fas fa-times" data-toggle="popover" data-content="Ocultar menú"></i>
 					</button>
-					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/anadirAlumnoForm'\" class=\"btn btn-success\"><i class=\"fas fa-plus-square\"></i></button>"; ?>
-					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/importarAlumnosForm'\" class=\"btn btn-warning\"><i class=\"fas fa-file-import\"></i></button>"; ?>
+					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/anadirAlumnoForm'\" class=\"btn btn-success\" data-toggle=\"popover\" data-content=\"Añadir Alumno\"><i class=\"fas fa-plus-square\"></i></button>"; ?>
+					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/importarAlumnosForm'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Importar Alumnos\"><i class=\"fas fa-file-import\"></i></button>"; ?>
 					<button  class="btn btn-secondary" data-toggle="modal" data-target="#info"><i class="fas fa-info-circle"></i></button>
 					<div class="gestion-apps">
 						<?php
@@ -40,7 +38,7 @@
 								"
 									<div class=\"fila\">
 										<h3>".$valor."</h3>
-										<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/verSeccionesEtapa/".$indice."'\" class=\"btn btn-info\"><i class=\"fas fa-eye\"></i></button>											
+										<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/verSeccionesEtapa/".$indice."'\" class=\"btn btn-info\" data-toggle=\"popover\" data-content=\"Ver Secciones Etapa\"><i class=\"fas fa-eye\"></i></button>											
 									</div>						
 								";
 						?>

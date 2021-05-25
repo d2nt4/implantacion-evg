@@ -1,6 +1,4 @@
-<?php
-	include('application/views/Plantilla/header.php');
-?>
+<?php include_once('application/views/Plantilla/header.php'); ?>
 <html>
 	<head>
 		<title>Modificar Aplicación</title>
@@ -14,7 +12,7 @@
 						<?php echo '<h3>Modificar Aplicación - '.$this->datosApp[0]['nombre'].'</h3>'; ?>
 					</div>
 					<div class="col-6">
-						<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/'\" id=\"icon-grid\" class=\"btn mr-2\"><i class=\"fas fa-th\"></i></button>"; ?>
+						<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/'\" id=\"icon-grid\" class=\"btn mr-2\" data-toggle=\"popover\" data-content=\"Grid Aplicaciones\"><i class=\"fas fa-th\"></i></button>"; ?>
 						<?php
 							$picture = $this -> session -> userdata('profile_pic');
 							echo '<img id="profile_picture" src="'.$picture.'" alt="Google Profile Picture" class="img-fluid rounded-circle"/>';
@@ -24,13 +22,13 @@
 				</header>
 			</div>
 			<div class="row">
-				<?php include('application/views/Plantilla/asideAdmin.php') ?>
+				<?php include_once('application/views/Plantilla/asideAdmin.php') ?>
 				<div class="general">
 					<button type="button" id="sidebarCollapse" class="btn btn-sidebar">
-						<i class="fas fa-bars"></i>
-						<i class="fas fa-times"></i>
+						<i class="fas fa-bars" data-toggle="popover" data-content="Mostrar menú"></i>
+						<i class="fas fa-times" data-toggle="popover" data-content="Ocultar menú"></i>
 					</button>
-					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/VerApps'\" class=\"btn btn-secondary\"><i class=\"fas fa-arrow-left\"></i></button>"; ?>
+					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/VerApps'\" class=\"btn btn-secondary\" data-toggle=\"popover\" data-content=\"Volver atrás\"><i class=\"fas fa-arrow-left\"></i></button>"; ?>
 					<div class="gestion-apps">
 						<?php
 							$nombre = array

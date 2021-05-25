@@ -188,3 +188,20 @@ function previsualizarImagen(input)
 		reader.readAsDataURL(input.files[0]);
 	}
 }
+
+/**
+ * @function function - Función para mostrar mensajes en los botones (Popover).
+ */
+$
+(
+	function ()
+	{
+		$('[data-toggle="popover"]').popover
+		(
+			{
+				placement: 'top',
+				trigger: 'hover'
+			}
+		)
+	}
+)

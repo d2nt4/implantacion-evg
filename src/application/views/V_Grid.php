@@ -1,7 +1,4 @@
-<?php
-	include('application/views/Plantilla/header.php');
-?>
-
+<?php include_once('application/views/Plantilla/header.php'); ?>
 <html>
 	<head>
 		<title>EVG - Aplicaciones</title>
@@ -48,7 +45,6 @@
 							}
 					?>
 				</div>
-
 			</div>
 		</div>
 	</body>
