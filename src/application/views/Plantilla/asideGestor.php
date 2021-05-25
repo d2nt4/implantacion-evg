@@ -37,7 +37,7 @@
 					<?php echo "<a target='blank' href='".base_url()."C_GestionEVG/listadoTutores'>Listado de tutores</a></br>"; ?>
 				</li>
 				<li>
-					<?php echo "<a onclick=\"confirmar('¿Seguro que quieres iniciar un nuevo curso?\\n Se borrarán todos los alumnos.\\n ESTA ACCIÓN ES IRREVERSIBLE.','".base_url()."C_GestionEVG/nuevoCurso', 'Iniciar Nuevo Curso', 'Cancelar', 'Iniciar')\" onkeypress=\"if (event.keyCode===13) confirmar('¿Seguro que quieres iniciar un nuevo curso?\\n se borrarán todos los alumnos, esta acción es irreversible.','".base_url()."C_GestionEVG/nuevoCurso', 'Iniciar Nuevo Curso', 'Cancelar', 'Iniciar')\" tabindex='0' data-toggle=\"modal\" data-target=\"#myModal\">Comienzo de Curso</a></br>"; ?>
+					<?php echo "<a href =\"#\" onclick=\"modalCheck('¿Seguro que quieres iniciar un nuevo curso?. Se borrarán todos los alumnos. ESTA ACCIÓN ES IRREVERSIBLE','".base_url()."C_GestionEVG/nuevoCurso', 'Iniciar Nuevo Curso', '¿Desea comenzar un nuevo curso?', 'Cancelar', 'Iniciar')\" onkeypress=\"if (event.keyCode===13) modalCheck('¿Seguro que quieres iniciar un nuevo curso? Se borrarán todos los alumnos','".base_url()."C_GestionEVG/nuevoCurso', 'Iniciar Nuevo Curso', 'Cancelar', 'Iniciar')\" tabindex='0' data-toggle=\"modal\" data-target=\"#check\">Comienzo de Curso</a>"; ?>
 				</li>
 			</ul>
 

@@ -17,7 +17,7 @@ function confirmar(texto, ruta, header, botonCancelar, botonConfirmar)
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title"><b>` + header + `</b></h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="eliminarModal()">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="eliminarModal(this)">
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
@@ -25,24 +25,70 @@ function confirmar(texto, ruta, header, botonCancelar, botonConfirmar)
 							<p>` + texto + `</p>
 						</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary font-weight-bolder" data-dismiss="modal" onclick="eliminarModal()">`+ botonCancelar +`</button>
+							<button type="button" class="btn btn-secondary font-weight-bolder" data-dismiss="modal" onclick="eliminarModal(this)">`+ botonCancelar +`</button>
 							<button type="button" class="btn btn-danger font-weight-bolder" onclick="location.href = '` + ruta + `'">` + botonConfirmar + `</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		`
-	)
-	;
+	);
 }
 
 /**
- * @function eliminarModal - Función para eliminar el modal tras cierre
+ * @function modalCheck - Función para asegurar la confirmación de las acciones del usuario.
+ * Estos parámetros serán los mismos que la función confirmar que es la que ejecuta la acción deseada.
+ * @param {string} texto - Texto a mostrar en el body del modal.
+ * @param {string} ruta - Ruta que se envía para ejecutar una acción en la aplicación.
+ * @param {string} header - Texto a mostrar en el head del modal.
+ * @param {string} botonCancelar - Texto a mostrar en el botón de cancelar (izquierdo) del modal.
+ * @param {string} botonConfirmar -  Texto a mostrar en el botón de confirmar (derecho) del modal.
+ */
+function modalCheck(texto, ruta, header, body, botonCancelar, botonConfirmar)
+{
+	$('#principal').after
+	(
+		`
+			<!--Bootstrap Check Modal-->
+			<div id="check" class="modal fade" role="dialog" tabindex="-1" data-backdrop="static">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title"><b>` + header + `</b></h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="eliminarModal(this)">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p>` + body + `</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary font-weight-bolder" data-dismiss="modal" onclick="eliminarModal(this)">No</button>
+							<button type="button" id="trigger" class="btn btn-danger font-weight-bolder" data-toggle="modal" data-target="#myModal">Sí</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		`
+	)
+
+	$('#trigger').click
+	(
+		function ()
+		{
+			$('#check').modal( 'hide' ).data( 'bs.modal', null );
+			confirmar(texto, ruta, header, botonCancelar, botonConfirmar);
+		}
+	)
+}
+
+/**
+ * @function eliminarModal - Función para eliminar el modal tras cierre.
 */
-function eliminarModal()
+function eliminarModal(idModal)
 {
 	const body = document.getElementsByTagName('body')[0];
-	const modal = document.getElementById('myModal');
+	const modal = document.getElementById(idModal);
 	body.removeChild(modal);
 }
 

@@ -38,7 +38,7 @@
 											<h3>".$valor."</h3>
 											<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/perfilesAplicacion/".$indice."'\" class=\"btn btn-primary\" data-toggle=\"popover\" data-content=\"Perfiles Aplicación\"><i class=\"fas fa-user-circle\"></i></button>
 											<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/modificarAppForm/".$indice."'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Editar Aplicación\"><i class=\"fas fa-edit\"></i></button>
-											<button onclick=\"confirmar('¿Seguro que quieres desvincular la aplicación: <b>".$valor."</b>?', '".base_url()."C_GestionEVG/borrarApp/".$indice."', 'Desvincular Aplicación', 'Cancelar', 'Desvincular')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>													
+											<button onclick=\"modalCheck('¿Seguro que quieres desvincular la aplicación: <b>".$valor."</b>?. ESTA ACCIÓN ES IRREVERSIBLE.', '".base_url()."C_GestionEVG/borrarApp/".$indice."', 'Desvincular Aplicación', '¿Desea desvincular la aplicación: <b>".$valor. "</b>?', 'Cancelar', 'Desvincular')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#check\"><i class=\"fas fa-trash\"></i></button>													
 										</div>						
 									"
 								;
