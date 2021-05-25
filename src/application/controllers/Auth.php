@@ -3,10 +3,9 @@
 /**
  * Auth
  * 
- * Clase que permite hacer login en la aplicación
+ * Clase que permite hacer login en la aplicación.
  * 
  * @author Abraham Núñez Palos y Daniel Torres Galindo
- * @version demo
  */
 
 class Auth extends CI_Controller
@@ -14,7 +13,7 @@ class Auth extends CI_Controller
 	/**
 	 * __construct
 	 * 
-	 * Carga los controladores de la libreria de google
+	 * Carga los controladores de la libreria de google.
 	 *
 	 * @return void
 	 */
@@ -28,7 +27,7 @@ class Auth extends CI_Controller
 	/**
 	 * index
 	 *
-	 * Función que llama al login de google 
+	 * Función que llama al login de google .
 	 * 
 	 * @return void
 	 */
@@ -42,7 +41,7 @@ class Auth extends CI_Controller
 	/**
 	 * oauth2callback
 	 * 
-	 * Función que valida la cuenta y carga los datos de tu cuenta en un array
+	 * Función que valida la cuenta y carga los datos de tu cuenta en un array.
 	 *
 	 * @return void
 	 */
@@ -66,7 +65,7 @@ class Auth extends CI_Controller
 	/**
 	 * logout
 	 * 
-	 * Función que permite cerrar sesión
+	 * Función que permite cerrar sesión.
 	 *
 	 * @return void
 	 */

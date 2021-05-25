@@ -2,15 +2,14 @@
 /**
  * M_Instalacion
  * 
- * Clase para realizar la instalación de la aplicación
+ * Clase para realizar la instalación de la aplicación.
  * 
  * @author Abraham Núñez Palos y Daniel Torres Galindo
- * @version demo
  */
 class M_Instalacion extends CI_Model
 {
 	/**
-	 * Guarda el valor de carga de la base de datos
+	 * Guarda el valor de carga de la base de datos.
 	 * 
 	 * @var undefined
 	 *
@@ -21,7 +20,7 @@ class M_Instalacion extends CI_Model
 	/**
 	 * __construct
 	 *
-	 *Carga la base de datos en la variable bd
+	 *Carga la base de datos en la variable bd.
 	 * 
 	 * @return void
 	 */
@@ -35,7 +34,7 @@ class M_Instalacion extends CI_Model
 	/**
 	 * tablas
 	 *
-	 * Crea las tablas en la base de datos , cuando realiza la instalación
+	 * Crea las tablas en la base de datos , cuando realiza la instalación.
 	 * 
 	 * @return void
 	 */

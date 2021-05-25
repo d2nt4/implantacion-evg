@@ -5,10 +5,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * C_GestionEVG
  * 
- * Clase que contiene todos los metodos necesario para la aplicación
+ * Clase que contiene todos los métodos necesario para la aplicación.
  * 
  * @author Abraham Núñez Palos y Daniel Torres Galindo
- * @version demo
  */
 class C_GestionEVG extends CI_Controller 
 {
@@ -47,7 +46,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * index
 	 * 
-	 * Redirigre al Grid
+	 * Redirige al Grid.
 	 *
 	 * @return void
 	 */
@@ -60,7 +59,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * comprobarCSU
 	 * 
-	 * Comprueba que no se repitan los mismos valores
+	 * Comprueba que no se repitan los mismos valores.
 	 *
 	 * @return void
 	 */
@@ -77,7 +76,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * comprobarUsuarios
 	 * 
-	 * Busca usuarios en la base de datos
+	 * Busca usuarios en la base de datos.
 	 *
 	 * @return void
 	 */
@@ -97,7 +96,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * verApps
 	 * 
-	 * Permite ver todos las aplicaciones existente
+	 * Permite ver todos las aplicaciones existente.
 	 *
 	 * @return void
 	 */
@@ -114,7 +113,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirAppForm
 	 * 
-	 * Muestra el formulario para añadir la aplicación
+	 * Muestra el formulario para añadir la aplicación.
 	 *
 	 * @return void
 	 */
@@ -127,7 +126,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirApp
 	 * 
-	 * Añade la aplicación a la base de datos
+	 * Añade la aplicación a la base de datos.
 	 *
 	 * @return void
 	 */
@@ -158,9 +157,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * borrarApp
 	 *
-	 * Elimina la aplicación de la base de datos
+	 * Elimina la aplicación de la base de datos.
 	 * 
-	 * @param  integer $idAplicacion
+	 * @param  integer $idAplicacion Identificador de la aplicación.
 	 * @return void
 	 */
 
@@ -179,9 +178,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * modificarAppForm
 	 *
-	 * Muestra un formulario con los datos de la aplicación
+	 * Muestra un formulario con los datos de la aplicación.
 	 * 
-	 * @param  integer $idAplicacion
+	 * @param  integer $idAplicacion Identificador de la aplicación.
 	 * @return void
 	 */
 
@@ -194,9 +193,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * modificarApp
 	 *
-	 * Actualiza los datos de la aplicación en la base de datos
+	 * Actualiza los datos de la aplicación en la base de datos.
 	 * 
-	 * @param  integer $idAplicacion
+	 * @param  integer $idAplicacion Identificador de la aplicación
 	 * @return void
 	 */
 
@@ -235,9 +234,9 @@ class C_GestionEVG extends CI_Controller
 	 * perfilesAplicacion
 	 *
 	 * Muestra los perfiles que están asociado a la aplicación, 
-	 * ademas de todos los perfiles para poder añadir o quitar perfiles
+	 * ademas de todos los perfiles para poder añadir o quitar perfiles.
 	 * 
-	 * @param  integer $idAplicacion
+	 * @param  integer $idAplicacion Identificador de la aplicación.
 	 * @return void
 	 */
 
@@ -260,10 +259,10 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * quitarPerfilAplicacion
 	 *
-	 * Permite quitar perfiles a una aplicación
+	 * Permite quitar perfiles a una aplicación.
 	 * 
-	 * @param  integer $idAplicacion
-	 * @param  integer $idPerfil
+	 * @param  integer $idAplicacion Identificador de la aplicación.
+	 * @param  integer $idPerfil Identificador del perfil.
 	 * @return void
 	 */
 
@@ -277,10 +276,10 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirPerfilAplicacion
 	 *
-	 * Permite añadir perfiles a una aplicación
+	 * Permite añadir perfiles a una aplicación.
 	 * 
-	 * @param  integer $idAplicacion
-	 * @param  integer $idPerfil
+	 * @param  integer $idAplicacion Identificador de la aplicación.
+	 * @param  integer $idPerfil  Identificador del perfil.
 	 * @return void
 	 */
 
@@ -296,7 +295,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * verPerfiles
 	 * 
-	 * Muestra los perfiles
+	 * Muestra los perfiles.
 	 *
 	 * @return void
 	 */
@@ -313,7 +312,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirPerfilForm
 	 * 
-	 * Muestra el formulario para añadir un perfil
+	 * Muestra el formulario para añadir un perfil.
 	 *
 	 * @return void
 	 */
@@ -326,7 +325,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirPerfil
 	 * 
-	 * Añade el perfil a la base de datos
+	 * Añade el perfil a la base de datos.
 	 *
 	 * @return void
 	 */
@@ -344,9 +343,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * borrarPerfil
 	 * 
-	 * Elimina el perfil de la base de datos
+	 * Elimina el perfil de la base de datos.
 	 *
-	 * @param  integer $idPerfil
+	 * @param  integer $idPerfil Identificador del perfil.
 	 * @return void
 	 */
 	
@@ -360,9 +359,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * modificarPerfilForm
 	 * 
-	 * Muestra el formulario con los datos del perfil a modificar
+	 * Muestra el formulario con los datos del perfil a modificar.
 	 *
-	 * @param  integer $idPerfil
+	 * @param  integer $idPerfil Identificador del perfil.
 	 * @return void
 	 */
 
@@ -375,9 +374,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * modificarPerfil
 	 *
-	 * Actualiza los datos del perfil en la base de datos
+	 * Actualiza los datos del perfil en la base de datos.
 	 * 
-	 * @param  integer $idPerfil
+	 * @param  integer $idPerfil Identificador del perfil.
 	 * @return void
 	 */
 
@@ -395,9 +394,9 @@ class C_GestionEVG extends CI_Controller
 	 * usuariosPerfil
 	 *
 	 * Muestra los usuario que tiene el perfil,
-	 * dando la opción de añadir o quitar a los usuarios
+	 * dando la opción de añadir o quitar a los usuarios.
 	 * 
-	 * @param  integer $idPerfil
+	 * @param  integer $idPerfil Identificador del perfil.
 	 * @return void
 	 */
 
@@ -418,8 +417,8 @@ class C_GestionEVG extends CI_Controller
 	 *
 	 * Quita usuarios del perfil
 	 * 
-	 * @param  integer $idPerfil
-	 * @param  integer $idUsuario
+	 * @param  integer $idPerfil Identificador del perfil.
+	 * @param  integer $idUsuario Identificador del usuario.
 	 * @return void
 	 */
 
@@ -433,9 +432,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirUsuarioPerfil
 	 *
-	 * Añade usuario al perfil
+	 * Añade usuario al perfil.
 	 * 
-	 * @param  int $idPerfil
+	 * @param  int $idPerfil Identificador del perfil
 	 * @return void
 	 */
 
@@ -458,7 +457,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * verUsuarios
 	 * 
-	 * Muestra los usuarios existentes
+	 * Muestra los usuarios existentes.
 	 *
 	 * @return void
 	 */
@@ -478,7 +477,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirUsuarioForm
 	 * 
-	 * Muestra el formulario para añadir a un usuario
+	 * Muestra el formulario para añadir a un usuario.
 	 *
 	 * @return void
 	 */
@@ -491,7 +490,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirUsuario
 	 * 
-	 * Añade un usuario a la base de datos
+	 * Añade un usuario a la base de datos.
 	 *
 	 * @return void
 	 */
@@ -513,9 +512,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * borrarUsuario
 	 * 
-	 * Elimina a un usuario de la base de datos
+	 * Elimina a un usuario de la base de datos.
 	 *
-	 * @param  integer $idUsuario
+	 * @param  integer $idUsuario Identificador del usuario.
 	 * @return void
 	 */
 	public function borrarUsuario($idUsuario)
@@ -528,9 +527,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * modificarUsuarioForm
 	 * 
-	 * Muestra un formulario para modificar los datos del usuario
+	 * Muestra un formulario para modificar los datos del usuario.
 	 *
-	 * @param  integer $idUsuario
+	 * @param  integer $idUsuario Identificador del usuario.
 	 * @return void
 	 */
 
@@ -543,9 +542,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * modificarUsuario
 	 * 
-	 * Actualiza los datos del usuario
+	 * Actualiza los datos del usuario.
 	 *
-	 * @param  integer $idUsuario
+	 * @param  integer $idUsuario Identificador del usuario.
 	 * @return void
 	 */
 
@@ -566,7 +565,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * importarUsuariosForm
 	 * 
-	 * Muestrea el formualario para importar a los usuarios
+	 * Muestrea el formualario para importar a los usuarios.
 	 *
 	 * @return void
 	 */
@@ -579,7 +578,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * importarUsuarios
 	 * 
-	 * Importa a los usuarios de un documento excel añadiendo los datos a la base de datos
+	 * Importa a los usuarios de un documento excel añadiendo los datos a la base de datos.
 	 *
 	 * @return void
 	 */
@@ -630,7 +629,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * verEtapas
 	 * 
-	 * Muestra las etapas existente
+	 * Muestra las etapas existente.
 	 *
 	 * @return void
 	 */
@@ -647,7 +646,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirEtapaForm
 	 * 
-	 * Muestra un formualario para añadir las etapas
+	 * Muestra un formualario para añadir las etapas.
 	 *
 	 * @return void
 	 */
@@ -665,7 +664,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirEtapa
 	 * 
-	 * Añade la etapa a la base de datos
+	 * Añade la etapa a la base de datos.
 	 *
 	 * @return void
 	 */
@@ -685,9 +684,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * borrarEtapa
 	 *
-	 * Borra la etapa de la base de datos
+	 * Borra la etapa de la base de datos.
 	 * 
-	 * @param  integer $idEtapa
+	 * @param  integer $idEtapa Identificador de la etapa.
 	 * @return void
 	 */
 
@@ -701,9 +700,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * modificarEtapaForm
 	 * 
-	 * Muestra un formulario para modificar los datos de una etapa
+	 * Muestra un formulario para modificar los datos de una etapa.
 	 *
-	 * @param  integer $idEtapa
+	 * @param  integer $idEtapa Identificador de la etapa.
 	 * @return void
 	 */
 
@@ -722,9 +721,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * modificarEtapa
 	 *
-	 * Actualiza la etapa de la base de datos
+	 * Actualiza la etapa de la base de datos.
 	 * 
-	 * @param  integer $idEtapa
+	 * @param  integer $idEtapa Identificador de la etapa.
 	 * @return void
 	 */
 
@@ -746,9 +745,9 @@ class C_GestionEVG extends CI_Controller
 	 * etapaPadre
 	 *
 	 * Muestra las etapas padres a la que pertenece,
-	 * ademas de permitir añadir o quitar de una etapa padre
+	 * ademas de permitir añadir o quitar de una etapa padre.
 	 * 
-	 * @param  integer $idEtapa
+	 * @param  integer $idEtapa Identificador de la etapa.
 	 * @return void
 	 */
 
@@ -771,10 +770,10 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * quitarEtapaPadre
 	 * 
-	 * Quita una etapa padre
+	 * Quita una etapa padre.
 	 *
-	 * @param  integer $idEtapa
-	 * @param  integer $idEtapaPadre
+	 * @param  integer $idEtapa Identificador de la etapa.
+	 * @param  integer $idEtapaPadre Identificador de la etapaPadre.
 	 * @return void
 	 */
 
@@ -788,10 +787,10 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirEtapaPadre
 	 * 
-	 * Añade una etapa padre
+	 * Añade una etapa padre.
 	 *
-	 * @param  integer $idEtapa
-	 * @param  integer $idEtapaPadre
+	 * @param  integer $idEtapa Identificador de la etapa.
+	 * @param  integer $idEtapaPadre Identificador de la etapaPadre.
 	 * @return void
 	 */
 
@@ -808,7 +807,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * verCursos
 	 * 
-	 * Muestra los cursos disponibles
+	 * Muestra los cursos disponibles.
 	 *
 	 * @return void
 	 */
@@ -825,7 +824,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirCursoForm
 	 * 
-	 * Muestra un formulario para añadir un curso
+	 * Muestra un formulario para añadir un curso.
 	 *
 	 * @return void
 	 */
@@ -838,7 +837,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirCurso
 	 *
-	 * Añade un curso a la base de datos
+	 * Añade un curso a la base de datos.
 	 * 
 	 * @return void
 	 */
@@ -859,9 +858,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * borrarCurso
 	 *
-	 * Borra un curso de la base de datos
+	 * Borra un curso de la base de datos.
 	 * 
-	 * @param  integer $idCurso
+	 * @param  integer $idCurso Identificador del curso.
 	 * @return void
 	 */
 
@@ -875,9 +874,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * modificarCursoForm
 	 * 
-	 * Muestra un formulario que permite editar los datos del curso
+	 * Muestra un formulario que permite editar los datos del curso.
 	 *
-	 * @param  integer $idCurso
+	 * @param  integer $idCurso Identificador del curso.
 	 * @return void
 	 */
 	public  function modificarCursoForm($idCurso)
@@ -889,9 +888,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * modificarCurso
 	 * 
-	 * Actualiza los datos del curso de la base de datos
+	 * Actualiza los datos del curso de la base de datos.
 	 *
-	 * @param  integer $idCurso
+	 * @param  integer $idCurso Identificador del curso.
 	 * @return void
 	 */
 
@@ -909,9 +908,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * asignarEtapaCursoForm
 	 * 
-	 * Formulario para asignar una etapa a un curso
+	 * Formulario para asignar una etapa a un curso.
 	 *
-	 * @param  integer $idCurso
+	 * @param  integer $idCurso Identificador del curso.
 	 * @return void
 	 */
 
@@ -932,9 +931,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * asignarEtapaCurso
 	 * 
-	 * Asigna la etapa al curso en la base de datos
+	 * Asigna la etapa al curso en la base de datos.
 	 *
-	 * @param  integer $idCurso
+	 * @param  integer $idCurso Identificador del curso.
 	 * @return void
 	 */
 
@@ -953,7 +952,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * importarCursosForm
 	 * 
-	 * Muestra un formulario para importar los cursos
+	 * Muestra un formulario para importar los cursos.
 	 *
 	 * @return void
 	 */
@@ -966,7 +965,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * importarCursos
 	 * 
-	 * Importa un curso desde un documento excel añadiendo los datos a la base de datos
+	 * Importa un curso desde un documento excel añadiendo los datos a la base de datos.
 	 *
 	 * @return void
 	 */
@@ -1009,7 +1008,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * verDepartamentos
 	 * 
-	 * Muestra los departamento existentes
+	 * Muestra los departamento existentes.
 	 *
 	 * @return void
 	 */
@@ -1026,7 +1025,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirDepartamentoForm
 	 * 
-	 * Muestra un formulario para añadir un departamento
+	 * Muestra un formulario para añadir un departamento.
 	 *
 	 * @return void
 	 */
@@ -1039,7 +1038,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirDepartamento
 	 * 
-	 * Añade un departamento a la base de datos
+	 * Añade un departamento a la base de datos.
 	 *
 	 * @return void
 	 */
@@ -1056,9 +1055,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * borrarDepartamento
 	 *
-	 * Eliminar un departamento a la base de datos
+	 * Eliminar un departamento a la base de datos.
 	 * 
-	 * @param  integer $idDepartamento
+	 * @param  integer $idDepartamento Identificador del departamento.
 	 * @return void
 	 */
 
@@ -1072,9 +1071,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * modificarDepartamentoForm
 	 * 
-	 * Muestra un formulario con los datos de un departamento
+	 * Muestra un formulario con los datos de un departamento.
 	 *
-	 * @param  integer $idDepartamento
+	 * @param  integer $idDepartamento Identificador del departamento.
 	 * @return void
 	 */
 
@@ -1087,9 +1086,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * modificarDepartamento
 	 * 
-	 * Actualiza los datos de un departameto en la base de datos
+	 * Actualiza los datos de un departameto en la base de datos.
 	 *
-	 * @param  integer $idDepartamento
+	 * @param  integer $idDepartamento Identificador del departamento.
 	 * @return void
 	 */
 	public function modificarDepartamento($idDepartamento)
@@ -1106,7 +1105,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * verFamilias
 	 * 
-	 * Muestra las familias profesionales existentes
+	 * Muestra las familias profesionales existentes.
 	 *
 	 * @return void
 	 */
@@ -1123,7 +1122,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirFamiliaForm
 	 * 
-	 * Muestra un formulario para añadir familia profesionales
+	 * Muestra un formulario para añadir familia profesionales.
 	 *
 	 * @return void
 	 */
@@ -1141,7 +1140,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirFamilia
 	 *
-	 * Añade una familia profesional a la base de datos
+	 * Añade una familia profesional a la base de datos.
 	 * 
 	 * @return void
 	 */
@@ -1160,9 +1159,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * borrarFamilia
 	 * 
-	 * Borra una familia profesional de la base de datos
+	 * Borra una familia profesional de la base de datos.
 	 *
-	 * @param  integer $idFamilia
+	 * @param  integer $idFamilia Identificador de la familia profesional.
 	 * @return void
 	 */
 
@@ -1176,9 +1175,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * modificarFamiliaForm
 	 * 
-	 * Muestra un fomulario con los datos de una familia profesional para modificar
+	 * Muestra un fomulario con los datos de una familia profesional para modificar.
 	 *
-	 * @param  mixed $idFamilia
+	 * @param  mixed $idFamilia Identificador de la familia profesional.
 	 * @return void
 	 */
 
@@ -1197,9 +1196,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * modificarFamilia
 	 * 
-	 * Actualiza los datos de una familia profesional
+	 * Actualiza los datos de una familia profesional.
 	 *
-	 * @param  integer $idFamilia
+	 * @param  integer $idFamilia Identificador de la familia profesional.
 	 * @return void
 	 */
 
@@ -1221,7 +1220,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * verCiclos
 	 * 
-	 * Muestra los ciclos existentes
+	 * Muestra los ciclos existentes.
 	 *
 	 * @return void
 	 */
@@ -1239,7 +1238,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirCicloForm
 	 * 
-	 * Muestra el formulario para añadir los ciclos
+	 * Muestra el formulario para añadir los ciclos.
 	 *
 	 * @return void
 	 */
@@ -1258,7 +1257,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirCiclo
 	 * 
-	 * Añade los ciclos a la base de datos
+	 * Añade los ciclos a la base de datos.
 	 *
 	 * @return void
 	 */
@@ -1278,9 +1277,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * borrarCiclo
 	 *
-	 * Elimina el ciclo de la base de datos
+	 * Elimina el ciclo de la base de datos.
 	 * 
-	 * @param  integer $idCiclo
+	 * @param  integer $idCiclo Identificador del ciclo.
 	 * @return void
 	 */
 
@@ -1294,9 +1293,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * modificarCicloForm
 	 * 
-	 * Muestra el formulario para modificar los datos de un ciclo
+	 * Muestra el formulario para modificar los datos de un ciclo.
 	 *
-	 * @param  integer $idCiclo
+	 * @param  integer $idCiclo Identificador del ciclo.
 	 * @return void
 	 */
 
@@ -1315,9 +1314,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * modificarCiclo
 	 *
-	 * Actualiza los datos de un ciclo de la base de datos
+	 * Actualiza los datos de un ciclo de la base de datos.
 	 * 
-	 * @param  integer $idCiclo
+	 * @param  integer $idCiclo Identificador del ciclo.
 	 * @return void
 	 */
 
@@ -1339,9 +1338,9 @@ class C_GestionEVG extends CI_Controller
 	 * cursosCiclo
 	 * 
 	 * Muestra los cursos que pertenece los ciclos,
-	 * permitiendo quitar y añadir cursos
+	 * permitiendo quitar y añadir cursos.
 	 *
-	 * @param  integer $idCiclo
+	 * @param  integer $idCiclo Identificador del ciclo.
 	 * @return void
 	 */
 
@@ -1364,10 +1363,10 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * quitarCursoCiclo
 	 * 
-	 * Quita el curso de un ciclo
+	 * Quita el curso de un ciclo.
 	 *
-	 * @param  integer $idCiclo
-	 * @param  integer $idCurso
+	 * @param  integer $idCiclo Identificador del ciclo.
+	 * @param  integer $idCurso Identificador del curso.
 	 * @return void
 	 */
 
@@ -1381,10 +1380,10 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirCursoCiclo
 	 *
-	 * Añade el curso para un ciclo
+	 * Añade el curso para un ciclo.
 	 * 
-	 * @param  integer $idCiclo
-	 * @param  integer $idCurso
+	 * @param  integer $idCiclo Identificador del ciclo.
+	 * @param  integer $idCurso Identificador del curso.
 	 * @return void
 	 */
 
@@ -1400,7 +1399,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * verSecciones
 	 *
-	 * Muestra las secciones existentes
+	 * Muestra las secciones existentes.
 	 * 
 	 * @return void
 	 */
@@ -1418,7 +1417,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirSeccionForm
 	 * 
-	 * Muestra el formulario para añadir las secciones
+	 * Muestra el formulario para añadir las secciones.
 	 *
 	 * @return void
 	 */
@@ -1436,7 +1435,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirSeccion
 	 * 
-	 * Añade la seccion a la base de datos
+	 * Añade la seccion a la base de datos.
 	 *
 	 * @return void
 	 */
@@ -1458,9 +1457,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * borrarSeccion
 	 *
-	 * Elimina una sección de la base de datos
+	 * Elimina una sección de la base de datos.
 	 * 
-	 * @param  integer $idSeccion
+	 * @param  integer $idSeccion Identificador de la seccion.
 	 * @return void
 	 */
 
@@ -1485,9 +1484,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * modificarSeccionForm
 	 *
-	 * Muestra el formulario para modificar los datos de una sección
+	 * Muestra el formulario para modificar los datos de una sección.
 	 * 
-	 * @param  integer $idSeccion
+	 * @param  integer $idSeccion Identificador de la seccion.
 	 * @return void
 	 */
 
@@ -1505,9 +1504,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * modificarSeccion
 	 *
-	 * Actualiza los datos de una sección en la base de datos
+	 * Actualiza los datos de una sección en la base de datos.
 	 * 
-	 * @param  integer $idSeccion
+	 * @param  integer $idSeccion Identificador de la seccion.
 	 * @return void
 	 */
 
@@ -1532,9 +1531,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * asignarTutorForm
 	 * 
-	 * Muestra el formulario para seleccionar al tutor de la sección
+	 * Muestra el formulario para seleccionar al tutor de la sección.
 	 *
-	 * @param  integer $idSeccion
+	 * @param  integer $idSeccion Identificador de la seccion.
 	 * @return void
 	 */
 
@@ -1566,10 +1565,10 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirQuitarTutor
 	 * 
-	 * Permite añadir y quitar el tutor de la sección
+	 * Permite añadir y quitar el tutor de la sección.
 	 *
-	 * @param  integer $idSeccion
-	 * @param  integer $idTutorActual
+	 * @param  integer $idSeccion Identificador de la seccion.
+	 * @param  integer $idTutorActual Identificador del usuario.
 	 * @return void
 	 */
 
@@ -1595,7 +1594,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * importarSeccionesForm
 	 *
-	 * Muestra el formulario para importar secciones
+	 * Muestra el formulario para importar secciones.
 	 * 
 	 * @return void
 	 */
@@ -1608,7 +1607,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * importarSecciones
 	 * 
-	 * Importa secciones desde un documento excel añadiendo los datos a la base de datos
+	 * Importa secciones desde un documento excel añadiendo los datos a la base de datos.
 	 *
 	 * @return void
 	 */
@@ -1653,7 +1652,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * verAlumnos
 	 * 
-	 * Muestra las etapas exitentes
+	 * Muestra las etapas exitentes.
 	 *
 	 * @return void
 	 */
@@ -1670,9 +1669,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * verSeccionesEtapa
 	 *
-	 * Muestra las secciones existetes, segun la etapa
+	 * Muestra las secciones existetes, segun la etapa.
 	 * 
-	 * @param  integer $idEtapa
+	 * @param  integer $idEtapa Identificador de la etapa.
 	 * @return void
 	 */
 
@@ -1691,10 +1690,10 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * verAlumnosSeccion
 	 *
-	 * Muestra los alumnos existentes, segun la sección
+	 * Muestra los alumnos existentes, segun la sección.
 	 * 
-	 * @param  integer $idSeccion
-	 * @param  integer $idEtapa
+	 * @param  integer $idSeccion Identificador de la seccion.
+	 * @param  integer $idEtapa Identificador de la etapa.
 	 * @return void
 	 */
 
@@ -1713,7 +1712,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirAlumnoForm
 	 *
-	 * Muestra el formulario para añadir un alumno
+	 * Muestra el formulario para añadir un alumno.
 	 * 
 	 * @return void
 	 */
@@ -1730,7 +1729,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * anadirAlumno
 	 * 
-	 * Añade el alumno a la base de datos
+	 * Añade el alumno a la base de datos.
 	 *
 	 * @return void
 	 */
@@ -1753,9 +1752,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * borrarAlumno
 	 *
-	 * Elimina el alumno de la base de datos
+	 * Elimina el alumno de la base de datos.
 	 * 
-	 * @param  integer $idAlumno
+	 * @param  integer $idAlumno Identificador del alumno.
 	 * @return void
 	 */
 
@@ -1769,10 +1768,10 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * modificarAlumnoForm
 	 *
-	 * Muestra un formulario para modificar los datos de un alumno
+	 * Muestra un formulario para modificar los datos de un alumno.
 	 * 
-	 * @param  integer $idAlumno
-	 * @param  integer $idEtapa
+	 * @param  integer $idAlumno Identificador del alumno.
+	 * @param  integer $idEtapa Identificador del etapa.
 	 * @return void
 	 */
 
@@ -1790,11 +1789,11 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * modificarAlumno
 	 * 
-	 * Actualiza los datos del alumno en la base de datos
+	 * Actualiza los datos del alumno en la base de datos.
 	 *
-	 * @param  integer $idAlumno
-	 * @param  integer $idSeccion
-	 * @param  integer $idEtapa
+	 * @param  integer $idAlumno Identificador del alumno.
+	 * @param  integer $idSeccion Identificador del seccion.
+	 * @param  integer $idEtapa Identificador del etapa.
 	 * @return void
 	 */
 
@@ -1818,7 +1817,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * importarAlumnosForm
 	 * 
-	 * Muestra el formulario para importar alumnos
+	 * Muestra el formulario para importar alumnos.
 	 *
 	 * @return void
 	 */
@@ -1832,7 +1831,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * importarAlumnos
 	 * 
-	 * Importa alumnos desde un documento excel añadiendo los datos a la base de datos
+	 * Importa alumnos desde un documento excel añadiendo los datos a la base de datos.
 	 *
 	 * @return void
 	 */
@@ -1896,7 +1895,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * listadoTutores
 	 * 
-	 * Genera un pdf, que contiene el listado de los tutores con su sección correspondiente
+	 * Genera un pdf, que contiene el listado de los tutores con su sección correspondiente.
 	 *
 	 * @return void
 	 */
@@ -1949,7 +1948,7 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * nuevoCurso
 	 * 
-	 * Elimina a todos los alumnos de la base de datos
+	 * Elimina a todos los alumnos de la base de datos.
 	 *
 	 * @return void
 	 */
@@ -1965,9 +1964,9 @@ class C_GestionEVG extends CI_Controller
 	/**
 	 * headerLocation
 	 *
-	 * Metodo para redireccionar
+	 * Metodo para redireccionar.
 	 * 
-	 * @param  string $location
+	 * @param  string $location Ruta para redirigir a una direccion.
 	 * @return void
 	 */
 	public function headerLocation($location){

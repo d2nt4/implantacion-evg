@@ -4,10 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * C_Instalacion
  *  
- * Clase que permite realizar la instalación de la aplicacion
+ * Clase que permite realizar la instalación de la aplicacion.
  * 
  * @author Abraham Núñez Palos y Daniel Torres Galindo
- * @version demo
  */
 class C_Instalacion extends CI_Controller
 {
@@ -15,7 +14,7 @@ class C_Instalacion extends CI_Controller
 	/**
 	 * __construct
 	 * 
-	 * Carga los metodos
+	 * Carga los metodos.
 	 *
 	 * @return void
 	 */
@@ -32,7 +31,7 @@ class C_Instalacion extends CI_Controller
 	/**
 	 * index
 	 * 
-	 * Añade los perfiles basico
+	 * Añade los perfiles basico.
 	 *
 	 * @return void
 	 */
@@ -49,7 +48,7 @@ class C_Instalacion extends CI_Controller
 	/**
 	 * anadirAdmin
 	 * 
-	 * Permite registrar al administrador de la aplicación
+	 * Permite registrar al administrador de la aplicación.
 	 *
 	 * @return void
 	 */

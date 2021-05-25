@@ -2,16 +2,15 @@
 /**
  * M_GestionEVG
  * 
- * Clase para realizar la gestión de la aplicación
+ * Clase para realizar la gestión de la aplicación.
  * 
  * @author Abraham Núñez Palos y Daniel Torres Galindo
- * @version demo
  */
 
 class M_GestionEVG extends CI_Model
 {
 	/**
-	 * Guarda el valor de carga de la base de datos
+	 * Guarda el valor de carga de la base de datos.
 	 * 
 	 * @var undefined
 	 *
@@ -22,7 +21,7 @@ class M_GestionEVG extends CI_Model
 	/**
 	 * __construct
 	 * 
-	 * Carga la base de datos en la variable bd
+	 * Carga la base de datos en la variable bd.
 	 *
 	 * @return void
 	 */
@@ -35,10 +34,10 @@ class M_GestionEVG extends CI_Model
 	/**
 	 * insertar
 	 * 
-	 * Función que permite insertar datos en la base de datos
+	 * Función que permite insertar datos en la base de datos.
 	 * 
-	 * @param string $tabla
-	 * @param mixed $datos
+	 * @param string $tabla Nombre de la tabla en la base de datos.
+	 * @param mixed $datos  Datos para añadir a la base de datos.
 	 * 
 	 * @return void
 	 */
@@ -54,11 +53,11 @@ class M_GestionEVG extends CI_Model
 	/**
 	 * borrar
 	 * 
-	 * Función que permite eliminar elemento por id
+	 * Función que permite eliminar elemento por id.
 	 * 
-	 * @param string $tabla
-	 * @param mixed $id
-	 * @param string $nombreId
+	 * @param string $tabla Nombre de la tabla en la base de datos.
+	 * @param mixed $id Identificador de la tabla.
+	 * @param string $nombreId Nombre del identificador de la tabla.
 	 * 
 	 * @return void
 	 */
@@ -71,13 +70,13 @@ class M_GestionEVG extends CI_Model
 	/**
 	 * borrarCompuesta
 	 * 
-	 * Funcion que permite eliminar elemento con más de un id
+	 * Funcion que permite eliminar elemento con más de un id.
 	 *
-	 * @param  string $tabla
-	 * @param  mixed $id1
-	 * @param  mixed $id2
-	 * @param  string $nombreId1
-	 * @param  string $nombreId2
+	 * @param  string $tabla Nombre de la tabla en la base de datos.
+	 * @param  mixed $id1 Identificador de la tabla.
+	 * @param  mixed $id2 Identificador de la tabla.
+	 * @param  string $nombreId1 Nombre del identificador de la tabla.
+	 * @param  string $nombreId2 Nombre del identificador de la tabla.
 	 * 
 	 * @return void
 	 */
@@ -89,12 +88,12 @@ class M_GestionEVG extends CI_Model
 	/**
 	 * modificar
 	 * 
-	 * Función que permite actualizar datos de la base de datos
+	 * Función que permite actualizar datos de la base de datos.
 	 *
-	 * @param  string $tabla
-	 * @param  mixed $datos
-	 * @param  mixed $id
-	 * @param  string $nombreId
+	 * @param  string $tabla Nombre de la tabla en la base de datos.
+	 * @param  mixed $datos  Datos para añadir a la base de datos.
+	 * @param  mixed $id Identificador de la tabla.
+	 * @param  string $nombreId Nombre del identificador de la tabla.
 	 * 
 	 * @return void
 	 */
@@ -109,16 +108,16 @@ class M_GestionEVG extends CI_Model
 	/**
 	 * seleccionar
 	 * 
-	 * Función que permite realizar consulta que recupera datos de la base de datos
+	 * Función que permite realizar consulta que recupera datos de la base de datos.
 	 *
-	 * @param  string $tabla
-	 * @param  string $campos
-	 * @param  mixed $condicion
-	 * @param  array|null $tabla_relacion
-	 * @param  array|null $relacion
-	 * @param  array $tipo_relacion
-	 * @param  string $ordenacion
-	 * 
+	 * @param  string $tabla Nombre de la tabla en la base de datos.
+	 * @param  string $campos Nombre de los campos de la base de datos.
+	 * @param  mixed $condicion Parametro para con la condicion de la consulta (equivalente WHERE).
+	 * @param  array|null $tabla_relacion Nombre de la tablas con la que quieres asociar tablas (Por defecto: null).
+	 * @param  array|null $relacion Nombre del los campos con los que quieres realizar la relacion (Por defecto: null).
+	 * @param  array $tipo_relacion Tipo de relación (Por defecto: ['join]').
+	 * @param  string $ordenacion  Nombre del campo por el que quieres ordenar.
+	 *  
 	 * @return void
 	 */
 	public function seleccionar($tabla, $campos, $condicion = null,$tabla_relacion = null, $relacion = null, $tipo_relacion = ['join'], $ordenacion = null)
@@ -141,9 +140,9 @@ class M_GestionEVG extends CI_Model
 	/**
 	 * obtenerIdUsuario
 	 * 
-	 * Función que permite obtener el id del usuario a partir de un correo
+	 * Función que permite obtener el id del usuario a partir de un correo.
 	 *
-	 * @param  string $correo
+	 * @param  string $correo Correo del usuario.
 	 * 
 	 * @return void
 	 */

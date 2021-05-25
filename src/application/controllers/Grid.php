@@ -3,17 +3,16 @@
 /**
  * Grid
  * 
- * Clase para gestionar las aplicaciones
+ * Clase para gestionar las aplicaciones.
  * 
  * @author Abraham Núñez Palos y Daniel Torres Galindo
- * @version demo
  */
 class Grid extends CI_Controller
 {	
 	/**
 	 * __construct
 	 * 
-	 * Carga las librerias y los modelos ademas de comprobar si tienes iniciado sesión
+	 * Carga las librerias y los modelos ademas de comprobar si tienes iniciado sesión.
 	 *
 	 * @return void
 	 */
@@ -34,7 +33,7 @@ class Grid extends CI_Controller
 	/**
 	 * index
 	 * 
-	 * Obtiene las aplicaciones del usuario y lo carga en las vista V_Grid
+	 * Obtiene las aplicaciones del usuario y lo carga en las vista V_Grid.
 	 *
 	 * @return void
 	 */
