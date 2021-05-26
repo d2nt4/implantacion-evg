@@ -117,7 +117,7 @@ function buscarCSU(baseURL, tabla, valor, campo, idHTML, idInput, textoBase, per
 				type: "POST",
 				url: baseURL + 'C_GestionEVG/comprobarCSU',
 				data: {campo:campo, valor:valor, tabla:tabla},
-				async: true,
+				async: false,
 				success: function (datos)
 				{
 					if (datos == 'no')
@@ -160,9 +160,9 @@ function buscarCSU(baseURL, tabla, valor, campo, idHTML, idInput, textoBase, per
  */
 function comprobarBotonEnviar()
 {
-	enviar = document.getElementsByName('enviar')[0];
+	let enviar = document.getElementsByName('enviar')[0];
 	enviar.disabled = false;
-	for(indice in deshabilitar)
+	for(let indice in deshabilitar)
 	{
 		if(deshabilitar[indice])
 			enviar.disabled = true;
