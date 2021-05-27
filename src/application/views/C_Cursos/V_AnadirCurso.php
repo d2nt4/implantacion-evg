@@ -74,7 +74,6 @@
 									'name'=>'enviar',
 									'value'=>'ENVIAR',
 									'disabled'=>'disabled',
-									'class'=>'form-control',
 									'class'=>'form-control'
 							);
 						?>

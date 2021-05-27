@@ -1902,43 +1902,47 @@ class C_GestionEVG extends CI_Controller
 
 	public function listadoTutores()
 	{
-		include('application/FPDF/fpdf.php');
+		include_once('application/TFPDF/tfpdf.php');
 
-		$datos = $this -> M_GestionEVG -> seleccionar('Secciones s','s.codSeccion, u.correo',null,['Usuarios u'],['s.idTutor=u.idUsuario'],['left']);
+		$datos = $this -> M_GestionEVG -> seleccionar('Secciones s','s.nombre, u.correo', null, ['Usuarios u'], ['s.idTutor=u.idUsuario'], ['left']);
 		foreach ($datos as $valor)
-			$this -> listaTutores[$valor['codSeccion']] = $valor['correo'];
+			$this -> listaTutores[$valor['nombre']] = $valor['correo'];
 
 		if(!empty($this -> listaTutores)) 
 		{
-			$pdf = new FPDF(); /*Crea el objeto FPDP*/
-			$pdf -> SetDrawColor(68, 45, 235); /*color de los border*/
-			$pdf -> SetTextColor(68, 45, 235); /*color del texto*/
+			$pdf = new TFPDF('P', 'mm', 'A4'); /*Crea el objeto FPDP*/
+			$pdf -> SetTitle('Listado de Tutores');
+			$pdf -> SetDrawColor(0, 0, 0); /*Color de los Bordes*/
+			$pdf -> SetTextColor(0, 0, 0); /*Color del Texto*/
 			$pdf -> AddPage(); /*Añade una página*/
-			$pdf -> SetFont('Arial', 'B', 10); /*Establece el estilo de letra*/
-			$pdf -> Write(20, 'LISTADO DE TUTORES'); /*Escribe LISTADO DE TUTORES*/
-			$pdf -> Ln(15); /*Salto de linea*/
-			$pdf -> Cell(50, 10, 'SECCION', 1, 0, 'C'); /*$pdf->Cell(ancho,alto,valor a escribir,borde,salto de lina,'alineamiento');*/
-			$pdf -> Cell(50, 10, 'TUTOR', 1, 1, 'C');
-
+			$pdf -> AddFont('DejaVu','','DejaVuSans-Bold.ttf',true); /*Establece el estilo de letra*/
+			$pdf -> SetFont('DejaVu','',10); /*Establece el estilo de letra*/
+			$pdf -> Cell(0, 10, 'LISTADO DE TUTORES - ' . date('d/m/Y'), 0, 0, 'R'); /*Encabezado del PDF*/
+			$pdf -> Image(base_url().'uploads/iconos/escudo-evg.png', 10, 10, 45); /*Logo EVG*/
+			$pdf -> SetMargins(10, 10, 40); /*Establecer márgenes*/
+			$pdf -> Ln(20); /*Salto de linea*/
+			$pdf -> Cell(95, 10, 'SECCIÓN', 1, 0, 'C'); /*$pdf->Cell(ancho, alto, valor a escribir, borde, salto de linea, 'alineamiento');*/
+			$pdf -> Cell(95, 10, 'TUTOR', 1, 1, 'C');
 
 			foreach ($this -> listaTutores as $indice => $valor) 
 			{
-				$pdf -> Cell(50, 10, $indice, 1, 0, 'C');
+				$pdf -> Cell(95, 10, $indice, 1, 0, 'C');
 				if (!empty($valor))
-					$pdf -> Cell(50, 10, $valor, 1, 1, 'C');
+					$pdf -> Cell(95, 10, $valor, 1, 1, 'C');
 				else
-					$pdf -> Cell(50, 10, '-', 1, 1, 'C');
+					$pdf -> Cell(95, 10, '-', 1, 1, 'C');
 			}
+
 			$pdf -> Output();
 		}
 		else
 		{
 			echo
 			('
-			<script>
-				alert("no hay secciones creadas");
-				window.close();
-			</script>
+				<script>
+					alert("No hay secciones creadas");
+					window.close();
+				</script>
 			');
 		}
 	}

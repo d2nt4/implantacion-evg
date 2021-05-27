@@ -1,20 +1,84 @@
 /* ---------------------------------------------------
-    ESTILOS
+    ESTILOS GENERALES
 ----------------------------------------------------- */
+
 body
 {
-	background: #fafafa;
+	background: #f7fcfe;
 }
+
 /* ---------------------------------------------------
-    AJAX
+    ESTILOS HEADER
 ----------------------------------------------------- */
+
+header
+{
+	background: #0079B6;
+	color: white;
+	height: 10vh;
+	display: flex;
+	flex-direction: row;
+}
+
+header div
+{
+	display: flex;
+	align-items: center;
+}
+
+header div:nth-child(2)
+{
+	display: flex;
+	justify-content: flex-end;
+}
+
+#logo-evg
+{
+	height: auto;
+	width: 13rem;
+	margin-right: 2rem;
+}
+
+header h3
+{
+	font-weight: bolder!important;
+}
+
+#profile_picture
+{
+	width: 4rem;
+	height: auto;
+}
+
+#icon-grid
+{
+	font-size: 1.25rem;
+	margin-right: .75rem;
+}
+
+#icon-logout
+{
+	font-size: 1.25rem;
+	margin-left: .75rem;
+}
+
+#icon-grid:hover,
+#icon-logout:hover
+{
+	color: lightgray;
+}
+
+/* ---------------------------------------------------
+    ESTILOS AJAX
+----------------------------------------------------- */
+
 .sugerenciaAjax
 {
 	background-color: lightgray;
 	padding: 0;
 	overflow: hidden;
 	border-radius: 10px;
-	margin-top: .8rem;
+	margin-top: 1.5rem;
 }
 
 .sugerenciaAjax button
@@ -23,6 +87,7 @@ body
 	border: none;
 	height: auto;
 	color: black;
+	font-weight: bolder;
 	box-shadow: none;
 	width: 100%;
 	padding: 0;
@@ -129,56 +194,6 @@ h3 > span
     GRID DE APLICACIONES
 ----------------------------------------------------- */
 
-header
-{
-	background: #0076CE;
-	color: white;
-	height: 10vh;
-	display: flex;
-	flex-direction: row;
-}
-
-header div
-{
-	display: flex;
-	align-items: center;
-}
-
-header div:nth-child(2)
-{
-	display: flex;
-	justify-content: flex-end;
-}
-
-header h3
-{
-	font-weight: bolder!important;
-}
-
-#profile_picture
-{
-	width: 4rem;
-	height: auto;
-}
-
-#icon-grid
-{
-	font-size: 1.25rem;
-	margin-right: .75rem;
-}
-
-#icon-logout
-{
-	font-size: 1.25rem;
-	margin-left: .75rem;
-}
-
-#icon-grid:hover,
-#icon-logout:hover
-{
-	color: lightgray;
-}
-
 #gridAplicaciones
 {
 	padding: 2rem;
@@ -273,14 +288,6 @@ header h3
 	object-fit: cover;
 }
 
-/* Logo EVG en el Header */
-#logo-evg
-{
-	height: auto;
-	width: 13rem;
-	margin-right: 2rem;
-}
-
 /* Filas de gestión de contenido */
 .fila
 {
@@ -295,10 +302,10 @@ header h3
 	margin-right: 1rem;
 }
 
-
 /* ---------------------------------------------------
-    Disposición del Contenido
+    DISPOSICIÓN DEL CONTENIDO EN LAS PÁGINAS
 ----------------------------------------------------- */
+
 .general
 {
 	padding: 2.5rem;
@@ -337,8 +344,3 @@ header h3
 {
 	margin-left: .45rem;
 }
-
-/* ---------------------------------------------------
-    MODALES
------------------------------------------------------ */
-

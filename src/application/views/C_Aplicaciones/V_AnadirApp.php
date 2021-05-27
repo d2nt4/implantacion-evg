@@ -71,7 +71,6 @@
 							(
 									'name'=>'icono',
 									'onchange'=>'previsualizarImagen(this)',
-									'required'=>'required',
 									'class'=>'form-control'
 							);
 

@@ -63,7 +63,6 @@
 							(
 									'name'=>'enviar',
 									'value'=>'ENVIAR',
-									'disabled'=>'disabled',
 									'class'=>'form-control'
 							);
 						?>

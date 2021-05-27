@@ -46,13 +46,13 @@
 							<?php
 								$correo = array
 								(
-									'name'=>'correo',
-									'oninput'=>'buscarUsuarios(\''.base_url().'\','.$idPerfil.', this.value)',
-									'onfocusin'=>'document.getElementsByClassName(\'sugerenciaAjax\')[0].style.visibility=\'visible\'',
-									'onfocusout'=>'document.getElementsByClassName(\'sugerenciaAjax\')[0].style.visibility=\'hidden\'',
-									'required'=>'required',
-									'autocomplete'=>'off',
-									'class'=>'form-control'
+										'name'=>'correo',
+										'oninput'=>'buscarUsuarios(\''.base_url().'\','.$idPerfil.', this.value)',
+										'onfocusin'=>'document.getElementsByClassName(\'sugerenciaAjax\')[0].style.visibility=\'visible\'',
+										'onfocusout'=>'document.getElementsByClassName(\'sugerenciaAjax\')[0].style.visibility=\'hidden\'',
+										'required'=>'required',
+										'autocomplete'=>'off',
+										'class'=>'form-control'
 								);
 
 								$enviar = array
