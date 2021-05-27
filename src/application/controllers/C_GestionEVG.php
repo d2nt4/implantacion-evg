@@ -1973,7 +1973,8 @@ class C_GestionEVG extends CI_Controller
 	 * @param  string $location Ruta para redirigir a una direccion.
 	 * @return void
 	 */
-	public function headerLocation($location){
+	public function headerLocation($location)
+	{
 		header('Location:'.base_url().$location);
 	}
 
