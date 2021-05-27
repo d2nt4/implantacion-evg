@@ -1,0 +1,926 @@
+{
+  "id": "cb4d7c5c-b5e3-4a6b-a95c-dbfa7b44f584",
+  "version": "2.0",
+  "name": "ImplantacionEVG",
+  "url": "http://12.2daw.esvirgua.com/GestionEVG/src",
+  "tests": [{
+    "id": "cc06c2af-f3f3-48f5-9adf-428960fe2508",
+    "name": "AdministracionEVG - Aplicaciones - Crear App",
+    "commands": [{
+      "id": "a7195fbd-0b54-418e-b9a8-edde4b410fc1",
+      "comment": "",
+      "command": "open",
+      "target": "http://12.2daw.esvirgua.com/GestionEVG/src/Grid",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "26f9164b-db60-445d-b0b8-440988f66742",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1936x1056",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1e46b5fe-85ed-46e3-a023-6467b104cdfd",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col:nth-child(1) b",
+      "targets": [
+        ["css=.col:nth-child(1) b", "css:finder"],
+        ["xpath=//div[@id='gridAplicaciones']/div/a/h1/b", "xpath:idRelative"],
+        ["xpath=//b", "xpath:position"],
+        ["xpath=//b[contains(.,'AdministracionEVG')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b680f2bf-185e-4ac0-bb43-eeca0fcb5dfb",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.fila:nth-child(1) > .btn-primary",
+      "targets": [
+        ["css=.fila:nth-child(1) > .btn-primary", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/perfilesAplicacion/1'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "83d919f9-36c2-4ec3-afde-f73cb5fbc5f8",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.fila:nth-child(1) > .btn-primary",
+      "targets": [
+        ["css=.fila:nth-child(1) > .btn-primary", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/perfilesAplicacion/1'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div/button", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5e156a57-50ab-448e-b10a-d039aeca72d0",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.btn-success",
+      "targets": [
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/anadirAppForm'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/button[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0d20c206-e8da-4900-9757-62cede119695",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.btn-success",
+      "targets": [
+        ["css=.btn-success", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/anadirAppForm'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/button[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f846ec7c-df04-485f-b94a-a28ce51de88a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.fa-plus-square",
+      "targets": [
+        ["css=.fa-plus-square", "css:finder"],
+        ["xpath=//div[@id='principal']/div[2]/div/button[2]/i", "xpath:idRelative"],
+        ["xpath=//div[2]/div/button[2]/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8872c333-146a-4470-9fb1-2c926488f8c7",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.fa-arrow-left",
+      "targets": [
+        ["css=.fa-arrow-left", "css:finder"],
+        ["xpath=//div[@id='principal']/div[2]/div/button[2]/i", "xpath:idRelative"],
+        ["xpath=//div[2]/div/button[2]/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "daa92954-921a-4985-8cc8-1f068a3053d5",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.fa-arrow-left",
+      "targets": [
+        ["css=.fa-arrow-left", "css:finder"],
+        ["xpath=//div[@id='principal']/div[2]/div/button[2]/i", "xpath:idRelative"],
+        ["xpath=//div[2]/div/button[2]/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "92638174-b2b6-48bb-9fe2-2965400c5562",
+      "comment": "",
+      "command": "click",
+      "target": "id=nombre",
+      "targets": [
+        ["id=nombre", "id"],
+        ["name=nombre", "name"],
+        ["css=#nombre", "css:finder"],
+        ["xpath=//input[@id='nombre']", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "da9ba0a8-bb11-4a35-9d86-dc6291c36d98",
+      "comment": "",
+      "command": "type",
+      "target": "id=nombre",
+      "targets": [
+        ["id=nombre", "id"],
+        ["name=nombre", "name"],
+        ["css=#nombre", "css:finder"],
+        ["xpath=//input[@id='nombre']", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Prueba"
+    }, {
+      "id": "c8743052-d590-4aa4-ad6b-dff122fe2687",
+      "comment": "",
+      "command": "click",
+      "target": "name=descripcion",
+      "targets": [
+        ["name=descripcion", "name"],
+        ["css=.form-control:nth-child(4)", "css:finder"],
+        ["xpath=//input[@name='descripcion']", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/form/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fb88b0d0-a946-4577-a43e-5bd5e5b77fa7",
+      "comment": "",
+      "command": "type",
+      "target": "name=descripcion",
+      "targets": [
+        ["name=descripcion", "name"],
+        ["css=.form-control:nth-child(4)", "css:finder"],
+        ["xpath=//input[@name='descripcion']", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/form/input[2]", "xpath:idRelative"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "Esto es una prueba"
+    }, {
+      "id": "88af195b-c5e6-4bff-8386-5a7c13735175",
+      "comment": "",
+      "command": "click",
+      "target": "id=url",
+      "targets": [
+        ["id=url", "id"],
+        ["name=url", "name"],
+        ["css=#url", "css:finder"],
+        ["xpath=//input[@id='url']", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/form/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3754f418-fc40-42ea-a09b-6964a53dbff7",
+      "comment": "",
+      "command": "type",
+      "target": "id=url",
+      "targets": [
+        ["id=url", "id"],
+        ["name=url", "name"],
+        ["css=#url", "css:finder"],
+        ["xpath=//input[@id='url']", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/form/input[3]", "xpath:idRelative"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "www.evg.es"
+    }, {
+      "id": "b6d18684-abe6-4230-b4fa-d4b6c9262ddf",
+      "comment": "",
+      "command": "click",
+      "target": "name=icono",
+      "targets": [
+        ["name=icono", "name"],
+        ["css=.form-control:nth-child(11)", "css:finder"],
+        ["xpath=//input[@name='icono']", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/form/input[4]", "xpath:idRelative"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b165d3b7-578a-4061-88af-9b9c9ece4af1",
+      "comment": "",
+      "command": "//type",
+      "target": "name=icono",
+      "targets": [],
+      "value": "C:\\Users\\XxBUDAxX\\Downloads\\goku-ultra-instinto-abj.jpeg"
+    }, {
+      "id": "8c48f695-c2fd-4df5-aa9c-881995b046e2",
+      "comment": "",
+      "command": "//click",
+      "target": "name=enviar",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "a0753788-eef2-4fb6-b709-222c9bc54f21",
+    "name": "AdministracionEVG - DesvincularAPP",
+    "commands": [{
+      "id": "f2adabb5-5ea5-46ef-94d5-548f5fe6457c",
+      "comment": "",
+      "command": "open",
+      "target": "http://12.2daw.esvirgua.com/GestionEVG/src/Grid",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1726497b-1598-4cfc-8c5f-e2d0c952e630",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1936x1056",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0ea8f1a6-c341-42b6-a127-a45007d4b40f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col:nth-child(1) h1",
+      "targets": [
+        ["css=.col:nth-child(1) h1", "css:finder"],
+        ["xpath=//div[@id='gridAplicaciones']/div/a/h1", "xpath:idRelative"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'AdministracionEVG')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2fe58904-1c93-4ee2-9273-7f823a71429e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.fila:nth-child(3) > .btn-danger",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-danger", "css:finder"],
+        ["xpath=//button[@onclick=\"modalCheck('¿Seguro que quieres desvincular la aplicación: <b>Prueba</b>?. ESTA ACCIÓN ES IRREVERSIBLE.', 'http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/borrarApp/6', 'Desvincular Aplicación', '¿Desea desvincular la aplicación: <b>Prueba</b>?', 'Cancelar', 'Desvincular')\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button[3]", "xpath:idRelative"],
+        ["xpath=//div[3]/button[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "88fc1f34-172c-4465-ad63-38e68513f7f8",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.fila:nth-child(3) > .btn-danger",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-danger", "css:finder"],
+        ["xpath=//button[@onclick=\"modalCheck('¿Seguro que quieres desvincular la aplicación: <b>Prueba</b>?. ESTA ACCIÓN ES IRREVERSIBLE.', 'http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/borrarApp/6', 'Desvincular Aplicación', '¿Desea desvincular la aplicación: <b>Prueba</b>?', 'Cancelar', 'Desvincular')\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button[3]", "xpath:idRelative"],
+        ["xpath=//div[3]/button[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bf4bd5df-057e-4a8a-9800-2a3d15506d6d",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.fila:nth-child(3) > .btn-danger",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-danger", "css:finder"],
+        ["xpath=//button[@onclick=\"modalCheck('¿Seguro que quieres desvincular la aplicación: <b>Prueba</b>?. ESTA ACCIÓN ES IRREVERSIBLE.', 'http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/borrarApp/6', 'Desvincular Aplicación', '¿Desea desvincular la aplicación: <b>Prueba</b>?', 'Cancelar', 'Desvincular')\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button[3]", "xpath:idRelative"],
+        ["xpath=//div[3]/button[3]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "13472a49-fd59-4faf-bc9e-a78ae3f99305",
+      "comment": "",
+      "command": "click",
+      "target": "id=trigger",
+      "targets": [
+        ["id=trigger", "id"],
+        ["css=#trigger", "css:finder"],
+        ["xpath=//button[@id='trigger']", "xpath:attributes"],
+        ["xpath=//div[@id='check']/div/div/div[3]/button[2]", "xpath:idRelative"],
+        ["xpath=//body/div[2]/div/div/div[3]/button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Sí')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3fe8b782-3d1c-4a3c-8beb-23a3ba0ba635",
+      "comment": "",
+      "command": "click",
+      "target": "css=#myModal .btn-danger",
+      "targets": [
+        ["css=#myModal .btn-danger", "css:finder"],
+        ["xpath=(//button[@type='button'])[4]", "xpath:attributes"],
+        ["xpath=//div[@id='myModal']/div/div/div[3]/button[2]", "xpath:idRelative"],
+        ["xpath=//body/div[2]/div/div/div[3]/button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'Desvincular')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5557d937-62e7-47bc-bfc8-4f23e63509c2",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.fila:nth-child(3) > .btn-warning",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-warning", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/modificarAppForm/4'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "57a8e481-09e9-4437-bcd3-a7ce83bb416f",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.fila:nth-child(3) > .btn-warning",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-warning", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/modificarAppForm/4'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "50539dc7-2669-40eb-a2ca-ebc266597860",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.fila:nth-child(3) > .btn-primary",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-primary", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/perfilesAplicacion/4'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "621bc380-e953-4a78-8d20-eee937d93644",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.fila:nth-child(3) > .btn-primary",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-primary", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/perfilesAplicacion/4'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "eab5428b-622e-4c58-849f-2c86ca570b3c",
+    "name": "AdministracionEVG - ModificarApp",
+    "commands": [{
+      "id": "f29a2223-7831-4dfd-8539-4bdc9ad556e0",
+      "comment": "",
+      "command": "open",
+      "target": "http://12.2daw.esvirgua.com/GestionEVG/src/Grid",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "27cfce58-c7be-4122-8afd-ffea7825d22d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1936x1056",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fd1751e6-2330-4699-94b1-24881ea17a1b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col:nth-child(1) b",
+      "targets": [
+        ["css=.col:nth-child(1) b", "css:finder"],
+        ["xpath=//div[@id='gridAplicaciones']/div/a/h1/b", "xpath:idRelative"],
+        ["xpath=//b", "xpath:position"],
+        ["xpath=//b[contains(.,'AdministracionEVG')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "73de7a62-937c-4415-8f18-7bfaaf5e3969",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.fila:nth-child(3) > .btn-warning",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-warning", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/modificarAppForm/8'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b852c5d2-2751-424a-ad00-aedb2de4ac38",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.fila:nth-child(3) > .btn-warning",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-warning", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/modificarAppForm/8'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9391fc9d-b59d-4610-bd00-e45289d63849",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.fila:nth-child(3) > .btn-primary",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-primary", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/perfilesAplicacion/8'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4c3acbab-e746-499f-85c6-09b3cad8c3bf",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.fila:nth-child(3) > .btn-primary",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-primary", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/perfilesAplicacion/8'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1a4631ea-a06f-4ab7-9956-b6acbdc8e959",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.fila:nth-child(3) > .btn-warning",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-warning", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/modificarAppForm/8'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0a9e5518-d9b3-4333-87ed-294e57c8dc61",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.fila:nth-child(3) > .btn-warning",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-warning", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/modificarAppForm/8'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0dbc1d92-3f2f-4055-b346-f85ccdef8e40",
+      "comment": "",
+      "command": "click",
+      "target": "css=.fila:nth-child(3) > .btn-warning > .fas",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-warning > .fas", "css:finder"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button[2]/i", "xpath:idRelative"],
+        ["xpath=//div[3]/button[2]/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dfee6f47-2598-447b-b23c-ef90c9ff218c",
+      "comment": "",
+      "command": "click",
+      "target": "id=nombre",
+      "targets": [
+        ["id=nombre", "id"],
+        ["name=nombre", "name"],
+        ["css=#nombre", "css:finder"],
+        ["xpath=//input[@id='nombre']", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1921102e-5341-4dd7-8d61-b0fd6b1f679e",
+      "comment": "",
+      "command": "click",
+      "target": "id=nombre",
+      "targets": [
+        ["id=nombre", "id"],
+        ["name=nombre", "name"],
+        ["css=#nombre", "css:finder"],
+        ["xpath=//input[@id='nombre']", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ffb2c84f-9fad-4f79-8669-d4e6d1c2aa8a",
+      "comment": "",
+      "command": "click",
+      "target": "id=nombre",
+      "targets": [
+        ["id=nombre", "id"],
+        ["name=nombre", "name"],
+        ["css=#nombre", "css:finder"],
+        ["xpath=//input[@id='nombre']", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6a161ca6-f890-41ed-a1f5-b74554e797f2",
+      "comment": "",
+      "command": "doubleClick",
+      "target": "id=nombre",
+      "targets": [
+        ["id=nombre", "id"],
+        ["name=nombre", "name"],
+        ["css=#nombre", "css:finder"],
+        ["xpath=//input[@id='nombre']", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "593781e7-beb7-4373-b9a4-52ec8ce77508",
+      "comment": "",
+      "command": "click",
+      "target": "id=nombre",
+      "targets": [
+        ["id=nombre", "id"],
+        ["name=nombre", "name"],
+        ["css=#nombre", "css:finder"],
+        ["xpath=//input[@id='nombre']", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "22123c38-8da2-41c5-b083-24ff9fe5e045",
+      "comment": "",
+      "command": "type",
+      "target": "id=nombre",
+      "targets": [
+        ["id=nombre", "id"],
+        ["name=nombre", "name"],
+        ["css=#nombre", "css:finder"],
+        ["xpath=//input[@id='nombre']", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "GestionEVG"
+    }, {
+      "id": "49f2d28f-c3a4-4a30-ac08-f006b258d9bc",
+      "comment": "",
+      "command": "click",
+      "target": "id=nombre",
+      "targets": [
+        ["id=nombre", "id"],
+        ["name=nombre", "name"],
+        ["css=#nombre", "css:finder"],
+        ["xpath=//input[@id='nombre']", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "39f1d8b9-d26d-4419-8288-6111378634a9",
+      "comment": "",
+      "command": "type",
+      "target": "id=nombre",
+      "targets": [
+        ["id=nombre", "id"],
+        ["name=nombre", "name"],
+        ["css=#nombre", "css:finder"],
+        ["xpath=//input[@id='nombre']", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "Prueb2"
+    }, {
+      "id": "6d31f722-5925-47e5-8fe1-26c0f12f8564",
+      "comment": "",
+      "command": "click",
+      "target": "name=enviar",
+      "targets": [
+        ["name=enviar", "name"],
+        ["css=.form-control:nth-child(20)", "css:finder"],
+        ["xpath=//input[@name='enviar']", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/form/input[5]", "xpath:idRelative"],
+        ["xpath=//input[5]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "3a2e1841-2118-4e47-9725-a4ca6fdb66db",
+    "name": "AdministracionEVG - Añadir/Quitar perfil-APP",
+    "commands": [{
+      "id": "65ee323e-30c4-49b9-9428-3fa177e1554b",
+      "comment": "",
+      "command": "open",
+      "target": "http://12.2daw.esvirgua.com/GestionEVG/src/Grid",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d3658712-eabe-41f5-9c4b-377640b37db3",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1936x1056",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8af4472b-75ce-4cad-9261-4b3278bd3366",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col:nth-child(1) b",
+      "targets": [
+        ["css=.col:nth-child(1) b", "css:finder"],
+        ["xpath=//div[@id='gridAplicaciones']/div/a/h1/b", "xpath:idRelative"],
+        ["xpath=//b", "xpath:position"],
+        ["xpath=//b[contains(.,'AdministracionEVG')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ff7fd67d-ddbe-4c87-bb04-3359ef683b49",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.fila:nth-child(3) > .btn-primary",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-primary", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/perfilesAplicacion/8'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a00d2b9b-f9f6-46d9-8595-bbd64d880bea",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.fila:nth-child(3) > .btn-primary",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-primary", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/perfilesAplicacion/8'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "afd0b37f-8ac2-4d4d-a017-41f0477427ab",
+      "comment": "",
+      "command": "click",
+      "target": "css=.fila:nth-child(3) > .btn-primary",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-primary", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/perfilesAplicacion/8'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e41f8483-2072-44a0-a822-cd9850254037",
+      "comment": "",
+      "command": "click",
+      "target": "css=.operaciones:nth-child(2) .btn",
+      "targets": [
+        ["css=.operaciones:nth-child(2) .btn", "css:finder"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[2]/div/a/button", "xpath:idRelative"],
+        ["xpath=//a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Añadir')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3c996bad-71c1-45cc-9f8f-bd80ece626f9",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.btn-secondary",
+      "targets": [
+        ["css=.btn-secondary", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/VerApps'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/button[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ad3febfa-137d-41cd-acba-d0fe1f930fbf",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.btn-secondary",
+      "targets": [
+        ["css=.btn-secondary", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/VerApps'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/button[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2e142ff8-244c-4537-8786-7bc983a60209",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.btn-secondary",
+      "targets": [
+        ["css=.btn-secondary", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/VerApps'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/button[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1cccc518-4297-429b-92b2-1499f39ea258",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.btn-secondary",
+      "targets": [
+        ["css=.btn-secondary", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/VerApps'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/button[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4f200651-dc5e-4d62-a246-891f23e167e7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-secondary",
+      "targets": [
+        ["css=.btn-secondary", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/VerApps'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/button[2]", "xpath:idRelative"],
+        ["xpath=//div[2]/div/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "663b2bfa-09d2-43c8-81d5-27d7c6491935",
+      "comment": "",
+      "command": "click",
+      "target": "id=logo-evg",
+      "targets": [
+        ["id=logo-evg", "id"],
+        ["css=#logo-evg", "css:finder"],
+        ["xpath=//img[@alt='Escudo EVG']", "xpath:img"],
+        ["xpath=//img[@id='logo-evg']", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div/header/div/a/img", "xpath:idRelative"],
+        ["xpath=//img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0d0818de-28b0-4efa-9b64-cc5a35f4946e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.col:nth-child(1) b",
+      "targets": [
+        ["css=.col:nth-child(1) b", "css:finder"],
+        ["xpath=//div[@id='gridAplicaciones']/div/a/h1/b", "xpath:idRelative"],
+        ["xpath=//b", "xpath:position"],
+        ["xpath=//b[contains(.,'AdministracionEVG')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b50e29f1-09d7-4c15-b27c-a74824722d2b",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.fila:nth-child(3) > .btn-primary",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-primary", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/perfilesAplicacion/8'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2e2881b7-441a-4a28-8ece-e5b81d6e6c18",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.fila:nth-child(3) > .btn-primary",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-primary", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/perfilesAplicacion/8'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "91d42db9-825a-4ca6-86e7-a4f3792f8a0b",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.fila:nth-child(3) > .btn-warning",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-warning", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/modificarAppForm/8'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "577adabe-badf-4b33-85a6-e81000471b1a",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.fila:nth-child(3) > .btn-warning",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-warning", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/modificarAppForm/8'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c5c07b64-860f-4006-8b66-5657433433f8",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.fila:nth-child(3) > .btn-primary",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-primary", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/perfilesAplicacion/8'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e60eee3d-6867-4d10-a37b-4ccd80bdc35a",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.fila:nth-child(3) > .btn-primary",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-primary", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/perfilesAplicacion/8'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a30e9ce3-b5a4-4beb-99c2-2d4362361aa0",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.fila:nth-child(3) > .btn-warning",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-warning", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/modificarAppForm/8'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "479a5e46-7952-4fb6-8bcd-f98af17aefc4",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.fila:nth-child(3) > .btn-warning",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-warning", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/modificarAppForm/8'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button[2]", "xpath:idRelative"],
+        ["xpath=//div[3]/button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "928d674a-8648-449e-880d-b18c726fa544",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.fila:nth-child(3) > .btn-primary",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-primary", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/perfilesAplicacion/8'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1b9d9377-8a49-468f-92fe-5b5eea077efe",
+      "comment": "",
+      "command": "click",
+      "target": "css=.fila:nth-child(3) > .btn-primary",
+      "targets": [
+        ["css=.fila:nth-child(3) > .btn-primary", "css:finder"],
+        ["xpath=//button[@onclick=\"location.href ='http://12.2daw.esvirgua.com/GestionEVG/src/C_GestionEVG/perfilesAplicacion/8'\"]", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div[3]/button", "xpath:idRelative"],
+        ["xpath=//div[3]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a897ce64-bea8-4ac4-a768-d0d7c39b681a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-outline-danger",
+      "targets": [
+        ["css=.btn-outline-danger", "css:finder"],
+        ["xpath=//div[@id='principal']/div[2]/div/div/div/div/a/button", "xpath:idRelative"],
+        ["xpath=//a/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Quitar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ee8069da-9b08-4080-9e82-30bea60f989b",
+      "comment": "",
+      "command": "click",
+      "target": "id=logo-evg",
+      "targets": [
+        ["id=logo-evg", "id"],
+        ["css=#logo-evg", "css:finder"],
+        ["xpath=//img[@alt='Escudo EVG']", "xpath:img"],
+        ["xpath=//img[@id='logo-evg']", "xpath:attributes"],
+        ["xpath=//div[@id='principal']/div/header/div/a/img", "xpath:idRelative"],
+        ["xpath=//img", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "31ee14ef-b314-4a62-9223-a0820af70807",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://12.2daw.esvirgua.com/", "http://12.2daw.esvirgua.com/GestionEVG/src"],
+  "plugins": []
+}

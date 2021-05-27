@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: funciones.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: funciones.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @function confirmar - Función para confirmar las distintas acciones que pueden realizarse en el sistema.
+ * @param {string} texto - Texto a mostrar en el body del modal.
+ * @param {string} ruta - Ruta que se envía para ejecutar una acción en la aplicación.
+ * @param {string} header - Texto a mostrar en el head del modal.
+ * @param {string} botonCancelar - Texto a mostrar en el botón de cancelar (izquierdo) del modal.
+ * @param {string} botonConfirmar -  Texto a mostrar en el botón de confirmar (derecho) del modal.
+*/
+function confirmar(texto, ruta, header, botonCancelar, botonConfirmar)
+{
+	$('#principal').after
+	(
+		`
+			&lt;!--Bootstrap Modal-->
+			&lt;div id="myModal" class="modal fade" role="dialog" tabindex="-1" data-backdrop="static">
+				&lt;div class="modal-dialog modal-dialog-centered" role="document">
+					&lt;div class="modal-content">
+						&lt;div class="modal-header">
+							&lt;h5 class="modal-title">&lt;b>` + header + `&lt;/b>&lt;/h5>
+							&lt;button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="eliminarModal(this)">
+								&lt;span aria-hidden="true">&amp;times;&lt;/span>
+							&lt;/button>
+						&lt;/div>
+						&lt;div class="modal-body">
+							&lt;p>` + texto + `&lt;/p>
+						&lt;/div>
+						&lt;div class="modal-footer">
+							&lt;button type="button" class="btn btn-secondary font-weight-bolder" data-dismiss="modal" onclick="eliminarModal(this)">`+ botonCancelar +`&lt;/button>
+							&lt;button type="button" class="btn btn-danger font-weight-bolder" onclick="location.href = '` + ruta + `'">` + botonConfirmar + `&lt;/button>
+						&lt;/div>
+					&lt;/div>
+				&lt;/div>
+			&lt;/div>
+		`
+	);
+}
+
+/**
+ * @function modalCheck - Función para asegurar la confirmación de las acciones del usuario.
+ * Estos parámetros serán los mismos que la función confirmar que es la que ejecuta la acción deseada.
+ * @param {string} texto - Texto a mostrar en el body del modal.
+ * @param {string} ruta - Ruta que se envía para ejecutar una acción en la aplicación.
+ * @param {string} header - Texto a mostrar en el head del modal.
+ * @param {string} botonCancelar - Texto a mostrar en el botón de cancelar (izquierdo) del modal.
+ * @param {string} botonConfirmar -  Texto a mostrar en el botón de confirmar (derecho) del modal.
+ */
+function modalCheck(texto, ruta, header, body, botonCancelar, botonConfirmar)
+{
+	$('#principal').after
+	(
+		`
+			&lt;!--Bootstrap Check Modal-->
+			&lt;div id="check" class="modal fade" role="dialog" tabindex="-1" data-backdrop="static">
+				&lt;div class="modal-dialog modal-dialog-centered" role="document">
+					&lt;div class="modal-content">
+						&lt;div class="modal-header">
+							&lt;h5 class="modal-title">&lt;b>` + header + `&lt;/b>&lt;/h5>
+							&lt;button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="eliminarModal(this)">
+								&lt;span aria-hidden="true">&amp;times;&lt;/span>
+							&lt;/button>
+						&lt;/div>
+						&lt;div class="modal-body">
+							&lt;p>` + body + `&lt;/p>
+						&lt;/div>
+						&lt;div class="modal-footer">
+							&lt;button type="button" class="btn btn-secondary font-weight-bolder" data-dismiss="modal" onclick="eliminarModal(this)">No&lt;/button>
+							&lt;button type="button" id="trigger" class="btn btn-danger font-weight-bolder" data-toggle="modal" data-target="#myModal">Sí&lt;/button>
+						&lt;/div>
+					&lt;/div>
+				&lt;/div>
+			&lt;/div>
+		`
+	)
+
+	$('#trigger').click
+	(
+		function ()
+		{
+			$('#check').modal( 'hide' ).data( 'bs.modal', null );
+			confirmar(texto, ruta, header, botonCancelar, botonConfirmar);
+		}
+	)
+}
+
+/**
+ * @function eliminarModal - Función para eliminar el modal tras cierre.
+*/
+function eliminarModal(idModal)
+{
+	const body = document.getElementsByTagName('body')[0];
+	const modal = document.getElementById(idModal);
+	body.removeChild(modal);
+}
+
+/**
+ * @function buscarCSU - Función para buscar y comprobar datos con AJAX.
+ * @param {string} baseURL - URL base del proyecto.
+ * @param {string} tabla - Tabla a realizar la consulta.
+ * @param {string} valor - Valor a contrastar con la base de datos.
+ * @param {string} campo - Campo de la tabla de la base de datos a comprobar.
+ * @param {string} idHTML -  ID del elemento HTML a mostrar el resultado de la consulta.
+ * @param {string} idInput - ID del input para colorear el borde de rojo cuando hay un fallo.
+ * @param {string} textoBase - Resultado obtenido de la consulta.
+ * @param {string} permitido - Valor para poder modificar una fila si ya existe, es decir, modificar la descripción de una aplicación en la que no modificas su nombre (si no le pasas este valor, el sistema no dejará modificar ya que existe una aplicación con este nombre).
+ */
+var deshabilitar = [];
+function buscarCSU(baseURL, tabla, valor, campo, idHTML, idInput, textoBase, permitido)
+{
+	const infoAjax = document.getElementById(idHTML);
+	const input = document.getElementById(idInput);
+	if (valor != '')
+	{
+		if (permitido == undefined || valor.toUpperCase() != permitido.toUpperCase())
+		{
+			$.ajax
+			({
+				type: "POST",
+				url: baseURL + 'C_GestionEVG/comprobarCSU',
+				data: {campo:campo, valor:valor, tabla:tabla},
+				async: false,
+				success: function (datos)
+				{
+					if (datos == 'no')
+					{
+						deshabilitar[idHTML] = false;
+						infoAjax.style.display = 'none';
+						input.style.border = 'unset';
+						infoAjax.innerHTML = '';
+					}
+					else
+					{
+						deshabilitar[idHTML] = true;
+						infoAjax.style.display = 'block';
+						input.style.border = '2px solid red';
+						infoAjax.innerHTML = textoBase + valor;
+					}
+				}
+			})
+		}
+		else
+		{
+			deshabilitar[idHTML] = false;
+			infoAjax.style.display = 'none';
+			input.style.border = 'unset';
+			infoAjax.innerHTML = '';
+		}
+	}
+	else
+	{
+		deshabilitar[idHTML] = true;
+		infoAjax.style.display = 'none';
+		input.style.border = 'unset';
+		infoAjax.innerHTML = '';
+	}
+	comprobarBotonEnviar();
+}
+
+/**
+ * @function comprobarBotonEnviar - Comprobar botón de enviar para evitar que se inserte un dato que ya existe. 
+ */
+function comprobarBotonEnviar()
+{
+	let enviar = document.getElementsByName('enviar')[0];
+	enviar.disabled = false;
+	for(let indice in deshabilitar)
+	{
+		if(deshabilitar[indice])
+			enviar.disabled = true;
+	}
+}
+
+/**
+ * @function buscarUsuarios - Función para buscar usuarios en la base de datos.
+ * @param {string} baseURL - URL base del proyecto.
+ * @param {number} idPerfil - Identificador de la fila del usuario.
+ * @param {string} valor - Input a buscar en la base de datos.
+ */
+ function buscarUsuarios(baseURL, idPerfil, valor)
+ {
+	 if(valor != '')
+		 $.ajax
+		 ({
+			 type: "POST",
+			 url: baseURL + 'C_GestionEVG/comprobarUsuarios',
+			 data: 'idPerfil=' + idPerfil + '&amp;valor=' + valor,
+			 success: function (datos)
+			 {
+				 datos = JSON.parse(datos);
+				 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML = '';
+				 for(let i = 0; i &lt; datos.length; i++)
+					 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML += '&lt;button onmousedown="escribir(\'correo\', this.innerHTML)">'+datos[i].correo+'&lt;/button>&lt;/br>';
+				 if(datos == '')
+					 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML = '&lt;button>Sin coincidencias&lt;/button>';
+			 }
+		 })
+	 else
+		 document.getElementsByClassName('sugerenciaAjax')[0].innerHTML = '';
+ }
+
+/**
+ * @function escribir - Función para seleccionar el correo del usuario tras la búsqueda de AJAX.
+ * @param {string} name -  Elemento HTML.
+ * @param {string} valor - Correo del usuario.
+ */
+function escribir(name, valor)
+{
+	document.getElementsByName(name)[0].value = valor;
+}
+
+/**
+ * @function function - Función para mostrar y ocultar el menú aside.
+ */
+$(document).ready(function ()
+{
+	$('#sidebarCollapse').on('click', function ()
+	{
+		$('#sidebar').toggleClass('active');
+		$('aside').toggleClass('show');
+	});
+});
+
+/**
+ * @function previsualizarImagen - Función para previsualizar la imagen antes de subirla.
+ */
+function previsualizarImagen(input)
+{
+	if (input.files &amp;&amp; input.files[0])
+	{
+		var reader = new FileReader();
+		reader.onload = function (e)
+		{
+			$('#test').attr('src', e.target.result);
+		}
+		reader.readAsDataURL(input.files[0]);
+	}
+}
+
+/**
+ * @function function - Función para mostrar mensajes en los botones (Popover).
+ */
+$
+(
+	function ()
+	{
+		$('[data-toggle="popover"]').popover
+		(
+			{
+				placement: 'top',
+				trigger: 'hover'
+			}
+		)
+	}
+)
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#buscarCSU-Funci%25C3%25B3nparabuscarycomprobardatosconAJAX.">buscarCSU - Función para buscar y comprobar datos con AJAX.</a></li><li><a href="global.html#buscarUsuarios-Funci%25C3%25B3nparabuscarusuariosenlabasededatos.">buscarUsuarios - Función para buscar usuarios en la base de datos.</a></li><li><a href="global.html#comprobarBotonEnviar-Comprobarbot%25C3%25B3ndeenviarparaevitarqueseinserteundatoqueyaexiste.">comprobarBotonEnviar - Comprobar botón de enviar para evitar que se inserte un dato que ya existe.</a></li><li><a href="global.html#confirmar-Funci%25C3%25B3nparaconfirmarlasdistintasaccionesquepuedenrealizarseenelsistema.">confirmar - Función para confirmar las distintas acciones que pueden realizarse en el sistema.</a></li><li><a href="global.html#eliminarModal-Funci%25C3%25B3nparaeliminarelmodaltrascierre.">eliminarModal - Función para eliminar el modal tras cierre.</a></li><li><a href="global.html#escribir-Funci%25C3%25B3nparaseleccionarelcorreodelusuariotraslab%25C3%25BAsquedadeAJAX.">escribir - Función para seleccionar el correo del usuario tras la búsqueda de AJAX.</a></li><li><a href="global.html#function-Funci%25C3%25B3nparamostrarmensajesenlosbotones(Popover).">function - Función para mostrar mensajes en los botones (Popover).</a></li><li><a href="global.html#function-Funci%25C3%25B3nparamostraryocultarelmen%25C3%25BAaside.">function - Función para mostrar y ocultar el menú aside.</a></li><li><a href="global.html#modalCheck-Funci%25C3%25B3nparaasegurarlaconfirmaci%25C3%25B3ndelasaccionesdelusuario.Estospar%25C3%25A1metrosser%25C3%25A1nlosmismosquelafunci%25C3%25B3nconfirmarqueeslaqueejecutalaacci%25C3%25B3ndeseada.">modalCheck - Función para asegurar la confirmación de las acciones del usuario.Estos parámetros serán los mismos que la función confirmar que es la que ejecuta la acción deseada.</a></li><li><a href="global.html#previsualizarImagen-Funci%25C3%25B3nparaprevisualizarlaimagenantesdesubirla.">previsualizarImagen - Función para previsualizar la imagen antes de subirla.</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Wed May 26 2021 23:32:46 GMT+0200 (hora de verano de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
