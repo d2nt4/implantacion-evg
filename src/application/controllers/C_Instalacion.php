@@ -64,7 +64,7 @@ class C_Instalacion extends CI_Controller
 
 		$this -> M_GestionEVG -> insertar('Perfiles_Usuarios', Array('idPerfil' => $idPerfilA[0]['idPerfil'], 'idUsuario' => $idUsuario));
 		$this -> M_GestionEVG -> insertar('Perfiles_Usuarios', Array('idPerfil' => $idPerfilG[0]['idPerfil'], 'idUsuario' => $idUsuario));
-		$idAplicacionA = $this -> M_GestionEVG -> insertar('Aplicaciones', Array('nombre' => 'AdministracionEVG', 'descripcion' => 'Aplicación para administrar aplicaciones y perfiles', 'url'=>base_url().'C_GestionEVG/verApps', 'icono' => 'administracion.jpg'));
+		$idAplicacionA = $this -> M_GestionEVG -> insertar('Aplicaciones', Array('nombre' => 'AdministracionEVG', 'descripcion' => 'Aplicación para administrar aplicaciones y perfiles', 'url'=>base_url().'C_AdministracionEVG/verApps', 'icono' => 'administracion.jpg'));
 		$idAplicacionG = $this -> M_GestionEVG -> insertar('Aplicaciones', Array('nombre'=>'GestionEVG','descripcion'=>'Aplicación para gestionar datos', 'url'=>base_url().'C_GestionEVG/verUsuarios', 'icono' => 'gestion.jpg'));
 		$this -> M_GestionEVG -> insertar('Aplicaciones_Perfiles', Array('idPerfil' => $idPerfilA[0]['idPerfil'], 'idAplicacion' => $idAplicacionA));
 		$this -> M_GestionEVG -> insertar('Aplicaciones_Perfiles', Array('idPerfil' => $idPerfilG[0]['idPerfil'], 'idAplicacion' => $idAplicacionG));

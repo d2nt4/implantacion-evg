@@ -8,11 +8,11 @@
 			<div class="row">
 				<header class="col-12">
 					<div class="col-6">
-						<?php echo '<a href="'.base_url().'C_GestionEVG/"><img id="logo-evg" src="'.base_url().'uploads/iconos/escudo-evg.png" alt="Escudo EVG" class="img-fluid"/></a>'  ;?>
+						<?php echo '<a href="'.base_url().'C_AdministracionEVG/"><img id="logo-evg" src="'.base_url().'uploads/iconos/escudo-evg.png" alt="Escudo EVG" class="img-fluid"/></a>'  ;?>
 						<?php echo "<h3>Perfiles - ".$nombre."</h3>"?>
 					</div>
 					<div class="col-6">
-					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/'\" id=\"icon-grid\" class=\"btn mr-2\" data-toggle=\"popover\" data-content=\"Grid Aplicaciones\"><i class=\"fas fa-th\"></i></button>"; ?>
+					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_AdministracionEVG/'\" id=\"icon-grid\" class=\"btn mr-2\" data-toggle=\"popover\" data-content=\"Grid Aplicaciones\"><i class=\"fas fa-th\"></i></button>"; ?>
 						<?php
 							$picture = $this -> session -> userdata('profile_pic');
 							echo '<img id="profile_picture" src="'.$picture.'" alt="Google Profile Picture" class="img-fluid rounded-circle"/>';
@@ -29,14 +29,14 @@
 						<i class="fas fa-bars" data-toggle="popover" data-content="Mostrar menú"></i>
 						<i class="fas fa-times" data-toggle="popover" data-content="Ocultar menú"></i>
 					</button>
-					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/verPerfiles'\" class=\"btn btn-secondary\" data-toggle=\"popover\" data-content=\"Volver atrás\"><i class=\"fas fa-arrow-left\"></i></button>"; ?>
+					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_AdministracionEVG/verPerfiles'\" class=\"btn btn-secondary\" data-toggle=\"popover\" data-content=\"Volver atrás\"><i class=\"fas fa-arrow-left\"></i></button>"; ?>
 					<div class="gestiones">
 						<div class="gestion-apps">
 							<h3 class="font-weight-bolder">Eliminar Usuarios</h3>
 							<?php
 								if(isset($this->usuariosPerfil))
 									foreach($this->usuariosPerfil as $indice => $valor)
-										echo '<div class="mt-2"><b>'.$valor.'</b><a href="'.base_url().'C_GestionEVG/quitarUsuarioPerfil/'.$idPerfil.'/'.$indice.'"><button class="btn btn-outline-danger ml-2" data-toggle="popover" data-content="Desvincular Usuario"><i class="fas fa-trash"></i></button></a></div>';
+										echo '<div class="mt-2"><b>'.$valor.'</b><a href="'.base_url().'C_AdministracionEVG/quitarUsuarioPerfil/'.$idPerfil.'/'.$indice.'"><button class="btn btn-outline-danger ml-2" data-toggle="popover" data-content="Desvincular Usuario"><i class="fas fa-trash"></i></button></a></div>';
 								else
 									echo 'No hay usuarios asociados';
 							?>
@@ -64,7 +64,7 @@
 							?>
 
 							<?php echo validation_errors() ;?>
-							<?php echo form_open(base_url().'C_GestionEVG/anadirUsuarioPerfil/'.$idPerfil) ;?>
+							<?php echo form_open(base_url().'C_AdministracionEVG/anadirUsuarioPerfil/'.$idPerfil) ;?>
 							<?php echo form_label('Correo') ;?>
 							<?php echo form_input($correo); ?>
 							<?php echo '<small class="form-text text-muted sugerenciaAjax"></small>'; ?></br>

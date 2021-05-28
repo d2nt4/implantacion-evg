@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * C_GestionEVG
  * 
- * Clase que contiene todos los métodos necesario para la aplicación.
+ * Clase que contiene todos los métodos necesario para la aplicación de gestión.
  * 
  * @author Abraham Núñez Palos y Daniel Torres Galindo
  */

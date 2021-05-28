@@ -76,10 +76,10 @@ $query_builder = TRUE;
 $db['default'] = array
 (
 	'dsn'	=> '',
-	'hostname' => '12.2daw.esvirgua.com',
-	'username' => 'user2daw_12',
-	'password' => '}U.)v^*4{-h!',
-	'database' => 'user2daw_BD2-12',
+	'hostname' => 'app.esvirgua.com',
+	'username' => 'prodguad_admin',
+	'password' => '7%A!3%6&$x745$9#*89%',
+	'database' => 'prodguad_evg',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

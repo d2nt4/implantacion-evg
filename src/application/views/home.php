@@ -19,7 +19,7 @@
 					if($this->session->userdata('sess_logged_in') == 0)
 						echo "<a href='".$google_login_url."' class='btn gbtn font-weight-bolder'><i class='fa fa-google left mr-2'></i>Iniciar sesión con Google</a>";
 					else
-						header("Location: ".base_url()."");
+						// header("Location: ".base_url()."");
 				?>
 				<div id="cartaGoogle">
 					<?php if(isset($_SESSION['name'])){?>

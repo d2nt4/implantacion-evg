@@ -8,11 +8,11 @@
 			<div class="row">
 				<header class="col-12">
 					<div class="col-6">
-						<?php echo '<a href="'.base_url().'C_GestionEVG/"><img id="logo-evg" src="'.base_url().'uploads/iconos/escudo-evg.png" alt="Escudo EVG" class="img-fluid"/></a>'  ;?>
+						<?php echo '<a href="'.base_url().'C_AdministracionEVG/"><img id="logo-evg" src="'.base_url().'uploads/iconos/escudo-evg.png" alt="Escudo EVG" class="img-fluid"/></a>'  ;?>
 						<?php echo "<h3>Modificar Perfil - ".$this->datosPerfil[0]['nombre']."</h3>"?>
 					</div>
 					<div class="col-6">
-						<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/'\" id=\"icon-grid\" class=\"btn mr-2\" data-toggle=\"popover\" data-content=\"Grid Aplicaciones\"><i class=\"fas fa-th\"></i></button>"; ?>
+						<?php echo "<button onclick=\"location.href ='" . base_url() . "C_AdministracionEVG/'\" id=\"icon-grid\" class=\"btn mr-2\" data-toggle=\"popover\" data-content=\"Grid Aplicaciones\"><i class=\"fas fa-th\"></i></button>"; ?>
 						<?php
 							$picture = $this -> session -> userdata('profile_pic');
 							echo '<img id="profile_picture" src="'.$picture.'" alt="Google Profile Picture" class="img-fluid rounded-circle"/>';
@@ -28,7 +28,7 @@
 						<i class="fas fa-bars" data-toggle="popover" data-content="Mostrar menú"></i>
 						<i class="fas fa-times" data-toggle="popover" data-content="Ocultar menú"></i>
 					</button>
-					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/verPerfiles'\" class=\"btn btn-secondary\" data-toggle=\"popover\" data-content=\"Volver atrás\"><i class=\"fas fa-arrow-left\"></i></button>"; ?>
+					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_AdministracionEVG/verPerfiles'\" class=\"btn btn-secondary\" data-toggle=\"popover\" data-content=\"Volver atrás\"><i class=\"fas fa-arrow-left\"></i></button>"; ?>
 					<div class="gestiones">
 						<div class="gestion-apps">
 							<?php
@@ -59,7 +59,7 @@
 							?>
 
 							<?php echo validation_errors(); ?>
-							<?php echo form_open(base_url().'C_GestionEVG/modificarPerfil/'.$idPerfil) ;?>
+							<?php echo form_open(base_url().'C_AdministracionEVG/modificarPerfil/'.$idPerfil) ;?>
 							<?php echo form_label('Nombre'); ?></br>
 							<?php echo form_input($nombre); ?>
 							<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?></br>

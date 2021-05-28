@@ -16,11 +16,11 @@
 			<div class="row">
 				<header class="col-12">
 					<div class="col-6">
-						<?php echo '<a href="'.base_url().'C_GestionEVG/"><img id="logo-evg" src="'.base_url().'uploads/iconos/escudo-evg.png" alt="Escudo EVG" class="img-fluid"/></a>'; ?>
+						<?php echo '<a href="'.base_url().'C_AdministracionEVG/"><img id="logo-evg" src="'.base_url().'uploads/iconos/escudo-evg.png" alt="Escudo EVG" class="img-fluid"/></a>'; ?>
 						<h3>Administración EVG - Añadir Aplicación</h3>
 					</div>
 					<div class="col-6">
-						<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/'\" id=\"icon-grid\" class=\"btn mr-2\"><i class=\"fas fa-th\" data-toggle=\"popover\" data-content=\"Grid Aplicaciones\"></i></button>"; ?>
+						<?php echo "<button onclick=\"location.href ='" . base_url() . "C_AdministracionEVG/'\" id=\"icon-grid\" class=\"btn mr-2\"><i class=\"fas fa-th\" data-toggle=\"popover\" data-content=\"Grid Aplicaciones\"></i></button>"; ?>
 						<?php
 							$picture = $this -> session -> userdata('profile_pic');
 							echo '<img id="profile_picture" src="'.$picture.'" alt="Google Profile Picture" class="img-fluid rounded-circle"/>';
@@ -36,7 +36,7 @@
 						<i class="fas fa-bars" data-toggle="popover" data-content="Mostrar menú"></i>
 						<i class="fas fa-times" data-toggle="popover" data-content="Ocultar menú"></i>
 					</button>
-					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/verApps'\" class=\"btn btn-secondary\" data-toggle=\"popover\" data-content=\"Volver atrás\"><i class=\"fas fa-arrow-left\"></i></button>"; ?>
+					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_AdministracionEVG/verApps'\" class=\"btn btn-secondary\" data-toggle=\"popover\" data-content=\"Volver atrás\"><i class=\"fas fa-arrow-left\"></i></button>"; ?>
 					<div class="gestion-apps">
 						<?php
 							$nombre = array
@@ -84,7 +84,7 @@
 						?>
 
 						<?php echo validation_errors(); ?>
-						<?php echo form_open_multipart(base_url().'C_GestionEVG/anadirAPP'); ?>
+						<?php echo form_open_multipart(base_url().'C_AdministracionEVG/anadirAPP'); ?>
 						<?php echo form_input($nombre); ?>
 						<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?></br>
 						<?php echo form_input($descripcion); ?></br>

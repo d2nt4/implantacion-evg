@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://12.2daw.esvirgua.com/GestionEVG/src';
+$config['base_url'] = 'https://app.esvirgua.com/evg';
 
 /*
 |--------------------------------------------------------------------------
