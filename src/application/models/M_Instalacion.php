@@ -53,7 +53,7 @@ class M_Instalacion extends CI_Model
 					icono VARCHAR(200) NOT NULL,
 					created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 					updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-					CONSTRAINT PK_Aplicaciones PRIMARY KEY(idAplicacion)
+					PRIMARY KEY(idAplicacion)
 				)ENGINE=INNODB;
 			";
 
@@ -65,7 +65,7 @@ class M_Instalacion extends CI_Model
 					descripcion VARCHAR(200) NOT NULL,
 					created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 					updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-					CONSTRAINT PK_Perfiles PRIMARY KEY(idPerfil)
+					PRIMARY KEY(idPerfil)
 				)ENGINE=INNODB;
 			";
 
@@ -99,7 +99,7 @@ class M_Instalacion extends CI_Model
 					bajaTemporal bit NOT NULL,
 					created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 					updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-					CONSTRAINT PK_Usuarios PRIMARY KEY(idUsuario)
+					PRIMARY KEY(idUsuario)
 				)ENGINE=INNODB;
 			";
 
@@ -133,7 +133,7 @@ class M_Instalacion extends CI_Model
 					idCoordinador SMALLINT UNSIGNED NULL,
 					created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 					updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-					CONSTRAINT PK_Etapas PRIMARY KEY (idEtapa),
+					PRIMARY KEY (idEtapa),
 					CONSTRAINT FK_Etapas_Usuarios 
 						FOREIGN KEY (idCoordinador) 
 							REFERENCES Usuarios (idUsuario) 
@@ -173,7 +173,7 @@ class M_Instalacion extends CI_Model
 					idEtapa TINYINT UNSIGNED NULL,
 					created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 					updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-					CONSTRAINT PK_Curso PRIMARY KEY (idCurso),
+					PRIMARY KEY (idCurso),
 					CONSTRAINT FK_Cursos_Etapas
 						FOREIGN KEY (idEtapa) 
 							REFERENCES Etapas (idEtapa) 
@@ -189,7 +189,7 @@ class M_Instalacion extends CI_Model
 					nombre VARCHAR(40) NOT NULL UNIQUE,
 					created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 					updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP
-					CONSTRAINT PK_Departamento PRIMARY KEY (idDepartamento)
+					PRIMARY KEY (idDepartamento)
 				)ENGINE=INNODB;
 			";
 
@@ -201,7 +201,7 @@ class M_Instalacion extends CI_Model
 					idDepartamento TINYINT UNSIGNED NULL,
 					created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 					updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-					CONSTRAINT PK_FamiliaProfesional PRIMARY KEY (idFamilia),
+					PRIMARY KEY (idFamilia),
 					CONSTRAINT FK_FP_FamiliasProfesionales_FP_Departamentos
 						FOREIGN KEY (idDepartamento) 
 							REFERENCES FP_Departamentos (idDepartamento) 
@@ -219,7 +219,7 @@ class M_Instalacion extends CI_Model
 					idFamilia TINYINT UNSIGNED NULL,
 					created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 					updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-					CONSTRAINT PK_idCiclo PRIMARY KEY (idCiclo),
+					PRIMARY KEY (idCiclo),
 					CONSTRAINT FK_FP_Ciclos_FP_FamiliasProfesionales
 						FOREIGN KEY (idFamilia)
 							REFERENCES FP_FamiliasProfesionales (idFamilia) 
@@ -260,7 +260,7 @@ class M_Instalacion extends CI_Model
 					idCurso TINYINT UNSIGNED NULL,
 					created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 					updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-					CONSTRAINT PK_Seccion PRIMARY KEY (idSeccion),
+					PRIMARY KEY (idSeccion),
 					CONSTRAINT FK_Secciones_Usuarios
 						FOREIGN KEY (idTutor)
 							REFERENCES Usuarios (idUsuario) 
@@ -286,7 +286,7 @@ class M_Instalacion extends CI_Model
 					telefono CHAR(9) NOT NULL,
 					created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 					updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-					CONSTRAINT PK_Alumno PRIMARY KEY (idAlumno),
+					PRIMARY KEY (idAlumno),
 					CONSTRAINT FK_Alumnos_Secciones
 						FOREIGN KEY (idSeccion)
 							REFERENCES Secciones (idSeccion) 
