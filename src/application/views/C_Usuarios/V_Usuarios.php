@@ -41,10 +41,10 @@
 												<h3>" . $valor . "</h3>
 												<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/modificarUsuarioForm/" . $indice . "'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Modificar Usuario\"><i class=\"fas fa-edit\"></i></button>
 												<button onclick=\"confirmar('¿Seguro que quieres borrar el usuario: <b>" . $valor . "</b>?', '" . base_url() . "C_GestionEVG/borrarUsuario/" . $indice . "', 'Eliminar Usuario', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>";
-									if ($this->listaBajaTemporal[$indice] == 1)
+									if ($this -> listaBajaTemporal[$indice] == 1)
 										echo
 										"													
-														<button type='button' class='btn btn-info''><i class='fas fa-clock'></i></button>												
+												<button type='button' class='btn btn-info' data-toggle='popover' data-content='Baja Temporal'><i class='fas fa-clock'></i></button>												
 											</div>			
 										";
 								}

@@ -23,10 +23,10 @@
 			<div id="principal" class="container-fluid">
 				<div id="gridAplicaciones" class="row row-cols-4">
 					<?php
-						if(empty($this->aplicaciones))
+						if(empty($this -> aplicaciones))
 							echo 'Aún no tiene aplicaciones disponibles';
 						else
-							foreach($this->aplicaciones as $valor)
+							foreach($this -> aplicaciones as $valor)
 							{
 								echo
 								'

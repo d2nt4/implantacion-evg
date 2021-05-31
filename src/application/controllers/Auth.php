@@ -22,6 +22,7 @@ class Auth extends CI_Controller
 	{
         parent::__construct();
         $this -> load -> library('google');
+        $this -> load -> model('M_GestionEVG');
     }
 	
 	/**

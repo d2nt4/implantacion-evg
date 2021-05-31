@@ -1,19 +1,19 @@
-<aside>
+<aside class="show">
 	<div class="wrapper">
-		<nav id="sidebar" class="active">
+		<nav id="sidebar">
 			<div class="sidebar-header">
-					<?php
-						$name = $this -> session -> userdata('name');
-						echo "<h5 class='font-weight-bolder'>".$name."</h5>";
-					?>
+				<?php
+					$name = $this -> session -> userdata('name');
+					echo "<h5 class='font-weight-bolder'>".$name."</h5>";
+				?>
 			</div>
 
 			<ul class="list-unstyled components">
 				<li>
-					<?php echo "<a href='".base_url()."C_GestionEVG/VerApps'>Aplicaciones</a>"; ?>
+					<?php echo "<a href='".base_url()."C_AdministracionEVG/VerApps'>Aplicaciones</a>"; ?>
 				</li>
 				<li>
-					<?php echo "<a href='".base_url()."C_GestionEVG/VerPerfiles'>Perfiles</a>"; ?>
+					<?php echo "<a href='".base_url()."C_AdministracionEVG/VerPerfiles'>Perfiles</a>"; ?>
 				</li>
 			</ul>
 

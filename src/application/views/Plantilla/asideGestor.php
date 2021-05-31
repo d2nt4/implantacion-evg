@@ -1,6 +1,6 @@
-<aside>
+<aside class="show">
 	<div class="wrapper">
-		<nav id="sidebar" class="active">
+		<nav id="sidebar">
 			<div class="sidebar-header">
 				<?php
 					$name = $this -> session -> userdata('name');
@@ -10,19 +10,10 @@
 
 			<ul class="list-unstyled components">
 				<li>
-					<?php echo "<a href='".base_url()."C_GestionEVG/VerUsuarios'>Usuarios</a></br>"; ?>
-				</li>
-				<li>
 					<?php echo "<a href='".base_url()."C_GestionEVG/VerEtapas'>Etapas</a></br>"; ?>
 				</li>
 				<li>
 					<?php echo "<a href='".base_url()."C_GestionEVG/VerCursos'>Cursos</a></br>"; ?>
-				</li>
-				<li>
-					<?php echo "<a href='".base_url()."C_GestionEVG/VerDepartamentos'>Departamentos</a></br>"; ?>
-				</li>
-				<li>
-					<?php echo "<a href='".base_url()."C_GestionEVG/VerFamilias'>Familias Profesionales</a></br>"; ?>
 				</li>
 				<li>
 					<?php echo "<a href='".base_url()."C_GestionEVG/VerCiclos'>Ciclos</a></br>"; ?>
@@ -32,6 +23,15 @@
 				</li>
 				<li>
 					<?php echo "<a href='".base_url()."C_GestionEVG/VerAlumnos'>Alumnos</a></br>"; ?>
+				</li>
+				<li>
+					<?php echo "<a href='".base_url()."C_GestionEVG/VerUsuarios'>Usuarios</a></br>"; ?>
+				</li>
+				<li>
+					<?php echo "<a href='".base_url()."C_GestionEVG/VerDepartamentos'>Departamentos</a></br>"; ?>
+				</li>
+				<li>
+					<?php echo "<a href='".base_url()."C_GestionEVG/VerFamilias'>Familias Profesionales</a></br>"; ?>
 				</li>
 				<li>
 					<?php echo "<a target='blank' href='".base_url()."C_GestionEVG/listadoTutores'>Listado de tutores</a></br>"; ?>

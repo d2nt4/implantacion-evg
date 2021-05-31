@@ -33,10 +33,10 @@ class C_AdministracionEVG extends CI_Controller
 		{
         	$acceso = false;
 
-			$aplicaciones = $this -> M_GestionEVG -> seleccionar('Aplicaciones a','distinct(a.url), a.nombre, a.icono',"idUsuario=".$idUsuario,['Aplicaciones_Perfiles ap','Perfiles_Usuarios pu'], ['a.idAplicacion= ap.idAplicacion','pu.idPerfil=ap.idPerfil'], ['join','join']);
+			$aplicaciones = $this -> M_GestionEVG -> seleccionar('Aplicaciones a', 'distinct(a.url), a.nombre, a.icono', "idUsuario=".$idUsuario,['Aplicaciones_Perfiles ap','Perfiles_Usuarios pu'], ['a.idAplicacion= ap.idAplicacion','pu.idPerfil=ap.idPerfil'], ['join','join']);
 			foreach($aplicaciones as $valor)
 				if( $valor['nombre'] == 'GestionEVG' || $valor['nombre'] == 'AdministracionEVG' )
-					$acceso=true;
+					$acceso = true;
 
 			if(!$acceso)
 				redirect('Grid');

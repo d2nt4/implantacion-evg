@@ -44,4 +44,10 @@ class Grid extends CI_Controller
 		$this -> aplicaciones = $this -> M_GestionEVG -> seleccionar('Aplicaciones a','distinct(a.url), a.nombre, a.icono',"idUsuario=".$idUsuario,['Aplicaciones_Perfiles ap','Perfiles_Usuarios pu'],['a.idAplicacion= ap.idAplicacion','pu.idPerfil=ap.idPerfil'], ['join','join']);
 		$this -> load -> view('V_Grid');
 	}
+
+	public function vistaGeneral()
+	{
+		$this -> app = $_GET['app'];
+		$this -> load -> view('Plantilla/mainView');
+	}
 }

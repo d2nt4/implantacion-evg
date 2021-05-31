@@ -25,7 +25,7 @@ class C_GestionEVG extends CI_Controller
 
 		$data['google_login_url'] = $this -> google -> get_login_url();
 
-        if($this->session->userdata('sess_logged_in') == 0 || !$idUsuario=$this->M_GestionEVG->obtenerIdUsuario($_SESSION['email']))
+        if($this->session->userdata('sess_logged_in') == 0 || !$idUsuario = $this -> M_GestionEVG->obtenerIdUsuario($_SESSION['email']))
 		{
         	redirect('Auth');
 		}
@@ -33,10 +33,10 @@ class C_GestionEVG extends CI_Controller
 		{
         	$acceso = false;
 
-			$aplicaciones = $this -> M_GestionEVG -> seleccionar('Aplicaciones a','distinct(a.url), a.nombre, a.icono',"idUsuario=".$idUsuario,['Aplicaciones_Perfiles ap','Perfiles_Usuarios pu'], ['a.idAplicacion= ap.idAplicacion','pu.idPerfil=ap.idPerfil'], ['join','join']);
+			$aplicaciones = $this -> M_GestionEVG -> seleccionar('Aplicaciones a','distinct(a.url), a.nombre, a.icono',"idUsuario=".$idUsuario,['Aplicaciones_Perfiles ap','Perfiles_Usuarios pu'], ['a.idAplicacion = ap.idAplicacion','pu.idPerfil = ap.idPerfil'], ['join','join']);
 			foreach($aplicaciones as $valor)
 				if( $valor['nombre'] == 'GestionEVG' || $valor['nombre'] == 'AdministracionEVG' )
-					$acceso=true;
+					$acceso = true;
 
 			if(!$acceso)
 				redirect('Grid');
@@ -53,7 +53,6 @@ class C_GestionEVG extends CI_Controller
 	public function index()
 	{
 		redirect('Grid');
-
 	}
 	
 	/**
@@ -90,367 +89,6 @@ class C_GestionEVG extends CI_Controller
 		) AND correo LIKE ('%".$_POST['valor']."%')");
 		echo(json_encode($usuarios));
 	}
-
-		/*APLICACIONES*/
-	
-	/**
-	 * verApps
-	 * 
-	 * Permite ver todos las aplicaciones existente.
-	 *
-	 * @return void
-	 */
-
-	public function verApps()
-	{
-		$lista = $this -> M_GestionEVG -> seleccionar('Aplicaciones','idAplicacion, nombre');
-		foreach ($lista as $valor)
-			$this -> listaApps[$valor['idAplicacion']] = $valor['nombre'];
-
-		$this -> load -> view('C_Aplicaciones/V_Aplicaciones');
-	}
-	
-	/**
-	 * anadirAppForm
-	 * 
-	 * Muestra el formulario para añadir la aplicación.
-	 *
-	 * @return void
-	 */
-
-	public function anadirAppForm()
-	{
-		$this -> load -> view("C_Aplicaciones/V_AnadirApp");
-	}
-	
-	/**
-	 * anadirApp
-	 * 
-	 * Añade la aplicación a la base de datos.
-	 *
-	 * @return void
-	 */
-
-	public function anadirApp()
-	{
-		$datos["nombre"] = $_POST["nombre"];
-		$datos["descripcion"] = $_POST["descripcion"];
-		$datos["url"] = $_POST["url"];
-
-		$destino = 'uploads/iconos/';
-		$archivo_nombre = $_FILES["icono"]["name"];
-		if (file_exists($destino . $archivo_nombre)) 
-		{
-			$contador = 0;
-			while (file_exists($destino . ++$contador . "-" . $archivo_nombre));
-			$archivo_nombre = $contador . "-" . $archivo_nombre;
-		}
-		$archivo_temporal = $_FILES["icono"]["tmp_name"]; /*Direccion temporal donde se va a guardar el archivo*/
-		copy($archivo_temporal, $destino . $archivo_nombre); /*Copia el archivo de la carpeta temporal a la carpeta destino en el servidor*/
-		$datos['icono'] = $archivo_nombre;
-
-		$this-> M_GestionEVG-> insertar('Aplicaciones',$datos);
-
-		$this->headerLocation("C_GestionEVG/verApps");
-	}
-	
-	/**
-	 * borrarApp
-	 *
-	 * Elimina la aplicación de la base de datos.
-	 * 
-	 * @param  integer $idAplicacion Identificador de la aplicación.
-	 * @return void
-	 */
-
-	public function borrarApp($idAplicacion)
-	{
-		$iconoActual = $this -> M_GestionEVG -> seleccionar('Aplicaciones', 'icono', 'idAplicacion='.$idAplicacion);
-		$iconoActual = $iconoActual[0]['icono'];
-		if(file_exists('uploads/iconos/'.$iconoActual))
-			unlink('uploads/iconos/'.$iconoActual);
-
-		$this -> M_GestionEVG -> borrar('Aplicaciones',$idAplicacion,'idAplicacion');
-
-		$this->headerLocation("C_GestionEVG/verApps");
-	}
-	
-	/**
-	 * modificarAppForm
-	 *
-	 * Muestra un formulario con los datos de la aplicación.
-	 * 
-	 * @param  integer $idAplicacion Identificador de la aplicación.
-	 * @return void
-	 */
-
-	public function modificarAppForm($idAplicacion)
-	{
-		$this -> datosApp = $this -> M_GestionEVG -> seleccionar('Aplicaciones','nombre, descripcion, url, icono','idAplicacion='.$idAplicacion);
-		$this -> load -> view("C_Aplicaciones/V_ModificarApp", Array('idAplicacion' => $idAplicacion));
-	}
-	
-	/**
-	 * modificarApp
-	 *
-	 * Actualiza los datos de la aplicación en la base de datos.
-	 * 
-	 * @param  integer $idAplicacion Identificador de la aplicación
-	 * @return void
-	 */
-
-	public function modificarApp($idAplicacion)
-	{
-		$datos["nombre"] = $_POST["nombre"];
-		$datos["descripcion"] = $_POST["descripcion"];
-		$datos["url"] = $_POST["url"];
-
-		if(!empty($_FILES['icono']['name']))
-		{
-			$iconoActual = $this -> M_GestionEVG -> seleccionar('Aplicaciones', 'icono', 'idAplicacion='.$idAplicacion);
-			$iconoActual = $iconoActual[0]['icono'];
-			if(file_exists('uploads/iconos/'.$iconoActual))
-				unlink('uploads/iconos/'.$iconoActual);
-
-			$destino = 'uploads/iconos/';
-			$archivo_nombre = $_FILES["icono"]["name"];
-			if (file_exists($destino . $archivo_nombre)) 
-			{
-				$contador = 0;
-				while (file_exists($destino . ++$contador . "-" . $archivo_nombre));
-				$archivo_nombre = $contador . "-" . $archivo_nombre;
-			}
-			$archivo_temporal = $_FILES["icono"]["tmp_name"]; /*Direccion temporal donde se va a guardar el archivo*/
-			copy($archivo_temporal, $destino . $archivo_nombre); /*Copia el archivo de la carpeta temporal a la carpeta destino en el servidor*/
-			$datos['icono'] = $archivo_nombre;
-		}
-
-		$this -> M_GestionEVG -> modificar('Aplicaciones',$datos,$idAplicacion,'idAplicacion');
-
-		$this->headerLocation("C_GestionEVG/verApps");
-	}
-	
-	/**
-	 * perfilesAplicacion
-	 *
-	 * Muestra los perfiles que están asociado a la aplicación, 
-	 * ademas de todos los perfiles para poder añadir o quitar perfiles.
-	 * 
-	 * @param  integer $idAplicacion Identificador de la aplicación.
-	 * @return void
-	 */
-
-	public function perfilesAplicacion($idAplicacion)
-	{
-		$nombreApp = $this -> M_GestionEVG -> seleccionar('Aplicaciones','nombre, descripcion, url, icono','idAplicacion='.$idAplicacion);
-		$nombreApp = $nombreApp[0]['nombre'];
-
-		$lista = $this -> M_GestionEVG -> seleccionar('Perfiles p','p.idPerfil, p.nombre','ap.idAplicacion='.$idAplicacion, ['Aplicaciones_Perfiles ap'],['p.idPerfil = ap.idPerfil']);
-		foreach($lista as $valor)
-			$this -> perfilesAplicacion[$valor['idPerfil']] = $valor['nombre'];
-
-		$lista2 = $this -> M_GestionEVG -> seleccionar('Perfiles p','p.idPerfil, p.nombre','p.idPerfil NOT IN (SELECT ap2.idPerfil FROM Aplicaciones_Perfiles ap2 WHERE ap2.idAplicacion='.$idAplicacion.')');
-		foreach($lista2 as $valor)
-			$this -> perfilesNoAplicacion[$valor['idPerfil']] = $valor['nombre'];
-
-		$this -> load -> view('C_Aplicaciones/V_PerfilesAplicaciones', Array('idAplicacion'=>$idAplicacion, 'nombreApp'=>$nombreApp));
-	}
-	
-	/**
-	 * quitarPerfilAplicacion
-	 *
-	 * Permite quitar perfiles a una aplicación.
-	 * 
-	 * @param  integer $idAplicacion Identificador de la aplicación.
-	 * @param  integer $idPerfil Identificador del perfil.
-	 * @return void
-	 */
-
-	public function quitarPerfilAplicacion($idAplicacion, $idPerfil)
-	{
-		$this -> M_GestionEVG -> borrarCompuesta('Aplicaciones_Perfiles',$idPerfil, $idAplicacion, 'idPerfil', 'idAplicacion');
-
-		$this->headerLocation("C_GestionEVG/perfilesAplicacion/".$idAplicacion);
-	}
-	
-	/**
-	 * anadirPerfilAplicacion
-	 *
-	 * Permite añadir perfiles a una aplicación.
-	 * 
-	 * @param  integer $idAplicacion Identificador de la aplicación.
-	 * @param  integer $idPerfil  Identificador del perfil.
-	 * @return void
-	 */
-
-	public function anadirPerfilAplicacion($idAplicacion, $idPerfil)
-	{
-		$this -> M_GestionEVG -> insertar('Aplicaciones_Perfiles',array('idPerfil'=>$idPerfil,'idAplicacion'=>$idAplicacion));
-
-		$this->headerLocation("C_GestionEVG/perfilesAplicacion/".$idAplicacion);
-	}
-
-		/*PERFILES*/
-	
-	/**
-	 * verPerfiles
-	 * 
-	 * Muestra los perfiles.
-	 *
-	 * @return void
-	 */
-
-	public function verPerfiles()
-	{
-		$lista = $this -> M_GestionEVG -> seleccionar('Perfiles','idPerfil, nombre');
-		foreach ($lista as $valor)
-			$this -> listaPerfiles[$valor['idPerfil']] = $valor['nombre'];
-
-		$this -> load -> view('C_Perfiles/V_Perfiles');
-	}
-	
-	/**
-	 * anadirPerfilForm
-	 * 
-	 * Muestra el formulario para añadir un perfil.
-	 *
-	 * @return void
-	 */
-
-	public function anadirPerfilForm()
-	{
-		$this -> load -> view("C_Perfiles/V_AnadirPerfil");
-	}
-	
-	/**
-	 * anadirPerfil
-	 * 
-	 * Añade el perfil a la base de datos.
-	 *
-	 * @return void
-	 */
-
-	public function anadirPerfil()
-	{
-		$datos["nombre"] = $_POST["nombre"];
-		$datos["descripcion"] = $_POST["descripcion"];
-
-		$this -> M_GestionEVG -> insertar('Perfiles',$datos);
-
-		$this->headerLocation("C_GestionEVG/verPerfiles");
-	}
-	
-	/**
-	 * borrarPerfil
-	 * 
-	 * Elimina el perfil de la base de datos.
-	 *
-	 * @param  integer $idPerfil Identificador del perfil.
-	 * @return void
-	 */
-	
-	public function borrarPerfil($idPerfil)
-	{
-		$this -> M_GestionEVG -> borrar('Perfiles',$idPerfil,'idPerfil');
-
-		$this->headerLocation("C_GestionEVG/verPerfiles");
-	}
-	
-	/**
-	 * modificarPerfilForm
-	 * 
-	 * Muestra el formulario con los datos del perfil a modificar.
-	 *
-	 * @param  integer $idPerfil Identificador del perfil.
-	 * @return void
-	 */
-
-	public function modificarPerfilForm($idPerfil)
-	{
-		$this -> datosPerfil = $this -> M_GestionEVG -> seleccionar('Perfiles','nombre, descripcion','idPerfil='.$idPerfil);
-		$this -> load -> view("C_Perfiles/V_ModificarPerfil", Array('idPerfil' => $idPerfil));
-	}
-	
-	/**
-	 * modificarPerfil
-	 *
-	 * Actualiza los datos del perfil en la base de datos.
-	 * 
-	 * @param  integer $idPerfil Identificador del perfil.
-	 * @return void
-	 */
-
-	public function modificarPerfil($idPerfil)
-	{
-		$datos["nombre"] = $_POST["nombre"];
-		$datos["descripcion"] = $_POST["descripcion"];
-
-		$this -> M_GestionEVG -> modificar('Perfiles',$datos,$idPerfil,'idPerfil');
-
-		$this->headerLocation("C_GestionEVG/verPerfiles");
-	}
-	
-	/**
-	 * usuariosPerfil
-	 *
-	 * Muestra los usuario que tiene el perfil,
-	 * dando la opción de añadir o quitar a los usuarios.
-	 * 
-	 * @param  integer $idPerfil Identificador del perfil.
-	 * @return void
-	 */
-
-	public function usuariosPerfil($idPerfil)
-	{
-		$nombre = $this -> M_GestionEVG -> seleccionar('Perfiles','nombre, descripcion','idPerfil='.$idPerfil);
-		$nombre = $nombre[0]['nombre'];
-
-		$lista = $this -> M_GestionEVG -> seleccionar('Usuarios u','u.idUsuario, u.correo','pu.idPerfil='.$idPerfil,['Perfiles_Usuarios pu'],['pu.idUsuario = u.idUsuario']);
-		foreach($lista as $valor)
-			$this -> usuariosPerfil[$valor['idUsuario']] = $valor['correo'];
-
-		$this -> load -> view('C_Perfiles/V_UsuariosPerfil', Array('idPerfil' => $idPerfil, 'nombre' => $nombre));
-	}
-	
-	/**
-	 * quitarUsuarioPerfil
-	 *
-	 * Quita usuarios del perfil
-	 * 
-	 * @param  integer $idPerfil Identificador del perfil.
-	 * @param  integer $idUsuario Identificador del usuario.
-	 * @return void
-	 */
-
-	public function quitarUsuarioPerfil($idPerfil,$idUsuario)
-	{
-		$this -> M_GestionEVG -> borrarCompuesta('Perfiles_Usuarios',$idPerfil, $idUsuario, 'idPerfil', 'idUsuario');
-
-		$this->headerLocation("C_GestionEVG/usuariosPerfil/".$idPerfil);
-	}
-	
-	/**
-	 * anadirUsuarioPerfil
-	 *
-	 * Añade usuario al perfil.
-	 * 
-	 * @param  int $idPerfil Identificador del perfil
-	 * @return void
-	 */
-
-	public function anadirUsuarioPerfil($idPerfil)
-	{
-		if($idUsuario = $this -> M_GestionEVG -> obtenerIdUsuario($_POST['correo']))
-		{
-			$perfil = $this -> M_GestionEVG -> seleccionar('Perfiles_Usuarios', '*', 'idUsuario='.$idUsuario.' and idPerfil='.$idPerfil);
-			if(empty($perfil[0]))
-				$this -> M_GestionEVG -> insertar('Perfiles_Usuarios',array('idPerfil'=>$idPerfil,'idUsuario'=>$idUsuario));
-		}
-
-		$this->headerLocation("C_GestionEVG/usuariosPerfil/".$idPerfil);
-	}
-
-
 
 		/*USUARIOS*/
 	
@@ -814,9 +452,12 @@ class C_GestionEVG extends CI_Controller
 
 	public function verCursos()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionar('Cursos','idCurso, codCurso');
+		$lista = $this -> M_GestionEVG -> seleccionar('Cursos','idCurso, codCurso, idEtapa');
 		foreach ($lista as $valor)
+		{
 			$this -> listaCursos[$valor['idCurso']] = $valor['codCurso'];
+			$this -> listaEtapasCursos[$valor['idCurso']] = $valor['idEtapa'];
+		}
 
 		$this -> load -> view('C_Cursos/V_Cursos');
 	}
@@ -1916,7 +1557,7 @@ class C_GestionEVG extends CI_Controller
 			$pdf -> SetTextColor(0, 0, 0); /*Color del Texto*/
 			$pdf -> AddPage(); /*Añade una página*/
 			$pdf -> AddFont('DejaVu','','DejaVuSans-Bold.ttf',true); /*Establece el estilo de letra*/
-			$pdf -> SetFont('DejaVu','',10); /*Establece el estilo de letra*/
+			$pdf -> SetFont('DejaVu','',7); /*Establece el estilo de letra*/
 			$pdf -> Cell(0, 10, 'LISTADO DE TUTORES - ' . date('d/m/Y'), 0, 0, 'R'); /*Encabezado del PDF*/
 			$pdf -> Image(base_url().'uploads/iconos/escudo-evg.png', 10, 10, 45); /*Logo EVG*/
 			$pdf -> SetMargins(10, 10, 40); /*Establecer márgenes*/

@@ -32,16 +32,21 @@
 					<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/importarCursosForm'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Importar Cursos\"><i class=\"fas fa-file-import\"></i></button>"; ?>
 					<div class="gestion-apps">
 						<?php
-							foreach($this->listaCursos as $indice => $valor)
+							foreach($this -> listaCursos as $indice => $valor)
+							{
 								echo
-								"
+										"
 									<div class=\"fila\">
-										<h3>".$valor."</h3>
-										<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/asignarEtapaCursoForm/".$indice."'\" class=\"btn btn-info\" data-toggle=\"popover\" data-content=\"Asignar Etapa\"><i class=\"fas fa-cog\"></i></button>
-										<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/modificarCursoForm/".$indice."'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Modificar Curso\"><i class=\"fas fa-edit\"></i></button>
-										<button onclick=\"confirmar('¿Seguro que quieres borrar el curso: <b>".$valor."</b>?', '".base_url()."C_GestionEVG/borrarCurso/".$indice."', 'Eliminar Curso', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>													
+										<h3>" . $valor . "</h3>
+										<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/asignarEtapaCursoForm/" . $indice . "'\" class=\"btn btn-info\" data-toggle=\"popover\" data-content=\"Asignar Etapa\"><i class=\"fas fa-cog\"></i></button>
+										<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/modificarCursoForm/" . $indice . "'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Modificar Curso\"><i class=\"fas fa-edit\"></i></button>
+										<button onclick=\"confirmar('¿Seguro que quieres borrar el curso: <b>" . $valor . "</b>?', '" . base_url() . "C_GestionEVG/borrarCurso/" . $indice . "', 'Eliminar Curso', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>";
+								if (!is_null($this->listaEtapasCursos[$indice]))
+									echo "
+										<button class=\"btn btn-secondary\" data-toggle=\"popover\" data-content=\"Ya hay una etapa asignada\"><i class=\"fas fa-exclamation-circle\"></i></button>
 									</div>						
 								";
+							}
 						?>
 					</div>
 				</div>
