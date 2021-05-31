@@ -7,11 +7,11 @@
 		<div id="principal" class="container-fluid">
 			<div class="row">
 				<header class="col-12">
-					<div class="col-6">
+					<div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-6">
 						<?php echo '<a href="'.base_url().'C_GestionEVG/"><img id="logo-evg" src="'.base_url().'uploads/iconos/escudo-evg.png" alt="Escudo EVG" class="img-fluid"/></a>'  ;?>
 						<h3>Gestión EVG - Cursos</h3>
 					</div>
-					<div class="col-6">
+					<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-6">
 						<?php echo "<button onclick=\"location.href ='" . base_url() . "C_GestionEVG/'\" id=\"icon-grid\" class=\"btn mr-2\" data-toggle=\"popover\" data-content=\"Grid Apliciones\"><i class=\"fas fa-th\"></i></button>"; ?>
 						<?php
 							$picture = $this -> session -> userdata('profile_pic');
@@ -43,7 +43,7 @@
 										<button onclick=\"confirmar('¿Seguro que quieres borrar el curso: <b>" . $valor . "</b>?', '" . base_url() . "C_GestionEVG/borrarCurso/" . $indice . "', 'Eliminar Curso', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>";
 								if (!is_null($this->listaEtapasCursos[$indice]))
 									echo "
-										<button class=\"btn btn-secondary\" data-toggle=\"popover\" data-content=\"Ya hay una etapa asignada\"><i class=\"fas fa-exclamation-circle\"></i></button>
+										<button class=\"btn btn-secondary curso-info\" data-toggle=\"popover\" data-content=\"Ya hay una etapa asignada\"><i class=\"fas fa-exclamation-circle\"></i></button>
 									</div>						
 								";
 							}

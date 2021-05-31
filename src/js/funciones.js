@@ -251,3 +251,17 @@ $
 		)
 	}
 )
+
+/**
+ * @function function - Función para mostrar spinner al importar desde Excel.
+ */
+$
+(
+	function ()
+	{
+		$('[name = "importar"]').on('click', function ()
+		{
+			$('button.reload').toggleClass('import');
+		});
+	}
+)

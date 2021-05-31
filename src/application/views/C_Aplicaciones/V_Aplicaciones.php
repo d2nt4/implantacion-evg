@@ -7,11 +7,11 @@
 		<div id="principal" class="container-fluid">
 			<div class="row">
 				<header class="col-12">
-					<div class="col-6">
+					<div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-6">
 						<?php echo '<a href="'.base_url().'C_AdministracionEVG/"><img id="logo-evg" src="'.base_url().'uploads/iconos/escudo-evg.png" alt="Escudo EVG" class="img-fluid"/></a>'; ?>
 						<h3>Administración EVG - Aplicaciones</h3>
 					</div>
-					<div class="col-6">
+					<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-6">
 						<?php echo "<button onclick=\"location.href ='" . base_url() . "C_AdministracionEVG/'\" id=\"icon-grid\" class=\"btn mr-2\" data-toggle=\"popover\" data-content=\"Grid Aplicaciones\"><i class=\"fas fa-th\"></i></button>"; ?>
 						<?php
 							$picture = $this -> session -> userdata('profile_pic');
@@ -38,7 +38,7 @@
 											<h3>".$valor."</h3>
 											<button onclick=\"location.href ='" . base_url() . "C_AdministracionEVG/perfilesAplicacion/".$indice."'\" class=\"btn btn-primary\" data-toggle=\"popover\" data-content=\"Perfiles Aplicación\"><i class=\"fas fa-user-circle\"></i></button>
 											<button onclick=\"location.href ='" . base_url() . "C_AdministracionEVG/modificarAppForm/".$indice."'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Editar Aplicación\"><i class=\"fas fa-edit\"></i></button>
-											<button onclick=\"modalCheck('¿Seguro que quieres desvincular la aplicación: <b>".$valor."</b>?. ESTA ACCIÓN ES IRREVERSIBLE.', '".base_url()."C_AdministracionEVG/borrarApp/".$indice."', 'Desvincular Aplicación', '¿Desea desvincular la aplicación: <b>".$valor. "</b>?', 'Cancelar', 'Desvincular')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#check\"><i class=\"fas fa-trash\"></i></button>													
+											<button onclick=\"modalCheck('¿Seguro que quieres desvincular la aplicación: <b>".$valor."</b>?. Esta acción solo desvincula la aplicación, puede volver a añadirla de nuevo cuando quiera, desde el botón, <i>Añadir Aplicación</i>.', '".base_url()."C_AdministracionEVG/borrarApp/".$indice."', 'Desvincular Aplicación', '¿Desea desvincular la aplicación: <b>".$valor. "</b>?', 'Cancelar', 'Desvincular')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#check\"><i class=\"fas fa-trash\"></i></button>													
 										</div>						
 									"
 								;

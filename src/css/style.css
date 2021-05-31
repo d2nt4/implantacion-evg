@@ -1,6 +1,11 @@
 /* ---------------------------------------------------
     ESTILOS GENERALES
 ----------------------------------------------------- */
+*
+{
+	margin: 0;
+	padding: 0;
+}
 
 body
 {
@@ -140,6 +145,18 @@ input[type="submit"]:disabled
 h3 > span
 {
 	font-weight: 400;
+}
+
+/*Spinner*/
+.reload
+{
+	cursor: unset;
+	display: none;
+}
+
+.import
+{
+	display: initial;
 }
 
 /* ---------------------------------------------------
@@ -343,4 +360,28 @@ h3 > span
 .operaciones button
 {
 	margin-left: .45rem;
+}
+
+/*Iconos Font-Awesome*/
+.curso-info
+{
+	cursor: unset!important;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+@media screen and (max-width: 1024px)
+{
+	#principal .row h3
+	{
+		font-size: 1rem;
+	}
+
+	.one a h1
+	{
+		font-size: 1rem;
+	}
+
+
 }
