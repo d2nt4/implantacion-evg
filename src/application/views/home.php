@@ -18,7 +18,7 @@
 				<?php
 					if($this -> session -> userdata('sess_logged_in') == 0)
 						echo "<a href='".$google_login_url."' class='btn gbtn font-weight-bolder'><i class='fa fa-google left mr-2'></i>Iniciar sesión con Google</a>";
-                    elseif($this -> session -> userdata('sess_logged_in') != 0 && $this -> M_GestionEVG -> obtenerIdUsuario($_SESSION['email']))
+                    elseif($this -> session -> userdata('sess_logged_in') != 0 && $this -> M_General -> obtenerIdUsuario($_SESSION['email']))
                         header("Location: ".base_url());
 				?>
 				<div id="cartaGoogle">

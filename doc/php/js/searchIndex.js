@@ -531,47 +531,47 @@ Search.appendIndex(
             "summary": "index",
             "url": "classes/Grid.html#method_index"
         },                {
-            "fqsen": "\\M_GestionEVG",
-            "name": "M_GestionEVG",
-            "summary": "M_GestionEVG",
+            "fqsen": "\\M_General",
+            "name": "M_General",
+            "summary": "M_General",
             "url": "classes/M-GestionEVG.html"
         },                {
-            "fqsen": "\\M_GestionEVG\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\M_General\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "__construct",
             "url": "classes/M-GestionEVG.html#method___construct"
         },                {
-            "fqsen": "\\M_GestionEVG\u003A\u003Ainsertar\u0028\u0029",
+            "fqsen": "\\M_General\u003A\u003Ainsertar\u0028\u0029",
             "name": "insertar",
             "summary": "insertar",
             "url": "classes/M-GestionEVG.html#method_insertar"
         },                {
-            "fqsen": "\\M_GestionEVG\u003A\u003Aborrar\u0028\u0029",
+            "fqsen": "\\M_General\u003A\u003Aborrar\u0028\u0029",
             "name": "borrar",
             "summary": "borrar",
             "url": "classes/M-GestionEVG.html#method_borrar"
         },                {
-            "fqsen": "\\M_GestionEVG\u003A\u003AborrarCompuesta\u0028\u0029",
+            "fqsen": "\\M_General\u003A\u003AborrarCompuesta\u0028\u0029",
             "name": "borrarCompuesta",
             "summary": "borrarCompuesta",
             "url": "classes/M-GestionEVG.html#method_borrarCompuesta"
         },                {
-            "fqsen": "\\M_GestionEVG\u003A\u003Amodificar\u0028\u0029",
+            "fqsen": "\\M_General\u003A\u003Amodificar\u0028\u0029",
             "name": "modificar",
             "summary": "modificar",
             "url": "classes/M-GestionEVG.html#method_modificar"
         },                {
-            "fqsen": "\\M_GestionEVG\u003A\u003Aseleccionar\u0028\u0029",
+            "fqsen": "\\M_General\u003A\u003Aseleccionar\u0028\u0029",
             "name": "seleccionar",
             "summary": "seleccionar",
             "url": "classes/M-GestionEVG.html#method_seleccionar"
         },                {
-            "fqsen": "\\M_GestionEVG\u003A\u003AobtenerIdUsuario\u0028\u0029",
+            "fqsen": "\\M_General\u003A\u003AobtenerIdUsuario\u0028\u0029",
             "name": "obtenerIdUsuario",
             "summary": "obtenerIdUsuario",
             "url": "classes/M-GestionEVG.html#method_obtenerIdUsuario"
         },                {
-            "fqsen": "\\M_GestionEVG\u003A\u003A\u0024bd",
+            "fqsen": "\\M_General\u003A\u003A\u0024bd",
             "name": "bd",
             "summary": "Guarda\u0020el\u0020valor\u0020de\u0020carga\u0020de\u0020la\u0020base\u0020de\u0020datos.",
             "url": "classes/M-GestionEVG.html#property_bd"

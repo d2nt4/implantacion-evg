@@ -19,13 +19,13 @@ class C_GestionEVG extends CI_Controller
 		$this -> load -> helper('form');
 		$this -> load -> library('form_validation');
 		$this -> load -> helper('url');
-		$this -> load -> model('M_GestionEVG');
+		$this -> load -> model('M_General');
 		$this -> load -> library('google');
 		$this -> load -> library('excel');
 
 		$data['google_login_url'] = $this -> google -> get_login_url();
 
-        if($this->session->userdata('sess_logged_in') == 0 || !$idUsuario = $this -> M_GestionEVG->obtenerIdUsuario($_SESSION['email']))
+        if($this->session->userdata('sess_logged_in') == 0 || !$idUsuario = $this -> M_General->obtenerIdUsuario($_SESSION['email']))
 		{
         	redirect('Auth');
 		}
@@ -33,7 +33,7 @@ class C_GestionEVG extends CI_Controller
 		{
         	$acceso = false;
 
-			$aplicaciones = $this -> M_GestionEVG -> seleccionar('Aplicaciones a','distinct(a.url), a.nombre, a.icono',"idUsuario=".$idUsuario,['Aplicaciones_Perfiles ap','Perfiles_Usuarios pu'], ['a.idAplicacion = ap.idAplicacion','pu.idPerfil = ap.idPerfil'], ['join','join']);
+			$aplicaciones = $this -> M_General -> seleccionar('Aplicaciones a','distinct(a.url), a.nombre, a.icono',"idUsuario=".$idUsuario,['Aplicaciones_Perfiles ap','Perfiles_Usuarios pu'], ['a.idAplicacion = ap.idAplicacion','pu.idPerfil = ap.idPerfil'], ['join','join']);
 			foreach($aplicaciones as $valor)
 				if( $valor['nombre'] == 'GestionEVG' || $valor['nombre'] == 'AdministracionEVG' )
 					$acceso = true;
@@ -64,7 +64,7 @@ class C_GestionEVG extends CI_Controller
 	 */
 	public function comprobarCSU()
 	{
-		$numeroFilas = $this -> M_GestionEVG -> seleccionar($_POST['tabla'],$_POST['campo'],$_POST['campo']."='".$_POST['valor']."'");
+		$numeroFilas = $this -> M_General -> seleccionar($_POST['tabla'],$_POST['campo'],$_POST['campo']."='".$_POST['valor']."'");
 
 		if (!empty($numeroFilas))
 			echo('si');
@@ -82,7 +82,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function comprobarUsuarios()
 	{
-		$usuarios = $this -> M_GestionEVG -> seleccionar('Usuarios','*',"idUsuario NOT IN(
+		$usuarios = $this -> M_General -> seleccionar('Usuarios','*',"idUsuario NOT IN(
 			SELECT idUsuario
 			FROM Perfiles_Usuarios
 			WHERE idPerfil=".$_POST['idPerfil']."
@@ -102,7 +102,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function verUsuarios()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionar('Usuarios','idUsuario, correo, bajaTemporal');
+		$lista = $this -> M_General -> seleccionar('Usuarios','idUsuario, correo, bajaTemporal');
 		foreach ($lista as $valor)
 		{
 			$this -> listaUsuarios[$valor['idUsuario']] = $valor['correo'];
@@ -138,13 +138,13 @@ class C_GestionEVG extends CI_Controller
 		$datos["nombre"] = $_POST["nombre"];
 		$datos["correo"] = $_POST["correo"];
 
-		$idUsuario = $this -> M_GestionEVG -> insertar('Usuarios',$datos);
+		$idUsuario = $this -> M_General -> insertar('Usuarios',$datos);
 
-		$idPerfil = $this -> M_GestionEVG -> seleccionar('Perfiles', 'idPerfil', "nombre='profesor'");
+		$idPerfil = $this -> M_General -> seleccionar('Perfiles', 'idPerfil', "nombre='profesor'");
 		if(isset($_POST['profesor']))
-			$this -> M_GestionEVG -> insertar('Perfiles_Usuarios', Array('idPerfil' => $idPerfil[0]['idPerfil'],'idUsuario' => $idUsuario));
+			$this -> M_General -> insertar('Perfiles_Usuarios', Array('idPerfil' => $idPerfil[0]['idPerfil'],'idUsuario' => $idUsuario));
 
-		$this->headerLocation("C_GestionEVG/verUsuarios");
+		$this->headerLocation("users");
 	}
 	
 	/**
@@ -157,9 +157,9 @@ class C_GestionEVG extends CI_Controller
 	 */
 	public function borrarUsuario($idUsuario)
 	{
-		$this -> M_GestionEVG -> borrar('Usuarios', $idUsuario, 'idUsuario');
+		$this -> M_General -> borrar('Usuarios', $idUsuario, 'idUsuario');
 
-		$this->headerLocation("C_GestionEVG/verUsuarios");
+		$this->headerLocation("users");
 	}
 	
 	/**
@@ -173,7 +173,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function modificarUsuarioForm($idUsuario)
 	{
-		$this -> datosUsuario = $this -> M_GestionEVG -> seleccionar('Usuarios','nombre, correo, bajaTemporal','idUsuario='.$idUsuario);
+		$this -> datosUsuario = $this -> M_General -> seleccionar('Usuarios','nombre, correo, bajaTemporal','idUsuario='.$idUsuario);
 		$this -> load -> view("C_Usuarios/V_ModificarUsuario", Array('idUsuario' => $idUsuario));
 	}
 	
@@ -195,9 +195,9 @@ class C_GestionEVG extends CI_Controller
 		else
 			$datos["bajaTemporal"] = 0;
 
-		$this -> M_GestionEVG -> modificar('Usuarios',$datos,$idUsuario,'idUsuario');
+		$this -> M_General -> modificar('Usuarios',$datos,$idUsuario,'idUsuario');
 
-		$this->headerLocation("C_GestionEVG/verUsuarios");
+		$this->headerLocation("users");
 	}
 	
 	/**
@@ -240,7 +240,7 @@ class C_GestionEVG extends CI_Controller
 				$nombre = $worksheet -> getCellByColumnAndRow(0, $row) -> getValue();
 				if(empty($nombre))/* por si la tabla tiene una longitud máxima mayor que los datos que tiene*/
 					break;
-				$correo = $this -> M_GestionEVG -> seleccionar('Usuarios', 'correo', "correo='".$worksheet -> getCellByColumnAndRow(1, $row) -> getValue()."'");
+				$correo = $this -> M_General -> seleccionar('Usuarios', 'correo', "correo='".$worksheet -> getCellByColumnAndRow(1, $row) -> getValue()."'");
 				if(empty($correo[0]['correo']))
 				{
 					$datos[$row]['nombre'] = $nombre;
@@ -251,15 +251,15 @@ class C_GestionEVG extends CI_Controller
 		}
 		foreach($datos as $valor)
 		{
-			$idUsuario = $this -> M_GestionEVG -> insertar('Usuarios', Array('nombre' => $valor['nombre'], 'correo' => $valor['correo']));
+			$idUsuario = $this -> M_General -> insertar('Usuarios', Array('nombre' => $valor['nombre'], 'correo' => $valor['correo']));
 			if($valor['profesor'] == 'si') 
 			{
-				$idPerfil = $this -> M_GestionEVG -> seleccionar('Perfiles', 'idPerfil', "nombre='Profesor'");
-				$this -> M_GestionEVG -> insertar('Perfiles_Usuarios', Array('idPerfil' => $idPerfil[0]['idPerfil'], 'idUsuario' => $idUsuario));
+				$idPerfil = $this -> M_General -> seleccionar('Perfiles', 'idPerfil', "nombre='Profesor'");
+				$this -> M_General -> insertar('Perfiles_Usuarios', Array('idPerfil' => $idPerfil[0]['idPerfil'], 'idUsuario' => $idUsuario));
 			}
 		}
 
-		$this->headerLocation("C_GestionEVG/verUsuarios");
+		$this->headerLocation("users");
 	}
 
 		/*ETAPAS*/
@@ -274,7 +274,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function verEtapas()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionar('Etapas','idEtapa, codEtapa');
+		$lista = $this -> M_General -> seleccionar('Etapas','idEtapa, codEtapa');
 		foreach ($lista as $valor)
 			$this -> listaEtapas[$valor['idEtapa']] = $valor['codEtapa'];
 
@@ -291,7 +291,7 @@ class C_GestionEVG extends CI_Controller
 	
 	public function anadirEtapaForm()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionar('Usuarios','idUsuario, correo');
+		$lista = $this -> M_General -> seleccionar('Usuarios','idUsuario, correo');
 		$this -> usuarios = array(0=>'Ninguno');
 		foreach ($lista as $valor)
 			$this -> usuarios[$valor['idUsuario']] = $valor['correo'];
@@ -314,9 +314,9 @@ class C_GestionEVG extends CI_Controller
 		if($_POST['idCoordinador'] != 0)
 			$datos["idCoordinador"] = $_POST["idCoordinador"];
 
-		$this -> M_GestionEVG -> insertar('Etapas',$datos);
+		$this -> M_General -> insertar('Etapas',$datos);
 
-		$this->headerLocation("C_GestionEVG/verEtapas");
+		$this->headerLocation("stages");
 	}
 	
 	/**
@@ -330,9 +330,9 @@ class C_GestionEVG extends CI_Controller
 
 	public function borrarEtapa($idEtapa)
 	{
-		$this -> M_GestionEVG -> borrar('Etapas',$idEtapa,'idEtapa');
+		$this -> M_General -> borrar('Etapas',$idEtapa,'idEtapa');
 
-		$this->headerLocation("C_GestionEVG/verEtapas");
+		$this->headerLocation("stages");
 	}
 	
 	/**
@@ -346,9 +346,9 @@ class C_GestionEVG extends CI_Controller
 
 	public function modificarEtapaForm($idEtapa)
 	{
-		$this -> datosEtapa = $this -> M_GestionEVG -> seleccionar('Etapas','codEtapa, nombre, idCoordinador','idEtapa='.$idEtapa);
+		$this -> datosEtapa = $this -> M_General -> seleccionar('Etapas','codEtapa, nombre, idCoordinador','idEtapa='.$idEtapa);
 
-		$lista = $this -> M_GestionEVG -> seleccionar('Usuarios','idUsuario, correo');
+		$lista = $this -> M_General -> seleccionar('Usuarios','idUsuario, correo');
 		$this -> usuarios = array(0=>'Ninguno');
 		foreach($lista as $valor)
 			$this -> usuarios[$valor['idUsuario']] = $valor['correo'];
@@ -374,9 +374,9 @@ class C_GestionEVG extends CI_Controller
 		else
 			$datos['idCoordinador'] = null;
 
-		$this -> M_GestionEVG -> modificar('Etapas',$datos,$idEtapa,'idEtapa');
+		$this -> M_General -> modificar('Etapas',$datos,$idEtapa,'idEtapa');
 
-		$this->headerLocation("C_GestionEVG/verEtapas");
+		$this->headerLocation("stages");
 	}
 	
 	/**
@@ -391,14 +391,14 @@ class C_GestionEVG extends CI_Controller
 
 	public function etapaPadre($idEtapa)
 	{
-		$codEtapa = $this -> M_GestionEVG->seleccionar('Etapas','codEtapa, nombre, idCoordinador','idEtapa='.$idEtapa);
+		$codEtapa = $this -> M_General->seleccionar('Etapas','codEtapa, nombre, idCoordinador','idEtapa='.$idEtapa);
 		$codEtapa = $codEtapa[0]['codEtapa'];
 
-		$lista = $this -> M_GestionEVG -> seleccionar('Etapas e','e.idEtapa, S.idEtapaPadre,E2.codEtapa','e.idEtapa='.$idEtapa,['Subetapas S','Etapas E2'], ['e.idEtapa = S.idEtapa','S.idEtapaPadre=E2.idEtapa'],['join','join']);
+		$lista = $this -> M_General -> seleccionar('Etapas e','e.idEtapa, S.idEtapaPadre,E2.codEtapa','e.idEtapa='.$idEtapa,['Subetapas S','Etapas E2'], ['e.idEtapa = S.idEtapa','S.idEtapaPadre=E2.idEtapa'],['join','join']);
 		foreach($lista as $valor)
 			$this -> etapasPadre[$valor['idEtapaPadre']] = $valor['codEtapa'];
 
-		$lista2 = $this -> M_GestionEVG->seleccionar('Etapas e','e.idEtapa, e.codEtapa','e.idEtapa!='.$idEtapa.' AND e.idEtapa NOT IN (SELECT s2.idEtapaPadre FROM Etapas e2 INNER JOIN Subetapas s2 ON e2.idEtapa = s2.idEtapa WHERE e2.idEtapa='.$idEtapa.' )',['Subetapas s'], ['e.idEtapa = s.idEtapa'],['left']);
+		$lista2 = $this -> M_General->seleccionar('Etapas e','e.idEtapa, e.codEtapa','e.idEtapa!='.$idEtapa.' AND e.idEtapa NOT IN (SELECT s2.idEtapaPadre FROM Etapas e2 INNER JOIN Subetapas s2 ON e2.idEtapa = s2.idEtapa WHERE e2.idEtapa='.$idEtapa.' )',['Subetapas s'], ['e.idEtapa = s.idEtapa'],['left']);
 		foreach($lista2 as $valor)
 			$this -> etapasNoPadre[$valor['idEtapa']] = $valor['codEtapa'];
 
@@ -417,9 +417,9 @@ class C_GestionEVG extends CI_Controller
 
 	public function quitarEtapaPadre($idEtapa, $idEtapaPadre)
 	{
-		$this -> M_GestionEVG -> borrarCompuesta('Subetapas',$idEtapa, $idEtapaPadre, 'idEtapa', 'idEtapaPadre');
+		$this -> M_General -> borrarCompuesta('Subetapas',$idEtapa, $idEtapaPadre, 'idEtapa', 'idEtapaPadre');
 
-		$this->headerLocation("C_GestionEVG/etapaPadre/".$idEtapa);
+		$this->headerLocation("father-stage/".$idEtapa);
 	}
 	
 	/**
@@ -434,9 +434,9 @@ class C_GestionEVG extends CI_Controller
 
 	public function anadirEtapaPadre($idEtapa, $idEtapaPadre)
 	{
-		$this -> M_GestionEVG -> insertar('Subetapas',array('idEtapa' => $idEtapa,'idEtapaPadre' => $idEtapaPadre));
+		$this -> M_General -> insertar('Subetapas',array('idEtapa' => $idEtapa,'idEtapaPadre' => $idEtapaPadre));
 
-		$this->headerLocation("C_GestionEVG/etapaPadre/".$idEtapa);
+		$this->headerLocation("father-stage/".$idEtapa);
 	}
 
 		/*CURSOS*/
@@ -452,7 +452,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function verCursos()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionar('Cursos','idCurso, codCurso, idEtapa');
+		$lista = $this -> M_General -> seleccionar('Cursos','idCurso, codCurso, idEtapa');
 		foreach ($lista as $valor)
 		{
 			$this -> listaCursos[$valor['idCurso']] = $valor['codCurso'];
@@ -491,9 +491,9 @@ class C_GestionEVG extends CI_Controller
 		if(!empty($_POST['idCursoColegio']))
 			$datos["idCursoColegio"] = $_POST["idCursoColegio"];
 
-		$this -> M_GestionEVG -> insertar('Cursos',$datos);
+		$this -> M_General -> insertar('Cursos',$datos);
 
-		$this->headerLocation("C_GestionEVG/verCursos");
+		$this->headerLocation("courses");
 	}
 	
 	/**
@@ -507,9 +507,9 @@ class C_GestionEVG extends CI_Controller
 
 	public function borrarCurso($idCurso)
 	{
-		$this -> M_GestionEVG -> borrar('Cursos',$idCurso,'idCurso');
+		$this -> M_General -> borrar('Cursos',$idCurso,'idCurso');
 
-		$this->headerLocation("C_GestionEVG/verCursos");
+		$this->headerLocation("courses");
 	}
 	
 	/**
@@ -522,8 +522,8 @@ class C_GestionEVG extends CI_Controller
 	 */
 	public  function modificarCursoForm($idCurso)
 	{
-		$this -> datosCurso = $this -> M_GestionEVG -> seleccionar('Cursos','idCursoColegio, codCurso, nombre, idEtapa','idCurso='.$idCurso);
-		$this ->load -> view("C_Cursos/V_ModificarCurso", Array('idCurso' => $idCurso));
+		$this -> datosCurso = $this -> M_General -> seleccionar('Cursos','idCursoColegio, codCurso, nombre, idEtapa','idCurso='.$idCurso);
+		$this -> load -> view("C_Cursos/V_ModificarCurso", Array('idCurso' => $idCurso));
 	}
 	
 	/**
@@ -541,9 +541,9 @@ class C_GestionEVG extends CI_Controller
 		$datos["nombre"] = $_POST["nombre"];
 		$datos["idCursoColegio"] = $_POST["idCursoColegio"];
 
-		$this -> M_GestionEVG -> modificar('Cursos',$datos,$idCurso,'idCurso');
+		$this -> M_General -> modificar('Cursos',$datos,$idCurso,'idCurso');
 
-		$this->headerLocation("C_GestionEVG/verCursos");
+		$this->headerLocation("courses");
 	}
 	
 	/**
@@ -557,11 +557,11 @@ class C_GestionEVG extends CI_Controller
 
 	public function asignarEtapaCursoForm($idCurso)
 	{
-		$codCurso = $this -> M_GestionEVG -> seleccionar('Cursos','idCursoColegio, codCurso, nombre, idEtapa','idCurso='.$idCurso);
+		$codCurso = $this -> M_General -> seleccionar('Cursos','idCursoColegio, codCurso, nombre, idEtapa','idCurso='.$idCurso);
 		$idEtapa = $codCurso[0]['idEtapa'];
 		$codCurso = $codCurso[0]['codCurso'];
 
-		$lista = $this -> M_GestionEVG -> seleccionar('Etapas','idEtapa, codEtapa');
+		$lista = $this -> M_General -> seleccionar('Etapas','idEtapa, codEtapa');
 		$this -> etapas = Array(0 => 'Ninguna');
 		foreach($lista as $valor)
 			$this -> etapas[$valor['idEtapa']] = $valor['codEtapa'];
@@ -585,9 +585,9 @@ class C_GestionEVG extends CI_Controller
 		else
 			$datos["idEtapa"] = $_POST["etapa"];
 
-		$this -> M_GestionEVG -> modificar('Cursos',$datos,$idCurso,'idCurso');
+		$this -> M_General -> modificar('Cursos',$datos,$idCurso,'idCurso');
 
-		$this->headerLocation("C_GestionEVG/verCursos");
+		$this->headerLocation("courses");
 	}
 	
 	/**
@@ -630,7 +630,7 @@ class C_GestionEVG extends CI_Controller
 				$codCurso = $worksheet -> getCellByColumnAndRow(0, $row) -> getValue();
 				if(empty($codCurso))/* por si la tabla tiene una longitud máxima mayor que los datos que tiene*/
 					break;
-				$codCursoComprobar = $this -> M_GestionEVG -> seleccionar('Cursos', 'codCurso', "codCurso='".$codCurso."'");
+				$codCursoComprobar = $this -> M_General -> seleccionar('Cursos', 'codCurso', "codCurso='".$codCurso."'");
 				if(empty($codCursoComprobar[0]['codCurso'])) {
 					$datos[$row]['codCurso'] = $codCurso;
 					$datos[$row]['nombre'] = $worksheet -> getCellByColumnAndRow(1, $row) -> getValue();
@@ -638,9 +638,9 @@ class C_GestionEVG extends CI_Controller
 			}
 		}
 		foreach($datos as $valor)
-			$this -> M_GestionEVG -> insertar('Cursos', Array('nombre' => $valor['nombre'], 'codCurso' => $valor['codCurso']));
+			$this -> M_General -> insertar('Cursos', Array('nombre' => $valor['nombre'], 'codCurso' => $valor['codCurso']));
 
-		$this->headerLocation("C_GestionEVG/verCursos");
+		$this->headerLocation("courses");
 
 	}
 
@@ -656,7 +656,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function verDepartamentos()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionar('FP_Departamentos','idDepartamento, nombre');
+		$lista = $this -> M_General -> seleccionar('FP_Departamentos','idDepartamento, nombre');
 		foreach ($lista as $valor)
 			$this -> listaDepartamentos[$valor['idDepartamento']] = $valor['nombre'];
 
@@ -688,9 +688,9 @@ class C_GestionEVG extends CI_Controller
 	{
 		$datos["nombre"] = $_POST["nombre"];
 
-		$this -> M_GestionEVG -> insertar('FP_Departamentos',$datos);
+		$this -> M_General -> insertar('FP_Departamentos',$datos);
 
-		$this->headerLocation("C_GestionEVG/verDepartamentos");
+		$this->headerLocation("departments");
 	}
 	
 	/**
@@ -704,9 +704,9 @@ class C_GestionEVG extends CI_Controller
 
 	public function borrarDepartamento($idDepartamento)
 	{
-		$this -> M_GestionEVG -> borrar('FP_Departamentos',$idDepartamento,'idDepartamento');
+		$this -> M_General -> borrar('FP_Departamentos',$idDepartamento,'idDepartamento');
 
-		$this->headerLocation("C_GestionEVG/verDepartamentos");
+		$this->headerLocation("departments");
 	}
 	
 	/**
@@ -720,7 +720,7 @@ class C_GestionEVG extends CI_Controller
 
 	public  function modificarDepartamentoForm($idDepartamento)
 	{
-		$this -> datosDepartamento = $this -> M_GestionEVG -> seleccionar('FP_Departamentos','nombre','idDepartamento='.$idDepartamento);
+		$this -> datosDepartamento = $this -> M_General -> seleccionar('FP_Departamentos','nombre','idDepartamento='.$idDepartamento);
 		$this -> load -> view("C_Departamentos/V_ModificarDepartamento", Array('idDepartamento' => $idDepartamento));
 	}
 	
@@ -736,9 +736,9 @@ class C_GestionEVG extends CI_Controller
 	{
 		$datos["nombre"] = $_POST["nombre"];
 
-		$this -> M_GestionEVG -> modificar('FP_Departamentos',$datos,$idDepartamento,'idDepartamento');
+		$this -> M_General -> modificar('FP_Departamentos',$datos,$idDepartamento,'idDepartamento');
 
-		$this->headerLocation("C_GestionEVG/verDepartamentos");
+		$this->headerLocation("departments");
 	}
 
 		/*FAMILIAS PROFESIONALES*/
@@ -753,7 +753,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function verFamilias()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionar('FP_FamiliasProfesionales','idFamilia, nombre');
+		$lista = $this -> M_General -> seleccionar('FP_FamiliasProfesionales','idFamilia, nombre');
 		foreach ($lista as $valor)
 			$this -> listaFamilias[$valor['idFamilia']] = $valor['nombre'];
 
@@ -770,7 +770,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function anadirFamiliaForm()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionar('FP_Departamentos','idDepartamento, nombre');
+		$lista = $this -> M_General -> seleccionar('FP_Departamentos','idDepartamento, nombre');
 		$this -> departamentos = array(0 => 'Ninguno');
 		foreach ($lista as $valor)
 			$this -> departamentos[$valor['idDepartamento']] = $valor['nombre'];
@@ -792,9 +792,9 @@ class C_GestionEVG extends CI_Controller
 		if($_POST['departamento'] != 0)
 			$datos["idDepartamento"] = $_POST["departamento"];
 
-		$this -> M_GestionEVG -> insertar('FP_FamiliasProfesionales',$datos);
+		$this -> M_General -> insertar('FP_FamiliasProfesionales',$datos);
 
-		$this->headerLocation("C_GestionEVG/verFamilias");
+		$this->headerLocation("families");
 	}
 	
 	/**
@@ -808,9 +808,9 @@ class C_GestionEVG extends CI_Controller
 
 	public function borrarFamilia($idFamilia)
 	{
-		$this -> M_GestionEVG -> borrar('FP_FamiliasProfesionales',$idFamilia,'idFamilia');
+		$this -> M_General -> borrar('FP_FamiliasProfesionales',$idFamilia,'idFamilia');
 
-		$this->headerLocation("C_GestionEVG/verFamilias");
+		$this->headerLocation("families");
 	}
 	
 	/**
@@ -824,9 +824,9 @@ class C_GestionEVG extends CI_Controller
 
 	public function modificarFamiliaForm($idFamilia)
 	{
-		$this -> datosFamilia = $this -> M_GestionEVG -> seleccionar('FP_FamiliasProfesionales','idFamilia, nombre, idDepartamento','idFamilia='.$idFamilia);
+		$this -> datosFamilia = $this -> M_General -> seleccionar('FP_FamiliasProfesionales','idFamilia, nombre, idDepartamento','idFamilia='.$idFamilia);
 
-		$lista = $this -> M_GestionEVG -> seleccionar('FP_Departamentos','idDepartamento, nombre');
+		$lista = $this -> M_General -> seleccionar('FP_Departamentos','idDepartamento, nombre');
 		$this -> departamentos = array(0 => 'Ninguno');
 		foreach($lista as $valor)
 			$this -> departamentos[$valor['idDepartamento']] = $valor['nombre'];
@@ -851,9 +851,9 @@ class C_GestionEVG extends CI_Controller
 		else
 			$datos['idDepartamento'] = null;
 
-		$this -> M_GestionEVG -> modificar('FP_FamiliasProfesionales',$datos,$idFamilia,'idFamilia');
+		$this -> M_General -> modificar('FP_FamiliasProfesionales',$datos,$idFamilia,'idFamilia');
 
-		$this->headerLocation("C_GestionEVG/verFamilias");
+		$this->headerLocation("families");
 	}
 
 		/*CICLOS*/
@@ -868,7 +868,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function verCiclos()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionar('FP_Ciclos','idCiclo, codCiclo');
+		$lista = $this -> M_General -> seleccionar('FP_Ciclos','idCiclo, codCiclo');
 
 		foreach ($lista as $valor)
 			$this -> listaCiclos[$valor['idCiclo']] = $valor['codCiclo'];
@@ -886,7 +886,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function anadirCicloForm()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionar('FP_FamiliasProfesionales','idFamilia, nombre');
+		$lista = $this -> M_General -> seleccionar('FP_FamiliasProfesionales','idFamilia, nombre');
 
 		$this -> familias = array(0 => 'Ninguna');
 		foreach ($lista as $valor)
@@ -910,9 +910,9 @@ class C_GestionEVG extends CI_Controller
 		if($_POST['familia'] != 0)
 			$datos["idFamilia"] = $_POST["familia"];
 
-		$this -> M_GestionEVG -> insertar('FP_Ciclos',$datos);
+		$this -> M_General -> insertar('FP_Ciclos',$datos);
 
-		$this->headerLocation("C_GestionEVG/verCiclos");
+		$this->headerLocation("cycles");
 	}
 	
 	/**
@@ -926,9 +926,9 @@ class C_GestionEVG extends CI_Controller
 
 	public function borrarCiclo($idCiclo)
 	{
-		$this -> M_GestionEVG -> borrar('FP_Ciclos',$idCiclo,'idCiclo');
+		$this -> M_General -> borrar('FP_Ciclos',$idCiclo,'idCiclo');
 
-		$this->headerLocation("C_GestionEVG/verCiclos");
+		$this->headerLocation("cycles");
 	}
 	
 	/**
@@ -942,9 +942,9 @@ class C_GestionEVG extends CI_Controller
 
 	public function modificarCicloForm($idCiclo)
 	{
-		$this -> datosCiclo = $this -> M_GestionEVG -> seleccionar('FP_Ciclos','idCiclo, codCiclo, nombre, idFamilia','idCiclo='.$idCiclo);
+		$this -> datosCiclo = $this -> M_General -> seleccionar('FP_Ciclos','idCiclo, codCiclo, nombre, idFamilia','idCiclo='.$idCiclo);
 
-		$lista = $this -> M_GestionEVG -> seleccionar('FP_FamiliasProfesionales','idFamilia, nombre');
+		$lista = $this -> M_General -> seleccionar('FP_FamiliasProfesionales','idFamilia, nombre');
 		$this -> familias = array(0 => 'Ninguna');
 		foreach($lista as $valor)
 			$this -> familias[$valor['idFamilia']] = $valor['nombre'];
@@ -970,9 +970,9 @@ class C_GestionEVG extends CI_Controller
 		else
 			$datos['idFamilia'] = null;
 
-		$this -> M_GestionEVG -> modificar('FP_Ciclos',$datos,$idCiclo,'idCiclo');
+		$this -> M_General -> modificar('FP_Ciclos',$datos,$idCiclo,'idCiclo');
 
-		$this->headerLocation("C_GestionEVG/verCiclos");
+		$this->headerLocation("cycles");
 	}
 	
 	/**
@@ -987,14 +987,14 @@ class C_GestionEVG extends CI_Controller
 
 	public function cursosCiclo($idCiclo)
 	{
-		$codCiclo = $this -> M_GestionEVG -> seleccionar('FP_Ciclos','idCiclo, codCiclo, nombre, idFamilia','idCiclo='.$idCiclo);
+		$codCiclo = $this -> M_General -> seleccionar('FP_Ciclos','idCiclo, codCiclo, nombre, idFamilia','idCiclo='.$idCiclo);
 		$codCiclo = $codCiclo[0]['codCiclo'];
 
-		$lista = $this -> M_GestionEVG -> seleccionar('Cursos cu','cu.idCurso, cu.codCurso','cc.idCiclo='.$idCiclo, ['FP_Ciclos_Cursos cc'], ['cu.idCurso = cc.idCurso']);
+		$lista = $this -> M_General -> seleccionar('Cursos cu','cu.idCurso, cu.codCurso','cc.idCiclo='.$idCiclo, ['FP_Ciclos_Cursos cc'], ['cu.idCurso = cc.idCurso']);
 		foreach($lista as $valor)
 			$this -> ciclosCurso[$valor['idCurso']] = $valor['codCurso'];
 
-		$lista2 = $this -> M_GestionEVG -> seleccionar('Cursos cu','cu.idCurso, cu.codCurso','cu.idCurso NOT IN (SELECT cc2.idCurso FROM FP_Ciclos_Cursos cc2 WHERE cc2.idCiclo='.$idCiclo.')');
+		$lista2 = $this -> M_General -> seleccionar('Cursos cu','cu.idCurso, cu.codCurso','cu.idCurso NOT IN (SELECT cc2.idCurso FROM FP_Ciclos_Cursos cc2 WHERE cc2.idCiclo='.$idCiclo.')');
 		foreach($lista2 as $valor)
 			$this -> cursosNoCiclo[$valor['idCurso']] = $valor['codCurso'];
 
@@ -1013,9 +1013,9 @@ class C_GestionEVG extends CI_Controller
 
 	public function quitarCursoCiclo($idCiclo, $idCurso)
 	{
-		$this -> M_GestionEVG -> borrarCompuesta('FP_Ciclos_Cursos',$idCurso, $idCiclo, 'idCurso', 'idCiclo');
+		$this -> M_General -> borrarCompuesta('FP_Ciclos_Cursos',$idCurso, $idCiclo, 'idCurso', 'idCiclo');
 
-		$this->headerLocation("C_GestionEVG/cursosCiclo/".$idCiclo);
+		$this->headerLocation("courses-cycle/".$idCiclo);
 	}
 	
 	/**
@@ -1030,9 +1030,9 @@ class C_GestionEVG extends CI_Controller
 
 	public function anadirCursoCiclo($idCiclo, $idCurso)
 	{
-		$this -> M_GestionEVG -> insertar('FP_Ciclos_Cursos',array('idCurso' => $idCurso,'idCiclo' => $idCiclo));
+		$this -> M_General -> insertar('FP_Ciclos_Cursos',array('idCurso' => $idCurso,'idCiclo' => $idCiclo));
 
-		$this->headerLocation("C_GestionEVG/cursosCiclo/".$idCiclo);
+		$this->headerLocation("courses-cycle/".$idCiclo);
 	}
 
 	/*SECCIONES*/
@@ -1047,7 +1047,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function verSecciones()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionar('Secciones','idSeccion, codSeccion');
+		$lista = $this -> M_General -> seleccionar('Secciones','idSeccion, codSeccion');
 
 		foreach ($lista as $valor)
 			$this -> listaSecciones[$valor['idSeccion']] = $valor['codSeccion'];
@@ -1065,7 +1065,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function anadirSeccionForm()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionar('Cursos','idCurso, codCurso');
+		$lista = $this -> M_General -> seleccionar('Cursos','idCurso, codCurso');
 		$this -> cursos = array(0 => 'Ninguno');
 		foreach ($lista as $valor)
 			$this -> cursos[$valor['idCurso']] = $valor['codCurso'];
@@ -1090,9 +1090,9 @@ class C_GestionEVG extends CI_Controller
 		if(!empty($_POST['idSeccionColegio']))
 			$datos["idSeccionColegio"] = $_POST["idSeccionColegio"];
 
-		$this -> M_GestionEVG -> insertar('Secciones',$datos);
+		$this -> M_General -> insertar('Secciones',$datos);
 
-		$this->headerLocation("C_GestionEVG/verSecciones");
+		$this->headerLocation("sections");
 	}
 	
 	/**
@@ -1106,7 +1106,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function borrarSeccion($idSeccion)
 	{
-		$alumnos = $this -> M_GestionEVG -> seleccionar('Alumnos', '*', 'idSeccion='.$idSeccion);
+		$alumnos = $this -> M_General -> seleccionar('Alumnos', '*', 'idSeccion='.$idSeccion);
 		if(!empty($alumnos))
 			echo '
 				<script>
@@ -1116,9 +1116,9 @@ class C_GestionEVG extends CI_Controller
 			';
 		else
 		{
-			$this -> M_GestionEVG -> borrar('Secciones',$idSeccion,'idSeccion');
+			$this -> M_General -> borrar('Secciones',$idSeccion,'idSeccion');
 
-			$this->headerLocation("C_GestionEVG/verSecciones");
+			$this->headerLocation("sections");
 		}
 	}
 	
@@ -1132,9 +1132,9 @@ class C_GestionEVG extends CI_Controller
 	 */
 
 	public function modificarSeccionForm($idSeccion){
-		$this -> datosSeccion = $this -> M_GestionEVG -> seleccionar('Secciones','idSeccion, idSeccionColegio, codSeccion, nombre, idCurso','idSeccion='.$idSeccion);
+		$this -> datosSeccion = $this -> M_General -> seleccionar('Secciones','idSeccion, idSeccionColegio, codSeccion, nombre, idCurso','idSeccion='.$idSeccion);
 
-		$lista = $this -> M_GestionEVG -> seleccionar('Cursos','idCurso, codCurso');
+		$lista = $this -> M_General -> seleccionar('Cursos','idCurso, codCurso');
 		$this -> cursos = Array(0 => 'Ninguno');
 		foreach($lista as $valor)
 			$this -> cursos[$valor['idCurso']] = $valor['codCurso'];
@@ -1164,9 +1164,9 @@ class C_GestionEVG extends CI_Controller
 		else
 			$datos["idSeccionColegio"] = null;
 
-		$this -> M_GestionEVG -> modificar('Secciones',$datos,$idSeccion,'idSeccion');
+		$this -> M_General -> modificar('Secciones',$datos,$idSeccion,'idSeccion');
 
-		$this->headerLocation("C_GestionEVG/verSecciones");
+		$this->headerLocation("sections");
 	}
 	
 	/**
@@ -1180,13 +1180,13 @@ class C_GestionEVG extends CI_Controller
 
 	public function asignarTutorForm($idSeccion)
 	{
-		$codSeccion = $this -> M_GestionEVG -> seleccionar('Secciones','idSeccion, idSeccionColegio, codSeccion, nombre, idCurso','idSeccion='.$idSeccion);
+		$codSeccion = $this -> M_General -> seleccionar('Secciones','idSeccion, idSeccionColegio, codSeccion, nombre, idCurso','idSeccion='.$idSeccion);
 		$codSeccion = $codSeccion[0]['codSeccion'];
-		$idTutorActual = $this -> M_GestionEVG -> seleccionar('Secciones','idTutor',"idSeccion=".$idSeccion);
+		$idTutorActual = $this -> M_General -> seleccionar('Secciones','idTutor',"idSeccion=".$idSeccion);
 		if(isset($idTutorActual[0]['idTutor'])) 
 		{
 			$idTutorActual = $idTutorActual[0]['idTutor'];
-			$nombreTutor = $this -> M_GestionEVG -> seleccionar('Usuarios', 'correo', 'idUsuario='.$idTutorActual);
+			$nombreTutor = $this -> M_General -> seleccionar('Usuarios', 'correo', 'idUsuario='.$idTutorActual);
 			$nombreTutor = $nombreTutor[0]['correo'];
 		} 
 		else 
@@ -1195,7 +1195,7 @@ class C_GestionEVG extends CI_Controller
 			$nombreTutor = 'No hay tutor';
 		}
 
-		$lista = $this -> M_GestionEVG -> seleccionar('Usuarios','idUsuario, correo',"idUsuario IN (SELECT idUsuario FROM Perfiles_Usuarios WHERE idPerfil=( SELECT idPerfil FROM Perfiles WHERE nombre='profesor')AND idUsuario NOT IN (SELECT idUsuario FROM Perfiles_Usuarios WHERE idPerfil=(SELECT idPerfil FROM Perfiles WHERE nombre='tutor')))",null,null,null,'correo');
+		$lista = $this -> M_General -> seleccionar('Usuarios','idUsuario, correo',"idUsuario IN (SELECT idUsuario FROM Perfiles_Usuarios WHERE idPerfil=( SELECT idPerfil FROM Perfiles WHERE nombre='profesor')AND idUsuario NOT IN (SELECT idUsuario FROM Perfiles_Usuarios WHERE idPerfil=(SELECT idPerfil FROM Perfiles WHERE nombre='tutor')))",null,null,null,'correo');
 		$this -> profesores = array(0 => 'Ninguno');
 		foreach ($lista as $valor)
 			$this -> profesores[$valor['idUsuario']] = $valor['correo'];
@@ -1215,21 +1215,21 @@ class C_GestionEVG extends CI_Controller
 
 	public function anadirQuitarTutor($idSeccion, $idTutorActual)
 	{
-		$idPerfilTutor = $this -> M_GestionEVG -> seleccionar('Perfiles','idPerfil',"nombre='tutor'");
+		$idPerfilTutor = $this -> M_General -> seleccionar('Perfiles','idPerfil',"nombre='tutor'");
 		$idPerfilTutor = $idPerfilTutor[0]['idPerfil'];
 		if($_POST['tutor'] == 0)
 		{
-			$this -> M_GestionEVG -> modificar('Secciones', array('idtutor' => null), $idSeccion, 'idSeccion');
+			$this -> M_General -> modificar('Secciones', array('idtutor' => null), $idSeccion, 'idSeccion');
 		}
 		else
 		{
-			$this -> M_GestionEVG -> modificar('Secciones', Array('idtutor' => $_POST["tutor"]), $idSeccion, 'idSeccion');
-			$this -> M_GestionEVG -> insertar('Perfiles_Usuarios',Array('idUsuario' => $_POST["tutor"], 'idPerfil' => $idPerfilTutor));
+			$this -> M_General -> modificar('Secciones', Array('idtutor' => $_POST["tutor"]), $idSeccion, 'idSeccion');
+			$this -> M_General -> insertar('Perfiles_Usuarios',Array('idUsuario' => $_POST["tutor"], 'idPerfil' => $idPerfilTutor));
 		}
 
-		$this -> M_GestionEVG -> borrarCompuesta('Perfiles_Usuarios', $idTutorActual, $idPerfilTutor, 'idUsuario', 'idPerfil');
+		$this -> M_General -> borrarCompuesta('Perfiles_Usuarios', $idTutorActual, $idPerfilTutor, 'idUsuario', 'idPerfil');
 
-		$this->headerLocation("C_GestionEVG/verSecciones");
+		$this->headerLocation("sections");
 	}
 	
 	/**
@@ -1274,7 +1274,7 @@ class C_GestionEVG extends CI_Controller
 				$codSeccion = $worksheet -> getCellByColumnAndRow(0, $row) -> getValue();
 				if(empty($codSeccion))/* por si la tabla tiene una longitud máxima mayor que los datos que tiene*/
 					break;
-				$codSeccionComprobar = $this -> M_GestionEVG->seleccionar('Secciones', 'codSeccion', "codSeccion='".$codSeccion."'");
+				$codSeccionComprobar = $this -> M_General->seleccionar('Secciones', 'codSeccion', "codSeccion='".$codSeccion."'");
 				if(empty($codSeccionComprobar[0]['codSeccion'])) {
 					$datos[$row]['codSeccion'] = $codSeccion;
 					$datos[$row]['nombre'] = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
@@ -1282,9 +1282,9 @@ class C_GestionEVG extends CI_Controller
 			}
 		}
 		foreach($datos as $valor)
-			$this -> M_GestionEVG -> insertar('Secciones', $valor);
+			$this -> M_General -> insertar('Secciones', $valor);
 
-		$this->headerLocation("C_GestionEVG/verSecciones");
+		$this->headerLocation("sections");
 
 	}
 
@@ -1300,7 +1300,7 @@ class C_GestionEVG extends CI_Controller
 	
 	public function verAlumnos()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionar('Etapas','idEtapa, codEtapa');
+		$lista = $this -> M_General -> seleccionar('Etapas','idEtapa, codEtapa');
 		foreach ($lista as $valor)
 			$this -> listaEtapas[$valor['idEtapa']] = $valor['codEtapa'];
 
@@ -1318,10 +1318,10 @@ class C_GestionEVG extends CI_Controller
 
 	public function verSeccionesEtapa($idEtapa)
 	{
-		$codEtapa = $this -> M_GestionEVG -> seleccionar('Etapas','codEtapa','idEtapa='.$idEtapa);
+		$codEtapa = $this -> M_General -> seleccionar('Etapas','codEtapa','idEtapa='.$idEtapa);
 		$codEtapa = $codEtapa[0]['codEtapa'];
 
-		$lista = $this -> M_GestionEVG -> seleccionar('Secciones s','s.idSeccion, s.codSeccion',"e.idEtapa = ".$idEtapa,['Cursos c','Etapas e'], ['s.idCurso=c.idCurso','c.idEtapa=e.idEtapa'],['join','join']);
+		$lista = $this -> M_General -> seleccionar('Secciones s','s.idSeccion, s.codSeccion',"e.idEtapa = ".$idEtapa,['Cursos c','Etapas e'], ['s.idCurso=c.idCurso','c.idEtapa=e.idEtapa'],['join','join']);
 		foreach ($lista as $valor)
 			$this -> listaSecciones[$valor['idSeccion']] = $valor['codSeccion'];
 
@@ -1340,10 +1340,11 @@ class C_GestionEVG extends CI_Controller
 
 	public function verAlumnosSeccion($idSeccion,$idEtapa)
 	{
-		$codSeccion = $this -> M_GestionEVG -> seleccionar('Secciones','codSeccion','idSeccion='.$idSeccion);
+		$codSeccion = $this -> M_General -> seleccionar('Secciones','codSeccion','idSeccion='.$idSeccion);
 		$codSeccion = $codSeccion[0]['codSeccion'];
+		$this -> idSeccion = $idSeccion;
 
-		$lista = $this -> M_GestionEVG -> seleccionar('Alumnos','idAlumno, nombre','idSeccion='.$idSeccion);
+		$lista = $this -> M_General -> seleccionar('Alumnos','idAlumno, nombre','idSeccion='.$idSeccion);
 		foreach ($lista as $valor)
 			$this -> listaAlumnos[$valor['idAlumno']] = $valor['nombre'];
 
@@ -1360,7 +1361,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function anadirAlumnoForm()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionar('Secciones','idSeccion, codSeccion');
+		$lista = $this -> M_General -> seleccionar('Secciones','idSeccion, codSeccion');
 		foreach ($lista as $valor)
 			$this -> secciones[$valor['idSeccion']] = $valor['codSeccion'];
 
@@ -1385,9 +1386,9 @@ class C_GestionEVG extends CI_Controller
 		$datos["sexo"] = $_POST["sexo"];
 		$datos["telefono"] = $_POST["telefono"];
 
-		$this -> M_GestionEVG -> insertar('Alumnos',$datos);
+		$this -> M_General -> insertar('Alumnos',$datos);
 
-		$this->headerLocation("C_GestionEVG/verAlumnos");
+		$this->headerLocation("students");
 	}
 	
 	/**
@@ -1395,15 +1396,17 @@ class C_GestionEVG extends CI_Controller
 	 *
 	 * Elimina el alumno de la base de datos.
 	 * 
-	 * @param  integer $idAlumno Identificador del alumno.
+	 * @param integer $idAlumno Identificador del alumno.
+	 * @param integer $idSeccion Identificador de la sección.
+	 * @param integer $idEtapa Identificador de la etapa.
 	 * @return void
 	 */
 
-	public function borrarAlumno($idAlumno)
+	public function borrarAlumno($idAlumno, $idSeccion, $idEtapa)
 	{
-		$this -> M_GestionEVG -> borrar('Alumnos',$idAlumno,'idAlumno');
+		$this -> M_General -> borrar('Alumnos',$idAlumno,'idAlumno');
 
-		$this->headerLocation("C_GestionEVG/verAlumnos");
+		$this->headerLocation("section-students/".$idSeccion."/".$idEtapa."");
 	}
 	
 	/**
@@ -1418,9 +1421,9 @@ class C_GestionEVG extends CI_Controller
 
 	public function modificarAlumnoForm($idAlumno, $idEtapa)
 	{
-		$this -> datosAlumno = $this -> M_GestionEVG -> seleccionar('Alumnos','*','idAlumno='.$idAlumno);
+		$this -> datosAlumno = $this -> M_General -> seleccionar('Alumnos','*','idAlumno='.$idAlumno);
 
-		$lista = $this -> M_GestionEVG -> seleccionar('Secciones','idSeccion, codSeccion');
+		$lista = $this -> M_General -> seleccionar('Secciones','idSeccion, codSeccion');
 		foreach($lista as $valor)
 			$this -> secciones[$valor['idSeccion']] = $valor['codSeccion'];
 
@@ -1450,9 +1453,9 @@ class C_GestionEVG extends CI_Controller
 		$datos["sexo"] = $_POST["sexo"];
 		$datos["telefono"] = $_POST["telefono"];
 
-		$this -> M_GestionEVG -> modificar('Alumnos',$datos,$idAlumno,'idAlumno');
+		$this -> M_General -> modificar('Alumnos',$datos,$idAlumno,'idAlumno');
 
-		$this->headerLocation('C_GestionEVG/verAlumnosSeccion/'.$idSeccion.'/'.$idEtapa);
+		$this->headerLocation('section-students/'.$idSeccion.'/'.$idEtapa);
 	}
 	
 	/**
@@ -1465,7 +1468,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function importarAlumnosForm()
 	{
-		$this -> secciones = $this -> M_GestionEVG -> seleccionar('Secciones', '*', '1=1');
+		$this -> secciones = $this -> M_General -> seleccionar('Secciones', '*', '1=1');
 		$this -> load -> view('C_Alumnos/V_ImportarAlumnos');
 	}
 	
@@ -1498,7 +1501,7 @@ class C_GestionEVG extends CI_Controller
 				/* por si la tabla tiene una longitud máxima mayor que los datos que tiene*/
 				if(empty($nia))
 					break;
-				$niaComprobar = $this -> M_GestionEVG -> seleccionar('Alumnos', 'nia', "nia=".$nia);
+				$niaComprobar = $this -> M_General -> seleccionar('Alumnos', 'nia', "nia=".$nia);
 				$estado = $worksheet -> getCellByColumnAndRow(9, $row) -> getValue();
 				if(empty($niaComprobar[0]['nia']) && $estado != 'Trasladada' && $estado != 'Obtiene Título' && $estado != 'Anulada')
 				{
@@ -1515,20 +1518,20 @@ class C_GestionEVG extends CI_Controller
 					if($worksheet -> getCellByColumnAndRow(6, $row) -> getValue() != '')
 						$datos[$row]['correo'] = $worksheet -> getCellByColumnAndRow(6, $row) -> getValue();
 
-					$idSeccion = $this -> M_GestionEVG -> seleccionar('Secciones', 'idSeccion', "codSeccion='".$worksheet -> getCellByColumnAndRow(7, $row) -> getValue()."'");
+					$idSeccion = $this -> M_General -> seleccionar('Secciones', 'idSeccion', "codSeccion='".$worksheet -> getCellByColumnAndRow(7, $row) -> getValue()."'");
 					$datos[$row]['idSeccion'] = $idSeccion[0]['idSeccion'];
 				}
 				else if($estado=='Trasladada' || $estado=='Obtiene Título' || $estado=='Anulada')
 				{
-					$this -> M_GestionEVG -> borrar('Alumnos', $nia, 'nia');
+					$this -> M_General -> borrar('Alumnos', $nia, 'nia');
 				}
 			}
 		}
 		/* recorrer el array con los datos del excel que no estén en la base de datos para insertarlos */
 		foreach($datos as $valor)
-			$this -> M_GestionEVG -> insertar('Alumnos', $valor);
+			$this -> M_General -> insertar('Alumnos', $valor);
 
-		$this->headerLocation('C_GestionEVG/verAlumnos');
+		$this->headerLocation('students');
 	}
 
 	/*LISTADO TUTORES*/
@@ -1545,7 +1548,7 @@ class C_GestionEVG extends CI_Controller
 	{
 		include_once('application/TFPDF/tfpdf.php');
 
-		$datos = $this -> M_GestionEVG -> seleccionar('Secciones s','s.nombre, u.correo', null, ['Usuarios u'], ['s.idTutor=u.idUsuario'], ['left']);
+		$datos = $this -> M_General -> seleccionar('Secciones s','s.nombre, u.correo', null, ['Usuarios u'], ['s.idTutor=u.idUsuario'], ['left']);
 		foreach ($datos as $valor)
 			$this -> listaTutores[$valor['nombre']] = $valor['correo'];
 
@@ -1599,9 +1602,9 @@ class C_GestionEVG extends CI_Controller
 	 */
 	public function nuevoCurso()
 	{
-		$this -> M_GestionEVG -> borrar('Alumnos', 1, 1);
+		$this -> M_General -> borrar('Alumnos', 1, 1);
 		
-		$this->headerLocation('C_GestionEVG/importarAlumnosForm'); 
+		$this->headerLocation('import-students');
 	}
 
 	/*Redirecionar localizaciones*/

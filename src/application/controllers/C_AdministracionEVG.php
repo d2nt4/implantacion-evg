@@ -19,13 +19,13 @@ class C_AdministracionEVG extends CI_Controller
 		$this -> load -> helper('form');
 		$this -> load -> library('form_validation');
 		$this -> load -> helper('url');
-		$this -> load -> model('M_GestionEVG');
+		$this -> load -> model('M_General');
 		$this -> load -> library('google');
 		$this -> load -> library('excel');
 
 		$data['google_login_url'] = $this -> google -> get_login_url();
 
-        if($this->session->userdata('sess_logged_in') == 0 || !$idUsuario=$this->M_GestionEVG->obtenerIdUsuario($_SESSION['email']))
+        if($this->session->userdata('sess_logged_in') == 0 || !$idUsuario=$this->M_General->obtenerIdUsuario($_SESSION['email']))
 		{
         	redirect('Auth');
 		}
@@ -33,7 +33,7 @@ class C_AdministracionEVG extends CI_Controller
 		{
         	$acceso = false;
 
-			$aplicaciones = $this -> M_GestionEVG -> seleccionar('Aplicaciones a', 'distinct(a.url), a.nombre, a.icono', "idUsuario=".$idUsuario,['Aplicaciones_Perfiles ap','Perfiles_Usuarios pu'], ['a.idAplicacion= ap.idAplicacion','pu.idPerfil=ap.idPerfil'], ['join','join']);
+			$aplicaciones = $this -> M_General -> seleccionar('Aplicaciones a', 'distinct(a.url), a.nombre, a.icono', "idUsuario=".$idUsuario,['Aplicaciones_Perfiles ap','Perfiles_Usuarios pu'], ['a.idAplicacion= ap.idAplicacion','pu.idPerfil=ap.idPerfil'], ['join','join']);
 			foreach($aplicaciones as $valor)
 				if( $valor['nombre'] == 'GestionEVG' || $valor['nombre'] == 'AdministracionEVG' )
 					$acceso = true;
@@ -53,7 +53,6 @@ class C_AdministracionEVG extends CI_Controller
 	public function index()
 	{
 		redirect('Grid');
-
 	}
 	
 	/**
@@ -65,7 +64,7 @@ class C_AdministracionEVG extends CI_Controller
 	 */
 	public function comprobarCSU()
 	{
-		$numeroFilas = $this -> M_GestionEVG -> seleccionar($_POST['tabla'],$_POST['campo'],$_POST['campo']."='".$_POST['valor']."'");
+		$numeroFilas = $this -> M_General -> seleccionar($_POST['tabla'],$_POST['campo'],$_POST['campo']."='".$_POST['valor']."'");
 
 		if (!empty($numeroFilas))
 			echo('si');
@@ -83,7 +82,7 @@ class C_AdministracionEVG extends CI_Controller
 
 	public function comprobarUsuarios()
 	{
-		$usuarios = $this -> M_GestionEVG -> seleccionar('Usuarios','*',"idUsuario NOT IN(
+		$usuarios = $this -> M_General -> seleccionar('Usuarios','*',"idUsuario NOT IN(
 			SELECT idUsuario
 			FROM Perfiles_Usuarios
 			WHERE idPerfil=".$_POST['idPerfil']."
@@ -103,7 +102,7 @@ class C_AdministracionEVG extends CI_Controller
 
 	public function verApps()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionar('Aplicaciones','idAplicacion, nombre');
+		$lista = $this -> M_General -> seleccionar('Aplicaciones','idAplicacion, nombre');
 		foreach ($lista as $valor)
 			$this -> listaApps[$valor['idAplicacion']] = $valor['nombre'];
 
@@ -149,9 +148,9 @@ class C_AdministracionEVG extends CI_Controller
 		copy($archivo_temporal, $destino . $archivo_nombre); /*Copia el archivo de la carpeta temporal a la carpeta destino en el servidor*/
 		$datos['icono'] = $archivo_nombre;
 
-		$this-> M_GestionEVG-> insertar('Aplicaciones',$datos);
+		$this-> M_General-> insertar('Aplicaciones',$datos);
 
-		$this->headerLocation("C_AdministracionEVG/verApps");
+		$this->headerLocation("apps");
 	}
 	
 	/**
@@ -165,14 +164,14 @@ class C_AdministracionEVG extends CI_Controller
 
 	public function borrarApp($idAplicacion)
 	{
-		$iconoActual = $this -> M_GestionEVG -> seleccionar('Aplicaciones', 'icono', 'idAplicacion='.$idAplicacion);
+		$iconoActual = $this -> M_General -> seleccionar('Aplicaciones', 'icono', 'idAplicacion='.$idAplicacion);
 		$iconoActual = $iconoActual[0]['icono'];
 		if(file_exists('uploads/iconos/'.$iconoActual))
 			unlink('uploads/iconos/'.$iconoActual);
 
-		$this -> M_GestionEVG -> borrar('Aplicaciones',$idAplicacion,'idAplicacion');
+		$this -> M_General -> borrar('Aplicaciones',$idAplicacion,'idAplicacion');
 
-		$this->headerLocation("C_AdministracionEVG/verApps");
+		$this->headerLocation("apps");
 	}
 	
 	/**
@@ -186,7 +185,7 @@ class C_AdministracionEVG extends CI_Controller
 
 	public function modificarAppForm($idAplicacion)
 	{
-		$this -> datosApp = $this -> M_GestionEVG -> seleccionar('Aplicaciones','nombre, descripcion, url, icono','idAplicacion='.$idAplicacion);
+		$this -> datosApp = $this -> M_General -> seleccionar('Aplicaciones','nombre, descripcion, url, icono','idAplicacion='.$idAplicacion);
 		$this -> load -> view("C_Aplicaciones/V_ModificarApp", Array('idAplicacion' => $idAplicacion));
 	}
 	
@@ -207,7 +206,7 @@ class C_AdministracionEVG extends CI_Controller
 
 		if(!empty($_FILES['icono']['name']))
 		{
-			$iconoActual = $this -> M_GestionEVG -> seleccionar('Aplicaciones', 'icono', 'idAplicacion='.$idAplicacion);
+			$iconoActual = $this -> M_General -> seleccionar('Aplicaciones', 'icono', 'idAplicacion='.$idAplicacion);
 			$iconoActual = $iconoActual[0]['icono'];
 			if(file_exists('uploads/iconos/'.$iconoActual))
 				unlink('uploads/iconos/'.$iconoActual);
@@ -225,9 +224,9 @@ class C_AdministracionEVG extends CI_Controller
 			$datos['icono'] = $archivo_nombre;
 		}
 
-		$this -> M_GestionEVG -> modificar('Aplicaciones',$datos,$idAplicacion,'idAplicacion');
+		$this -> M_General -> modificar('Aplicaciones',$datos,$idAplicacion,'idAplicacion');
 
-		$this->headerLocation("C_AdministracionEVG/verApps");
+		$this->headerLocation("apps");
 	}
 	
 	/**
@@ -242,14 +241,14 @@ class C_AdministracionEVG extends CI_Controller
 
 	public function perfilesAplicacion($idAplicacion)
 	{
-		$nombreApp = $this -> M_GestionEVG -> seleccionar('Aplicaciones','nombre, descripcion, url, icono','idAplicacion='.$idAplicacion);
+		$nombreApp = $this -> M_General -> seleccionar('Aplicaciones','nombre, descripcion, url, icono','idAplicacion='.$idAplicacion);
 		$nombreApp = $nombreApp[0]['nombre'];
 
-		$lista = $this -> M_GestionEVG -> seleccionar('Perfiles p','p.idPerfil, p.nombre','ap.idAplicacion='.$idAplicacion, ['Aplicaciones_Perfiles ap'],['p.idPerfil = ap.idPerfil']);
+		$lista = $this -> M_General -> seleccionar('Perfiles p','p.idPerfil, p.nombre','ap.idAplicacion='.$idAplicacion, ['Aplicaciones_Perfiles ap'],['p.idPerfil = ap.idPerfil']);
 		foreach($lista as $valor)
 			$this -> perfilesAplicacion[$valor['idPerfil']] = $valor['nombre'];
 
-		$lista2 = $this -> M_GestionEVG -> seleccionar('Perfiles p','p.idPerfil, p.nombre','p.idPerfil NOT IN (SELECT ap2.idPerfil FROM Aplicaciones_Perfiles ap2 WHERE ap2.idAplicacion='.$idAplicacion.')');
+		$lista2 = $this -> M_General -> seleccionar('Perfiles p','p.idPerfil, p.nombre','p.idPerfil NOT IN (SELECT ap2.idPerfil FROM Aplicaciones_Perfiles ap2 WHERE ap2.idAplicacion='.$idAplicacion.')');
 		foreach($lista2 as $valor)
 			$this -> perfilesNoAplicacion[$valor['idPerfil']] = $valor['nombre'];
 
@@ -268,9 +267,9 @@ class C_AdministracionEVG extends CI_Controller
 
 	public function quitarPerfilAplicacion($idAplicacion, $idPerfil)
 	{
-		$this -> M_GestionEVG -> borrarCompuesta('Aplicaciones_Perfiles',$idPerfil, $idAplicacion, 'idPerfil', 'idAplicacion');
+		$this -> M_General -> borrarCompuesta('Aplicaciones_Perfiles',$idPerfil, $idAplicacion, 'idPerfil', 'idAplicacion');
 
-		$this->headerLocation("C_AdministracionEVG/perfilesAplicacion/".$idAplicacion);
+		$this->headerLocation("profiles-app/".$idAplicacion);
 	}
 	
 	/**
@@ -285,9 +284,9 @@ class C_AdministracionEVG extends CI_Controller
 
 	public function anadirPerfilAplicacion($idAplicacion, $idPerfil)
 	{
-		$this -> M_GestionEVG -> insertar('Aplicaciones_Perfiles',array('idPerfil'=>$idPerfil,'idAplicacion'=>$idAplicacion));
+		$this -> M_General -> insertar('Aplicaciones_Perfiles',array('idPerfil'=>$idPerfil,'idAplicacion'=>$idAplicacion));
 
-		$this->headerLocation("C_AdministracionEVG/perfilesAplicacion/".$idAplicacion);
+		$this->headerLocation("profiles-app/".$idAplicacion);
 	}
 
 		/*PERFILES*/
@@ -302,7 +301,7 @@ class C_AdministracionEVG extends CI_Controller
 
 	public function verPerfiles()
 	{
-		$lista = $this -> M_GestionEVG -> seleccionar('Perfiles','idPerfil, nombre');
+		$lista = $this -> M_General -> seleccionar('Perfiles','idPerfil, nombre');
 		foreach ($lista as $valor)
 			$this -> listaPerfiles[$valor['idPerfil']] = $valor['nombre'];
 
@@ -335,9 +334,9 @@ class C_AdministracionEVG extends CI_Controller
 		$datos["nombre"] = $_POST["nombre"];
 		$datos["descripcion"] = $_POST["descripcion"];
 
-		$this -> M_GestionEVG -> insertar('Perfiles',$datos);
+		$this -> M_General -> insertar('Perfiles',$datos);
 
-		$this->headerLocation("C_AdministracionEVG/verPerfiles");
+		$this->headerLocation("profiles");
 	}
 	
 	/**
@@ -351,9 +350,9 @@ class C_AdministracionEVG extends CI_Controller
 	
 	public function borrarPerfil($idPerfil)
 	{
-		$this -> M_GestionEVG -> borrar('Perfiles',$idPerfil,'idPerfil');
+		$this -> M_General -> borrar('Perfiles',$idPerfil,'idPerfil');
 
-		$this->headerLocation("C_AdministracionEVG/verPerfiles");
+		$this->headerLocation("profiles");
 	}
 	
 	/**
@@ -367,7 +366,7 @@ class C_AdministracionEVG extends CI_Controller
 
 	public function modificarPerfilForm($idPerfil)
 	{
-		$this -> datosPerfil = $this -> M_GestionEVG -> seleccionar('Perfiles','nombre, descripcion','idPerfil='.$idPerfil);
+		$this -> datosPerfil = $this -> M_General -> seleccionar('Perfiles','nombre, descripcion','idPerfil='.$idPerfil);
 		$this -> load -> view("C_Perfiles/V_ModificarPerfil", Array('idPerfil' => $idPerfil));
 	}
 	
@@ -385,9 +384,9 @@ class C_AdministracionEVG extends CI_Controller
 		$datos["nombre"] = $_POST["nombre"];
 		$datos["descripcion"] = $_POST["descripcion"];
 
-		$this -> M_GestionEVG -> modificar('Perfiles',$datos,$idPerfil,'idPerfil');
+		$this -> M_General -> modificar('Perfiles',$datos,$idPerfil,'idPerfil');
 
-		$this->headerLocation("C_AdministracionEVG/verPerfiles");
+		$this->headerLocation("profiles");
 	}
 	
 	/**
@@ -402,10 +401,10 @@ class C_AdministracionEVG extends CI_Controller
 
 	public function usuariosPerfil($idPerfil)
 	{
-		$nombre = $this -> M_GestionEVG -> seleccionar('Perfiles','nombre, descripcion','idPerfil='.$idPerfil);
+		$nombre = $this -> M_General -> seleccionar('Perfiles','nombre, descripcion','idPerfil='.$idPerfil);
 		$nombre = $nombre[0]['nombre'];
 
-		$lista = $this -> M_GestionEVG -> seleccionar('Usuarios u','u.idUsuario, u.correo','pu.idPerfil='.$idPerfil,['Perfiles_Usuarios pu'],['pu.idUsuario = u.idUsuario']);
+		$lista = $this -> M_General -> seleccionar('Usuarios u','u.idUsuario, u.correo','pu.idPerfil='.$idPerfil,['Perfiles_Usuarios pu'],['pu.idUsuario = u.idUsuario']);
 		foreach($lista as $valor)
 			$this -> usuariosPerfil[$valor['idUsuario']] = $valor['correo'];
 
@@ -424,9 +423,9 @@ class C_AdministracionEVG extends CI_Controller
 
 	public function quitarUsuarioPerfil($idPerfil,$idUsuario)
 	{
-		$this -> M_GestionEVG -> borrarCompuesta('Perfiles_Usuarios',$idPerfil, $idUsuario, 'idPerfil', 'idUsuario');
+		$this -> M_General -> borrarCompuesta('Perfiles_Usuarios',$idPerfil, $idUsuario, 'idPerfil', 'idUsuario');
 
-		$this->headerLocation("C_AdministracionEVG/usuariosPerfil/".$idPerfil);
+		$this->headerLocation("users-profile/".$idPerfil);
 	}
 	
 	/**
@@ -440,14 +439,14 @@ class C_AdministracionEVG extends CI_Controller
 
 	public function anadirUsuarioPerfil($idPerfil)
 	{
-		if($idUsuario = $this -> M_GestionEVG -> obtenerIdUsuario($_POST['correo']))
+		if($idUsuario = $this -> M_General -> obtenerIdUsuario($_POST['correo']))
 		{
-			$perfil = $this -> M_GestionEVG -> seleccionar('Perfiles_Usuarios', '*', 'idUsuario='.$idUsuario.' and idPerfil='.$idPerfil);
+			$perfil = $this -> M_General -> seleccionar('Perfiles_Usuarios', '*', 'idUsuario='.$idUsuario.' and idPerfil='.$idPerfil);
 			if(empty($perfil[0]))
-				$this -> M_GestionEVG -> insertar('Perfiles_Usuarios',array('idPerfil'=>$idPerfil,'idUsuario'=>$idUsuario));
+				$this -> M_General -> insertar('Perfiles_Usuarios',array('idPerfil'=>$idPerfil,'idUsuario'=>$idUsuario));
 		}
 
-		$this->headerLocation("C_AdministracionEVG/usuariosPerfil/".$idPerfil);
+		$this->headerLocation("users-profile/".$idPerfil);
 	}
 
 	/*Redirecionar localizaciones*/

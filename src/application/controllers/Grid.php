@@ -21,13 +21,13 @@ class Grid extends CI_Controller
 	{
 		parent::__construct();
 
-		$this -> load -> model('M_GestionEVG');
+		$this -> load -> model('M_General');
 		$this -> load -> library('google');
 
-		if($this -> session -> userdata('sess_logged_in') == 0 || !$idUsuario = $this -> M_GestionEVG -> obtenerIdUsuario($_SESSION['email']))
+		if($this -> session -> userdata('sess_logged_in') == 0 || !$idUsuario = $this -> M_General -> obtenerIdUsuario($_SESSION['email']))
 			redirect('Auth');
 
-		$this -> load -> model('M_GestionEVG');
+		$this -> load -> model('M_General');
 	}
 	
 	/**
@@ -40,14 +40,14 @@ class Grid extends CI_Controller
 
 	public function index()
 	{
-		$idUsuario = $this -> M_GestionEVG -> obtenerIdUsuario($_SESSION['email']);
-		$this -> aplicaciones = $this -> M_GestionEVG -> seleccionar('Aplicaciones a','distinct(a.url), a.nombre, a.icono',"idUsuario=".$idUsuario,['Aplicaciones_Perfiles ap','Perfiles_Usuarios pu'],['a.idAplicacion= ap.idAplicacion','pu.idPerfil=ap.idPerfil'], ['join','join']);
+		$idUsuario = $this -> M_General -> obtenerIdUsuario($_SESSION['email']);
+		$this -> aplicaciones = $this -> M_General -> seleccionar('Aplicaciones a','distinct(a.url), a.nombre, a.icono',"idUsuario=".$idUsuario,['Aplicaciones_Perfiles ap','Perfiles_Usuarios pu'],['a.idAplicacion= ap.idAplicacion','pu.idPerfil=ap.idPerfil'], ['join','join']);
 		$this -> load -> view('V_Grid');
 	}
 
-	public function vistaGeneral()
+	public function vistaGeneral($app)
 	{
-		$this -> app = $_GET['app'];
+		$this -> app = $app;
 		$this -> load -> view('Plantilla/mainView');
 	}
 }

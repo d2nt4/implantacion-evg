@@ -7,24 +7,14 @@
 					echo "<h5 class='font-weight-bolder'>".$name."</h5>";
 				?>
 			</div>
-
 			<ul class="list-unstyled components">
 				<li>
-					<?php echo "<a href='".base_url()."C_AdministracionEVG/VerApps'>Aplicaciones</a>"; ?>
+					<?php echo "<a href='".base_url()."apps'>Aplicaciones</a>"; ?>
 				</li>
 				<li>
-					<?php echo "<a href='".base_url()."C_AdministracionEVG/VerPerfiles'>Perfiles</a>"; ?>
+					<?php echo "<a href='".base_url()."profiles'>Perfiles</a>"; ?>
 				</li>
 			</ul>
-
-<!--			<ul class="list-unstyled CTAs">-->
-<!--				<li>-->
-<!--					<a href="#" class="download">Botón 1</a>-->
-<!--				</li>-->
-<!--				<li>-->
-<!--					<a href="#" class="article">Botón 2</a>-->
-<!--				</li>-->
-<!--			</ul>-->
 		</nav>
 	</div>
 </aside>

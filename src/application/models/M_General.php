@@ -1,13 +1,13 @@
 <?php
 /**
- * M_GestionEVG
+ * M_General
  * 
  * Clase para realizar la gestión de la aplicación.
  * 
  * @author Abraham Núñez Palos y Daniel Torres Galindo
  */
 
-class M_GestionEVG extends CI_Model
+class M_General extends CI_Model
 {
 	/**
 	 * Guarda el valor de carga de la base de datos.

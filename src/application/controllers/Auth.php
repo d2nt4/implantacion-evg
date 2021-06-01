@@ -22,7 +22,7 @@ class Auth extends CI_Controller
 	{
         parent::__construct();
         $this -> load -> library('google');
-        $this -> load -> model('M_GestionEVG');
+        $this -> load -> model('M_General');
     }
 	
 	/**
@@ -60,7 +60,7 @@ class Auth extends CI_Controller
 			'sess_logged_in' => 1
 		);
 		$this -> session -> set_userdata($session_data);
-		redirect(base_url());
+		redirect(base_url()."main");
 	}
 	
 	/**
