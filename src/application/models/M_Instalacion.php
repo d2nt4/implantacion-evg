@@ -286,7 +286,7 @@ class M_Instalacion extends CI_Model
 					sexo enum('m','f') NOT NULL,
 					telefono CHAR(9) NULL,
 					telefonoUrgencia CHAR(9) NULL,
-					fechaNacimiento DATE NULL,
+					fechaNacimiento DATE NOT NULL,
 					created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
 					updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ON UPDATE CURRENT_TIMESTAMP,
 					PRIMARY KEY (idAlumno),
