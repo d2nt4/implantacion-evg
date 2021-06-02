@@ -1507,9 +1507,21 @@ class C_GestionEVG extends CI_Controller
 				{
 					$datos[$row]['nia'] = $nia;
 					$datos[$row]['nombre'] = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
-					$datos[$row]['telefono'] = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
-					$datos[$row]['correo'] = $worksheet->getCellByColumnAndRow(6, $row)->getValue();
+					$datos[$row]['dni'] = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+					
+					$value = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+					$valueTime = PHPExcel_Shared_Date::ExcelToPHP( $value );
+					$datos[$row]['fechaNacimiento'] = date('Y-m-d', $valueTime);
 
+					if($worksheet -> getCellByColumnAndRow(4, $row) -> getValue() != '')
+						$datos[$row]['telefono'] = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+
+					if($worksheet -> getCellByColumnAndRow(5, $row) -> getValue() != '')
+						$datos[$row]['telefonoUrgencia'] = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+
+					
+					
+					
 					if($worksheet -> getCellByColumnAndRow(8, $row) -> getValue() == 'H')
 						$datos[$row]['sexo'] = 'm';
 					else
@@ -1532,6 +1544,7 @@ class C_GestionEVG extends CI_Controller
 			$this -> M_General -> insertar('Alumnos', $valor);
 
 		$this->headerLocation('students');
+
 	}
 
 	/*LISTADO TUTORES*/

@@ -2,7 +2,7 @@
 /**
  * M_General
  * 
- * Clase para realizar la gestión de la aplicación.
+ * Clase para realizar las consultas de toda la aplicación.
  * 
  * @author Abraham Núñez Palos y Daniel Torres Galindo
  */
