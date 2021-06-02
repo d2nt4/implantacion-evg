@@ -1382,7 +1382,7 @@ class C_GestionEVG extends CI_Controller
 		$datos["DNI"] = $_POST["dni"];
 		$datos["NIA"] = $_POST["nia"];
 		$datos["nombre"] = $_POST["nombre"];
-		$datos["fecha_nacimiento"] = $_POST["fecha_nacimiento"];
+		$datos["fechaNacimiento"] = date('Y-m-d',strtotime($_POST["fecha_nacimiento"]));
 		$datos["idSeccion"] = $_POST["secciones"];
 		if(!empty($_POST["correo"]))
 			$datos["correo"] = $_POST["correo"];
@@ -1390,7 +1390,7 @@ class C_GestionEVG extends CI_Controller
 		if(!empty($_POST["telefono"]))
 			$datos["telefono"] = $_POST["telefono"];
 		if(!empty($_POST["telefono_urgencia"]))
-			$datos["telefono_urgencia"] = $_POST["telefono_urgencia"];
+			$datos["telefonoUrgencia"] = $_POST["telefono_urgencia"];
 
 		$this -> M_General -> insertar('Alumnos', $datos);
 
@@ -1452,17 +1452,15 @@ class C_GestionEVG extends CI_Controller
 		$datos["DNI"] = $_POST["dni"];
 		$datos["NIA"] = $_POST["nia"];
 		$datos["nombre"] = $_POST["nombre"];
-		$datos["fecha_nacimiento"] = $_POST["fecha_nacimiento"];
+		$datos["fechaNacimiento"] = date('Y-m-d',strtotime($_POST["fecha_nacimiento"]));
 		$datos["idSeccion"] = $_POST["secciones"];
 		if(!empty($_POST["correo"]))
 			$datos["correo"] = $_POST["correo"];
-		else
-			$datos["correo"] = null;
 		$datos["sexo"] = $_POST["sexo"];
 		if(!empty($_POST["telefono"]))
 			$datos["telefono"] = $_POST["telefono"];
 		if(!empty($_POST["telefono_urgencia"]))
-			$datos["telefono_urgencia"] = $_POST["telefono_urgencia"];
+			$datos["telefonoUrgencia"] = $_POST["telefono_urgencia"];
 
 		$this -> M_General -> modificar('Alumnos', $datos, $idAlumno, 'idAlumno');
 

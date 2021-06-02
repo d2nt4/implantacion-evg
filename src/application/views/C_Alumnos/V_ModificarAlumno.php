@@ -65,7 +65,7 @@
 							(
 									'name'=>'fecha_nacimiento',
 									'placeholder'=>'Fecha de Nacimiento',
-									'value'=>$this->datosAlumno[0]['fecha_nacimiento'],
+									'value'=>$this->datosAlumno[0]['fechaNacimiento'],
 									'class'=>'form-control'
 							);
 
@@ -128,7 +128,7 @@
 							(
 									'name'=>'telefono_urgencia',
 									'placeholder'=>'Teléfono de Urgencia',
-									'value'=>$this->datosAlumno[0]['telefono_urgencia'],
+									'value'=>$this->datosAlumno[0]['telefonoUrgencia'],
 									'class'=>'form-control'
 							);
 
