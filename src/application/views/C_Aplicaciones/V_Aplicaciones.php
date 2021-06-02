@@ -36,7 +36,7 @@
 									"
 										<div class=\"fila\">
 											<h3>".$valor."</h3>
-											<button onclick=\"location.href ='" . base_url() . "profiles-app/".$indice."'\" class=\"btn btn-primary\" data-toggle=\"popover\" data-content=\"Perfiles Aplicación\"><i class=\"fas fa-user-circle\"></i></button>
+											<button onclick=\"location.href ='" . base_url() . "profiles-app/".$indice."'\" class=\"btn btn-info\" data-toggle=\"popover\" data-content=\"Perfiles Aplicación\"><i class=\"fas fa-user-circle\"></i></button>
 											<button onclick=\"location.href ='" . base_url() . "update-app/".$indice."'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Editar Aplicación\"><i class=\"fas fa-edit\"></i></button>
 											<button onclick=\"modalCheck('¿Seguro que quieres desvincular la aplicación: <b>".$valor."</b>?. Esta acción solo desvincula la aplicación, puede volver a añadirla de nuevo cuando quiera, desde el botón, <i>Añadir Aplicación</i>.', '".base_url()."delete-app/".$indice."', 'Desvincular Aplicación', '¿Desea desvincular la aplicación: <b>".$valor. "</b>?', 'Cancelar', 'Desvincular')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#check\"><i class=\"fas fa-trash\"></i></button>													
 										</div>						

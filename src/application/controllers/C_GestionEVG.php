@@ -1181,6 +1181,7 @@ class C_GestionEVG extends CI_Controller
 	public function asignarTutorForm($idSeccion)
 	{
 		$codSeccion = $this -> M_General -> seleccionar('Secciones','idSeccion, idSeccionColegio, codSeccion, nombre, idCurso','idSeccion='.$idSeccion);
+		$nombreSeccion = $codSeccion[0]['nombre'];
 		$codSeccion = $codSeccion[0]['codSeccion'];
 		$idTutorActual = $this -> M_General -> seleccionar('Secciones','idTutor',"idSeccion=".$idSeccion);
 		if(isset($idTutorActual[0]['idTutor'])) 
@@ -1200,7 +1201,7 @@ class C_GestionEVG extends CI_Controller
 		foreach ($lista as $valor)
 			$this -> profesores[$valor['idUsuario']] = $valor['correo'];
 
-		$this -> load -> view('C_Secciones/V_AsignarTutor', Array('idSeccion' => $idSeccion, 'codSeccion' => $codSeccion, 'idTutorActual' => $idTutorActual, 'nombreTutor' => $nombreTutor));
+		$this -> load -> view('C_Secciones/V_AsignarTutor', Array('idSeccion' => $idSeccion, 'codSeccion' => $codSeccion, 'nombreSeccion' => $nombreSeccion, 'idTutorActual' => $idTutorActual, 'nombreTutor' => $nombreTutor));
 	}
 	
 	/**
@@ -1378,15 +1379,20 @@ class C_GestionEVG extends CI_Controller
 
 	public function anadirAlumno()
 	{
+		$datos["DNI"] = $_POST["dni"];
 		$datos["NIA"] = $_POST["nia"];
 		$datos["nombre"] = $_POST["nombre"];
+		$datos["fecha_nacimiento"] = $_POST["fecha_nacimiento"];
 		$datos["idSeccion"] = $_POST["secciones"];
 		if(!empty($_POST["correo"]))
 			$datos["correo"] = $_POST["correo"];
 		$datos["sexo"] = $_POST["sexo"];
-		$datos["telefono"] = $_POST["telefono"];
+		if(!empty($_POST["telefono"]))
+			$datos["telefono"] = $_POST["telefono"];
+		if(!empty($_POST["telefono_urgencia"]))
+			$datos["telefono_urgencia"] = $_POST["telefono_urgencia"];
 
-		$this -> M_General -> insertar('Alumnos',$datos);
+		$this -> M_General -> insertar('Alumnos', $datos);
 
 		$this->headerLocation("students");
 	}
@@ -1404,7 +1410,7 @@ class C_GestionEVG extends CI_Controller
 
 	public function borrarAlumno($idAlumno, $idSeccion, $idEtapa)
 	{
-		$this -> M_General -> borrar('Alumnos',$idAlumno,'idAlumno');
+		$this -> M_General -> borrar('Alumnos', $idAlumno, 'idAlumno');
 
 		$this->headerLocation("section-students/".$idSeccion."/".$idEtapa."");
 	}
@@ -1443,17 +1449,22 @@ class C_GestionEVG extends CI_Controller
 
 	public function modificarAlumno($idAlumno, $idSeccion, $idEtapa)
 	{
+		$datos["DNI"] = $_POST["dni"];
 		$datos["NIA"] = $_POST["nia"];
 		$datos["nombre"] = $_POST["nombre"];
+		$datos["fecha_nacimiento"] = $_POST["fecha_nacimiento"];
 		$datos["idSeccion"] = $_POST["secciones"];
 		if(!empty($_POST["correo"]))
 			$datos["correo"] = $_POST["correo"];
 		else
 			$datos["correo"] = null;
 		$datos["sexo"] = $_POST["sexo"];
-		$datos["telefono"] = $_POST["telefono"];
+		if(!empty($_POST["telefono"]))
+			$datos["telefono"] = $_POST["telefono"];
+		if(!empty($_POST["telefono_urgencia"]))
+			$datos["telefono_urgencia"] = $_POST["telefono_urgencia"];
 
-		$this -> M_General -> modificar('Alumnos',$datos,$idAlumno,'idAlumno');
+		$this -> M_General -> modificar('Alumnos', $datos, $idAlumno, 'idAlumno');
 
 		$this->headerLocation('section-students/'.$idSeccion.'/'.$idEtapa);
 	}
@@ -1471,13 +1482,14 @@ class C_GestionEVG extends CI_Controller
 		$this -> secciones = $this -> M_General -> seleccionar('Secciones', '*', '1=1');
 		$this -> load -> view('C_Alumnos/V_ImportarAlumnos');
 	}
-	
+
 	/**
 	 * importarAlumnos
-	 * 
+	 *
 	 * Importa alumnos desde un documento excel añadiendo los datos a la base de datos.
 	 *
 	 * @return void
+	 * @throws PHPExcel_Reader_Exception
 	 */
 
 	public function importarAlumnos()
@@ -1498,7 +1510,7 @@ class C_GestionEVG extends CI_Controller
 			$highestRow = $worksheet -> getHighestRow();
 			for ($row = 2; $row <= $highestRow; $row++){
 				$nia = $worksheet -> getCellByColumnAndRow(1, $row) -> getValue();
-				/* por si la tabla tiene una longitud máxima mayor que los datos que tiene*/
+				/*Por si la tabla tiene una longitud máxima mayor que los datos que tiene*/
 				if(empty($nia))
 					break;
 				$niaComprobar = $this -> M_General -> seleccionar('Alumnos', 'nia', "nia=".$nia);
@@ -1518,9 +1530,6 @@ class C_GestionEVG extends CI_Controller
 
 					if($worksheet -> getCellByColumnAndRow(5, $row) -> getValue() != '')
 						$datos[$row]['telefonoUrgencia'] = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
-
-					
-					
 					
 					if($worksheet -> getCellByColumnAndRow(8, $row) -> getValue() == 'H')
 						$datos[$row]['sexo'] = 'm';

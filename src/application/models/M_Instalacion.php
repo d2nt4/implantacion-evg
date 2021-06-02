@@ -280,7 +280,7 @@ class M_Instalacion extends CI_Model
 					idAlumno INT  UNSIGNED AUTO_INCREMENT,
 					NIA INT  UNSIGNED NOT NULL UNIQUE,
 					nombre VARCHAR(60) NOT NULL,
-					DNI CHAR(8) NOT NULL,
+					DNI CHAR(9) NOT NULL,
 					idSeccion SMALLINT UNSIGNED NOT NULL,
 					correo VARCHAR(60) NULL,
 					sexo enum('m','f') NOT NULL,

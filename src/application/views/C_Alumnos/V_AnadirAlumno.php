@@ -31,6 +31,16 @@
 					<?php echo "<button onclick=\"location.href ='" . base_url() . "students'\" class=\"btn btn-secondary\" data-toggle=\"popover\" data-content=\"Volver atrás\"><i class=\"fas fa-arrow-left\"></i></button>"; ?>
 					<div class="gestion-apps">
 						<?php
+							$dni = array
+							(
+									'id'=>'dni',
+									'name'=>'dni',
+									'oninput'=>"buscarCSU('".base_url()."', 'Alumnos', this.value, 'dni', 'infoAjax', 'dni', 'Ya existe un alumno con el dni ')",
+									'placeholder'=>'DNI',
+									'required'=>'required',
+									'class'=>'form-control'
+							);
+
 							$nia = array
 							(
 									'id'=>'nia',
@@ -49,19 +59,26 @@
 									'class'=>'form-control'
 							);
 
+							$fecha_nacimiento = array
+							(
+								'name'=>'fecha_nacimiento',
+								'placeholder'=>'Fecha de Nacimiento',
+								'required'=>'required',
+								'class'=>'form-control'
+							);
 
 							$secciones = array
 							(
 									'name'=>'secciones',
-									'options'=> $this->secciones,
+									'options'=> $this -> secciones,
 									'class'=>'form-control'
 							);
 
 							$correo = array
 							(
 									'name'=>'correo',
-									'size'=>'25',
-									'maxsize'=>'25',
+									'size'=>'80',
+									'maxsize'=>'80',
 									'placeholder'=>'Correo',
 									'class'=>'form-control'
 							);
@@ -81,10 +98,18 @@
 							$telefono = array
 							(
 									'name'=>'telefono',
-									'size'=>'25',
-									'maxsize'=>'25',
+									'size'=>'9',
+									'maxsize'=>'9',
 									'placeholder'=>'Teléfono',
-									'required'=>'required',
+									'class'=>'form-control'
+							);
+
+							$telefono_urgencia = array
+							(
+									'name'=>'telefono_urgencia',
+									'size'=>'9',
+									'maxsize'=>'9',
+									'placeholder'=>'Teléfono de Urgencia',
 									'class'=>'form-control'
 							);
 
@@ -103,9 +128,12 @@
 						?>
 							<?php echo validation_errors() ;?>
 							<?php echo form_open(base_url().'C_GestionEVG/anadirAlumno') ;?>
+							<?php echo form_input($dni); ?></br>
+							<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?>
 							<?php echo form_input($nia); ?></br>
 							<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?>
 							<?php echo form_input($nombre); ?></br>
+							<?php echo form_input($fecha_nacimiento); ?></br>
 							<?php echo form_label('Sección') ;?></br>
 							<?php echo form_dropdown($secciones); ?></br>
 							<?php echo form_input($correo); ?></br>
@@ -115,6 +143,7 @@
 							<?php echo form_label('Femenino') ;?>
 							<?php echo form_radio($f); ?></br></br>
 							<?php echo form_input($telefono); ?></br>
+							<?php echo form_input($telefono_urgencia); ?></br>
 							<?php echo form_submit($enviar); ?>
 							<?php echo form_close() ;?>
 						<?php } ?>

@@ -35,7 +35,7 @@
 							<?php
 								if(isset($this->perfilesAplicacion))
 									foreach($this->perfilesAplicacion as $indice => $valor)
-										echo '<div class="operaciones"><span>'.$valor.'</span><a href="'.base_url().'C_AdministracionEVG/quitarPerfilAplicacion/'.$idAplicacion.'/'.$indice.'"><button  class="btn btn-outline-danger">Quitar</button></a></div>';
+										echo '<div class="operaciones"><span>'.$valor.'</span><a href="'.base_url().'C_AdministracionEVG/quitarPerfilAplicacion/'.$idAplicacion.'/'.$indice.'"><button class="btn btn-outline-danger">Quitar</button></a></div>';
 								else
 									echo 'No hay perfiles con acceso a la aplicación';
 							?>

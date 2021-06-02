@@ -265,3 +265,17 @@ $
 		});
 	}
 )
+
+/**
+ * @function function - Función para cambiar a tipo date los tipo text.
+ */
+$
+(
+	function ()
+	{
+		$('[name = "fecha_nacimiento"]').on('click', function ()
+		{
+			this.setAttribute('type', 'date');
+		});
+	}
+)

@@ -37,7 +37,7 @@
 									"
 										<div class=\"fila\">
 											<h3>".$valor."</h3>
-											<button onclick=\"location.href ='" . base_url() . "tutor-section/".$indice."'\" class=\"btn btn-primary\" data-toggle=\"popover\" data-content=\"Asignar Tutor\"><i class=\"fas fa-user-circle\"></i></button>
+											<button onclick=\"location.href ='" . base_url() . "tutor-section/".$indice."'\" class=\"btn btn-info\" data-toggle=\"popover\" data-content=\"Asignar Tutor\"><i class=\"fas fa-user-circle\"></i></button>
 											<button onclick=\"location.href ='" . base_url() . "update-section/".$indice."'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Modificar Sección\"><i class=\"fas fa-edit\"></i></button>
 											<button onclick=\"confirmar('¿Seguro que quieres borrar la seccion: <b>".$valor."</b>?', '".base_url()."delete-section/".$indice."', 'Eliminar Seccion', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>													
 										</div>						
