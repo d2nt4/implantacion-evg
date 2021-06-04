@@ -48,8 +48,8 @@
 								(
 										'name'=>'correo',
 										'oninput'=>'buscarUsuarios(\''.base_url().'\','.$idPerfil.', this.value)',
-										'onfocusin'=>'document.getElementsByClassName(\'sugerenciaAjax\')[0].style.visibility=\'visible\'',
-										'onfocusout'=>'document.getElementsByClassName(\'sugerenciaAjax\')[0].style.visibility=\'hidden\'',
+										'onfocusin'=>'document.getElementsByClassName(\'sugerenciaAjax\')[0].style.display=\'block\'',
+										'onfocusout'=>'document.getElementsByClassName(\'sugerenciaAjax\')[0].style.display=\'none\'',
 										'required'=>'required',
 										'autocomplete'=>'off',
 										'class'=>'form-control'

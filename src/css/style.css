@@ -79,6 +79,7 @@ header h3
 
 .sugerenciaAjax
 {
+	display: none;
 	background-color: lightgray;
 	padding: 0;
 	overflow: hidden;

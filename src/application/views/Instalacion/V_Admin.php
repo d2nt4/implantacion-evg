@@ -9,15 +9,9 @@
 		<div id="principal" class="container-fluid">
 			<div class="row">
 				<header class="col-12">
-					<div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-6">
+					<div class="col-12">
 						<?php echo '<a href="'.base_url().'main/"><img id="logo-evg" src="'.base_url().'uploads/iconos/escudo-evg.png" alt="Escudo EVG" class="img-fluid"/></a>'; ?>
 						<h3>Añadir Administrador</h3>
-					</div>
-					<div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-6">
-						<?php
-							$picture = $this -> session -> userdata('profile_pic');
-							echo '<img id="profile_picture" src="'.$picture.'" alt="Google Profile Picture" class="img-fluid rounded-circle"/>';
-						?>
 					</div>
 				</header>
 			</div>
