@@ -1273,20 +1273,20 @@ class C_GestionEVG extends CI_Controller
 			for ($row = 2; $row <= $highestRow; $row++)
 			{
 				$codSeccion = $worksheet -> getCellByColumnAndRow(0, $row) -> getValue();
-				if(empty($codSeccion))/* por si la tabla tiene una longitud máxima mayor que los datos que tiene*/
+				if(empty($codSeccion))/*Por si la tabla tiene una longitud máxima mayor que los datos que tiene*/
 					break;
 				$codSeccionComprobar = $this -> M_General->seleccionar('Secciones', 'codSeccion', "codSeccion='".$codSeccion."'");
-				if(empty($codSeccionComprobar[0]['codSeccion'])) {
+				if(empty($codSeccionComprobar[0]['codSeccion']))
+				{
 					$datos[$row]['codSeccion'] = $codSeccion;
-					$datos[$row]['nombre'] = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+					$datos[$row]['nombre'] = $worksheet -> getCellByColumnAndRow(1, $row) -> getValue();
 				}
 			}
 		}
 		foreach($datos as $valor)
 			$this -> M_General -> insertar('Secciones', $valor);
 
-		$this->headerLocation("sections");
-
+		$this -> headerLocation("sections");
 	}
 
 	/*ALUMNOS*/
@@ -1551,7 +1551,6 @@ class C_GestionEVG extends CI_Controller
 			$this -> M_General -> insertar('Alumnos', $valor);
 
 		$this->headerLocation('students');
-
 	}
 
 	/*LISTADO TUTORES*/
