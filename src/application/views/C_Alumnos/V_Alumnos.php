@@ -30,7 +30,7 @@
 					</button>
 					<?php echo "<button onclick=\"location.href ='" . base_url() . "add-student'\" class=\"btn btn-success\" data-toggle=\"popover\" data-content=\"Añadir Alumno\"><i class=\"fas fa-plus-square\"></i></button>"; ?>
 					<?php echo "<button onclick=\"location.href ='" . base_url() . "import-students'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Importar Alumnos\"><i class=\"fas fa-file-import\"></i></button>"; ?>
-					<button  class="btn btn-secondary" data-toggle="modal" data-target="#info"><i class="fas fa-info-circle"></i></button>
+					<button class="btn btn-secondary" data-toggle="modal" data-target="#info"><i class="fas fa-info-circle"></i></button>
 					<div class="gestion-apps">
 						<?php
 							foreach($this->listaEtapas as $indice => $valor)
@@ -65,5 +65,61 @@
 				</div>
 			</div>
 		</div>
+		<?php
+		if(!is_null($this -> input -> cookie('importedStudents')))
+		{
+			if($this -> input -> cookie('importedStudents') != 0)
+			{
+				echo
+				'
+					<!--Bootstrap Import Modal-->
+					<div id="imports" class="modal fade" role="dialog" tabindex="-1" data-backdrop="static">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title font-weight-bolder">Importación Finalizada</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="eliminarModal()">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">';
+									echo "<p>Se han importado " . $this -> input -> cookie('importedStudents') . ' usuarios.</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger font-weight-bolder" data-dismiss="modal" onclick="eliminarModal()">Cerrar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				';
+			}
+			else
+			{
+				echo
+				'
+					<!--Bootstrap Import Modal-->
+					<div id="imports" class="modal fade" role="dialog" tabindex="-1" data-backdrop="static">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title font-weight-bolder">Importación Finalizada</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="eliminarModal()">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<p>No se han importado usuarios.</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger font-weight-bolder" data-dismiss="modal" onclick="eliminarModal()">Cerrar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				';
+			}
+		}
+		delete_cookie('importedStudents');
+		?>
 	</body>
 </html>

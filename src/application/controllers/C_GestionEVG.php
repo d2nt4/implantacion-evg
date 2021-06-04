@@ -22,6 +22,7 @@ class C_GestionEVG extends CI_Controller
 		$this -> load -> model('M_General');
 		$this -> load -> library('google');
 		$this -> load -> library('excel');
+		$this -> load -> helper('cookie');
 
 		$data['google_login_url'] = $this -> google -> get_login_url();
 
@@ -100,8 +101,9 @@ class C_GestionEVG extends CI_Controller
 	 * @return void
 	 */
 
-	public function verUsuarios()
+	public function verUsuarios($importedUsers = 0)
 	{
+		$this -> importedUsers = $importedUsers;
 		$lista = $this -> M_General -> seleccionar('Usuarios','idUsuario, correo, bajaTemporal');
 		foreach ($lista as $valor)
 		{
@@ -212,13 +214,14 @@ class C_GestionEVG extends CI_Controller
 	{
 		$this -> load -> view('C_Usuarios/V_ImportarUsuarios');
 	}
-	
+
 	/**
 	 * importarUsuarios
-	 * 
+	 *
 	 * Importa a los usuarios de un documento excel añadiendo los datos a la base de datos.
 	 *
 	 * @return void
+	 * @throws PHPExcel_Reader_Exception
 	 */
 
 	public function importarUsuarios()
@@ -249,6 +252,8 @@ class C_GestionEVG extends CI_Controller
 				}
 			}
 		}
+		/*Contador para saber cuántos usuarios se han importado*/
+		$c = 0;
 		foreach($datos as $valor)
 		{
 			$idUsuario = $this -> M_General -> insertar('Usuarios', Array('nombre' => $valor['nombre'], 'correo' => $valor['correo']));
@@ -257,9 +262,12 @@ class C_GestionEVG extends CI_Controller
 				$idPerfil = $this -> M_General -> seleccionar('Perfiles', 'idPerfil', "nombre='Profesor'");
 				$this -> M_General -> insertar('Perfiles_Usuarios', Array('idPerfil' => $idPerfil[0]['idPerfil'], 'idUsuario' => $idUsuario));
 			}
+			$c++;
 		}
 
-		$this->headerLocation("users");
+		set_cookie('importedUsers', $c, 0);
+
+		$this -> headerLocation("users");
 	}
 
 		/*ETAPAS*/
@@ -602,13 +610,14 @@ class C_GestionEVG extends CI_Controller
 	{
 		$this -> load -> view('C_Cursos/V_ImportarCursos');
 	}
-	
+
 	/**
 	 * importarCursos
-	 * 
+	 *
 	 * Importa un curso desde un documento excel añadiendo los datos a la base de datos.
 	 *
 	 * @return void
+	 * @throws PHPExcel_Reader_Exception
 	 */
 
 	public function importarCursos()
@@ -637,10 +646,17 @@ class C_GestionEVG extends CI_Controller
 				}
 			}
 		}
+		/*Contador para saber cuántos cursos se han importado*/
+		$c = 0;
 		foreach($datos as $valor)
+		{
 			$this -> M_General -> insertar('Cursos', Array('nombre' => $valor['nombre'], 'codCurso' => $valor['codCurso']));
+			$c++;
+		}
 
-		$this->headerLocation("courses");
+		set_cookie('importedCourses', $c, 0);
+
+		$this -> headerLocation("courses");
 
 	}
 
@@ -1045,8 +1061,10 @@ class C_GestionEVG extends CI_Controller
 	 * @return void
 	 */
 
-	public function verSecciones()
+	public function verSecciones($importedSections = 0)
 	{
+		$this -> importedSections = $importedSections;
+
 		$lista = $this -> M_General -> seleccionar('Secciones','idSeccion, codSeccion');
 
 		foreach ($lista as $valor)
@@ -1245,13 +1263,14 @@ class C_GestionEVG extends CI_Controller
 	{
 		$this -> load -> view('C_Secciones/V_ImportarSecciones');
 	}
-	
+
 	/**
 	 * importarSecciones
-	 * 
+	 *
 	 * Importa secciones desde un documento excel añadiendo los datos a la base de datos.
 	 *
 	 * @return void
+	 * @throws PHPExcel_Reader_Exception
 	 */
 
 	public function importarSecciones()
@@ -1283,8 +1302,15 @@ class C_GestionEVG extends CI_Controller
 				}
 			}
 		}
+		/*Contador para saber cuántos secciones se han importado*/
+		$c = 0;
 		foreach($datos as $valor)
+		{
 			$this -> M_General -> insertar('Secciones', $valor);
+			$c++;
+		}
+
+		set_cookie('importedSections', $c, 0);
 
 		$this -> headerLocation("sections");
 	}
@@ -1339,7 +1365,7 @@ class C_GestionEVG extends CI_Controller
 	 * @return void
 	 */
 
-	public function verAlumnosSeccion($idSeccion,$idEtapa)
+	public function verAlumnosSeccion($idSeccion, $idEtapa)
 	{
 		$codSeccion = $this -> M_General -> seleccionar('Secciones','codSeccion','idSeccion='.$idSeccion);
 		$codSeccion = $codSeccion[0]['codSeccion'];
@@ -1394,7 +1420,7 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_General -> insertar('Alumnos', $datos);
 
-		$this->headerLocation("students");
+		$this -> headerLocation("students");
 	}
 	
 	/**
@@ -1412,7 +1438,7 @@ class C_GestionEVG extends CI_Controller
 	{
 		$this -> M_General -> borrar('Alumnos', $idAlumno, 'idAlumno');
 
-		$this->headerLocation("section-students/".$idSeccion."/".$idEtapa."");
+		$this -> headerLocation("section-students/".$idSeccion."/".$idEtapa."");
 	}
 	
 	/**
@@ -1464,7 +1490,7 @@ class C_GestionEVG extends CI_Controller
 
 		$this -> M_General -> modificar('Alumnos', $datos, $idAlumno, 'idAlumno');
 
-		$this->headerLocation('section-students/'.$idSeccion.'/'.$idEtapa);
+		$this -> headerLocation('section-students/'.$idSeccion.'/'.$idEtapa);
 	}
 	
 	/**
@@ -1504,7 +1530,8 @@ class C_GestionEVG extends CI_Controller
 		copy($archivo_temporal,$destino.$archivo_nombre); /*Copia el archivo de la carpeta temporal a la carpeta destino en el servidor*/
 
 		$object = PHPExcel_IOFactory::load($_FILES["archivo"]["tmp_name"]);
-		foreach($object -> getWorksheetIterator() as $worksheet) {
+		foreach($object -> getWorksheetIterator() as $worksheet)
+		{
 			$highestRow = $worksheet -> getHighestRow();
 			for ($row = 2; $row <= $highestRow; $row++){
 				$nia = $worksheet -> getCellByColumnAndRow(1, $row) -> getValue();
@@ -1519,7 +1546,7 @@ class C_GestionEVG extends CI_Controller
 					$datos[$row]['nombre'] = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
 					$datos[$row]['dni'] = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
 					
-					$value = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+					$value = $worksheet -> getCellByColumnAndRow(3, $row)->getValue();
 					$valueTime = PHPExcel_Shared_Date::ExcelToPHP( $value );
 					$datos[$row]['fechaNacimiento'] = date('Y-m-d', $valueTime);
 
@@ -1546,11 +1573,18 @@ class C_GestionEVG extends CI_Controller
 				}
 			}
 		}
-		/* recorrer el array con los datos del excel que no estén en la base de datos para insertarlos */
+		/*Recorrer el array con los datos del excel que no estén en la base de datos para insertarlos*/
+		/*Contador para saber cuántos alumnos se han importado*/
+		$c = 0;
 		foreach($datos as $valor)
+		{
 			$this -> M_General -> insertar('Alumnos', $valor);
+			$c++;
+		}
 
-		$this->headerLocation('students');
+		set_cookie('importedStudents', $c, 0);
+
+		$this -> headerLocation('students');
 	}
 
 	/*LISTADO TUTORES*/
@@ -1623,7 +1657,7 @@ class C_GestionEVG extends CI_Controller
 	{
 		$this -> M_General -> borrar('Alumnos', 1, 1);
 		
-		$this->headerLocation('import-students');
+		$this -> headerLocation('import-students');
 	}
 
 	/*Redirecionar localizaciones*/

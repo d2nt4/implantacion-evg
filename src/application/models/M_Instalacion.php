@@ -278,7 +278,7 @@ class M_Instalacion extends CI_Model
 			"CREATE TABLE Alumnos
 				(
 					idAlumno INT  UNSIGNED AUTO_INCREMENT,
-					NIA INT  UNSIGNED NOT NULL UNIQUE,
+					NIA INT UNSIGNED NOT NULL UNIQUE,
 					nombre VARCHAR(60) NOT NULL,
 					DNI CHAR(9) NULL,
 					idSeccion SMALLINT UNSIGNED NOT NULL,

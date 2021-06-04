@@ -52,5 +52,61 @@
 				</div>
 			</div>
 		</div>
+		<?php
+			if(!is_null($this -> input -> cookie('importedCourses')))
+			{
+				if($this -> input -> cookie('importedCourses') != 0)
+				{
+					echo
+					'
+							<!--Bootstrap Import Modal-->
+							<div id="imports" class="modal fade" role="dialog" tabindex="-1" data-backdrop="static">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title font-weight-bolder">Importación Finalizada</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="eliminarModal()">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">';
+											echo "<p>Se han importado " . $this -> input -> cookie('importedCourses') . ' usuarios.</p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-danger font-weight-bolder" data-dismiss="modal" onclick="eliminarModal()">Cerrar</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						';
+				}
+				else
+				{
+					echo
+					'
+							<!--Bootstrap Import Modal-->
+							<div id="imports" class="modal fade" role="dialog" tabindex="-1" data-backdrop="static">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title font-weight-bolder">Importación Finalizada</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="eliminarModal()">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<p>No se han importado cursos.</p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-danger font-weight-bolder" data-dismiss="modal" onclick="eliminarModal()">Cerrar</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						';
+				}
+			}
+			delete_cookie('importedCourses');
+		?>
 	</body>
 </html>

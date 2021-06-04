@@ -261,9 +261,10 @@ $
 	{
 		$('[name = "importar"]').on('click', function ()
 		{
-			$('button.reload').toggleClass('import');
+			if($('[name = "archivo"]').get(0).files.length != 0)
+				$('button.reload').toggleClass('import');
 		});
-	}
+}
 )
 
 /**
@@ -277,5 +278,16 @@ $
 		{
 			this.setAttribute('type', 'date');
 		});
+	}
+)
+
+/**
+ * @function mostrar - Función para mostrar modal.
+ */
+$
+(
+	function mostrar()
+	{
+		$('#imports').modal('show');
 	}
 )

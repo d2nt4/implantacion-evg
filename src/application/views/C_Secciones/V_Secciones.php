@@ -34,19 +34,75 @@
 						<?php
 						foreach($this->listaSecciones as $indice => $valor)
 							echo
-									"
-										<div class=\"fila\">
-											<h3>".$valor."</h3>
-											<button onclick=\"location.href ='" . base_url() . "tutor-section/".$indice."'\" class=\"btn btn-info\" data-toggle=\"popover\" data-content=\"Asignar Tutor\"><i class=\"fas fa-user-circle\"></i></button>
-											<button onclick=\"location.href ='" . base_url() . "update-section/".$indice."'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Modificar Sección\"><i class=\"fas fa-edit\"></i></button>
-											<button onclick=\"confirmar('¿Seguro que quieres borrar la seccion: <b>".$valor."</b>?', '".base_url()."delete-section/".$indice."', 'Eliminar Seccion', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>													
-										</div>						
-									"
+								"
+									<div class=\"fila\">
+										<h3>".$valor."</h3>
+										<button onclick=\"location.href ='" . base_url() . "tutor-section/".$indice."'\" class=\"btn btn-info\" data-toggle=\"popover\" data-content=\"Asignar Tutor\"><i class=\"fas fa-user-circle\"></i></button>
+										<button onclick=\"location.href ='" . base_url() . "update-section/".$indice."'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Modificar Sección\"><i class=\"fas fa-edit\"></i></button>
+										<button onclick=\"confirmar('¿Seguro que quieres borrar la seccion: <b>".$valor."</b>?', '".base_url()."delete-section/".$indice."', 'Eliminar Seccion', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>													
+									</div>						
+								"
 							;
 						?>
 					</div>
 				</div>
 			</div>
+			<?php
+				if(!is_null($this -> input -> cookie('importedSections')))
+				{
+					if($this -> input -> cookie('importedSections') != 0)
+					{
+						echo
+						'
+							<!--Bootstrap Import Modal-->
+							<div id="imports" class="modal fade" role="dialog" tabindex="-1" data-backdrop="static">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title font-weight-bolder">Importación Finalizada</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="eliminarModal()">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">';
+											echo "<p>Se han importado " . $this -> input -> cookie('importedSections') . ' usuarios.</p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-danger font-weight-bolder" data-dismiss="modal" onclick="eliminarModal()">Cerrar</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						';
+					}
+					else
+					{
+						echo
+						'
+							<!--Bootstrap Import Modal-->
+							<div id="imports" class="modal fade" role="dialog" tabindex="-1" data-backdrop="static">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title font-weight-bolder">Importación Finalizada</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="eliminarModal()">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<p>No se han importado secciones.</p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-danger font-weight-bolder" data-dismiss="modal" onclick="eliminarModal()">Cerrar</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						';
+					}
+				}
+				delete_cookie('importedSections');
+			?>
 		</div>
 	</body>
 </html>
