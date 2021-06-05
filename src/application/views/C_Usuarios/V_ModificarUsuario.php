@@ -41,10 +41,12 @@
 
 							$correo = array
 							(
+									'type'=>'email',
 									'id'=>'correo',
 									'name'=>'correo',
 									'oninput'=>"buscarCSU('".base_url()."', 'Usuarios', this.value, 'correo', 'infoAjax', 'correo', 'Ya existe otro usuario con el correo ', '".$this->datosUsuario[0]['correo']."')",
 									'value'=>$this->datosUsuario[0]['correo'],
+									'pattern'=>'^\S{1,}@\S{2,}\.\S{2,}$',
 									'required'=>'required',
 									'class'=>'form-control'
 							);
@@ -56,6 +58,7 @@
 
 							$enviar = array
 							(
+									'type'=>'submit',
 									'name'=>'enviar',
 									'value'=>'ENVIAR',
 									'class'=>'form-control'

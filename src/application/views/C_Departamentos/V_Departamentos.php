@@ -31,15 +31,18 @@
 					<?php echo "<button onclick=\"location.href ='" . base_url() . "add-department'\" class=\"btn btn-success\" data-toggle=\"popover\" data-content=\"Añadir Departamento\"><i class=\"fas fa-plus-square\"></i></button>"; ?>
 					<div class="gestion-apps">
 						<?php
-							foreach($this->listaDepartamentos as $indice => $valor)
-								echo
-										"
-									<div class=\"fila\">
-										<h3>".$valor."</h3>							
-										<button onclick=\"location.href ='" . base_url() . "update-department/".$indice."'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Modificar Departamento\"><i class=\"fas fa-edit\"></i></button>
-										<button onclick=\"confirmar('¿Seguro que quieres borrar el departamento: <b>".$valor."</b>?', '".base_url()."delete-department/".$indice."', 'Eliminar Departamento', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>													
-									</div>						
-								";
+							if(empty($this -> listaDepartamentos))
+								echo "<b>No hay departamentos creados.</b>";
+							else
+								foreach($this->listaDepartamentos as $indice => $valor)
+									echo
+											"
+										<div class=\"fila\">
+											<h3>".$valor."</h3>							
+											<button onclick=\"location.href ='" . base_url() . "update-department/".$indice."'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Modificar Departamento\"><i class=\"fas fa-edit\"></i></button>
+											<button onclick=\"confirmar('¿Seguro que quieres borrar el departamento: <b>".$valor."</b>?', '".base_url()."delete-department/".$indice."', 'Eliminar Departamento', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>													
+										</div>						
+									";
 						?>
 					</div>
 				</div>

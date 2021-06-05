@@ -43,6 +43,7 @@
 
 							$enviar = array
 							(
+									'type'=>'submit',
 									'name'=>'enviar',
 									'value'=>'ENVIAR',
 									'class'=>'form-control'

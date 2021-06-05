@@ -33,29 +33,32 @@
 						<?php
 							$nombre = array
 							(
-								'name'=>'nombre',
-								'placeholder'=>'Nombre',
-								'required'=>'required',
-								'class'=>'form-control'
+									'name'=>'nombre',
+									'placeholder'=>'Nombre',
+									'required'=>'required',
+									'class'=>'form-control'
 							);
 
 							$correo = array
 							(
-								'id'=>'correo',
-								'name'=>'correo',
-								'oninput'=>"buscarCSU('".base_url()."', 'Usuarios', this.value, 'correo', 'infoAjax', 'correo', 'Ya existe un usuario con el correo ')",
-								'placeholder'=>'Correo',
-								'required'=>'required',
-								'class'=>'form-control'
+									'type'=>'email',
+									'id'=>'correo',
+									'name'=>'correo',
+									'oninput'=>"buscarCSU('".base_url()."', 'Usuarios', this.value, 'correo', 'infoAjax', 'correo', 'Ya existe un usuario con el correo ')",
+									'pattern'=>'^\S{1,}@\S{2,}\.\S{2,}$',
+									'placeholder'=>'Correo',
+									'required'=>'required',
+									'class'=>'form-control'
 							);
 
 							$profesor = array
 							(
-								'name'=>'profesor'
+									'name'=>'profesor'
 							);
 
 							$enviar = array
 							(
+									'type'=>'submit',
 									'name'=>'enviar',
 									'value'=>'ENVIAR',
 									'disabled'=>'disabled',

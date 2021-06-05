@@ -67,6 +67,7 @@
 
 							$enviar = array
 							(
+									'type'=>'submit',
 									'name'=>'enviar',
 									'value'=>'ENVIAR',
 									'disabled'=>'disabled',

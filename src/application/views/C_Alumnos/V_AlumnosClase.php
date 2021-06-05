@@ -32,7 +32,7 @@
 					<div class="gestion-apps">
 						<?php
 							if(empty($this->listaAlumnos))
-								echo 'No hay alumnos en esta sección';
+								echo '<b>No hay alumnos en esta sección.</b>';
 							else
 								foreach($this->listaAlumnos as $indice => $valor)
 									echo

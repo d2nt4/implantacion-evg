@@ -37,6 +37,8 @@
 									'name'=>'dni',
 									'placeholder'=>'DNI',
 									'oninput'=>"buscarCSU('".base_url()."', 'Alumnos', this.value, 'dni', 'infoAjax', 'dni', 'Ya existe otro alumno con el DNI ', '".$this->datosAlumno[0]['DNI']."')",
+									'minlength'=>'9',
+									'maxlength'=>'9',
 									'value'=>$this->datosAlumno[0]['DNI'],
 									'required'=>'required',
 									'class'=>'form-control'
@@ -47,7 +49,9 @@
 									'id'=>'nia',
 									'name'=>'nia',
 									'placeholder'=>'NIA',
-									'oninput'=>"buscarCSU('".base_url()."', 'Alumnos', this.value, 'nia', 'infoAjax', 'nia', 'Ya existe otro alumno con el NIA ', '".$this->datosAlumno[0]['NIA']."')",
+									'oninput'=>"buscarCSU('".base_url()."', 'Alumnos', this.value, 'nia', 'infoAjax2', 'nia', 'Ya existe otro alumno con el NIA ', '".$this->datosAlumno[0]['NIA']."')",
+									'minlength'=>'4',
+									'maxlength'=>'10',
 									'value'=>$this->datosAlumno[0]['NIA'],
 									'required'=>'required',
 									'class'=>'form-control'
@@ -79,9 +83,11 @@
 
 							$correo = array
 							(
+									'type'=>'email',
 									'name'=>'correo',
 									'placeholder'=>'Correo',
 									'value'=>$this->datosAlumno[0]['correo'],
+									'pattern'=>'^\S{1,}@\S{2,}\.\S{2,}$',
 									'class'=>'form-control'
 							);
 
@@ -118,22 +124,29 @@
 
 							$telefono = array
 							(
+									'type'=>'tel',
 									'name'=>'telefono',
 									'placeholder'=>'Teléfono',
 									'value'=>$this->datosAlumno[0]['telefono'],
+									'minlength'=>'9',
+									'maxlength'=>'9',
 									'class'=>'form-control'
 							);
 
 							$telefono_urgencia = array
 							(
+									'type'=>'tel',
 									'name'=>'telefono_urgencia',
 									'placeholder'=>'Teléfono de Urgencia',
 									'value'=>$this->datosAlumno[0]['telefonoUrgencia'],
+									'minlength'=>'9',
+									'maxlength'=>'9',
 									'class'=>'form-control'
 							);
 
 							$enviar = array
 							(
+									'type'=>'submit',
 									'name'=>'enviar',
 									'value'=>'ENVIAR',
 									'class'=>'form-control'
@@ -143,10 +156,11 @@
 						<?php echo validation_errors() ;?>
 						<?php echo form_open(base_url().'C_GestionEVG/modificarAlumno/'.$idAlumno.'/'.$this->datosAlumno[0]['idSeccion'].'/'.$idEtapa) ;?>
 						<?php echo form_label('DNI') ;?>
-						<?php echo form_input($dni); ?></br>
+						<?php echo form_input($dni); ?>
+						<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?></br>
 						<?php echo form_label('NIA') ;?>
-						<?php echo form_input($nia); ?></br>
-						<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?>
+						<?php echo form_input($nia); ?>
+						<?php echo '<small id="infoAjax2" class="form-text text-muted"></small>'; ?></br>
 						<?php echo form_label('Nombre') ;?></br>
 						<?php echo form_input($nombre); ?></br>
 						<?php echo form_label('Fecha de Nacimiento') ;?></br>

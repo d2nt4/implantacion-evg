@@ -32,7 +32,7 @@
 					<div class="gestion-apps">
 						<?php
 							if(empty($this->listaSecciones))
-								echo '<b>No hay secciones que formen parte de esta etapa</b>';
+								echo '<b>No hay secciones que formen parte de esta etapa.</b>';
 							else
 								foreach($this->listaSecciones as $indice => $valor)
 									echo "<button onclick=\"location.href ='" . base_url() . "section-students/".$indice."/".$idEtapa."'\" class=\"btn btn-info mb-3\" data-toggle=\"popover\" data-content=\"Ver Alumnos Sección\">".$valor."</button>";

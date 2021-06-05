@@ -33,21 +33,24 @@
 						<?php echo "<button onclick=\"location.href ='" . base_url() . "import-users'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Importar Usuarios\"><i class=\"fas fa-file-import\"></i></button>"; ?>
 						<div class="gestion-apps">
 							<?php
-								foreach($this->listaUsuarios as $indice => $valor)
-								{
-									echo
-											"
-											<div class=\"fila\">
-												<h3>" . $valor . "</h3>
-												<button onclick=\"location.href ='" . base_url() . "update-user/" . $indice . "'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Modificar Usuario\"><i class=\"fas fa-edit\"></i></button>
-												<button onclick=\"confirmar('¿Seguro que quieres borrar el usuario: <b>" . $valor . "</b>?', '" . base_url() . "delete-user/" . $indice . "', 'Eliminar Usuario', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>";
-									if ($this -> listaBajaTemporal[$indice] == 1)
+								if(empty($this -> listaUsuarios))
+									echo "<b>No hay usuarios creados.</b>";
+								else
+									foreach($this->listaUsuarios as $indice => $valor)
+									{
 										echo
-										"													
-												<button type='button' class='btn btn-info' data-toggle='popover' data-content='Baja Temporal'><i class='fas fa-clock'></i></button>												
-											</div>			
-										";
-								}
+												"
+												<div class=\"fila\">
+													<h3>" . $valor . "</h3>
+													<button onclick=\"location.href ='" . base_url() . "update-user/" . $indice . "'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Modificar Usuario\"><i class=\"fas fa-edit\"></i></button>
+													<button onclick=\"confirmar('¿Seguro que quieres borrar el usuario: <b>" . $valor . "</b>?', '" . base_url() . "delete-user/" . $indice . "', 'Eliminar Usuario', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>";
+										if ($this -> listaBajaTemporal[$indice] == 1)
+											echo
+											"													
+													<button type='button' class='btn btn-info' data-toggle='popover' data-content='Baja Temporal'><i class='fas fa-clock'></i></button>												
+												</div>			
+											";
+									}
 							?>
 						</div>
 					</div>

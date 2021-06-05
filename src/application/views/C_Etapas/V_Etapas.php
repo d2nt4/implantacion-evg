@@ -31,16 +31,19 @@
 					<?php echo "<button onclick=\"location.href ='" . base_url() . "add-stage'\" class=\"btn btn-success\" data-toggle=\"popover\" data-content=\"Añadir Etapa\"><i class=\"fas fa-plus-square\"></i></button>"; ?>
 					<div class="gestion-apps">
 						<?php
-							foreach($this->listaEtapas as $indice => $valor)
-								echo
-								"
-									<div class=\"fila\">
-										<h3>".$valor."</h3>
-										<button onclick=\"location.href ='" . base_url() . "father-stage/".$indice."'\" class=\"btn btn-info\" data-toggle=\"popover\" data-content=\"Etapa Padre\"><i class=\"fas fa-cog\"></i></button>
-										<button onclick=\"location.href ='" . base_url() . "update-stage/".$indice."'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Modificar Etapa\"><i class=\"fas fa-edit\"></i></button>
-										<button onclick=\"confirmar('¿Seguro que quieres borrar la etapa: <b>".$valor."</b>?', '".base_url()."delete-stage/".$indice."', 'Eliminar Etapa', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>													
-									</div>					
-								";
+							if(empty($this -> listaEtapas))
+								echo "<b>No hay etapas creadas.</b>";
+							else
+								foreach($this->listaEtapas as $indice => $valor)
+									echo
+									"
+										<div class=\"fila\">
+											<h3>".$valor."</h3>
+											<button onclick=\"location.href ='" . base_url() . "father-stage/".$indice."'\" class=\"btn btn-info\" data-toggle=\"popover\" data-content=\"Etapa Padre\"><i class=\"fas fa-cog\"></i></button>
+											<button onclick=\"location.href ='" . base_url() . "update-stage/".$indice."'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Modificar Etapa\"><i class=\"fas fa-edit\"></i></button>
+											<button onclick=\"confirmar('¿Seguro que quieres borrar la etapa: <b>".$valor."</b>?', '".base_url()."delete-stage/".$indice."', 'Eliminar Etapa', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>													
+										</div>					
+									";
 						?>
 					</div>
 				</div>

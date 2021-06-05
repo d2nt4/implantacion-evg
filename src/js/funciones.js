@@ -126,6 +126,7 @@ function buscarCSU(baseURL, tabla, valor, campo, idHTML, idInput, textoBase, per
 						infoAjax.style.display = 'none';
 						input.style.border = 'unset';
 						infoAjax.innerHTML = '';
+						$('[name = "enviar"]').prop("disabled", false);
 					}
 					else
 					{
@@ -133,6 +134,7 @@ function buscarCSU(baseURL, tabla, valor, campo, idHTML, idInput, textoBase, per
 						infoAjax.style.display = 'block';
 						input.style.border = '2px solid red';
 						infoAjax.innerHTML = textoBase + valor;
+						$('[name = "enviar"]').prop("disabled", true);
 					}
 				}
 			})
@@ -143,6 +145,7 @@ function buscarCSU(baseURL, tabla, valor, campo, idHTML, idInput, textoBase, per
 			infoAjax.style.display = 'none';
 			input.style.border = 'unset';
 			infoAjax.innerHTML = '';
+			$('[name = "enviar"]').prop("disabled", false);
 		}
 	}
 	else
@@ -151,6 +154,7 @@ function buscarCSU(baseURL, tabla, valor, campo, idHTML, idInput, textoBase, per
 		infoAjax.style.display = 'none';
 		input.style.border = 'unset';
 		infoAjax.innerHTML = '';
+		$('[name = "enviar"]').prop("disabled", true);
 	}
 	comprobarBotonEnviar();
 }
@@ -291,3 +295,26 @@ $
 		$('#imports').modal('show');
 	}
 )
+
+/**
+ * @function validarDNI - Función para validar que el DNI sea correcto.
+ */
+function validarDNI(input)
+{
+	const dniLetters = 'TRWAGMYFPDXBNJZSQVHLCKE';
+
+	const dni = input.value;
+
+	console.log(dni);
+
+	let math = parseInt(dni.toString().substring(0, 8)) % 23;
+	let letter = dni.toString().charAt(8);
+
+	if(letter === dniLetters.charAt(math))
+		$('[name = "enviar"]').prop("disabled", false);
+	else
+	{
+		$('[name = "enviar"]').prop("disabled", true);
+		$('#dni').css('border', '2px solid red');
+	}
+}

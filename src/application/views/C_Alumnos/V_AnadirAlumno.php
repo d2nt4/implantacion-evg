@@ -36,6 +36,9 @@
 									'id'=>'dni',
 									'name'=>'dni',
 									'oninput'=>"buscarCSU('".base_url()."', 'Alumnos', this.value, 'dni', 'infoAjax', 'dni', 'Ya existe un alumno con el dni ')",
+									'onblur'=>'validarDNI(this)',
+									'minlength'=>'9',
+									'maxlength'=>'9',
 									'placeholder'=>'DNI',
 									'required'=>'required',
 									'class'=>'form-control'
@@ -45,7 +48,9 @@
 							(
 									'id'=>'nia',
 									'name'=>'nia',
-									'oninput'=>"buscarCSU('".base_url()."', 'Alumnos', this.value, 'nia', 'infoAjax', 'nia', 'Ya existe un alumno con el nia ')",
+									'oninput'=>"buscarCSU('".base_url()."', 'Alumnos', this.value, 'nia', 'infoAjax2', 'nia', 'Ya existe un alumno con el nia ')",
+									'minlength'=>'4',
+									'maxlength'=>'10',
 									'placeholder'=>'NIA',
 									'required'=>'required',
 									'class'=>'form-control'
@@ -61,10 +66,10 @@
 
 							$fecha_nacimiento = array
 							(
-								'name'=>'fecha_nacimiento',
-								'placeholder'=>'Fecha de Nacimiento',
-								'required'=>'required',
-								'class'=>'form-control'
+									'name'=>'fecha_nacimiento',
+									'placeholder'=>'Fecha de Nacimiento',
+									'required'=>'required',
+									'class'=>'form-control'
 							);
 
 							$secciones = array
@@ -76,9 +81,11 @@
 
 							$correo = array
 							(
+									'type'=>'email',
 									'name'=>'correo',
 									'size'=>'80',
 									'maxsize'=>'80',
+									'pattern'=>'^\S{1,}@\S{2,}\.\S{2,}$',
 									'placeholder'=>'Correo',
 									'class'=>'form-control'
 							);
@@ -97,41 +104,44 @@
 
 							$telefono = array
 							(
+									'type'=>'tel',
 									'name'=>'telefono',
-									'size'=>'9',
-									'maxsize'=>'9',
+									'minlength'=>'9',
+									'maxlength'=>'9',
 									'placeholder'=>'Teléfono',
 									'class'=>'form-control'
 							);
 
 							$telefono_urgencia = array
 							(
+									'type'=>'tel',
 									'name'=>'telefono_urgencia',
-									'size'=>'9',
-									'maxsize'=>'9',
+									'minlength'=>'9',
+									'maxlength'=>'9',
 									'placeholder'=>'Teléfono de Urgencia',
 									'class'=>'form-control'
 							);
 
 							$enviar = array
 							(
+									'type'=>'submit',
 									'name'=>'enviar',
 									'value'=>'ENVIAR',
 									'disabled'=>'disabled',
 									'class'=>'form-control'
 							);
 
-							if(empty($this->secciones))
-								echo 'Tiene que haber secciones creadas para añadir alumnos';
+							if(empty($this -> secciones))
+								echo '<b>Tiene que haber secciones creadas para añadir alumnos.</b>';
 							else
 							{
 						?>
 							<?php echo validation_errors() ;?>
 							<?php echo form_open(base_url().'C_GestionEVG/anadirAlumno') ;?>
-							<?php echo form_input($dni); ?></br>
-							<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?>
-							<?php echo form_input($nia); ?></br>
-							<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?>
+							<?php echo form_input($dni); ?>
+							<?php echo '<small id="infoAjax" class="form-text text-muted"></small>'; ?></br>
+							<?php echo form_input($nia); ?>
+							<?php echo '<small id="infoAjax2" class="form-text text-muted"></small>'; ?></br>
 							<?php echo form_input($nombre); ?></br>
 							<?php echo form_input($fecha_nacimiento); ?></br>
 							<?php echo form_label('Sección') ;?></br>

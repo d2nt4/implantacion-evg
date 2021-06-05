@@ -31,15 +31,18 @@
 					<?php echo "<button onclick=\"location.href ='" . base_url() . "add-family'\" class=\"btn btn-success\" data-toggle=\"popover\" data-content=\"Añadir Familia Profesional\"><i class=\"fas fa-plus-square\"></i></button>"; ?>
 					<div class="gestion-apps">
 						<?php
-							foreach($this->listaFamilias as $indice => $valor)
-								echo
-								"
-									<div class=\"fila mt-3\">
-										<h3>".$valor."</h3>								
-										<button onclick=\"location.href ='" . base_url() . "update-family/".$indice."'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Modificar Familia\"><i class=\"fas fa-edit\"></i></button>
-										<button onclick=\"confirmar('¿Seguro que quieres borrar la familia: <b>".$valor."</b>?', '".base_url()."delete-family/".$indice."', 'Eliminar Etapa', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>													
-									</div>					
-								";
+							if(empty($this -> listaFamilias))
+								echo "<b>No hay familias profesionales creadas.</b>";
+							else
+								foreach($this->listaFamilias as $indice => $valor)
+									echo
+									"
+										<div class=\"fila mt-3\">
+											<h3>".$valor."</h3>								
+											<button onclick=\"location.href ='" . base_url() . "update-family/".$indice."'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Modificar Familia\"><i class=\"fas fa-edit\"></i></button>
+											<button onclick=\"confirmar('¿Seguro que quieres borrar la familia: <b>".$valor."</b>?', '".base_url()."delete-family/".$indice."', 'Eliminar Etapa', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>													
+										</div>					
+									";
 						?>
 					</div>
 				</div>

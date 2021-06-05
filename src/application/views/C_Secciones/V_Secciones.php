@@ -32,17 +32,20 @@
 					<?php echo "<button onclick=\"location.href ='" . base_url() . "import-sections'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Importar Secciones\"><i class=\"fas fa-file-import\"></i></button>"; ?>
 					<div class="gestion-apps">
 						<?php
-						foreach($this->listaSecciones as $indice => $valor)
-							echo
-								"
-									<div class=\"fila\">
-										<h3>".$valor."</h3>
-										<button onclick=\"location.href ='" . base_url() . "tutor-section/".$indice."'\" class=\"btn btn-info\" data-toggle=\"popover\" data-content=\"Asignar Tutor\"><i class=\"fas fa-user-circle\"></i></button>
-										<button onclick=\"location.href ='" . base_url() . "update-section/".$indice."'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Modificar Sección\"><i class=\"fas fa-edit\"></i></button>
-										<button onclick=\"confirmar('¿Seguro que quieres borrar la seccion: <b>".$valor."</b>?', '".base_url()."delete-section/".$indice."', 'Eliminar Seccion', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>													
-									</div>						
-								"
-							;
+							if(empty($this -> listaSecciones))
+								echo "<b>No hay secciones creadas.</b>";
+							else
+								foreach($this->listaSecciones as $indice => $valor)
+									echo
+										"
+											<div class=\"fila\">
+												<h3>".$valor."</h3>
+												<button onclick=\"location.href ='" . base_url() . "tutor-section/".$indice."'\" class=\"btn btn-info\" data-toggle=\"popover\" data-content=\"Asignar Tutor\"><i class=\"fas fa-user-circle\"></i></button>
+												<button onclick=\"location.href ='" . base_url() . "update-section/".$indice."'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Modificar Sección\"><i class=\"fas fa-edit\"></i></button>
+												<button onclick=\"confirmar('¿Seguro que quieres borrar la seccion: <b>".$valor."</b>?', '".base_url()."delete-section/".$indice."', 'Eliminar Seccion', 'Cancelar', 'Eliminar')\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash\"></i></button>													
+											</div>						
+										"
+									;
 						?>
 					</div>
 				</div>
@@ -65,7 +68,7 @@
 											</button>
 										</div>
 										<div class="modal-body">';
-											echo "<p>Se han importado " . $this -> input -> cookie('importedSections') . ' usuarios.</p>
+											echo "<p>Se han importado " . $this -> input -> cookie('importedSections') . ' secciones.</p>
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-danger font-weight-bolder" data-dismiss="modal" onclick="eliminarModal()">Cerrar</button>
