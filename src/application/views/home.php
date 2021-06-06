@@ -5,7 +5,7 @@
 		<style>body { height: 100%; width: 100%; display: table; }</style>
 	</head>
 	<body>
-		<div id="main" class="container">
+		<div id="main" class="container animate__animated animate__backInDown">
 			<div class="d-table mx-auto mb-2">
 				<div id="logo" class="d-table-cell align-middle">
 					<img src="<?=base_url()?>uploads/iconos/evg.png" class="img-fluid" alt="EVG Logo">

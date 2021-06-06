@@ -13,7 +13,7 @@
 		</script>
 	</head>
 	<body onload="pruebaInicial()">
-		<div id="principal" class="container-fluid">
+		<div id="principal" class="container-fluid animate__animated animate__fadeIn">
 			<div class="row">
 				<header class="col-12">
 					<div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-6">
@@ -38,7 +38,7 @@
 						<i class="fas fa-times" data-toggle="popover" data-content="Ocultar menú"></i>
 					</button>
 					<?php echo "<button onclick=\"location.href ='" . base_url() . "courses'\" class=\"btn btn-secondary\" data-toggle=\"popover\" data-content=\"Volver atrás\"><i class=\"fas fa-arrow-left\"></i></button>"; ?>
-					<div class="gestion-apps">
+					<div class="gestion-apps animate__animated animate__zoomIn">
 						<?php
 							$codCurso = array
 							(

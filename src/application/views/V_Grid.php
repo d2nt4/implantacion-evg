@@ -4,7 +4,7 @@
 		<title>EVG - Aplicaciones</title>
 	</head>
 	<body>
-		<div id="principal" class="container-fluid">
+		<div id="principal" class="container-fluid animate__animated animate__fadeIn">
 			<div class="row">
 				<header class="col-12">
 					<div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-6">
@@ -20,7 +20,7 @@
 					</div>
 				</header>
 			</div>
-			<div id="principal" class="container-fluid">
+			<div id="principal" class="container-fluid animate__animated animate__pulse">
 				<div id="gridAplicaciones" class="row row-cols-4">
 					<?php
 						if(empty($this -> aplicaciones))

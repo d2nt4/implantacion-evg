@@ -4,7 +4,7 @@
 		<title>Ciclos Cursos</title>
 	</head>
 	<body>
-		<div id="principal" class="container-fluid">
+		<div id="principal" class="container-fluid animate__animated animate__fadeIn">
 			<div class="row">
 				<header class="col-12">
 					<div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-6">
@@ -40,7 +40,7 @@
 									echo 'No hay cursos de este ciclo';
 							?>
 						</div>
-						<div class="gestion-apps">
+						<div class="gestion-apps animate__animated animate__zoomIn">
 							<h3 class="font-weight-bolder">AÑADIR CURSO AL CICLO</h3>
 							<?php
 								if(isset($this->cursosNoCiclo))

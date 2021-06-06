@@ -4,7 +4,7 @@
 		<title>Importar Usuarios</title>
 	</head>
 	<body>
-		<div id="principal" class="container-fluid">
+		<div id="principal" class="container-fluid animate__animated animate__fadeIn">
 			<div class="row">
 				<header class="col-12">
 					<div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-6">
@@ -33,7 +33,7 @@
 						<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
 						Importando...
 					</button>
-					<div class="gestion-apps">
+					<div class="gestion-apps animate__animated animate__zoomIn">
 						<?php
 							$usuarios = array
 							(

@@ -4,7 +4,7 @@
 		<title>Gestión EVG</title>
 	</head>
 	<body>
-		<div id="principal" class="container-fluid">
+		<div id="principal" class="container-fluid animate__animated animate__fadeIn">
 			<div class="row">
 				<header class="col-12">
 					<div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-6">
@@ -31,7 +31,7 @@
 						</button>
 						<?php echo "<button onclick=\"location.href ='" . base_url() . "add-user'\" class=\"btn btn-success\" data-toggle=\"popover\" data-content=\"Añadir Usuario\"><i class=\"fas fa-plus-square\"></i></button>"; ?>
 						<?php echo "<button onclick=\"location.href ='" . base_url() . "import-users'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Importar Usuarios\"><i class=\"fas fa-file-import\"></i></button>"; ?>
-						<div class="gestion-apps">
+						<div class="gestion-apps animate__animated animate__slideInLeft">
 							<?php
 								if(empty($this -> listaUsuarios))
 									echo "<b>No hay usuarios creados.</b>";

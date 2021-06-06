@@ -4,7 +4,7 @@
 		<title>Gestión de Aplicaciones</title>
 	</head>
 	<body>
-		<div id="principal" class="container-fluid">
+		<div id="principal" class="container-fluid animate__animated animate__fadeIn">
 			<div class="row">
 				<header class="col-12">
 					<div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-6">
@@ -29,7 +29,7 @@
 						<i class="fas fa-times" data-toggle="popover" data-content="Ocultar menú"></i>
 					</button>
 					<?php echo "<button onclick=\"location.href ='" . base_url() . "add-app'\" class=\"btn btn-success\" data-toggle=\"popover\" data-content=\"Añadir Aplicación\"><i class=\"fas fa-plus-square\"></i></button>"; ?>
-					<div class="gestion-apps">
+					<div class="gestion-apps animate__animated animate__slideInLeft">
 						<?php
 							foreach($this->listaApps as $indice => $valor)
 								echo

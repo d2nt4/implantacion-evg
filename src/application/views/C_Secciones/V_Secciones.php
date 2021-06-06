@@ -4,7 +4,7 @@
 		<title>Secciones</title>
 	</head>
 	<body>
-		<div id="principal" class="container-fluid">
+		<div id="principal" class="container-fluid animate__animated animate__fadeIn">
 			<div class="row">
 				<header class="col-12">
 					<div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-6">
@@ -30,7 +30,7 @@
 					</button>
 					<?php echo "<button onclick=\"location.href ='" . base_url() . "add-section'\" class=\"btn btn-success\" data-toggle=\"popover\" data-content=\"Añadir Sección\"><i class=\"fas fa-plus-square\"></i></button>"; ?>
 					<?php echo "<button onclick=\"location.href ='" . base_url() . "import-sections'\" class=\"btn btn-warning\" data-toggle=\"popover\" data-content=\"Importar Secciones\"><i class=\"fas fa-file-import\"></i></button>"; ?>
-					<div class="gestion-apps">
+					<div class="gestion-apps animate__animated animate__slideInLeft">
 						<?php
 							if(empty($this -> listaSecciones))
 								echo "<b>No hay secciones creadas.</b>";

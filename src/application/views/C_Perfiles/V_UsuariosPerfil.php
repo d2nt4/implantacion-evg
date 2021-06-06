@@ -4,7 +4,7 @@
 		<title>Perfiles</title>
 	</head>
 	<body>
-		<div id="principal" class="container-fluid">
+		<div id="principal" class="container-fluid animate__animated animate__fadeIn">
 			<div class="row">
 				<header class="col-12">
 					<div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-6">
@@ -30,7 +30,7 @@
 						<i class="fas fa-times" data-toggle="popover" data-content="Ocultar menú"></i>
 					</button>
 					<?php echo "<button onclick=\"location.href ='" . base_url() . "profiles'\" class=\"btn btn-secondary\" data-toggle=\"popover\" data-content=\"Volver atrás\"><i class=\"fas fa-arrow-left\"></i></button>"; ?>
-					<div class="gestiones">
+					<div class="gestiones animate__animated animate__zoomIn">
 						<div class="gestion-apps">
 							<h3 class="font-weight-bolder">Eliminar Usuarios</h3>
 							<?php
