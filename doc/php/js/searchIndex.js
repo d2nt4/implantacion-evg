@@ -26,6 +26,126 @@ Search.appendIndex(
             "summary": "logout",
             "url": "classes/Auth.html#method_logout"
         },                {
+            "fqsen": "\\C_AdministracionEVG",
+            "name": "C_AdministracionEVG",
+            "summary": "C_AdministracionEVG",
+            "url": "classes/C-AdministracionEVG.html"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/C-AdministracionEVG.html#method___construct"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003Aindex\u0028\u0029",
+            "name": "index",
+            "summary": "index",
+            "url": "classes/C-AdministracionEVG.html#method_index"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003AcomprobarCSU\u0028\u0029",
+            "name": "comprobarCSU",
+            "summary": "comprobarCSU",
+            "url": "classes/C-AdministracionEVG.html#method_comprobarCSU"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003AcomprobarUsuarios\u0028\u0029",
+            "name": "comprobarUsuarios",
+            "summary": "comprobarUsuarios",
+            "url": "classes/C-AdministracionEVG.html#method_comprobarUsuarios"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003AverApps\u0028\u0029",
+            "name": "verApps",
+            "summary": "verApps",
+            "url": "classes/C-AdministracionEVG.html#method_verApps"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003AanadirAppForm\u0028\u0029",
+            "name": "anadirAppForm",
+            "summary": "anadirAppForm",
+            "url": "classes/C-AdministracionEVG.html#method_anadirAppForm"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003AanadirApp\u0028\u0029",
+            "name": "anadirApp",
+            "summary": "anadirApp",
+            "url": "classes/C-AdministracionEVG.html#method_anadirApp"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003AborrarApp\u0028\u0029",
+            "name": "borrarApp",
+            "summary": "borrarApp",
+            "url": "classes/C-AdministracionEVG.html#method_borrarApp"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003AmodificarAppForm\u0028\u0029",
+            "name": "modificarAppForm",
+            "summary": "modificarAppForm",
+            "url": "classes/C-AdministracionEVG.html#method_modificarAppForm"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003AmodificarApp\u0028\u0029",
+            "name": "modificarApp",
+            "summary": "modificarApp",
+            "url": "classes/C-AdministracionEVG.html#method_modificarApp"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003AperfilesAplicacion\u0028\u0029",
+            "name": "perfilesAplicacion",
+            "summary": "perfilesAplicacion",
+            "url": "classes/C-AdministracionEVG.html#method_perfilesAplicacion"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003AquitarPerfilAplicacion\u0028\u0029",
+            "name": "quitarPerfilAplicacion",
+            "summary": "quitarPerfilAplicacion",
+            "url": "classes/C-AdministracionEVG.html#method_quitarPerfilAplicacion"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003AanadirPerfilAplicacion\u0028\u0029",
+            "name": "anadirPerfilAplicacion",
+            "summary": "anadirPerfilAplicacion",
+            "url": "classes/C-AdministracionEVG.html#method_anadirPerfilAplicacion"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003AverPerfiles\u0028\u0029",
+            "name": "verPerfiles",
+            "summary": "verPerfiles",
+            "url": "classes/C-AdministracionEVG.html#method_verPerfiles"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003AanadirPerfilForm\u0028\u0029",
+            "name": "anadirPerfilForm",
+            "summary": "anadirPerfilForm",
+            "url": "classes/C-AdministracionEVG.html#method_anadirPerfilForm"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003AanadirPerfil\u0028\u0029",
+            "name": "anadirPerfil",
+            "summary": "anadirPerfil",
+            "url": "classes/C-AdministracionEVG.html#method_anadirPerfil"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003AborrarPerfil\u0028\u0029",
+            "name": "borrarPerfil",
+            "summary": "borrarPerfil",
+            "url": "classes/C-AdministracionEVG.html#method_borrarPerfil"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003AmodificarPerfilForm\u0028\u0029",
+            "name": "modificarPerfilForm",
+            "summary": "modificarPerfilForm",
+            "url": "classes/C-AdministracionEVG.html#method_modificarPerfilForm"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003AmodificarPerfil\u0028\u0029",
+            "name": "modificarPerfil",
+            "summary": "modificarPerfil",
+            "url": "classes/C-AdministracionEVG.html#method_modificarPerfil"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003AusuariosPerfil\u0028\u0029",
+            "name": "usuariosPerfil",
+            "summary": "usuariosPerfil",
+            "url": "classes/C-AdministracionEVG.html#method_usuariosPerfil"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003AquitarUsuarioPerfil\u0028\u0029",
+            "name": "quitarUsuarioPerfil",
+            "summary": "quitarUsuarioPerfil",
+            "url": "classes/C-AdministracionEVG.html#method_quitarUsuarioPerfil"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003AanadirUsuarioPerfil\u0028\u0029",
+            "name": "anadirUsuarioPerfil",
+            "summary": "anadirUsuarioPerfil",
+            "url": "classes/C-AdministracionEVG.html#method_anadirUsuarioPerfil"
+        },                {
+            "fqsen": "\\C_AdministracionEVG\u003A\u003AheaderLocation\u0028\u0029",
+            "name": "headerLocation",
+            "summary": "headerLocation",
+            "url": "classes/C-AdministracionEVG.html#method_headerLocation"
+        },                {
             "fqsen": "\\C_GestionEVG",
             "name": "C_GestionEVG",
             "summary": "C_GestionEVG",
@@ -50,96 +170,6 @@ Search.appendIndex(
             "name": "comprobarUsuarios",
             "summary": "comprobarUsuarios",
             "url": "classes/C-GestionEVG.html#method_comprobarUsuarios"
-        },                {
-            "fqsen": "\\C_GestionEVG\u003A\u003AverApps\u0028\u0029",
-            "name": "verApps",
-            "summary": "verApps",
-            "url": "classes/C-GestionEVG.html#method_verApps"
-        },                {
-            "fqsen": "\\C_GestionEVG\u003A\u003AanadirAppForm\u0028\u0029",
-            "name": "anadirAppForm",
-            "summary": "anadirAppForm",
-            "url": "classes/C-GestionEVG.html#method_anadirAppForm"
-        },                {
-            "fqsen": "\\C_GestionEVG\u003A\u003AanadirApp\u0028\u0029",
-            "name": "anadirApp",
-            "summary": "anadirApp",
-            "url": "classes/C-GestionEVG.html#method_anadirApp"
-        },                {
-            "fqsen": "\\C_GestionEVG\u003A\u003AborrarApp\u0028\u0029",
-            "name": "borrarApp",
-            "summary": "borrarApp",
-            "url": "classes/C-GestionEVG.html#method_borrarApp"
-        },                {
-            "fqsen": "\\C_GestionEVG\u003A\u003AmodificarAppForm\u0028\u0029",
-            "name": "modificarAppForm",
-            "summary": "modificarAppForm",
-            "url": "classes/C-GestionEVG.html#method_modificarAppForm"
-        },                {
-            "fqsen": "\\C_GestionEVG\u003A\u003AmodificarApp\u0028\u0029",
-            "name": "modificarApp",
-            "summary": "modificarApp",
-            "url": "classes/C-GestionEVG.html#method_modificarApp"
-        },                {
-            "fqsen": "\\C_GestionEVG\u003A\u003AperfilesAplicacion\u0028\u0029",
-            "name": "perfilesAplicacion",
-            "summary": "perfilesAplicacion",
-            "url": "classes/C-GestionEVG.html#method_perfilesAplicacion"
-        },                {
-            "fqsen": "\\C_GestionEVG\u003A\u003AquitarPerfilAplicacion\u0028\u0029",
-            "name": "quitarPerfilAplicacion",
-            "summary": "quitarPerfilAplicacion",
-            "url": "classes/C-GestionEVG.html#method_quitarPerfilAplicacion"
-        },                {
-            "fqsen": "\\C_GestionEVG\u003A\u003AanadirPerfilAplicacion\u0028\u0029",
-            "name": "anadirPerfilAplicacion",
-            "summary": "anadirPerfilAplicacion",
-            "url": "classes/C-GestionEVG.html#method_anadirPerfilAplicacion"
-        },                {
-            "fqsen": "\\C_GestionEVG\u003A\u003AverPerfiles\u0028\u0029",
-            "name": "verPerfiles",
-            "summary": "verPerfiles",
-            "url": "classes/C-GestionEVG.html#method_verPerfiles"
-        },                {
-            "fqsen": "\\C_GestionEVG\u003A\u003AanadirPerfilForm\u0028\u0029",
-            "name": "anadirPerfilForm",
-            "summary": "anadirPerfilForm",
-            "url": "classes/C-GestionEVG.html#method_anadirPerfilForm"
-        },                {
-            "fqsen": "\\C_GestionEVG\u003A\u003AanadirPerfil\u0028\u0029",
-            "name": "anadirPerfil",
-            "summary": "anadirPerfil",
-            "url": "classes/C-GestionEVG.html#method_anadirPerfil"
-        },                {
-            "fqsen": "\\C_GestionEVG\u003A\u003AborrarPerfil\u0028\u0029",
-            "name": "borrarPerfil",
-            "summary": "borrarPerfil",
-            "url": "classes/C-GestionEVG.html#method_borrarPerfil"
-        },                {
-            "fqsen": "\\C_GestionEVG\u003A\u003AmodificarPerfilForm\u0028\u0029",
-            "name": "modificarPerfilForm",
-            "summary": "modificarPerfilForm",
-            "url": "classes/C-GestionEVG.html#method_modificarPerfilForm"
-        },                {
-            "fqsen": "\\C_GestionEVG\u003A\u003AmodificarPerfil\u0028\u0029",
-            "name": "modificarPerfil",
-            "summary": "modificarPerfil",
-            "url": "classes/C-GestionEVG.html#method_modificarPerfil"
-        },                {
-            "fqsen": "\\C_GestionEVG\u003A\u003AusuariosPerfil\u0028\u0029",
-            "name": "usuariosPerfil",
-            "summary": "usuariosPerfil",
-            "url": "classes/C-GestionEVG.html#method_usuariosPerfil"
-        },                {
-            "fqsen": "\\C_GestionEVG\u003A\u003AquitarUsuarioPerfil\u0028\u0029",
-            "name": "quitarUsuarioPerfil",
-            "summary": "quitarUsuarioPerfil",
-            "url": "classes/C-GestionEVG.html#method_quitarUsuarioPerfil"
-        },                {
-            "fqsen": "\\C_GestionEVG\u003A\u003AanadirUsuarioPerfil\u0028\u0029",
-            "name": "anadirUsuarioPerfil",
-            "summary": "anadirUsuarioPerfil",
-            "url": "classes/C-GestionEVG.html#method_anadirUsuarioPerfil"
         },                {
             "fqsen": "\\C_GestionEVG\u003A\u003AverUsuarios\u0028\u0029",
             "name": "verUsuarios",
@@ -531,50 +561,55 @@ Search.appendIndex(
             "summary": "index",
             "url": "classes/Grid.html#method_index"
         },                {
+            "fqsen": "\\Grid\u003A\u003AvistaGeneral\u0028\u0029",
+            "name": "vistaGeneral",
+            "summary": "",
+            "url": "classes/Grid.html#method_vistaGeneral"
+        },                {
             "fqsen": "\\M_General",
             "name": "M_General",
             "summary": "M_General",
-            "url": "classes/M-GestionEVG.html"
+            "url": "classes/M-General.html"
         },                {
             "fqsen": "\\M_General\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "__construct",
-            "url": "classes/M-GestionEVG.html#method___construct"
+            "url": "classes/M-General.html#method___construct"
         },                {
             "fqsen": "\\M_General\u003A\u003Ainsertar\u0028\u0029",
             "name": "insertar",
             "summary": "insertar",
-            "url": "classes/M-GestionEVG.html#method_insertar"
+            "url": "classes/M-General.html#method_insertar"
         },                {
             "fqsen": "\\M_General\u003A\u003Aborrar\u0028\u0029",
             "name": "borrar",
             "summary": "borrar",
-            "url": "classes/M-GestionEVG.html#method_borrar"
+            "url": "classes/M-General.html#method_borrar"
         },                {
             "fqsen": "\\M_General\u003A\u003AborrarCompuesta\u0028\u0029",
             "name": "borrarCompuesta",
             "summary": "borrarCompuesta",
-            "url": "classes/M-GestionEVG.html#method_borrarCompuesta"
+            "url": "classes/M-General.html#method_borrarCompuesta"
         },                {
             "fqsen": "\\M_General\u003A\u003Amodificar\u0028\u0029",
             "name": "modificar",
             "summary": "modificar",
-            "url": "classes/M-GestionEVG.html#method_modificar"
+            "url": "classes/M-General.html#method_modificar"
         },                {
             "fqsen": "\\M_General\u003A\u003Aseleccionar\u0028\u0029",
             "name": "seleccionar",
             "summary": "seleccionar",
-            "url": "classes/M-GestionEVG.html#method_seleccionar"
+            "url": "classes/M-General.html#method_seleccionar"
         },                {
             "fqsen": "\\M_General\u003A\u003AobtenerIdUsuario\u0028\u0029",
             "name": "obtenerIdUsuario",
             "summary": "obtenerIdUsuario",
-            "url": "classes/M-GestionEVG.html#method_obtenerIdUsuario"
+            "url": "classes/M-General.html#method_obtenerIdUsuario"
         },                {
             "fqsen": "\\M_General\u003A\u003A\u0024bd",
             "name": "bd",
             "summary": "Guarda\u0020el\u0020valor\u0020de\u0020carga\u0020de\u0020la\u0020base\u0020de\u0020datos.",
-            "url": "classes/M-GestionEVG.html#property_bd"
+            "url": "classes/M-General.html#property_bd"
         },                {
             "fqsen": "\\M_Instalacion",
             "name": "M_Instalacion",
