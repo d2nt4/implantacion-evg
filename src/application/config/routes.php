@@ -54,7 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 /* ---------------------------------------------------
-    Instalacion
+    INSTALACIÓN
 ----------------------------------------------------- */
 $route['installation'] = 'C_Instalacion';
 $route['add-admin'] = 'C_Instalacion/formularioAdmin';

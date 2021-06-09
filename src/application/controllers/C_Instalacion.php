@@ -49,7 +49,7 @@ class C_Instalacion extends CI_Controller
 	/**
 	 * formularioAdmin
 	 * 
-	 * Muestra el formulario del administrador
+	 * Muestra el formulario del administrador.
 	 *
 	 * @return void
 	 */

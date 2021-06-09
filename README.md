@@ -62,5 +62,5 @@ $db['default'] = array
 
 ### Como acceder a la instalación
 ```bash
-base_url/C_Instalacion Ejemplo: https://www.tu-app-com/<carpeta-app>/C_Instalacion
+base_url/installation Ejemplo: https://www.tu-app-com/<carpeta-app>/installation
 ```
