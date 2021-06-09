@@ -52,6 +52,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'C_GestionEVG';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+/* ---------------------------------------------------
+    Instalacion
+----------------------------------------------------- */
+$route['installation'] = 'C_Instalacion';
+$route['add-admin'] = 'C_Instalacion/formularioAdmin';
+
 /* ---------------------------------------------------
     GRID
 ----------------------------------------------------- */

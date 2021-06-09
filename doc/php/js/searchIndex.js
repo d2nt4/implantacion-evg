@@ -541,6 +541,11 @@ Search.appendIndex(
             "summary": "index",
             "url": "classes/C-Instalacion.html#method_index"
         },                {
+            "fqsen": "\\C_Instalacion\u003A\u003AformularioAdmin\u0028\u0029",
+            "name": "formularioAdmin",
+            "summary": "formularioAdmin",
+            "url": "classes/C-Instalacion.html#method_formularioAdmin"
+        },                {
             "fqsen": "\\C_Instalacion\u003A\u003AanadirAdmin\u0028\u0029",
             "name": "anadirAdmin",
             "summary": "anadirAdmin",

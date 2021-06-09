@@ -37,13 +37,27 @@ class C_Instalacion extends CI_Controller
 	 */
 	public function index()
 	{
+		$this -> load -> view('Instalacion/V_Cargando');
 		$this -> M_Instalacion -> tablas();
-		$this -> M_General -> insertar('Perfiles', Array('nombre' => 'Administrador','descripcion' => 'administrador'));
-		$this -> M_General -> insertar('Perfiles', Array('nombre' => 'Gestor','descripcion' => 'gestor'));
-		$this -> M_General -> insertar('Perfiles', Array('nombre' => 'Tutor','descripcion' => 'tutor de una clase'));
-		$this -> M_General -> insertar('Perfiles', Array('nombre' => 'Profesor','descripcion' => 'profesor'));
+		$this -> M_General -> insertar('Perfiles', Array('nombre' => 'Administrador','descripcion' => 'Administrador'));
+		$this -> M_General -> insertar('Perfiles', Array('nombre' => 'Gestor','descripcion' => 'Gestor'));
+		$this -> M_General -> insertar('Perfiles', Array('nombre' => 'Tutor','descripcion' => 'Tutor de una Clase'));
+		$this -> M_General -> insertar('Perfiles', Array('nombre' => 'Profesor','descripcion' => 'Profesor'));
+		header("Refresh: 0; url = ".base_url()."add-admin");
+	}	
+
+	/**
+	 * formularioAdmin
+	 * 
+	 * Muestra el formulario del administrador
+	 *
+	 * @return void
+	 */
+	public function formularioAdmin(){
+		sleep(2);
 		$this -> load -> view('Instalacion/V_Admin');
 	}
+
 	
 	/**
 	 * anadirAdmin
