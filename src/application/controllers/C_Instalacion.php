@@ -43,7 +43,7 @@ class C_Instalacion extends CI_Controller
 		$this -> M_General -> insertar('Perfiles', Array('nombre' => 'Gestor','descripcion' => 'Gestor'));
 		$this -> M_General -> insertar('Perfiles', Array('nombre' => 'Tutor','descripcion' => 'Tutor de una Clase'));
 		$this -> M_General -> insertar('Perfiles', Array('nombre' => 'Profesor','descripcion' => 'Profesor'));
-		header("Refresh: 0; url = ".base_url()."add-admin");
+		header("Refresh: 1; url = ".base_url()."add-admin");
 	}	
 
 	/**
