@@ -12,6 +12,7 @@ class Google
         $this -> CI -> load -> library('session');
         $this -> CI -> config -> load('google_config');
         $this -> client = new Google_Client();
+		$this -> client -> setPrompt('select_account');
 		$this -> client -> setClientId($this -> CI -> config -> item('google_client_id'));
 		$this -> client -> setClientSecret($this -> CI -> config -> item('google_client_secret'));
 		$this -> client -> setRedirectUri($this -> CI -> config -> item('google_redirect_url'));
@@ -23,7 +24,6 @@ class Google
 				"https://www.googleapis.com/auth/userinfo.profile"
 			)
 		);
-		$this -> client -> setApprovalPrompt('force');
 	}
 
 	public function get_login_url()
