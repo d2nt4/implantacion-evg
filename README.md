@@ -1,7 +1,7 @@
 # Implantación Aplicaciones - EVG 2020/2021
 
 <div align="center">
-	<img src="/src/uploads/iconos/evg.png" alt="Logo EVG"/>
+	<img src="/src/uploads/iconos/evg-original.png" alt="Logo EVG"/>
 </div>
 
 ## Despliegue en Hosting :computer:
