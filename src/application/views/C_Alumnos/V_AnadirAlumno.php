@@ -8,7 +8,7 @@
 			<div class="row">
 				<header class="col-12">
 					<div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-6">
-						<?php echo '<a href="'.base_url().'main"><img id="logo-evg" src="'.base_url().'uploads/iconos/escudo-evg.png" alt="Escudo EVG" class="img-fluid"/></a>'; ?>
+						<?php echo '<a href="'.base_url().'main"><img id="logo-evg" src="'.base_url().'uploads/iconos/evg.png" alt="Escudo EVG" class="img-fluid"/></a>'; ?>
 						<h3>Gestión EVG - Añadir Alumno</h3>
 					</div>
 					<div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-6">

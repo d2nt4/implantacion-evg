@@ -10,7 +10,7 @@
 			<div class="row">
 				<header class="col-12">
 					<div class="col-12">
-						<?php echo '<a href="'.base_url().'main/"><img id="logo-evg" src="'.base_url().'uploads/iconos/escudo-evg.png" alt="Escudo EVG" class="img-fluid"/></a>'; ?>
+						<?php echo '<a href="'.base_url().'main/"><img id="logo-evg" src="'.base_url().'uploads/iconos/evg.png" alt="Escudo EVG" class="img-fluid"/></a>'; ?>
 						<h3>Añadir Administrador</h3>
 					</div>
 				</header>

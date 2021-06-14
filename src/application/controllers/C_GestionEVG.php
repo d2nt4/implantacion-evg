@@ -1615,7 +1615,7 @@ class C_GestionEVG extends CI_Controller
 			$pdf -> AddFont('DejaVu','','DejaVuSans-Bold.ttf',true); /*Establece el estilo de letra*/
 			$pdf -> SetFont('DejaVu','',7); /*Establece el estilo de letra*/
 			$pdf -> Cell(0, 10, 'LISTADO DE TUTORES - ' . date('d/m/Y'), 0, 0, 'R'); /*Encabezado del PDF*/
-			$pdf -> Image(base_url().'uploads/iconos/escudo-evg.png', 10, 10, 45); /*Logo EVG*/
+			$pdf -> Image(base_url().'uploads/iconos/evg-original.png', 10, 10, 25); /*Logo EVG*/
 			$pdf -> SetMargins(10, 10, 40); /*Establecer márgenes*/
 			$pdf -> Ln(20); /*Salto de linea*/
 			$pdf -> Cell(95, 10, 'SECCIÓN', 1, 0, 'C'); /*$pdf->Cell(ancho, alto, valor a escribir, borde, salto de linea, 'alineamiento');*/

@@ -51,8 +51,8 @@ header div:nth-child(2)
 
 #logo-evg
 {
-	height: auto;
-	width: 13rem;
+	height: 4rem;
+	width: 9rem;
 	margin-right: 2rem;
 }
 
@@ -319,11 +319,6 @@ h3 > span
 }
 
 /* Filas de gestión de contenido */
-.fila
-{
-	margin-bottom: .5rem;
-}
-
 .fila h3
 {
 	display: inline-block;

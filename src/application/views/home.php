@@ -8,7 +8,7 @@
 		<div id="main" class="container animate__animated animate__backInDown">
 			<div class="d-table mx-auto mb-2">
 				<div id="logo" class="d-table-cell align-middle">
-					<img src="<?=base_url()?>uploads/iconos/evg.png" class="img-fluid" alt="EVG Logo">
+					<img src="<?=base_url()?>uploads/iconos/evg-original.png" class="img-fluid" alt="EVG Logo">
 				</div>
 				<div class="p-2 d-table-cell align-middle">
 					<h2 class="font-weight-bolder">Gestión EVG</h2>
