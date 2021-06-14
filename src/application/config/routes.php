@@ -161,3 +161,8 @@ $route['delete-family/(:num)'] = 'C_GestionEVG/borrarFamilia/$1';
     TUTOR LIST
 ----------------------------------------------------- */
 $route['tutor-list'] = 'C_GestionEVG/listadoTutores';
+
+/* ---------------------------------------------------
+    SESSION
+----------------------------------------------------- */
+$route['session'] = 'C_Sesion/userID';
